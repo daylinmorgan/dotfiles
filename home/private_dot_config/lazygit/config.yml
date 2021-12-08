@@ -1,0 +1,9 @@
+gui:
+  theme:
+    selectedLineBgColor:
+      - reverse
+    selectedRangeBgColor:
+      - reverse
+  showFileTree: true
+git:
+  branchLogCmd: 'git log --graph --all --color=always --decorate --date=relative --oneline'

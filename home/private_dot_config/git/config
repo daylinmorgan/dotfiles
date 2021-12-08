@@ -1,0 +1,17 @@
+[credential]
+	helper = cache
+[core]
+	editor = nvim
+[user]
+	name = Daylin Morgan
+	email = daylinmorgan@gmail.com
+[submodule]
+	recurse = true
+[pull]
+	rebase = true
+[init]
+	defaultBranch = main
+[branch]
+	autosetuprebase = always
+[alias]
+	adog = log --all --decorate --oneline --graph

@@ -1,0 +1,20 @@
+[username]
+format = "[$user]($style) on "
+
+[gcloud]
+disabled = true
+
+[python]
+disabled = true
+
+[rlang]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[golang]
+disabled = true
+
+[package]
+disabled = true

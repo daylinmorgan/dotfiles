@@ -1,0 +1,36 @@
+general:
+  - ms-vscode-remote.remote-ssh
+  - ms-vscode-remote.remote-ssh-edit
+  - ms-vscode-remote.remote-wsl
+  - vscodevim.vim
+misc-tools:
+  - Shan.code-settings-sync
+  - janisdd.vscode-edit-csv
+  - cssho.vscode-svgviewer
+  - naumovs.color-highlight
+web-dev:
+  - bradlc.vscode-tailwindcss
+  - ritwickdey.liveserver
+styling:
+  - johnpapa.vscode-peacock
+  - PKief.material-icon-theme
+  - Thomaz.preparing
+  - whizkydee.material-palenight-theme
+code-help:
+  - aaron-bond.better-comments
+  - CoenraadS.bracket-pair-colorizer-2
+  - streetsidesoftware.code-spell-checker
+  - vsls-contrib.gistfs
+  - mhutchie.git-graph
+  - Github.copilot
+python:
+  - ms-python.python
+  - ms-toolsai.jupyter
+  - njpwerner.autodocstring
+  - snakemake.snakemake-lang
+language-support:
+  - lextudio.restructuredtext
+  - Ikuyadeu.r
+  - James-Yu.latex-workshop
+  - budparr.language-hugo-vscode
+  - tht13.rst-vscode

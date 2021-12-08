@@ -1,0 +1,55 @@
+# `sheldon` configuration file
+# ----------------------------
+#
+# You can modify this file directly or you can use one of the following
+# `sheldon` commands which are provided to assist in editing the config file:
+#
+# - `sheldon add` to add a new plugin to the config file
+# - `sheldon edit` to open up the config file in the default editor
+# - `sheldon remove` to remove a plugin from the config file
+#
+# See the documentation for more https://github.com/rossmacarthur/sheldon#readme
+
+shell = "zsh"
+
+
+[plugins]
+
+# oh-my-zsh plugins
+[plugins.ohmyzsh-plugins]
+github = 'ohmyzsh/ohmyzsh'
+dir = 'plugins'
+use = ['{git,dotenv,extract,tmux}.plugin.zsh']
+
+[plugins.ohmyzsh-lib]
+github = 'ohmyzsh/ohmyzsh'
+dir = "lib"
+use = ['{completion,clipboard}.zsh']
+
+[plugins.base16]
+github = "chriskempson/base16-shell"
+
+[plugins.enhancd]
+github = "b4b4r07/enhancd"
+
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
+
+[plugins.zcolors]
+github ="marlonrichert/zcolors"
+
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
+apply = ["defer"]
+
+[plugins.fzf-tab]
+github = "Aloxaf/fzf-tab"
+apply = ["defer"]
+
+[plugins.ohmyzsh]
+github = 'ohmyzsh/ohmyzsh'
+dir = 'plugins'
+use = ['{git,dotenv,extract,tmux}/*.plugin.zsh']
+
+[templates]
+defer = { value = 'zsh-defer source "{{ file }}"', each = true }
