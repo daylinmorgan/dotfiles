@@ -1,7 +1,18 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
 BIN_DIR=$HOME/bin
 mkdir -p $BIN_DIR
+EGET_BIN=$BIN_DIR
+
+post_download_install() {
+
+    tool=$1
+    temp_file=$(mktemp -p . ${tool}.XXX.sh)
+    key=$tool yq e 'explode(.) | .[env(key)].post-download' $YAMLDOC > $temp_file
+    . $temp_file
+    rm $temp_file
+
+}
 
 if ! $(is-executable eget); then
 	echo "I don't see eget on your path..."
@@ -18,31 +29,36 @@ fi
 
 echo "downloading binaries from github to $EGET_BIN"
 
+if ! $(is-executable yq); then
+    eget mikefarah/yq --asset yq_linux_amd64
+fi
+
+YAMLDOC="info/tools.yml"
 alias eget="eget --system linux/amd64"
 
-# environment
-eget rossmacarthur/sheldon
-eget starship/starship --asset starship-x86_64-unknown-linux-gnu.tar.gz
+readarray tools < <(yq e 'keys | .[]' $YAMLDOC)
 
-# general tools
-eget Peltoche/lsd --asset x86_64-unknown-linux-gnu.tar.gz
-eget BurntSushi/ripgrep
-eget sharkdp/fd --asset x86_64-unknown-linux-gnu.tar.gz
-eget sharkdp/bat --asset x86_64-unknown-linux-gnu.tar.gz
-eget ClementTsang/bottom --asset x86_64-unknown-linux-gnu.tar.gz -f btm
+for tool in "${tools[@]:1}"
+do
+    echo $tool
 
-# git 
-eget jesseduffield/lazygit
+    user=$(key=$tool yq e 'explode(.) | .[env(key)].user' $YAMLDOC)
+    asset=$(key=$tool yq e 'explode(.) | .[env(key)].asset // ""' $YAMLDOC)
+    file=$(key=$tool yq e 'explode(.) | .[env(key)].file // ""' $YAMLDOC)
+    to=$(key=$tool yq e 'explode(.) | .[env(key)].to // ""' $YAMLDOC)
+    download_only=$(key=$tool yq e 'explode(.) | .[env(key)].download-only // ""' $YAMLDOC)
 
-# writing
-eget neovim/neovim
+    eget $user/$tool \
+        ${asset:+--asset $asset} \
+        ${file:+--file $file} \
+        ${to:+--to $to}\
+        ${download_only:+--download-only} \
+        -q
 
-# eget dundee/gdu eget doesn't support .tgz?
+    if [[ $download_only ]]; then
+        echo '----'
+        echo 'running post-download script'
+        post_download_install $tool
+    fi
 
-# install gdu manually
-gdu_release=https://github.com/dundee/gdu/releases/download/v5.8.1/gdu_linux_amd64.tgz
-echo "fetching gdu manually"
-wget $gdu_release
-tar -xzvf gdu_linux_amd64.tgz
-mv gdu_linux_amd64 $EGET_BIN/gdu
-rm gdu*
+done

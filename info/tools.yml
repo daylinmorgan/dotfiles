@@ -1,0 +1,43 @@
+
+tool: &default
+  asset: x86_64-unknown-linux-gnu
+
+# environment
+sheldon:
+  user: rossmacarthur
+starship:
+  user: starship
+  asset: starship-x86_64-unknown-linux-gnu.tar.gz
+
+# general
+lsd:
+  <<: *default
+  user: Peltoche
+ripgrep:
+  user: BurntSushi
+fd:
+  <<: *default
+  user: sharkdp
+
+# system monitoring
+bottom:
+  asset: x86_64-unknown-linux-gnu.tar.gz
+  user: ClementTsang
+  file: btm
+
+# git
+lazygit:
+  user: jesseduffield
+
+# editing
+neovim:
+  user: neovim
+
+gdu:
+  user: dundee
+  download-only: true
+  post-download: |
+    tar -xzf gdu_linux_amd64.tgz
+    mv gdu_linux_amd64 $EGET_BIN/gdu
+    rm gdu_linux_amd64.tgz
+
