@@ -142,10 +142,6 @@ install_mambaforge() {
         return
     fi
 
-    echo "#####################"
-    echo  installing mambaforge
-    echo "#####################"
-
     echo "fetching install script from github"
 
     current_dir=$PWD

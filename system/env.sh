@@ -9,7 +9,7 @@ export HISTFILESIZE="${HISTSIZE}";
 export SAVEHIST=4096
 export HISTCONTROL=ignoredups:erasedups
 
-export LESS='-R --use-color'
+export LESS='-R'
 
 # Append to the history file, rather than overwriting it
 setopt APPEND_HISTORY
