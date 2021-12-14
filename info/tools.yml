@@ -18,6 +18,11 @@ ripgrep:
 fd:
   <<: *default
   user: sharkdp
+bat:
+  <<: *default
+  user: sharkdp
+just:
+  user: casey
 
 # system monitoring
 bottom:
@@ -28,11 +33,18 @@ bottom:
 # git
 lazygit:
   user: jesseduffield
+cli:
+  user: cli
+  asset: linux_amd64.tar.gz
+glab:
+  user: profclems
+  asset: Linux_x86_64.tar.gz
 
 # editing
 neovim:
   user: neovim
 
+# file management
 gdu:
   user: dundee
   download-only: true
@@ -41,3 +53,5 @@ gdu:
     mv gdu_linux_amd64 $EGET_BIN/gdu
     rm gdu_linux_amd64.tgz
 
+lf:
+  user: gokcehan

@@ -40,7 +40,7 @@ readarray tools < <(yq e 'keys | .[]' $YAMLDOC)
 
 for tool in "${tools[@]:1}"
 do
-    echo $tool
+    echo -n $tool
 
     user=$(key=$tool yq e 'explode(.) | .[env(key)].user' $YAMLDOC)
     asset=$(key=$tool yq e 'explode(.) | .[env(key)].asset // ""' $YAMLDOC)
@@ -56,9 +56,10 @@ do
         -q
 
     if [[ $download_only ]]; then
-        echo '----'
-        echo 'running post-download script'
+        echo -n '-->'
+        echo -n 'running post-download script'
         post_download_install $tool
     fi
 
+    echo
 done
