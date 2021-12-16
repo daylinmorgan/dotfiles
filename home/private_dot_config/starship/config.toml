@@ -1,6 +1,10 @@
 [username]
 format = "[$user]($style) on "
 
+[character]
+success_symbol = "[❯](bold green)[❯](yellow)[❯](red)"
+error_symbol = "[✗](bold red) "
+
 [gcloud]
 disabled = true
 
