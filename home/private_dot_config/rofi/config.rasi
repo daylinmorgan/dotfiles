@@ -1,0 +1,11 @@
+@theme "arthur"
+
+inputbar {
+    color: #FF80BF;
+}
+
+element selected.normal {
+    background-color: #80FFEA;
+    color: #454158;
+}
+
