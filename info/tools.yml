@@ -40,6 +40,10 @@ glab:
   user: profclems
   asset: Linux_x86_64.tar.gz
 
+#node
+fnm:
+  user: Schniz
+
 # editing
 neovim:
   user: neovim
@@ -55,3 +59,4 @@ gdu:
 
 lf:
   user: gokcehan
+
