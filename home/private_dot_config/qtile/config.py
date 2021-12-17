@@ -1,8 +1,7 @@
 from typing import List  # noqa: F401
 
 from libqtile import bar, layout, widget
-from libqtile.config import Click, Drag, Group, Key, Match, Screen 
-from libqtile.lazy import lazy
+from libqtile.config import Click, Drag, Group, Key, Match, Screen from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 from keybindings import keys
@@ -73,8 +72,13 @@ screens = [
                 widget.Systray(),
                 widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
                 widget.QuickExit(),
+                widget.Battery(
+                    format='{percent:2.0%}',
+                    show_short_text=False
+                    )
             ],
             24,
+            margin=2
         ),
     ),
 ]
