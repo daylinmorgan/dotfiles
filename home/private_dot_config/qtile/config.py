@@ -1,37 +1,20 @@
 from typing import List  # noqa: F401
 
 from libqtile import bar, layout, widget
-from libqtile.config import Click, Drag, Group, Key, Match, Screen from libqtile.lazy import lazy
+from libqtile.config import Click, Drag, Group, Match, Screen
+from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
-from keybindings import keys
+from keybindings import add_group_key, keys
 
 mod = "mod4"
 terminal = guess_terminal()
 
 groups = [Group(i) for i in "123456789"]
-
-for i in groups:
-    keys.extend([
-        # mod1 + letter of group = switch to group
-        Key([mod], i.name, lazy.group[i.name].toscreen(),
-            desc="Switch to group {}".format(i.name)),
-
-        # mod1 + shift + letter of group = switch to & move focused window to group
-        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
-            desc="Switch to & move focused window to group {}".format(i.name)),
-        # Or, use below if you prefer not to switch to that group.
-        # # mod1 + shift + letter of group = move focused window to group
-        # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-        #     desc="move focused window to group {}".format(i.name)),
-    ])
+[add_group_key(group, keys) for group in groups]
 
 layouts = [
-    layout.MonadTall(
-        border_focus='#80FFEA',
-        fontsize=10,
-        margin=4
-    ),
+    layout.MonadTall(border_focus="#80FFEA", fontsize=10, margin=4),
     layout.Max(),
     layout.Stack(num_stacks=2),
     # Try more layouts by unleashing below layouts.
@@ -47,7 +30,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='sans',
+    font="sans",
     fontsize=12,
     padding=3,
 )
@@ -63,33 +46,46 @@ screens = [
                 widget.WindowName(),
                 widget.Chord(
                     chords_colors={
-                        'launch': ("#ff0000", "#ffffff"),
+                        "launch": ("#ff0000", "#ffffff"),
                     },
                     name_transform=lambda name: name.upper(),
                 ),
                 widget.TextBox("not default config", name="default"),
                 widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 widget.Systray(),
-                widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
+                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
                 widget.QuickExit(),
-                widget.Battery(
-                    format='{percent:2.0%}',
-                    show_short_text=False
-                    )
+                widget.Battery(format="{percent:2.0%}", show_short_text=False),
             ],
             24,
-            margin=2
+            margin=2,
+        ),
+    ),
+    Screen(
+        bottom=bar.Bar(
+            [
+                widget.CurrentLayout(),
+                widget.GroupBox(),
+                widget.WindowName(),
+            ],
+            24,
+            margin=2,
         ),
     ),
 ]
 
 # Drag floating layouts.
 mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(),
-         start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(),
-         start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front())
+    Drag(
+        [mod],
+        "Button1",
+        lazy.window.set_position_floating(),
+        start=lazy.window.get_position(),
+    ),
+    Drag(
+        [mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()
+    ),
+    Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
 
 dgroups_key_binder = None
@@ -97,16 +93,18 @@ dgroups_app_rules = []  # type: List
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
-floating_layout = layout.Floating(float_rules=[
-    # Run the utility of `xprop` to see the wm class and name of an X client.
-    *layout.Floating.default_float_rules,
-    Match(wm_class='confirmreset'),  # gitk
-    Match(wm_class='makebranch'),  # gitk
-    Match(wm_class='maketag'),  # gitk
-    Match(wm_class='ssh-askpass'),  # ssh-askpass
-    Match(title='branchdialog'),  # gitk
-    Match(title='pinentry'),  # GPG key password entry
-])
+floating_layout = layout.Floating(
+    float_rules=[
+        # Run the utility of `xprop` to see the wm class and name of an X client.
+        *layout.Floating.default_float_rules,
+        Match(wm_class="confirmreset"),  # gitk
+        Match(wm_class="makebranch"),  # gitk
+        Match(wm_class="maketag"),  # gitk
+        Match(wm_class="ssh-askpass"),  # ssh-askpass
+        Match(title="branchdialog"),  # gitk
+        Match(title="pinentry"),  # GPG key password entry
+    ]
+)
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
