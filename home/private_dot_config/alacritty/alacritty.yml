@@ -10,6 +10,7 @@
 # to the user's home directory starting with `~/`.
 import:
   - C:\Users\daylin\AppData\Roaming\alacritty\dracula-pro.yml
+  - ~/.config/alacritty/dracula-pro.yml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -47,10 +48,10 @@ window:
   # by DPI and the specified value is always added at both opposing sides.
   padding:
     x: 10
-    y: 20
+    y: 5
 
   # Spread additional padding evenly around the terminal content.
-  dynamic_padding: true
+  dynamic_padding: false
 
   # Window decorations
   #
