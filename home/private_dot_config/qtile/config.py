@@ -8,7 +8,7 @@ from libqtile.utils import guess_terminal
 from keybindings import add_group_key, keys
 
 mod = "mod4"
-terminal = guess_terminal()
+term = guess_terminal()
 
 groups = [Group(i) for i in "123456789"]
 [add_group_key(group, keys) for group in groups]
@@ -44,15 +44,14 @@ screens = [
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
                 widget.TextBox("not default config", name="default"),
                 widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 widget.Systray(),
+                widget.CheckUpdates(
+                    update_interval=3600,
+                    distro="Arch",
+                    display_format="{updates} Updates",
+                    mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(term + "-e sudo pacman -Syu")}),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
                 widget.QuickExit(),
                 widget.Battery(format="{percent:2.0%}", show_short_text=False),
