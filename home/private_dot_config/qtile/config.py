@@ -38,6 +38,8 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
+        wallpaper='~/wall/background.jpeg',
+        wallpaper_mode="fill",
         top=bar.Bar(
             [
                 widget.CurrentLayout(),
