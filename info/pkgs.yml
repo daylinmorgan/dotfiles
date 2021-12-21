@@ -1,0 +1,38 @@
+arch:
+  # utils
+  - zsh
+  - nano
+  - vim
+  - curl
+  - wget
+  - git
+  - coreutils
+  - unzip
+  - openssh
+  - tmux
+  # system
+  - bluez-utils
+  - dhcpcd
+  # environment
+  - xorg-server
+  - xorg-apps
+  - xorg-xinit
+  - xf86-video-vesa
+  - lightdm
+  - rofi
+  - dunst
+  # tools
+  - alacritty
+  - vivaldi
+aur:
+  # tools
+  - visual-studio-code-bin
+  # environment
+  - lightdm-mini-greeter
+  - leftwm
+  - leftwm-theme-git
+  - picom-git
+  - polybar
+  # fun
+  - macchina
+
