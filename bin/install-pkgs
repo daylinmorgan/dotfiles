@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+if ! $(is-executable yq); then
+    echo "you will need to install yq"
+    echo "see here for more info: https://github.com/mikefarah/yq"
+fi
+
+YAMLDOC="$HOME/.dotfiles/info/pkgs.yml"
+
+readarray pkgs < <(yq e '.["arch"] | .[] | ... comments=""' $YAMLDOC)
+
+sudo pacman -S $(echo ${pkgs[@]})
+
+readarray pkgs < <(yq e '.["aur"] | .[] | ... comments=""' $YAMLDOC)
+
+paru -S $(echo ${pkgs[@]})
