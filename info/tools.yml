@@ -43,6 +43,13 @@ glab:
 #node
 fnm:
   user: Schniz
+  download-only: true
+  post-download: |
+    unzip -qq fnm-linux.zip
+    mv fnm $EGET_BIN/fnm
+    rm -r fnm-linux.zip
+    chmod u+x $EGET_BIN/fnm
+
 
 # editing
 neovim:
@@ -51,11 +58,12 @@ neovim:
 # file management
 gdu:
   user: dundee
-  download-only: true
-  post-download: |
-    tar -xzf gdu_linux_amd64.tgz
-    mv gdu_linux_amd64 $EGET_BIN/gdu
-    rm gdu_linux_amd64.tgz
+  to: gdu
+#  download-only: true
+#  post-download: |
+#    tar -xzf gdu_linux_amd64.tgz
+#    mv gdu_linux_amd64 $EGET_BIN/gdu
+#    rm gdu_linux_amd64.tgz
 
 lf:
   user: gokcehan
