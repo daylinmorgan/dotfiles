@@ -46,4 +46,5 @@ is-executable nvim && alias vim=nvim
 is-executable gdu && alias gdu -I '.*node_modules' -H
 # more fzf
 alias fzf-bat="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+alias vivaldi="vivaldi-stable"
 ##########################################
