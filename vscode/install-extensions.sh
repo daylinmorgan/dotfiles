@@ -9,14 +9,15 @@ code --install-extension Shan.code-settings-sync --force
 code --install-extension janisdd.vscode-edit-csv --force
 code --install-extension cssho.vscode-svgviewer --force
 code --install-extension naumovs.color-highlight --force
+code --install-extension antfu.slidev --force
 code --install-extension bradlc.vscode-tailwindcss --force
 code --install-extension ritwickdey.liveserver --force
 code --install-extension johnpapa.vscode-peacock --force
 code --install-extension PKief.material-icon-theme --force
 code --install-extension Thomaz.preparing --force
-code --install-extension whizkydee.material-palenight-theme --force
+code --install-extension dracula-theme.theme-dracula --force
+code --install-extension christian-kohler.path-intellisense --force
 code --install-extension aaron-bond.better-comments --force
-code --install-extension CoenraadS.bracket-pair-colorizer-2 --force
 code --install-extension streetsidesoftware.code-spell-checker --force
 code --install-extension vsls-contrib.gistfs --force
 code --install-extension mhutchie.git-graph --force
@@ -30,3 +31,9 @@ code --install-extension Ikuyadeu.r --force
 code --install-extension James-Yu.latex-workshop --force
 code --install-extension budparr.language-hugo-vscode --force
 code --install-extension tht13.rst-vscode --force
+code --install-extension skellock.just --force
+code --install-extension neilding.language-liquid --force
+code --install-extension snakemake.snakemake-lang --force
+code --install-extension voorjaar.windicss-intellisense --force
+code --install-extension eww-yuck.yuck --force
+code --install-extension bungcip.better-toml --force

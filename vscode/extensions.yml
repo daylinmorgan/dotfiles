@@ -8,6 +8,7 @@ misc-tools:
   - janisdd.vscode-edit-csv
   - cssho.vscode-svgviewer
   - naumovs.color-highlight
+  - antfu.slidev
 web-dev:
   - bradlc.vscode-tailwindcss
   - ritwickdey.liveserver
@@ -15,10 +16,10 @@ styling:
   - johnpapa.vscode-peacock
   - PKief.material-icon-theme
   - Thomaz.preparing
-  - whizkydee.material-palenight-theme
+  - dracula-theme.theme-dracula
 code-help:
+  - christian-kohler.path-intellisense
   - aaron-bond.better-comments
-  - CoenraadS.bracket-pair-colorizer-2
   - streetsidesoftware.code-spell-checker
   - vsls-contrib.gistfs
   - mhutchie.git-graph
@@ -34,3 +35,9 @@ language-support:
   - James-Yu.latex-workshop
   - budparr.language-hugo-vscode
   - tht13.rst-vscode
+  - skellock.just
+  - neilding.language-liquid
+  - snakemake.snakemake-lang
+  - voorjaar.windicss-intellisense
+  - eww-yuck.yuck
+  - bungcip.better-toml
