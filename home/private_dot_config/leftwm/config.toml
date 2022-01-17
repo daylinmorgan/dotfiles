@@ -36,12 +36,17 @@ value = "rofi -dmenu -input /tmp/leftwm-keymap -window-title 'Keymap' -theme ~/.
 modifier = ["modkey", "Shift"]
 key = "k"
 
-# [[keybind]]
-# command = "Execute"
-# value = "~/.config/rofi/bin/menu_screenshot"
-# modifier = ["modkey"]
-# key = "s"
+[[keybind]]
+command = "Execute"
+value = "~/.config/leftwm/themes/current/rofi/bin/rofi-screenshot"
+modifier = ["modkey"]
+key = "s"
 
+[[keybind]]
+command = "Execute"
+value = "~/.config/leftwm/themes/current/rofi/bin/rofi-screenshot"
+modifier = ["modkey", "Shift"]
+key = "s"
 
 [[keybind]]
 command = "Execute"
@@ -54,7 +59,6 @@ command = "Execute"
 value = "alacritty"
 modifier = ["modkey", "Shift"]
 key = "Return"
-
 
 [[keybind]]
 command = "Execute"
@@ -138,10 +142,10 @@ command = "NextLayout"
 modifier = ["modkey", "Control"]
 key = "k"
 
-[[keybind]]
-command = "PreviousLayout"
-modifier = ["modkey", "Control"]
-key = "j"
+#[[keybind]]
+#command = "PreviousLayout"
+#modifier = ["modkey", "Control"]
+#key = "j"
 
 [[keybind]]
 command = "FocusWorkspaceNext"
