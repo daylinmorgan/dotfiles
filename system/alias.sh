@@ -47,4 +47,12 @@ is-executable gdu && alias gdu -I '.*node_modules' -H
 # more fzf
 alias fzf-bat="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 alias vivaldi="vivaldi-stable"
+#zellij
+if is-exectuable zellij; then
+
+    alias zs="zellij -s"
+    alias zl="zellij ls"
+    alias za="zellij a"
+fi
 ##########################################
+
