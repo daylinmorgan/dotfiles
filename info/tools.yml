@@ -54,6 +54,9 @@ fnm:
 # editing
 neovim:
   user: neovim
+sh:
+  user: mvdan
+
 
 # file management
 gdu:
