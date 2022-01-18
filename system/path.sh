@@ -26,8 +26,8 @@ PATH="$HOME/go/bin:$PATH"
 # PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
 # printf %s "$PATH" | awk -v RS=: -v ORS=: '!arr[$0]++'
 
-PATH=$(printf %s "$PATH" \
-     | awk -vRS=: -vORS= '!a[$0]++ {if (NR>1) printf(":"); printf("%s", $0) }' )
+PATH=$(printf %s "$PATH" |
+	awk -vRS=: -vORS= '!a[$0]++ {if (NR>1) printf(":"); printf("%s", $0) }')
 # Wrap up
 
 export PATH

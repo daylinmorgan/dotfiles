@@ -50,9 +50,8 @@ alias vivaldi="vivaldi-stable"
 #zellij
 if is-exectuable zellij; then
 
-    alias zs="zellij -s"
-    alias zl="zellij ls"
-    alias za="zellij a"
+	alias zs="zellij -s"
+	alias zl="zellij ls"
+	alias za="zellij a"
 fi
 ##########################################
-

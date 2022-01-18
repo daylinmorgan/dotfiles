@@ -1,58 +1,58 @@
 function cl() {
-    DIR="$*";
-        # if no DIR given, go home
-        if [ $# -lt 1 ]; then
-                DIR=$HOME;
-    fi;
-    builtin cd "${DIR}" && \
-    # use your preferred ls command
-        ls -F --color=auto
+	DIR="$*"
+	# if no DIR given, go home
+	if [ $# -lt 1 ]; then
+		DIR=$HOME
+	fi
+	builtin cd "${DIR}" &&
+		# use your preferred ls command
+		ls -F --color=auto
 }
 
 prepend-path() {
-  [ -d $1 ] && PATH="$1:$PATH"
+	[ -d $1 ] && PATH="$1:$PATH"
 }
 
 #delete and reclone remote repo
-reclone () {
-    basename=${PWD##*/}
-    remoteurl=$(git remote get-url --push origin)
-    cd ..
-    echo $basename
-    echo $remoteurl
-    rm -rf $basename
-    git clone $remoteurl
-    cd $basename
+reclone() {
+	basename=${PWD##*/}
+	remoteurl=$(git remote get-url --push origin)
+	cd ..
+	echo $basename
+	echo $remoteurl
+	rm -rf $basename
+	git clone $remoteurl
+	cd $basename
 }
 
 # snakemake use all cores by default
 sm() {
-    if [[ "$*" == *"-j"* || "$*" == *"--jobs"* || "$*" == *"--cores"* ]]; then
-        snakemake $@
-    else
-        snakemake -j all $@
-    fi
+	if [[ $* == *"-j"* || $* == *"--jobs"* || $* == *"--cores"* ]]; then
+		snakemake $@
+	else
+		snakemake -j all $@
+	fi
 }
 
 function gi() {
-    curl -sL "https://www.toptal.com/developers/gitignore/api/$@" ;
-    }
-
-
-# make pdfs or svgs from vegalite json's
-mkvegapdf () {
-    vl2vg $1 | vg2pdf > $2
+	curl -sL "https://www.toptal.com/developers/gitignore/api/$@"
 }
 
-mkvegasvg () {
-    vl2vg $1 | vg2svg > $2
+# make pdfs or svgs from vegalite json's
+mkvegapdf() {
+	vl2vg $1 | vg2pdf >$2
+}
+
+mkvegasvg() {
+	vl2vg $1 | vg2svg >$2
 }
 
 # quick and dirty pdf generation from simple md
-md2pdf () {
+md2pdf() {
 	root=$1
 	# get extension and root path: https://stackoverflow.com/a/40928328
-	fname="${root#.}";fname="${root%"$fname"}${fname%.*}"
+	fname="${root#.}"
+	fname="${root%"$fname"}${fname%.*}"
 	ext="${root#"$fname"}"
 	echo "converting $root to pdf"
 
@@ -66,7 +66,7 @@ md2pdf () {
 
 }
 
-py2nb2html () {
+py2nb2html() {
 	if [ $# -eq 0 ]; then
 		echo "No arguments provided"
 		return 1
@@ -77,8 +77,7 @@ py2nb2html () {
 	jupytext --to notebook -o - $pyfile | jupyter nbconvert --execute --to html --stdin $@
 }
 
-web () {
+web() {
 	filepath=$(wslpath -w $1)
 	$BROWSER $filepath
 }
-

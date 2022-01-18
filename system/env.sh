@@ -4,8 +4,8 @@ export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 
 export PATH=$PATH:~/bin
 
-export HISTSIZE=32768;
-export HISTFILESIZE="${HISTSIZE}";
+export HISTSIZE=32768
+export HISTFILESIZE="${HISTSIZE}"
 export SAVEHIST=4096
 export HISTCONTROL=ignoredups:erasedups
 
@@ -30,11 +30,10 @@ fi
 # setopt CORRECT
 # setopt CORRECT_ALL
 
-
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == *$HOME/.fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}$HOME/.fzf/bin"
+if [[ $PATH != *$HOME/.fzf/bin* ]]; then
+	export PATH="${PATH:+${PATH}:}$HOME/.fzf/bin"
 fi
 
 if is-executable fzf; then
@@ -54,7 +53,7 @@ fi
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 if is-executable fnm; then
-    eval "$(fnm env)"
+	eval "$(fnm env)"
 fi
 
 # enhancd
