@@ -56,6 +56,7 @@ neovim:
   user: neovim
 sh:
   user: mvdan
+  to: shfmt
 
 
 # file management
