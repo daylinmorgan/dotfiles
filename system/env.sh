@@ -56,7 +56,11 @@ if is-executable fnm; then
 	eval "$(fnm env)"
 fi
 
-# enhancd
+if is-executable bat; then
+    export BAT_THEME=Dracula
+    export BAT_STYLE=header,numbers,grid
+fi
+
 export ENHANCD_DOT_ARG="up"
 
 export STARSHIP_CONFIG=~/.config/starship/config.toml
