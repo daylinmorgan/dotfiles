@@ -11,7 +11,7 @@ layouts = [
 ]
 layout_mode = "Workspace"
 disable_current_tag_swap = false
-focus_behaviour = "Sloppy"
+focus_behaviour = "ClickTo"
 focus_new_windows = true
 
 #####################################
@@ -32,7 +32,7 @@ key = "p"
 
 [[keybind]]
 command = "Execute"
-value = "rofi -dmenu -input /tmp/leftwm-keymap -window-title 'Keymap' -theme ~/.config/leftwm/themes/current/rofi/keymap.rasi"
+value = "~/.config/leftwm/themes/current/rofi/keymap.sh"
 modifier = ["modkey", "Shift"]
 key = "k"
 
