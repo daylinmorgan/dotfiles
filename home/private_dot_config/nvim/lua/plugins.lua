@@ -10,6 +10,7 @@ end
 
 
 return require('packer').startup(function(use)
+  use 'wbthomason/packer.nvim'
 
   use 'preservim/NERDTree'
   use {
@@ -18,7 +19,7 @@ return require('packer').startup(function(use)
     config = function ()
         require'alpha'.setup(require'alpha.themes.startify'.opts)
     end
-}
+  }
   use {
     'airblade/vim-gitgutter',
     config = function ()
@@ -31,6 +32,8 @@ return require('packer').startup(function(use)
      'neoclide/coc.nvim',
       branch='release'
   }
+
+  use 'Mofiqul/dracula.nvim'
 
   -- language specific plugins
   -- python
@@ -47,3 +50,4 @@ return require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
+
