@@ -11,3 +11,4 @@ end
 
 map('i','jk','<Esc>',{noremap=true})
 map('v','jk','<Esc>',{noremap=true})
+

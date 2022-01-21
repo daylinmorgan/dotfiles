@@ -3,6 +3,8 @@ local o = vim.o
 local w = vim.wo
 local b = vim.bo
 
+vim.g.mapleader = ' '
+
 b.autoindent = true
 b.expandtab = true
 b.softtabstop = 4

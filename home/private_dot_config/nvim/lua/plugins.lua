@@ -1,11 +1,11 @@
 -- LOAD THE PLUGINS
 
 -- install packer on the fly
-local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  Packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-end
+-- local fn = vim.Fn
+-- local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+-- if fn.empty(fn.glob(install_path)) > 0 then
+--   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+-- end
 --
 
 
@@ -13,6 +13,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use 'preservim/NERDTree'
+
   use {
     'goolord/alpha-nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },
@@ -20,19 +21,40 @@ return require('packer').startup(function(use)
         require'alpha'.setup(require'alpha.themes.startify'.opts)
     end
   }
+
   use {
     'airblade/vim-gitgutter',
-    config = function ()
+    config = function()
       local cmd = vim.cmd
       cmd [[highlight! link SignColumn LineNr]]
     end
   }
 
   use {
-     'neoclide/coc.nvim',
-      branch='release'
+    'norcalli/nvim-colorizer.lua',
+    conifg = function()
+        require'colorizer'.setup()
+    end
+    }
+
+  use {
+  "folke/which-key.nvim",
+  config = function()
+    require("which-key").setup()
+    end
   }
 
+
+  use {
+    "ntpeters/vim-better-whitespace",
+    config = function()
+    local cmd = vim.cmd
+    cmd [[ let g:strip_whitespace_on_save = 1 ]]
+    end
+}
+
+
+  -- style
   use 'Mofiqul/dracula.nvim'
 
   -- language specific plugins
@@ -46,8 +68,7 @@ return require('packer').startup(function(use)
   -- toml
   use 'cespare/vim-toml'
 
-  if Packer_bootstrap then
+  if packer_bootstrap then
     require('packer').sync()
   end
 end)
-

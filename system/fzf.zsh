@@ -1,43 +1,56 @@
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2> /dev/null
+[[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2>/dev/null
 
 # Key bindings
 # ------------
 source "$HOME/.fzf/shell/key-bindings.zsh"
 
+FZF_COLORS="
+--color=dark
+--color=fg:-1,bg:-1,hl:#5fff87,fg+:-1,bg+:-1,hl+:#ffaf5f
+--color=info:#af87ff,prompt:#5fff87,pointer:#ff87d7,marker:#ff87d7,spinner:#ff87d7
+"
+FZF_LAYOUT="
+--height=40%
+--border=rounded
+--margin=0,5,5%
+--layout=reverse
+"
 
-# Configs
-export FZF_DEFAULT_OPTS="--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9
-	--color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9
-	--color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6
-	--color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4
-	--layout=reverse --info=inline --border=horizontal
-	--min-height=25"
+export FZF_DEFAULT_OPTS=${FZF_COLORS}${FZF_LAYOUT}
 
-
+export FZF_CTRL_GENERAL="--height=100% --margin=0,0,0"
 
 #adapted from https://github.com/zimfw/fzf/blob/master/init.zsh
-if (( ${+commands[fd]} )); then
-   export FZF_DEFAULT_COMMAND="command fd --type file --exclude ".git/" --hidden --no-ignore"
-   _fzf_compgen_path() {
-     command fd --type file --exclude ".git/" --hidden --no-ignore "${1}"
-   }
-elif (( ${+commands[rg]} )); then
-   export FZF_DEFAULT_COMMAND="command rg -uu -g '!.git' --files"
-    _fzf_compgen_path() {
-     command rg -uu -g '!.git' --files "${1}"
-   }
+if [ -x "$(command -v fd)" ]; then
+	export FZF_DEFAULT_COMMAND="command fd --type file --exclude ".git/" --hidden --no-ignore"
+	_fzf_compgen_path() {
+		command fd --type file --exclude ".git/" --hidden --no-ignore "${1}"
+	}
+elif [ -x "$(command -v rg)" ]; then
+	export FZF_DEFAULT_COMMAND="command rg -uu -g '!.git' --files"
+	_fzf_compgen_path() {
+		command rg -uu -g '!.git' --files "${1}"
+	}
 fi
 
-if (( ${+commands[bat]} )); then
-   export FZF_CTRL_T_OPTS="--preview 'command bat --color=always --line-range :500 {}' ${FZF_CTRL_T_OPTS}"
+if [ -x "$(command -v bat)" ]; then
+	export FZF_CTRL_T_OPTS="
+   --preview 'command bat --style numbers --color=always --line-range :500 {}'
+   --preview-window up,70%,border-rounded
+   ${FZF_CTRL_GENERAL}
+   "
 fi
 
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+export FZF_ALT_C_OPTS="
+    --height 60%
+    --preview 'lsd --tree --color always --icon always {}'
+    --preview-window right,60%,border-rounded
+    "
 
-if (( ${+FZF_DEFAULT_COMMAND} )) export FZF_CTRL_T_COMMAND=${FZF_DEFAULT_COMMAND}
+# [[ -v FZF_CTRL_T_COMMAND ]] && && export FZF_CTRL_T_COMMAND=${FZF_DEFAULT_COMMAND}
+[[ -z "$FZF_CTRL_T_COMMAND" ]] && export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
 
 # fix spacing on fzf-tab to show max options
 zstyle ':fzf-tab:*' fzf-pad 4
-
