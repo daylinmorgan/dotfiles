@@ -4,11 +4,11 @@ export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 
 export PATH=$PATH:~/bin
 
+export HISTFILE=~/.zsh_history
 export HISTSIZE=32768
 export HISTFILESIZE="${HISTSIZE}"
 export SAVEHIST=4096
 export HISTCONTROL=ignoredups:erasedups
-
 export LESS='-R'
 
 # Append to the history file, rather than overwriting it
