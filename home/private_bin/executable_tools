@@ -45,7 +45,7 @@ eget_tool() {
 
 	if [[ $download_only ]]; then
 		echo -n ' --> '
-		echo -n 'running post-download script '
+		echo -n 'running post-download script'
 		post_download_install $tool
 	fi
 
@@ -100,6 +100,8 @@ list() {
 download() {
 	if ! [ -z "$1" ]; then
 		tool=$1
+
+		echo "installing $tool"
 		info=$(key=$tool yq e 'explode(.) | .[env(key)]' $YAMLDOC)
 		if [[ $info == "null" ]]; then
 			echo "$tool not found in $YAMLDOC"
@@ -175,7 +177,6 @@ if [ -z "$args" ]; then
 	exit 0
 else
 	echo "Downloading binaries to ${GREEN}$BIN_DIR${NORMAL}"
-	echo "installing......"
 	deps_check
 	for tool in "$args"; do
 		download $tool
