@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-BIN_DIR=$HOME/bin
-mkdir -p $BIN_DIR
-YAMLDOC="$DOTFILES_DIR/info/tools.yml"
-
 #colors
 MAGENTA=$(tput setaf 5)
 CYAN=$(tput setaf 6)
@@ -11,6 +7,15 @@ YELLOW=$(tput setaf 3)
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 NORMAL=$(tput sgr0)
+
+BIN_DIR=$HOME/bin
+YAMLDOC="$DOTFILES_DIR/info/tools.yml"
+INSTALL_YES=${GREEN}✓${NORMAL}
+INSTALL_NO=${RED}✗${NORMAL}
+
+# get current binary files
+shopt -s nullglob
+BINARY_FILES=($HOME/bin/*)
 
 alias eget="eget --system linux/amd64"
 
@@ -54,6 +59,7 @@ eget_tool() {
 
 deps_check() {
 
+	mkdir -p $BIN_DIR
 	if ! $(is-executable eget); then
 		echo "I don't see eget on your path..."
 		read -p "Do you want to download it to ${BIN_DIR}? " -n 1 -r
@@ -72,26 +78,65 @@ deps_check() {
 
 }
 
+get_days() {
+	install_date=$1
+	date_out=$(date -d @$1 +'%Y.%m.%d %R')
+	now=$(date +'%s')
+	days=$(((now - install_date) / 86400))
+	if ((days > 60)); then
+		echo "${RED}$date_out${NORMAL}"
+	elif ((days > 30)); then
+		echo "${YELLOW}$date_out${NORMAL}"
+	else
+		echo "$date_out"
+	fi
+}
+
+check_install() {
+	bin_name=$BIN_DIR/$1
+	if printf '%s\n' "${BINARY_FILES[@]}" | grep -Fxq "$bin_name"; then
+		modified=$(date -r $bin_name +'%s')
+		echo $(get_days $modified)
+	fi
+}
+
 list() {
+
 	deps_check
 
 	user_len=$(yq e '.[] | .user ' $YAMLDOC | tail -n +2 | sort | uniq | awk '{print length}' | sort -nr | head -n 1)
 	tool_len=$(yq e 'keys| .[]' $YAMLDOC | tail -n +2 | sort | uniq | awk '{print length}' | sort -nr | head -n 1)
-	table_width=$((user_len + tool_len + 4))
-	cell_width=$((table_width / 2 - 2))
-	cell=$(printf "%${cell_width}s" "")
+	table_width=$(($user_len + $tool_len + 25))
+	tool_cell=$(printf "%${tool_len}s" "")
+	user_cell=$(printf "%${user_len}s" "")
 
-	echo "${YELLOW}Configured Tools${NORMAL}"
+	echo "${CYAN}CONFIGURED TOOLS${NORMAL}"
 	printf "%${table_width}s\n" "" | tr ' ' =
-	printf "${CYAN}tool${NORMAL} %s | ${CYAN}author${NORMAL}\n" "${cell:5}"
+	printf \
+		"${CYAN}tool${NORMAL}%s | \
+${CYAN}author${NORMAL}%s | \
+${CYAN}  install date${NORMAL}\n" \
+  "${tool_cell:4}" "${user_cell:6}"
 	printf "%${table_width}s\n" "" | tr ' ' -
 	readarray tools < <(yq e 'keys | .[]' $YAMLDOC)
-
 	#sort tools for readability
 	tools=($(echo "${tools[@]:1}" | tr ' ' '\n' | sort | uniq))
 	for tool in "${tools[@]}"; do
+
 		user=$(key=$tool yq e 'explode(.) | .[env(key)].user' $YAMLDOC)
-		printf "${MAGENTA}%s${NORMAL}%s | ${GREEN}$user${NORMAL}\n" $tool "${cell:${#tool}}"
+		bin_name=$(key=$tool yq e 'explode(.) | .[env(key)].to' $YAMLDOC)
+		[[ "$bin_name" == "null" ]] && bin_name=$tool
+
+		modified=$(check_install $bin_name)
+
+		! [[ -z "$modified" ]] && installed=$INSTALL_YES || installed=$INSTALL_NO
+
+		printf \
+			"${MAGENTA}%s${NORMAL}%s | \
+${YELLOW}%s${NORMAL}%s | \
+$installed $modified\n" \
+			$tool "${tool_cell:${#tool}}" \
+			$user "${user_cell:${#user}}"
 
 	done
 

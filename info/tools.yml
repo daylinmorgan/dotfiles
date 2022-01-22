@@ -15,6 +15,7 @@ lsd:
   user: Peltoche
 ripgrep:
   user: BurntSushi
+  to: rg
 fd:
   <<: *default
   user: sharkdp
@@ -29,6 +30,7 @@ bottom:
   asset: x86_64-unknown-linux-gnu.tar.gz
   user: ClementTsang
   file: btm
+  to: btm
 
 # git
 lazygit:
@@ -36,6 +38,7 @@ lazygit:
 cli:
   user: cli
   asset: linux_amd64.tar.gz
+  to: gh
 glab:
   user: profclems
   asset: Linux_x86_64.tar.gz
@@ -54,6 +57,7 @@ fnm:
 # editing
 neovim:
   user: neovim
+  to: nvim
 sh:
   user: mvdan
   to: shfmt
