@@ -1,17 +1,12 @@
 modkey = "Mod4"
 mousekey = "Mod4"
 workspaces = []
-# tags = ["1", "2", "3", "4", "5", "6","7","8"]
-tags =[ "", "", "", "", "", ""]
-layouts = [
-    "MainAndVertStack",
-    "Monocle",
-    "EvenVertical",
-    "CenterMainBalanced",
-]
+tags = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+# tags = ["", "", "", "", "", ""]
+layouts = ["MainAndVertStack", "Monocle", "EvenVertical", "CenterMainBalanced"]
 layout_mode = "Workspace"
 disable_current_tag_swap = false
-focus_behaviour = "ClickTo"
+focus_behaviour = "Sloppy"
 focus_new_windows = true
 
 #####################################
@@ -67,7 +62,7 @@ modifier = ["modkey", "Control"]
 key = "l"
 
 [[scratchpad]]
-name = "Alacritty" # This is the name which is referenced when calling (case-sensitive)
+name = "Alacritty"  # This is the name which is referenced when calling (case-sensitive)
 value = "alacritty" # The command to load the application if it isn't started
 # x, y, width, height are in pixels when an integer is inputted or a percentage when a float is inputted.
 # These values are relative to the size of the workspace, and will be restricted depending on the workspace size.
@@ -308,13 +303,13 @@ key = "9"
 [[keybind]]
 command = "IncreaseMainWidth"
 value = "5"
-modifier = ["modkey","Control"]
+modifier = ["modkey", "Control"]
 key = "j"
 
 [[keybind]]
 command = "DecreaseMainWidth"
 value = "5"
-modifier = ["modkey","Control"]
+modifier = ["modkey", "Control"]
 key = "h"
 
 [[keybind]]
@@ -355,4 +350,3 @@ command = "Execute"
 value = "light -U 5"
 modifier = []
 key = "XF86XK_MonBrightnessDown"
-
