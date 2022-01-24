@@ -23,19 +23,17 @@ return require('packer').startup(function(use)
   }
 
   use {
-    'airblade/vim-gitgutter',
-    config = function()
-      local cmd = vim.cmd
-      cmd [[highlight! link SignColumn LineNr]]
-    end
-  }
-
-  use {
     'norcalli/nvim-colorizer.lua',
     conifg = function()
         require'colorizer'.setup()
     end
     }
+
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+        require('Comment').setup()
+    end }
 
   use {
   "folke/which-key.nvim",
@@ -44,7 +42,9 @@ return require('packer').startup(function(use)
     end
   }
 
-
+  use {
+    "ggandor/lightspeed.nvim"
+  }
   use {
     "ntpeters/vim-better-whitespace",
     config = function()
@@ -53,6 +53,15 @@ return require('packer').startup(function(use)
     end
 }
 
+use {
+  'lewis6991/gitsigns.nvim',
+  requires = {
+    'nvim-lua/plenary.nvim'
+  },
+  config = function()
+    require('gitsigns').setup()
+  end
+}
 
   -- style
   use 'Mofiqul/dracula.nvim'
@@ -65,10 +74,11 @@ return require('packer').startup(function(use)
     ft={"Snakefile","snk"}
   }
 
-  -- toml
+-- toml
   use 'cespare/vim-toml'
+     vim.g.strip_whitespace_on_save = 1
 
-  if packer_bootstrap then
-    require('packer').sync()
-  end
+  -- if packer_bootstrap then
+  --   require('packer').sync()
+  -- end
 end)
