@@ -1,7 +1,11 @@
 -- extra plugins
 lvim.plugins = {
     { 'Mofiqul/dracula.nvim' },
-    { 'ggandor/lightspeed.nvim' }
+    { 'ggandor/lightspeed.nvim' },
+    { 'snakemake/snakemake',
+      rtp='misc/vim',
+      ft={"Snakefile,snk"}
+  }
 }
 
 -- default plugins settings
