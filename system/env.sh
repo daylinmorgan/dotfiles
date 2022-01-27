@@ -20,7 +20,9 @@ unsetopt autocd
 # Vim Settings
 # export VIMINIT='source $MYVIMRC'
 # export MYVIMRC='$DOTFILES_DIR/system/.vimrc'
-if is-executable nvim; then
+if is-executable lvim; then
+  export EDITOR=lvim
+elif is-executable nvim; then
 	export EDITOR=nvim
 else
 	export EDITOR=vim

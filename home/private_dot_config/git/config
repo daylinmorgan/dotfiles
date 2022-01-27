@@ -1,7 +1,8 @@
 [credential]
 	helper = cache
 [core]
-	editor = nvim
+	editor = vim
+	excludesfile = /home/daylin/.config/git/ignore
 [user]
 	name = Daylin Morgan
 	email = daylinmorgan@gmail.com
