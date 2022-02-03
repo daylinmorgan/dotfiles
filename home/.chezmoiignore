@@ -1,5 +1,7 @@
 {{- if ne .chezmoi.hostname "thinkpad" }}
+.xinitrc
 .xprofile
 .config/alacritty
 .config/leftwm
+.config
 {{- end }}
