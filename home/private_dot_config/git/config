@@ -2,6 +2,7 @@
 	helper = cache
 [core]
 	editor = vim
+	excludesfile = /home/daylin/.config/git/ignore
 [user]
 	name = Daylin Morgan
 	email = daylinmorgan@gmail.com

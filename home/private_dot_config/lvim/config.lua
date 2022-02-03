@@ -1,5 +1,5 @@
-require("keybindings")
 require("plugins")
+require("keybindings")
 
 -- general
 lvim.log.level = "warn"
@@ -29,11 +29,15 @@ lvim.builtin.treesitter.ensure_installed = {
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
--- settings
-local opt = vim.opt
-opt.timeoutlen = 500
 -- colorscheme
 lvim.builtin.lualine.options.theme = "dracula"
 lvim.colorscheme = "dracula"
 
+-- settings
+local opt = vim.opt
+opt.timeoutlen = 500
+lvim.autocommands.custom_groups = {
+  -- On entering insert mode in any file, scroll the window so the cursor line is centered
+  {"InsertEnter", "*", ":normal zz"},
+}
 

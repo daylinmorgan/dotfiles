@@ -1,2 +1,5 @@
+#exec dbus-launch
+
 xinput --map-to-output 'ELAN901C:00 04F3:2C29' eDP1
 
+exec dbus-launch leftwm

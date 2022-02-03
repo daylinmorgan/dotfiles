@@ -1,7 +1,7 @@
 modkey = "Mod4"
 mousekey = "Mod4"
 workspaces = []
-tags = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+tags = ["1", "2", "3", "4", "5", "6", "7", "8"]
 # tags = ["", "", "", "", "", ""]
 layouts = ["MainAndVertStack", "Monocle", "EvenVertical", "CenterMainBalanced"]
 layout_mode = "Workspace"
@@ -15,19 +15,19 @@ focus_new_windows = true
 ## Rofi
 [[keybind]]
 command = "Execute"
-value = "~/.config/leftwm/themes/current/rofi/launcher.sh"
+value = "~/.config/leftwm/themes/current/rofi/bin/launcher.sh"
 modifier = ["modkey"]
 key = "p"
 
 [[keybind]]
 command = "Execute"
-value = "~/.config/leftwm/themes/current/rofi/powermenu.sh"
+value = "~/.config/leftwm/themes/current/rofi/bin/powermenu.sh"
 modifier = ["modkey", "Shift"]
 key = "p"
 
 [[keybind]]
 command = "Execute"
-value = "~/.config/leftwm/themes/current/rofi/keymap.sh"
+value = "~/.config/leftwm/themes/current/rofi/bin/keymap.sh"
 modifier = ["modkey", "Shift"]
 key = "k"
 
@@ -57,9 +57,16 @@ key = "Return"
 
 [[keybind]]
 command = "Execute"
-value = "light-locker-command -l"
+value = "~/bin/lock"
 modifier = ["modkey", "Control"]
 key = "l"
+
+[[keybind]]
+command = "Execute"
+value = "flameshot gui"
+modifier = ["modkey"]
+key = "y"
+
 
 [[scratchpad]]
 name = "Alacritty"  # This is the name which is referenced when calling (case-sensitive)
