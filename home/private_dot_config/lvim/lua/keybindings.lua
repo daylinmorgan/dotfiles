@@ -30,13 +30,18 @@ map('n', "L", "$",{noremap=true})
 -- -- Search for the notes matching the current visual selection.
 map("v", "<leader>zf", ":'<,'>ZkMatch<CR>")
 
-lvim.builtin.which_key.mappings["z"] = {
+local mappings = lvim.builtin.which_key.mappings
+
+mappings["z"] = {
     name = "zk",
     n = { "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", "New"},
     o = { "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", "Open" },
     t = { "<Cmd>ZkTags<CR>", "Tags"},
     f = { "<Cmd>ZkNotes { sort = { 'modified' }, match = vim.fn.input('Search: ') }<CR>", "Fuzzy Search" },
 }
+mappings["s"]["p"] = {"<cmd>Telescope projects<CR>","Recent Projects"}
+mappings["s"]["w"] = {"<cmd>Telescope live_grep<CR>","Find Word"}
+mappings[';'] = { "<cmd>Alpha<CR>", "Dashboard"}
 
 
 -- keymappings [view all the defaults by pressing <leader>Lk]

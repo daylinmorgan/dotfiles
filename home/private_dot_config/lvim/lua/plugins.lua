@@ -1,7 +1,12 @@
+local p = function(name) return string.format("require'config.%s'", name) end
+
 -- extra plugins
 lvim.plugins = {
     { 'Mofiqul/dracula.nvim' },
     { 'ggandor/lightspeed.nvim' },
+    { 'goolord/alpha-nvim',
+      config = p"alpha"
+    },
     {
       'mickael-menu/zk-nvim',
         config = function ()
@@ -34,7 +39,6 @@ lvim.plugins = {
 -- make telescope respect that hidden files exist
 lvim.builtin.telescope.pickers = { find_files = { hidden = true }}
 lvim.builtin.nvimtree.setup.git.ignore = false
-
 
 lvim.builtin.dashboard.custom_header = {
 [[        _______________________________________        ]],
