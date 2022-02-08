@@ -24,6 +24,8 @@ bat:
   user: sharkdp
 just:
   user: casey
+zoxide:
+  user: ajeetdsouza
 
 # system monitoring
 bottom:

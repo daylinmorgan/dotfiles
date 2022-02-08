@@ -63,6 +63,10 @@ if is-executable bat; then
     export BAT_STYLE=header,numbers,grid
 fi
 
+if is-executable zoxide; then
+  export _ZO_FZF_OPTS="--preview 'command lsd --tree --color always --icon always {2..}'"
+fi
+
 export ENHANCD_DOT_ARG="up"
 
 export STARSHIP_CONFIG=~/.config/starship/config.toml
