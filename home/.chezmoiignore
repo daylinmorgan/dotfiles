@@ -1,4 +1,5 @@
 {{- if ne .chezmoi.hostname "thinkpad" }}
+bin/lock
 .xinitrc
 .xprofile
 .config/alacritty
