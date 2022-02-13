@@ -4,5 +4,4 @@ bin/lock
 .xprofile
 .config/alacritty
 .config/leftwm
-.config
 {{- end }}
