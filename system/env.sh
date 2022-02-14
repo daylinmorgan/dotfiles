@@ -76,3 +76,6 @@ export EGET_BIN=$HOME/bin
 # for dotenv
 export ZSH_DOTENV_ALLOWED_LIST=$HOME/.cache/dotenv-allowed.list
 export ZSH_DOTENV_DISALLOWED_LIST=$HOME/.cache/dotenv-disallowed.list
+
+# mamba
+export MAMBA_NO_BANNER=1
