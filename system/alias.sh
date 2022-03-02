@@ -55,4 +55,7 @@ if is-executable zellij; then
 	alias za="zellij a"
 
 fi
+#zenith
+alias zenith="zenith -d 0 -n 0"
 ##########################################
+
