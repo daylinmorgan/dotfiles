@@ -21,7 +21,7 @@ unsetopt autocd
 # export VIMINIT='source $MYVIMRC'
 # export MYVIMRC='$DOTFILES_DIR/system/.vimrc'
 if is-executable lvim; then
-  export EDITOR=lvim
+	export EDITOR=lvim
 elif is-executable nvim; then
 	export EDITOR=nvim
 else
@@ -59,12 +59,12 @@ if is-executable fnm; then
 fi
 
 if is-executable bat; then
-    export BAT_THEME=Dracula
-    export BAT_STYLE=header,numbers,grid
+	export BAT_THEME=Dracula
+	export BAT_STYLE=header,numbers,grid
 fi
 
 if is-executable zoxide; then
-  export _ZO_FZF_OPTS="--preview 'command lsd --tree --color always --icon always {2..}'"
+	export _ZO_FZF_OPTS="--preview 'command lsd --tree --color always --icon always {2..}'"
 fi
 
 export ENHANCD_DOT_ARG="up"
