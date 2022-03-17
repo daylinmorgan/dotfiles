@@ -49,10 +49,15 @@ greeter_w=$(($(make_figlet | wc -L ) * $font_to_px))
 
 greeter_pos="x+w/2-${greeter_w}/4:y+h/2-${greeter_h}/4"
 
-
-
 # do the locking
+
+# suspend message display
+pkill -u "$USER" -USR1 dunst
+sleep 0.1
+
+# lock the screen
 i3lock \
+  -n \
 	--screen 1 \
 \
 	--color $bg_color \
@@ -80,8 +85,6 @@ i3lock \
   --greeter-pos "${greeter_pos}" \
   --greeter-align 1 \
 
+# resume message display
+pkill -u "$USER" -USR2 dunst
 
-
-# --indicator \
-# --ind-pos x+w-5-r:y+h-10-r \
-# --ind-pos x+w/2:y+h/2 \
