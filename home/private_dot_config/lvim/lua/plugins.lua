@@ -4,6 +4,7 @@ local p = function(name) return string.format("require'config.%s'", name) end
 lvim.plugins = {
     { 'Mofiqul/dracula.nvim' },
     { 'ggandor/lightspeed.nvim' },
+    { 'elkowar/yuck.vim' },
     { 'goolord/alpha-nvim',
       config = p"alpha"
     },
