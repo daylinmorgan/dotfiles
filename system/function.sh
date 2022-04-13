@@ -77,7 +77,4 @@ py2nb2html() {
 	jupytext --to notebook -o - $pyfile | jupyter nbconvert --execute --to html --stdin $@
 }
 
-web() {
-	filepath=$(wslpath -w $1)
-	$BROWSER $filepath
-}
+
