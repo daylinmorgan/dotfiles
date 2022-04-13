@@ -10,6 +10,9 @@ export SAVEHIST=4096
 export HISTCONTROL=ignoredups:erasedups
 export LESS='-R'
 
+# add completions to fpath
+fpath=($DOTFILES_DIR/system/completions $fpath)
+
 # Append to the history file, rather than overwriting it
 setopt APPEND_HISTORY
 
@@ -49,10 +52,6 @@ if is-executable lf; then
 fi
 # ----------------
 
-# nvm settings
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 if is-executable fnm; then
 	eval "$(fnm env)"
 fi
