@@ -9,7 +9,6 @@ function cl() {
 		ls -F --color=auto
 }
 
-
 #delete and reclone remote repo
 reclone() {
 	basename=${PWD##*/}
@@ -73,5 +72,3 @@ py2nb2html() {
 	echo "generating html file for $pyfile"
 	jupytext --to notebook -o - $pyfile | jupyter nbconvert --execute --to html --stdin $@
 }
-
-

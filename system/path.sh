@@ -1,9 +1,8 @@
 # Start with system path
 # Retrieve it from getconf, otherwise it's just current $PATH
 prepend-path() {
-  [ -d $1 ] && PATH="$1:$PATH"
+	[ -d $1 ] && PATH="$1:$PATH"
 }
-
 
 is-executable getconf && PATH=$($(command -v getconf) PATH)
 

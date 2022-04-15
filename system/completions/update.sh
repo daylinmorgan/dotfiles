@@ -1,12 +1,12 @@
 #!/usr/bin/env zsh
 
 gen() {
-  if is-executable $1;then 
-    echo "$1 updated"
-    "$@" > "_$argv[1]"
-  else;
-    echo "skipping $1"
-  fi
+	if is-executable $1; then
+		echo "$1 updated"
+		"$@" >"_$argv[1]"
+	else
+		echo "skipping $1"
+	fi
 }
 
 echo "GENERATING COMPLETION SCRIPTS"
