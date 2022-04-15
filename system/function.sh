@@ -9,9 +9,6 @@ function cl() {
 		ls -F --color=auto
 }
 
-prepend-path() {
-	[ -d $1 ] && PATH="$1:$PATH"
-}
 
 #delete and reclone remote repo
 reclone() {

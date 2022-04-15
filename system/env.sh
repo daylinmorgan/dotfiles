@@ -77,3 +77,9 @@ export ZSH_DOTENV_DISALLOWED_LIST=$HOME/.cache/dotenv-disallowed.list
 
 # mamba
 export MAMBA_NO_BANNER=1
+
+# shiv
+if is-executable shiv;then 
+  export SHIV_ROOT=$HOME/.local/share/shiv
+fi
+

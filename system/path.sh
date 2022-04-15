@@ -1,10 +1,13 @@
 # Start with system path
 # Retrieve it from getconf, otherwise it's just current $PATH
+prepend-path() {
+  [ -d $1 ] && PATH="$1:$PATH"
+}
+
 
 is-executable getconf && PATH=$($(command -v getconf) PATH)
 
 # Prepend new items to path (if directory exists)
-
 prepend-path "/bin"
 prepend-path "/usr/bin"
 prepend-path "/usr/local/bin"

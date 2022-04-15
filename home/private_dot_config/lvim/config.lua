@@ -3,7 +3,7 @@ require("keybindings")
 
 -- general
 lvim.log.level = "warn"
-lvim.format_on_save = true
+lvim.format_on_save = false
 
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.notify.active = true
@@ -35,8 +35,12 @@ lvim.colorscheme = "dracula"
 -- settings
 local opt = vim.opt
 opt.timeoutlen = 200
+
 lvim.autocommands.custom_groups = {
   -- On entering insert mode in any file, scroll the window so the cursor line is centered
   {"InsertEnter", "*", ":normal zz"},
+  -- Auto disbale spell checking on buffer open
+  {"BufNewFile,BufReadPost,FilterReadPost,FileReadPost","*",":set nospell"},
 }
+
 
