@@ -12,6 +12,9 @@ disabled = true
 [rlang]
 disabled = true
 
+[localip]
+disabled = true
+
 # nerd font symbols
 
 [aws]
@@ -82,3 +85,4 @@ symbol = "🅢 "
 
 [rust]
 symbol = " "
+
