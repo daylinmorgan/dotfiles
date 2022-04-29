@@ -14,27 +14,27 @@ lvim.builtin.nvimtree.show_icons.git = 0
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
-  "javascript",
+  -- "javascript",
   "json",
   "lua",
   "python",
-  "typescript",
+  -- "typescript",
   "css",
-  "rust",
+  -- "rust",
   "yaml",
   "go"
 }
 
-lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
 -- colorscheme
-lvim.builtin.lualine.options.theme = "dracula"
-lvim.colorscheme = "dracula"
+lvim.builtin.lualine.options.theme = "catppuccin"
+lvim.colorscheme = "catppuccin"
 
 -- settings
 local opt = vim.opt
 opt.timeoutlen = 200
+opt.cmdheight = 1
 
 lvim.autocommands.custom_groups = {
   -- On entering insert mode in any file, scroll the window so the cursor line is centered

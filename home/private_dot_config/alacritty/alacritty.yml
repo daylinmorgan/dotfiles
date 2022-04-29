@@ -9,8 +9,8 @@
 # All imports must either be absolute paths starting with `/`, or paths relative
 # to the user's home directory starting with `~/`.
 import:
-  - C:\Users\daylin\AppData\Roaming\alacritty\dracula-pro.yml
-  - ~/.config/alacritty/dracula-pro.yml
+  # - ~/.config/alacritty/dracula-pro.yml
+  - ~/.config/alacritty/catppuccin.yml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -175,7 +175,7 @@ font:
   #use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
-#draw_bold_text_with_bright_colors: false
+draw_bold_text_with_bright_colors: true
 
 # Colors (Tomorrow Night)
 #colors:
@@ -387,7 +387,7 @@ cursor:
     #   - Off: Disable blinking by default
     #   - On: Enable blinking by default
     #   - Always: Force the cursor to always blink
-    blinking: on
+    blinking: Never
 
   # Vi mode cursor style
   #

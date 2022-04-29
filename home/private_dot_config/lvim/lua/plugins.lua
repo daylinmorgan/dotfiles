@@ -2,6 +2,12 @@ local p = function(name) return string.format("require'config.%s'", name) end
 
 -- extra plugins
 lvim.plugins = {
+    { 'chrisbra/Colorizer' },
+    {
+      'catppuccin/nvim',
+	      as = 'catppuccin'
+    },
+    { 'NoahTheDuke/vim-just' },
     { 'Mofiqul/dracula.nvim' },
     { 'ggandor/lightspeed.nvim' },
     { 'elkowar/yuck.vim' },
@@ -38,7 +44,7 @@ lvim.plugins = {
 -- default plugins settings
 
 -- make telescope respect that hidden files exist
-lvim.builtin.telescope.pickers = { find_files = { hidden = true }}
+-- lvim.builtin.telescope.pickers = { find_files = { hidden = true }}
 lvim.builtin.nvimtree.setup.git.ignore = false
 
 lvim.builtin.dashboard.custom_header = {
