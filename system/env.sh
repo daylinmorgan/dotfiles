@@ -57,7 +57,7 @@ if is-executable fnm; then
 fi
 
 if is-executable bat; then
-	export BAT_THEME=Dracula
+	export BAT_THEME=Catppuccin
 	export BAT_STYLE=header,numbers,grid
 fi
 
