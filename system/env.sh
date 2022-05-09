@@ -82,3 +82,12 @@ export MAMBA_NO_BANNER=1
 if is-executable shiv; then
 	export SHIV_ROOT=$HOME/.local/share/shiv
 fi
+
+# pyenv
+if [ -d "$HOME/.pyenv" ];then
+  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
