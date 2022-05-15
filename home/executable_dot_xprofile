@@ -1,8 +1,11 @@
 #!/bin/sh
 
+# enable touch on only laptop monitor
 xinput --map-to-output 'ELAN901C:00 04F3:2C29' eDP1
 
-xrandr --newmode "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+xrandr --newmode "1920x1080_60.00" 173.00 1920 2048 2248 2576 1080 1083 1088 1120 -hsync +vsync
 xrandr --addmode eDP1 "1920x1080_60.00"
 
 xss-lock -- ~/bin/lock &
+
+xsetroot -cursor_name left_ptr

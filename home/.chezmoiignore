@@ -2,6 +2,7 @@
 bin/lock
 .xinitrc
 .xprofile
+.zprofile
 .config/alacritty
 .config/leftwm
 .config/autorandr
