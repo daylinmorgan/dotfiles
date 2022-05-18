@@ -27,7 +27,8 @@ alias code2="code-insiders"
 # ls -> lsd | swap ls for ls-deluxe
 if is-executable lsd; then
 
-	alias ls='lsd'
+	is-tty && alias lsd="lsd --icon never"
+  alias ls='lsd'
 	alias l='lsd -l'
 	alias la='lsd -a'
 	alias lla='lsd -la'
