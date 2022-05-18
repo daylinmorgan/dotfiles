@@ -35,4 +35,4 @@ unset EXTRAFILE
 
 export DOTFILES_DIR DOTFILES_EXTRA_DIR
 
-[ -f ~/.welcome ] && clear && cat ~/.welcome
+[ -f ~/.welcome ] && [ ! is-tty ] && clear && cat ~/.welcome

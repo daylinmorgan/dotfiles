@@ -67,7 +67,11 @@ fi
 
 export ENHANCD_DOT_ARG="up"
 
-export STARSHIP_CONFIG=~/.config/starship/config.toml
+if is-tty; then
+  export STARSHIP_CONFIG=~/.config/starship/plain.toml
+else
+  export STARSHIP_CONFIG=~/.config/starship/config.toml
+fi
 
 export EGET_BIN=$HOME/bin
 
