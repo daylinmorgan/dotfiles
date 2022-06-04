@@ -5,7 +5,7 @@ if ! [[ -f /usr/bin/i3lock ]]; then
 	exit
 fi
 # colors
-bg_color=22212c88
+bg_color=22212cbb
 red=ff9580ff
 cyan=80ffeaff
 green=8aff80ff
