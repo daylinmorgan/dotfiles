@@ -68,9 +68,9 @@ fi
 export ENHANCD_DOT_ARG="up"
 
 if is-tty; then
-  export STARSHIP_CONFIG=~/.config/starship/plain.toml
+	export STARSHIP_CONFIG=~/.config/starship/plain.toml
 else
-  export STARSHIP_CONFIG=~/.config/starship/config.toml
+	export STARSHIP_CONFIG=~/.config/starship/config.toml
 fi
 
 export EGET_BIN=$HOME/bin
@@ -88,10 +88,15 @@ if is-executable shiv; then
 fi
 
 # pyenv
-if [ -d "$HOME/.pyenv" ];then
-  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
+if [ -d "$HOME/.pyenv" ]; then
+	export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+	export PYENV_ROOT="$HOME/.pyenv"
+	export PATH="$PYENV_ROOT/bin:$PATH"
+	eval "$(pyenv init -)"
+	eval "$(pyenv virtualenv-init -)"
 fi
+
+# pnpm
+export PNPM_HOME="/home/daylin/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
