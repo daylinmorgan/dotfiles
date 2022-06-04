@@ -14,7 +14,8 @@ lvim.builtin.nvimtree.show_icons.git = 0
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
-  -- "javascript",
+  "haskell",
+  "javascript",
   "json",
   "lua",
   "python",

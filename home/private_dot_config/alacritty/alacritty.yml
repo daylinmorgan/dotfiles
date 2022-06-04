@@ -41,7 +41,7 @@ window:
   #position:
   #  x: 0
   #  y: 0
-  opacity: .90
+  opacity: .80
   # Window padding (changes require restart)
   #
   # Blank space added around the window in pixels. This padding is scaled

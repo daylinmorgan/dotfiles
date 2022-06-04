@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
-sleep 1
-leftwm-command "SoftReload"
+# sleep 1
+# if [[ $DESKTOP_SESSION=="leftwm" ]]; then
+  # leftwm-command "SoftReload"
+# elif [[ $DESTOP_SESSION=="qtile"]]; then
+  # qtile cmd-obj -o cmd -f restart
+# fi

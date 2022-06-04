@@ -14,6 +14,9 @@ map('v','jk','<Esc>',{noremap=true})
 map('n', "H", "^",{noremap=true})
 map('n', "L", "$",{noremap=true})
 
+map('n','j',"v:count ? 'j' : 'gj'",{expr=true,noremap=true})
+map('n','k',"v:count ? 'k' : 'gk'",{expr=true,noremap=true})
+
 -- zettelkasten keybindings
 
 

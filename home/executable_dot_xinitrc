@@ -31,17 +31,24 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
+
 [ -f ~/.xprofile ] && . ~/.xprofile
 
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
+not_leftwm() {
+  unclutter --timeout 1 &
+  autorandr -c &
+}
+
 # $1 is xterm
 # $2 is the wm arg passed to startx
-# i.e. startx plasma
+# i.e. startx qtile
 
 case $2 in
   leftwm)
+    export DESKTOP_SESSION=leftwm
     exec leftwm
     ;;
   plasma)
@@ -49,10 +56,17 @@ case $2 in
     exec startplasma-x11
     ;;
   xmonad)
+    export DESKTOP_SESSION=xmonad
     xmonad
     ;;
+  qtile)
+    not_leftwm
+    export DESKTOP_SESSION=qtile
+    exec qtile start
+    ;;
   *)
-    exec leftwm
+    not_leftwm
+    export DESKTOP_SESSION=qtile
+    exec qtile start
     ;;
 esac
-
