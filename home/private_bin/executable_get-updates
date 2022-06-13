@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+usage() {
+	cat <<HELP
+
+get-updates [option]
+
+--notify   send a notification with available packages
+-h,--help  print this page and exit
+
+HELP
+	exit 0
+}
+
+
+updates_output() {
+  notify=$1
+  if ! [[ -z $updates_arch ]]; then
+    echo "ARCH: $(echo "$updates_arch" | wc -l )"
+    [[ -z $notify ]] && echo "$updates_arch"
+  fi
+  if ! [[ -z $updates_aur ]]; then
+    echo "AUR:"
+    [[ -z $notify ]] && echo "$updates_aur"
+  fi
+}
+
+
+for opt in "$@"; do
+	case $opt in
+	-h | --help)
+		usage
+		;;
+	--notify)
+    notify=1
+    shift
+		;;
+	-* | --*)
+		echo "Invalid option: $opt"
+		usage
+		exit 1
+		;;
+	esac
+done
+
+updates_arch="$(checkupdates 2> /dev/null | awk '{print $1}')"
+updates_aur="$(pikaur -Qua 2> /dev/null | awk '{print $1}')"
+updates_info="$(updates_output $notify)"
+
+if [[ -z $updates_info ]];then
+  exit 0
+fi
+
+if ! [[ -z $notify ]]; then
+  notify-send -t 60000 "System Updates Available!" "$updates_info"
+else
+  echo "System Updates Available!"
+  echo "$updates_info"
+fi
