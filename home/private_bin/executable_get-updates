@@ -12,19 +12,23 @@ HELP
 	exit 0
 }
 
-
 updates_output() {
-  notify=$1
-  if ! [[ -z $updates_arch ]]; then
-    echo "ARCH: $(echo "$updates_arch" | wc -l )"
-    [[ -z $notify ]] && echo "$updates_arch"
-  fi
-  if ! [[ -z $updates_aur ]]; then
-    echo "AUR:"
-    [[ -z $notify ]] && echo "$updates_aur"
-  fi
+	notify=$1
+	if ! [[ -z $updates_arch ]]; then
+		echo "ARCH: $(echo "$updates_arch" | wc -l)"
+		[[ -z $notify ]] && echo "$updates_arch"
+	fi
+	if ! [[ -z $updates_aur ]]; then
+		echo "AUR: $(echo "$updates_aur" | wc -l)"
+		[[ -z $notify ]] && echo "$updates_aur"
+	fi
+	echo
 }
 
+update_system() {
+	read -p "Would you like to update? (y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
+	pikaur -Syu
+}
 
 for opt in "$@"; do
 	case $opt in
@@ -32,8 +36,8 @@ for opt in "$@"; do
 		usage
 		;;
 	--notify)
-    notify=1
-    shift
+		notify=1
+		shift
 		;;
 	-* | --*)
 		echo "Invalid option: $opt"
@@ -43,17 +47,21 @@ for opt in "$@"; do
 	esac
 done
 
-updates_arch="$(checkupdates 2> /dev/null | awk '{print $1}')"
-updates_aur="$(pikaur -Qua 2> /dev/null | awk '{print $1}')"
+echo "fetching updates..."
+
+updates_arch="$(checkupdates 2>/dev/null | awk '{print $1}')"
+updates_aur="$(pikaur -Qua 2>/dev/null | awk '{print $1}')"
 updates_info="$(updates_output $notify)"
 
-if [[ -z $updates_info ]];then
-  exit 0
+if [[ -z $updates_info ]]; then
+	echo "system up to date"
+	exit 0
 fi
 
 if ! [[ -z $notify ]]; then
-  notify-send -t 60000 "System Updates Available!" "$updates_info"
+	notify-send -w "System Updates Available!" "$updates_info"
 else
-  echo "System Updates Available!"
-  echo "$updates_info"
+	echo "System Updates Available!"
+	echo "$updates_info"
+	update_system
 fi

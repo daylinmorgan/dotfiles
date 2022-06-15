@@ -106,7 +106,7 @@ list() {
 
 	user_len=$(yq e '.[] | .user ' $YAMLDOC | tail -n +2 | sort | uniq | awk '{print length}' | sort -nr | head -n 1)
 	tool_len=$(yq e 'keys| .[]' $YAMLDOC | tail -n +2 | sort | uniq | awk '{print length}' | sort -nr | head -n 1)
-	table_width=$(($user_len + $tool_len + 25))
+	table_width=$((user_len + tool_len + 25))
 	tool_cell=$(printf "%${tool_len}s" "")
 	user_cell=$(printf "%${user_len}s" "")
 
@@ -116,7 +116,7 @@ list() {
 		"${CYAN}tool${NORMAL}%s | \
 ${CYAN}author${NORMAL}%s | \
 ${CYAN}  install date${NORMAL}\n" \
-  "${tool_cell:4}" "${user_cell:6}"
+		"${tool_cell:4}" "${user_cell:6}"
 	printf "%${table_width}s\n" "" | tr ' ' -
 	readarray tools < <(yq e 'keys | .[]' $YAMLDOC)
 	#sort tools for readability
@@ -125,11 +125,11 @@ ${CYAN}  install date${NORMAL}\n" \
 
 		user=$(key=$tool yq e 'explode(.) | .[env(key)].user' $YAMLDOC)
 		bin_name=$(key=$tool yq e 'explode(.) | .[env(key)].to' $YAMLDOC)
-		[[ "$bin_name" == "null" ]] && bin_name=$tool
+		[[ $bin_name == "null" ]] && bin_name=$tool
 
 		modified=$(check_install $bin_name)
 
-		! [[ -z "$modified" ]] && installed=$INSTALL_YES || installed=$INSTALL_NO
+		! [[ -z $modified ]] && installed=$INSTALL_YES || installed=$INSTALL_NO
 
 		printf \
 			"${MAGENTA}%s${NORMAL}%s | \
