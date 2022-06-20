@@ -11,7 +11,7 @@ export HISTCONTROL=ignoredups:erasedups
 export LESS='-R'
 
 # add completions to fpath
-fpath=($DOTFILES_DIR/system/completions $fpath)
+fpath=($DOTFILES_DIR/lib/completions $fpath)
 
 # Append to the history file, rather than overwriting it
 setopt APPEND_HISTORY
@@ -21,7 +21,7 @@ unsetopt autocd
 
 # Vim Settings
 # export VIMINIT='source $MYVIMRC'
-# export MYVIMRC='$DOTFILES_DIR/system/.vimrc'
+# export MYVIMRC='$DOTFILES_DIR/lib/.vimrc'
 if is-executable lvim; then
 	export EDITOR=lvim
 elif is-executable nvim; then
@@ -41,7 +41,7 @@ if [[ $PATH != *$HOME/.fzf/bin* ]]; then
 fi
 
 if is-executable fzf; then
-	source $DOTFILES_DIR/system/fzf.zsh
+	source $DOTFILES_DIR/lib/fzf.zsh
 fi
 # ---------
 

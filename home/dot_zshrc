@@ -15,7 +15,7 @@ fi
 
 PATH="$DOTFILES_DIR/bin:$PATH"
 
-for DOTFILE in "$DOTFILES_DIR"/system/{path,env,prompt,alias,function,conda,custom}.sh; do
+for DOTFILE in "$DOTFILES_DIR"/lib/{path,env,prompt,alias,function,conda,custom}.sh; do
   [ -f "$DOTFILE" ] && . "$DOTFILE"
 done
 
