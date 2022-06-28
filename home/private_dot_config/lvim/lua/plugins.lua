@@ -52,7 +52,7 @@ local function myfooter(lvim_version)
   -- local plugins = #vim.tbl_keys(packer_plugins) needs to be in config of packer table...
   local v = vim.version()
   local datetime = os.date " %Y.%m.%d   %H:%M:%S"
-  return string.format(" %s   v%s.%s.%s  %s",lvim_version, v.major, v.minor, v.patch, datetime)
+  return string.format(" %s   v%s.%s.%s  %s", lvim_version, v.major, v.minor, v.patch, datetime)
 end
 
 local lvim_version = require("lvim.utils.git").get_lvim_version()
@@ -96,4 +96,3 @@ lvim.builtin.alpha.dashboard.section.header.val = {
 ║  ║ ║║║║╠═╣╠╦╝╚╗╔╝║║║║
 ╩═╝╚═╝╝╚╝╩ ╩╩╚═ ╚╝ ╩╩ ╩
 ]] --
-
