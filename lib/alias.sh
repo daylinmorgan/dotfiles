@@ -58,4 +58,6 @@ if is-executable zellij; then
 fi
 #zenith
 alias zenith="zenith -d 0 -n 0"
+# pdm
+alias pdm-start='eval "$(pdm shell)"'
 ##########################################
