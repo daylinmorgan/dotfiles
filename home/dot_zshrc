@@ -31,12 +31,9 @@ fi
 
 unset EXTRAFILE
 
-# Export
-
 export DOTFILES_DIR DOTFILES_EXTRA_DIR
 
 # welcome art
-clear
+# clear
 ! is-tty && [ -f ~/.welcome ] && cat ~/.welcome
-
 

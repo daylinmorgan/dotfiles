@@ -22,28 +22,29 @@ keybinds:
           key: [Ctrl: 'o',]
         - action: [SwitchToMode: Move,]
           key: [Ctrl: 'h',]
+        - action: [SwitchToMode: Tmux,]
+          key: [Ctrl: 'b',]
         - action: [Quit,]
           key: [Ctrl: 'q',]
         - action: [NewPane: ]
           key: [ Alt: 'n',]
         - action: [MoveFocusOrTab: Left,]
-          key: [ Alt: 'h',]
+          key: [ Alt: 'h', Alt: Left]
         - action: [MoveFocusOrTab: Right,]
-          key: [ Alt: 'l',]
+          key: [ Alt: 'l', Alt: Right ]
         - action: [MoveFocus: Down,]
-          key: [ Alt: 'j',]
+          key: [ Alt: 'j', Alt: Down]
         - action: [MoveFocus: Up,]
-          key: [ Alt: 'k',]
-        - action: [FocusPreviousPane,]
-          key: [ Alt: '[',]
-        - action: [FocusNextPane,]
-          key: [ Alt: ']',]
+          key: [ Alt: 'k', Alt: Up, ]
         - action: [Resize: Increase,]
           key: [ Alt: '=']
         - action: [Resize: Increase,]
           key: [ Alt: '+']
         - action: [Resize: Decrease,]
           key: [ Alt: '-']
+        # uncomment this and adjust key if using copy_on_select=false
+        # - action: [Copy: ]
+        #   key: [ Alt: 'c']
     locked:
         - action: [SwitchToMode: Normal,]
           key: [Ctrl: 'g',]
@@ -62,6 +63,8 @@ keybinds:
           key: [Ctrl: 'o',]
         - action: [SwitchToMode: Move,]
           key: [Ctrl: 'h',]
+        - action: [SwitchToMode: Tmux,]
+          key: [Ctrl: 'b',]
         - action: [Quit]
           key: [Ctrl: 'q']
         - action: [Resize: Left,]
@@ -80,18 +83,14 @@ keybinds:
           key: [Char: '-']
         - action: [NewPane: ,]
           key: [ Alt: 'n',]
-        - action: [MoveFocus: Left,]
-          key: [ Alt: 'h',]
-        - action: [MoveFocus: Right,]
-          key: [ Alt: 'l',]
+        - action: [MoveFocusOrTab: Left,]
+          key: [ Alt: 'h', Alt: Left]
+        - action: [MoveFocusOrTab: Right,]
+          key: [ Alt: 'l', Alt: Right]
         - action: [MoveFocus: Down,]
-          key: [ Alt: 'j',]
+          key: [ Alt: 'j', Alt: Down]
         - action: [MoveFocus: Up,]
-          key: [ Alt: 'k',]
-        - action: [FocusPreviousPane,]
-          key: [ Alt: '[',]
-        - action: [FocusNextPane,]
-          key: [ Alt: ']',]
+          key: [ Alt: 'k', Alt: Up]
         - action: [Resize: Increase,]
           key: [ Alt: '=']
         - action: [Resize: Increase,]
@@ -113,6 +112,8 @@ keybinds:
           key: [Ctrl: 'o',]
         - action: [SwitchToMode: Move,]
           key: [Ctrl: 'h',]
+        - action: [SwitchToMode: Tmux,]
+          key: [Ctrl: 'b',]
         - action: [Quit,]
           key: [Ctrl: 'q',]
         - action: [MoveFocus: Left,]
@@ -137,20 +138,20 @@ keybinds:
           key: [Char: 'f',]
         - action: [TogglePaneFrames, SwitchToMode: Normal,]
           key: [Char: 'z',]
+        - action: [ToggleFloatingPanes, SwitchToMode: Normal,]
+          key: [Char: 'w']
+        - action: [TogglePaneEmbedOrFloating, SwitchToMode: Normal,]
+          key: [Char: 'e']
         - action: [NewPane: ,]
           key: [ Alt: 'n',]
-        - action: [MoveFocus: Left,]
-          key: [ Alt: 'h',]
-        - action: [MoveFocus: Right,]
-          key: [ Alt: 'l',]
+        - action: [MoveFocusOrTab: Left,]
+          key: [ Alt: 'h', Alt: Left]  # The Alt: Left etc. variants are temporary hacks and will be removed in the future - please do not rely on them!
+        - action: [MoveFocusOrTab: Right,]
+          key: [ Alt: 'l', Alt: Right]
         - action: [MoveFocus: Down,]
-          key: [ Alt: 'j',]
+          key: [ Alt: 'j', Alt: Down]
         - action: [MoveFocus: Up,]
-          key: [ Alt: 'k',]
-        - action: [FocusPreviousPane,]
-          key: [ Alt: '[',]
-        - action: [FocusNextPane,]
-          key: [ Alt: ']',]
+          key: [ Alt: 'k', Alt: Up]
         - action: [Resize: Increase,]
           key: [ Alt: '=']
         - action: [Resize: Increase,]
@@ -188,18 +189,14 @@ keybinds:
           key: [Char: 'l', Right,]
         - action: [NewPane: ,]
           key: [ Alt: 'n',]
-        - action: [MoveFocus: Left,]
-          key: [ Alt: 'h',]
-        - action: [MoveFocus: Right,]
-          key: [ Alt: 'l',]
+        - action: [MoveFocusOrTab: Left,]
+          key: [ Alt: 'h', Alt: Left]  # The Alt: Left etc. variants are temporary hacks and will be removed in the future - please do not rely on them!
+        - action: [MoveFocusOrTab: Right,]
+          key: [ Alt: 'l', Alt: Right]
         - action: [MoveFocus: Down,]
-          key: [ Alt: 'j',]
+          key: [ Alt: 'j', Alt: Down]
         - action: [MoveFocus: Up,]
-          key: [ Alt: 'k',]
-        - action: [FocusPreviousPane,]
-          key: [ Alt: '[',]
-        - action: [FocusNextPane,]
-          key: [ Alt: ']',]
+          key: [ Alt: 'k', Alt: Up]
         - action: [Resize: Increase,]
           key: [ Alt: '=']
         - action: [Resize: Increase,]
@@ -219,6 +216,8 @@ keybinds:
           key: [Ctrl: 's']
         - action: [SwitchToMode: Move,]
           key: [Ctrl: 'h',]
+        - action: [SwitchToMode: Tmux,]
+          key: [Ctrl: 'b',]
         - action: [SwitchToMode: Session,]
           key: [Ctrl: 'o',]
         - action: [SwitchToMode: RenameTab, TabNameInput: [0],]
@@ -257,18 +256,14 @@ keybinds:
           key: [ Char: "\t" ]
         - action: [NewPane: ,]
           key: [ Alt: 'n',]
-        - action: [MoveFocus: Left,]
-          key: [ Alt: 'h',]
-        - action: [MoveFocus: Right,]
-          key: [ Alt: 'l',]
+        - action: [MoveFocusOrTab: Left,]
+          key: [ Alt: 'h', Alt: Left]  # The Alt: Left etc. variants are temporary hacks and will be removed in the future - please do not rely on them!
+        - action: [MoveFocusOrTab: Right,]
+          key: [ Alt: 'l', Alt: Right]
         - action: [MoveFocus: Down,]
-          key: [ Alt: 'j',]
+          key: [ Alt: 'j', Alt: Down]
         - action: [MoveFocus: Up,]
-          key: [ Alt: 'k',]
-        - action: [FocusPreviousPane,]
-          key: [ Alt: '[',]
-        - action: [FocusNextPane,]
-          key: [ Alt: ']',]
+          key: [ Alt: 'k', Alt: Up]
         - action: [Resize: Increase,]
           key: [ Alt: '=']
         - action: [Resize: Increase,]
@@ -276,6 +271,8 @@ keybinds:
         - action: [Resize: Decrease,]
           key: [ Alt: '-']
     scroll:
+        - action: [EditScrollback, SwitchToMode: Normal]
+          key: [Char: 'e']
         - action: [SwitchToMode: Normal,]
           key: [Ctrl: 's', Char: ' ', Char: "\n", Esc]
         - action: [SwitchToMode: Tab,]
@@ -286,6 +283,8 @@ keybinds:
           key: [Ctrl: 'p',]
         - action: [SwitchToMode: Move,]
           key: [Ctrl: 'h',]
+        - action: [SwitchToMode: Tmux,]
+          key: [Ctrl: 'b',]
         - action: [SwitchToMode: Session,]
           key: [Ctrl: 'o',]
         - action: [SwitchToMode: Resize,]
@@ -308,24 +307,23 @@ keybinds:
           key: [Char: 'u',]
         - action: [NewPane: ,]
           key: [ Alt: 'n',]
-        - action: [MoveFocus: Left,]
-          key: [ Alt: 'h',]
-        - action: [MoveFocus: Right,]
-          key: [ Alt: 'l',]
+        - action: [MoveFocusOrTab: Left,]
+          key: [ Alt: 'h', Alt: Left]  # The Alt: Left etc. variants are temporary hacks and will be removed in the future - please do not rely on them!
+        - action: [MoveFocusOrTab: Right,]
+          key: [ Alt: 'l', Alt: Right]
         - action: [MoveFocus: Down,]
-          key: [ Alt: 'j',]
+          key: [ Alt: 'j', Alt: Down]
         - action: [MoveFocus: Up,]
-          key: [ Alt: 'k',]
-        - action: [FocusPreviousPane,]
-          key: [ Alt: '[',]
-        - action: [FocusNextPane,]
-          key: [ Alt: ']',]
+          key: [ Alt: 'k', Alt: Up]
         - action: [Resize: Increase,]
           key: [ Alt: '=']
         - action: [Resize: Increase,]
           key: [ Alt: '+']
         - action: [Resize: Decrease,]
           key: [ Alt: '-']
+        # uncomment this and adjust key if using copy_on_select=false
+        # - action: [Copy: ]
+        #   key: [ Alt: 'c']
     renametab:
         - action: [SwitchToMode: Normal,]
           key: [Char: "\n", Ctrl: 'c', Esc]
@@ -333,18 +331,14 @@ keybinds:
           key: [Esc,]
         - action: [NewPane: ,]
           key: [ Alt: 'n',]
-        - action: [MoveFocus: Left,]
-          key: [ Alt: 'h',]
-        - action: [MoveFocus: Right,]
-          key: [ Alt: 'l',]
+        - action: [MoveFocusOrTab: Left,]
+          key: [ Alt: 'h', Alt: Left]
+        - action: [MoveFocusOrTab: Right,]
+          key: [ Alt: 'l', Alt: Right]
         - action: [MoveFocus: Down,]
-          key: [ Alt: 'j',]
+          key: [ Alt: 'j', Alt: Down]
         - action: [MoveFocus: Up,]
-          key: [ Alt: 'k',]
-        - action: [FocusPreviousPane,]
-          key: [ Alt: '[',]
-        - action: [FocusNextPane,]
-          key: [ Alt: ']',]
+          key: [ Alt: 'k', Alt: Up]
         - action: [Resize: Increase,]
           key: [ Alt: '=']
         - action: [Resize: Increase,]
@@ -358,18 +352,14 @@ keybinds:
           key: [Esc,]
         - action: [NewPane: ,]
           key: [ Alt: 'n',]
-        - action: [MoveFocus: Left,]
-          key: [ Alt: 'h',]
-        - action: [MoveFocus: Right,]
-          key: [ Alt: 'l',]
+        - action: [MoveFocusOrTab: Left,]
+          key: [ Alt: 'h', Alt: Left]
+        - action: [MoveFocusOrTab: Right,]
+          key: [ Alt: 'l', Alt: Right]
         - action: [MoveFocus: Down,]
-          key: [ Alt: 'j',]
+          key: [ Alt: 'j', Alt: Down]
         - action: [MoveFocus: Up,]
-          key: [ Alt: 'k',]
-        - action: [FocusPreviousPane,]
-          key: [ Alt: '[',]
-        - action: [FocusNextPane,]
-          key: [ Alt: ']',]
+          key: [ Alt: 'k', Alt: Up]
         - action: [Resize: Increase,]
           key: [ Alt: '=']
         - action: [Resize: Increase,]
@@ -385,6 +375,8 @@ keybinds:
           key: [Ctrl: 'p',]
         - action: [SwitchToMode: Move,]
           key: [Ctrl: 'h',]
+        - action: [SwitchToMode: Tmux,]
+          key: [Ctrl: 'b',]
         - action: [SwitchToMode: Tab,]
           key: [Ctrl: 't',]
         - action: [SwitchToMode: Normal,]
@@ -397,31 +389,100 @@ keybinds:
           key: [Char: 'd',]
         - action: [NewPane: ,]
           key: [ Alt: 'n',]
-        - action: [MoveFocus: Left,]
-          key: [ Alt: 'h',]
-        - action: [MoveFocus: Right,]
-          key: [ Alt: 'l',]
+        - action: [MoveFocusOrTab: Left,]
+          key: [ Alt: 'h', Alt: Left]
+        - action: [MoveFocusOrTab: Right,]
+          key: [ Alt: 'l', Alt: Right]
         - action: [MoveFocus: Down,]
-          key: [ Alt: 'j',]
+          key: [ Alt: 'j', Alt: Down]
         - action: [MoveFocus: Up,]
-          key: [ Alt: 'k',]
-        - action: [FocusPreviousPane,]
-          key: [ Alt: '[',]
-        - action: [FocusNextPane,]
-          key: [ Alt: ']',]
+          key: [ Alt: 'k', Alt: Up]
         - action: [Resize: Increase,]
           key: [ Alt: '=']
         - action: [Resize: Increase,]
           key: [ Alt: '+']
         - action: [Resize: Decrease,]
           key: [ Alt: '-']
-            #plugins:
-  #- path: tab-bar
-  #    tag: tab-bar
-  #- path: status-bar
-  #    tag: status-bar
-        #- path: strider
-        #tag: strider
+    tmux:
+        - action: [SwitchToMode: Locked,]
+          key: [Ctrl: 'g']
+        - action: [SwitchToMode: Resize,]
+          key: [Ctrl: 'n',]
+        - action: [SwitchToMode: Pane,]
+          key: [Ctrl: 'p',]
+        - action: [SwitchToMode: Move,]
+          key: [Ctrl: 'h',]
+        - action: [SwitchToMode: Tab,]
+          key: [Ctrl: 't',]
+        - action: [SwitchToMode: Normal,]
+          key: [Ctrl: 'o', Char: "\n", Char: ' ', Esc]
+        - action: [SwitchToMode: Scroll,]
+          key: [Ctrl: 's']
+        - action: [SwitchToMode: Scroll,]
+          key: [ Char: '[']
+        - action: [Quit,]
+          key: [Ctrl: 'q',]
+        - action: [Write: [2,], SwitchToMode: Normal]
+          key: [Ctrl: 'b']
+        - action: [NewPane: Down, SwitchToMode: Normal,]
+          key: [Char: "\"",]
+        - action: [NewPane: Right, SwitchToMode: Normal,]
+          key: [Char: '%',]
+        - action: [ToggleFocusFullscreen, SwitchToMode: Normal,]
+          key: [Char: 'z',]
+        - action: [NewTab: , SwitchToMode: Normal,]
+          key: [ Char: 'c',]
+        - action: [SwitchToMode: RenameTab, TabNameInput: [0],]
+          key: [Char: ',']
+        - action: [GoToPreviousTab, SwitchToMode: Normal,]
+          key: [ Char: 'p']
+        - action: [GoToNextTab, SwitchToMode: Normal,]
+          key: [ Char: 'n']
+        - action: [MoveFocus: Left, SwitchToMode: Normal,]
+          key: [ Left,]
+        - action: [MoveFocus: Right, SwitchToMode: Normal,]
+          key: [ Right,]
+        - action: [MoveFocus: Down, SwitchToMode: Normal,]
+          key: [ Down,]
+        - action: [MoveFocus: Up, SwitchToMode: Normal,]
+          key: [ Up,]
+        - action: [MoveFocus: Left, SwitchToMode: Normal,]
+          key: [ Char: 'h']
+        - action: [MoveFocus: Right, SwitchToMode: Normal,]
+          key: [ Char: 'l']
+        - action: [MoveFocus: Down, SwitchToMode: Normal,]
+          key: [ Char: 'j']
+        - action: [MoveFocus: Up, SwitchToMode: Normal,]
+          key: [ Char: 'k']
+        - action: [NewPane: ,]
+          key: [ Alt: 'n',]
+        - action: [MoveFocusOrTab: Left,]
+          key: [ Alt: 'h', Alt: Left]
+        - action: [MoveFocusOrTab: Right,]
+          key: [ Alt: 'l', Alt: Right]
+        - action: [MoveFocus: Down,]
+          key: [ Alt: 'j', Alt: Down]
+        - action: [MoveFocus: Up,]
+          key: [ Alt: 'k', Alt: Up]
+        - action: [FocusNextPane,]
+          key: [ Char: 'o']
+        - action: [Resize: Increase,]
+          key: [ Alt: '=']
+        - action: [Resize: Increase,]
+          key: [ Alt: '+']
+        - action: [Resize: Decrease,]
+          key: [ Alt: '-']
+        - action: [Detach,]
+          key: [Char: 'd',]
+plugins:
+    - path: tab-bar
+      tag: tab-bar
+    - path: status-bar
+      tag: status-bar
+    - path: strider
+      tag: strider
+    - path: compact-bar
+      tag: compact-bar
 
 # Choose what to do when zellij receives SIGTERM, SIGINT, SIGQUIT or SIGHUP
 # eg. when terminal window with an active zellij session is closed
@@ -438,31 +499,18 @@ keybinds:
 
 # Choose the path to the default shell that zellij will use for opening new panes
 # Default: $SHELL
-#default_shell: fish
+# default_shell: fish
 
 # Toggle between having pane frames around the panes
-#Options:
-  # - true (default)
-  #- false
+# Options:
+#   - true (default)
+#   - false
 pane_frames: false
 
 # Choose the theme that is specified in the themes section.
-# # Default: default
-theme: dracula
-themes:
-  dracula:
-    fg: [248, 248, 242]
-    bg: [40, 42, 54]
-    black: [0, 0, 0]
-    gray: [68, 71, 90]
-    red: [255, 85, 85]
-    green: [80, 250, 123]
-    yellow: [241, 250, 140]
-    blue: [98, 114, 164]
-    magenta: [255, 121, 198]
-    cyan: [139, 233, 253]
-    white: [255, 255, 255]
-    orange: [255, 184, 108]
+# For some examples, see: https://github.com/zellij-org/zellij/tree/main/example/themes
+# Default: default
+#theme: default
 
 # Choose the mode that zellij uses when starting up.
 # Default: normal
@@ -482,3 +530,78 @@ themes:
 # Valid values: positive integers
 # Default value: 10000
 #scroll_buffer_size: 10000
+
+# Provide a command to execute when copying text. The text will be piped to
+# the stdin of the program to perform the copy. This can be used with
+# terminal emulators which do not support the OSC 52 ANSI control sequence
+# that will be used by default if this option is not set.
+# Examples:
+#copy_command: "xclip -selection clipboard" # x11
+#copy_command: "wl-copy"                    # wayland
+#copy_command: "pbcopy"                     # osx
+
+# Choose the destination for copied text
+# Allows using the primary selection buffer (on x11/wayland) instead of the system clipboard.
+# Does not apply when using copy_command.
+# Options:
+#   - system (default)
+#   - primary
+#copy_clipboard: primary
+
+# Enable or disable automatic copy (and clear) of selection when releasing mouse
+#copy_on_select: true
+
+# Path to the default editor to use to edit pane scrollbuffer
+# scrollback_editor: /usr/bin/nano
+
+theme: catppuccin
+themes:
+  catppuccin:
+    bg:
+    - 48
+    - 45
+    - 65
+    black:
+    - 22
+    - 19
+    - 32
+    blue:
+    - 150
+    - 205
+    - 251
+    cyan:
+    - 26
+    - 24
+    - 38
+    fg:
+    - 217
+    - 224
+    - 238
+    gray:
+    - 87
+    - 82
+    - 104
+    green:
+    - 171
+    - 233
+    - 179
+    magenta:
+    - 245
+    - 194
+    - 231
+    orange:
+    - 248
+    - 189
+    - 150
+    red:
+    - 242
+    - 143
+    - 173
+    white:
+    - 217
+    - 224
+    - 238
+    yellow:
+    - 250
+    - 227
+    - 176

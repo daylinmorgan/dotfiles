@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-# sleep 1
-# if [[ $DESKTOP_SESSION=="leftwm" ]]; then
-  # leftwm-command "SoftReload"
-# elif [[ $DESTOP_SESSION=="qtile"]]; then
-  # qtile cmd-obj -o cmd -f restart
-# fi
+
+# WM Agnostic
+notify-send 'autorandr' '\nmonitor change detected\nresetting WM'
+sleep 3
+xdotool key Shift_L+Super_L+R

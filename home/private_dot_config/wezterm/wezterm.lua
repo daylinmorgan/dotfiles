@@ -1,6 +1,6 @@
 local wezterm = require("wezterm")
-local catppuccin = require("colors/catppuccin").setup {}
-
+local catppuccin = require("colors/catppuccin").setup{}
+local keys = require("keys")
 -- add wezterm to title for wm usage
 wezterm.on("format-window-title",
   function()
@@ -26,5 +26,6 @@ return {
   tab_bar_at_bottom = true,
   disable_default_key_bindings = true,
   bold_brightens_ansi_colors = true,
-  keys = require('keys'),
+  keys = keys.keys,
+  key_tables = keys.key_tables,
 }

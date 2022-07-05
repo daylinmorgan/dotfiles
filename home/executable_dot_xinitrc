@@ -39,7 +39,6 @@ export SSH_AUTH_SOCK
 
 not_leftwm() {
   unclutter --timeout 1 &
-  autorandr -c &
 }
 
 # $1 is xterm
@@ -67,6 +66,5 @@ case $2 in
   *)
     not_leftwm
     export DESKTOP_SESSION=qtile
-    exec qtile start
     ;;
 esac
