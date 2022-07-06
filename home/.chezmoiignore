@@ -6,4 +6,5 @@ bin/lock
 .config/alacritty
 .config/leftwm
 .config/autorandr
+.config/pikaur.conf
 {{- end }}
