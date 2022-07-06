@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 if ! $(is-executable yq); then
-    echo "you will need to install yq"
-    echo "see here for more info: https://github.com/mikefarah/yq"
+	echo "you will need to install yq"
+	echo "see here for more info: https://github.com/mikefarah/yq"
 fi
 
 YAMLDOC="$HOME/.dotfiles/info/pkgs.yml"

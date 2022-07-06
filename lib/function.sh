@@ -1,8 +1,8 @@
 function cl() {
 	DIR="$*"
 	# if no DIR given, go home
-	if [ $# -lt 1 ]; then 
-    DIR=$HOME
+	if [ $# -lt 1 ]; then
+		DIR=$HOME
 	fi
 	builtin cd "${DIR}" &&
 		# use your preferred ls command
@@ -75,5 +75,5 @@ py2nb2html() {
 
 alias bathelp='bat --plain --language=help'
 help() {
-    "$@" --help 2>&1 | bathelp
+	"$@" --help 2>&1 | bathelp
 }

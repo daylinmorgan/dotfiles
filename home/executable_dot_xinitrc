@@ -7,30 +7,29 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 # merge in defaults and keymaps
 
 if [ -f $sysresources ]; then
-    xrdb -merge $sysresources
+	xrdb -merge $sysresources
 fi
 
 if [ -f $sysmodmap ]; then
-    xmodmap $sysmodmap
+	xmodmap $sysmodmap
 fi
 
 if [ -f "$userresources" ]; then
-    xrdb -merge "$userresources"
+	xrdb -merge "$userresources"
 fi
 
 if [ -f "$usermodmap" ]; then
-    xmodmap "$usermodmap"
+	xmodmap "$usermodmap"
 fi
 
 # start some nice programs
 
-if [ -d /etc/X11/xinit/xinitrc.d ] ; then
- for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
-  [ -x "$f" ] && . "$f"
- done
- unset f
+if [ -d /etc/X11/xinit/xinitrc.d ]; then
+	for f in /etc/X11/xinit/xinitrc.d/?*.sh; do
+		[ -x "$f" ] && . "$f"
+	done
+	unset f
 fi
-
 
 [ -f ~/.xprofile ] && . ~/.xprofile
 
@@ -38,7 +37,7 @@ eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
 not_leftwm() {
-  unclutter --timeout 1 &
+	unclutter --timeout 1 &
 }
 
 # $1 is xterm
@@ -46,25 +45,25 @@ not_leftwm() {
 # i.e. startx qtile
 
 case $2 in
-  leftwm)
-    export DESKTOP_SESSION=leftwm
-    exec leftwm
-    ;;
-  plasma)
-    export DESKTOP_SESSION=plasma
-    exec startplasma-x11
-    ;;
-  xmonad)
-    export DESKTOP_SESSION=xmonad
-    xmonad
-    ;;
-  qtile)
-    not_leftwm
-    export DESKTOP_SESSION=qtile
-    exec qtile start
-    ;;
-  *)
-    not_leftwm
-    export DESKTOP_SESSION=qtile
-    ;;
+leftwm)
+	export DESKTOP_SESSION=leftwm
+	exec leftwm
+	;;
+plasma)
+	export DESKTOP_SESSION=plasma
+	exec startplasma-x11
+	;;
+xmonad)
+	export DESKTOP_SESSION=xmonad
+	xmonad
+	;;
+qtile)
+	not_leftwm
+	export DESKTOP_SESSION=qtile
+	exec qtile start
+	;;
+*)
+	not_leftwm
+	export DESKTOP_SESSION=qtile
+	;;
 esac
