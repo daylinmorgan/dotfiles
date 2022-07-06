@@ -1,8 +1,8 @@
 function cl() {
 	DIR="$*"
 	# if no DIR given, go home
-	if [ $# -lt 1 ]; then
-		DIR=$HOME
+	if [ $# -lt 1 ]; then 
+    DIR=$HOME
 	fi
 	builtin cd "${DIR}" &&
 		# use your preferred ls command
@@ -71,4 +71,9 @@ py2nb2html() {
 	shift
 	echo "generating html file for $pyfile"
 	jupytext --to notebook -o - $pyfile | jupyter nbconvert --execute --to html --stdin $@
+}
+
+alias bathelp='bat --plain --language=help'
+help() {
+    "$@" --help 2>&1 | bathelp
 }
