@@ -65,5 +65,6 @@ qtile)
 *)
 	not_leftwm
 	export DESKTOP_SESSION=qtile
+	exec qtile start
 	;;
 esac
