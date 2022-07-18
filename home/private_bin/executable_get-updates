@@ -27,7 +27,7 @@ updates_output() {
 
 update_system() {
 	read -p "Would you like to update? (y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
-	pikaur -Syu
+	pikaur -Syu --noedit --nodiff
 }
 
 for opt in "$@"; do
