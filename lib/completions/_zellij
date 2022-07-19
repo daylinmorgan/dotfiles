@@ -20,9 +20,8 @@ _zellij() {
 '--server=[Run server listening at the specified socket path]:SERVER: ' \
 '-s+[Specify name of a new session]:SESSION: ' \
 '--session=[Specify name of a new session]:SESSION: ' \
-'-l+[Name of a layout file in the layout directory]:LAYOUT: ' \
-'--layout=[Name of a layout file in the layout directory]:LAYOUT: ' \
-'--layout-path=[Path to a layout yaml file]:LAYOUT_PATH: ' \
+'-l+[Name of a predefined layout inside the layout directory or the path to a layout file]:LAYOUT: ' \
+'--layout=[Name of a predefined layout inside the layout directory or the path to a layout file]:LAYOUT: ' \
 '-c+[Change where zellij looks for the configuration file]:CONFIG: ' \
 '--config=[Change where zellij looks for the configuration file]:CONFIG: ' \
 '--config-dir=[Change where zellij looks for the configuration directory]:CONFIG_DIR: ' \
@@ -66,6 +65,8 @@ tmux\:"`Tmux` mode allows for basic tmux keybindings functionality"))' \
 '--scroll-buffer-size=[]:SCROLL_BUFFER_SIZE: ' \
 '--copy-command=[Switch to using a user supplied command for clipboard instead of OSC52]:COPY_COMMAND: ' \
 '(--copy-command)--copy-clipboard=[OSC52 destination clipboard]:COPY_CLIPBOARD:(system primary)' \
+'--copy-on-select=[Automatically copy when selecting text (true or false)]:COPY_ON_SELECT: ' \
+'--scrollback-editor=[Explicit full path to open the scrollback editor (default is $EDITOR or $VISUAL)]:SCROLLBACK_EDITOR: ' \
 '(--mouse-mode)--disable-mouse-mode[Disable handling of mouse events]' \
 '(--pane-frames)--no-pane-frames[Disable display of pane frames]' \
 '-h[Print help information]' \
@@ -76,6 +77,7 @@ tmux\:"`Tmux` mode allows for basic tmux keybindings functionality"))' \
 _arguments "${_arguments_options[@]}" \
 '--dump-layout=[Dump the specified layout file to stdout]:DUMP_LAYOUT: ' \
 '--generate-completion=[Generates completion for the specified shell]:SHELL: ' \
+'--generate-auto-start=[Generates auto-start script for the specified shell]:SHELL: ' \
 '--dump-config[Dump the default configuration file to stdout]' \
 '--clean[Disables loading of configuration file at default location, loads the defaults that zellij ships with]' \
 '--check[Checks the configuration of zellij and displays currently used directories]' \
@@ -132,7 +134,8 @@ tmux\:"`Tmux` mode allows for basic tmux keybindings functionality"))' \
 '--scroll-buffer-size=[]:SCROLL_BUFFER_SIZE: ' \
 '--copy-command=[Switch to using a user supplied command for clipboard instead of OSC52]:COPY_COMMAND: ' \
 '(--copy-command)--copy-clipboard=[OSC52 destination clipboard]:COPY_CLIPBOARD:(system primary)' \
-'--version[Print version information]' \
+'--copy-on-select=[Automatically copy when selecting text (true or false)]:COPY_ON_SELECT: ' \
+'--scrollback-editor=[Explicit full path to open the scrollback editor (default is $EDITOR or $VISUAL)]:SCROLLBACK_EDITOR: ' \
 '(--mouse-mode)--disable-mouse-mode[Disable handling of mouse events]' \
 '(--pane-frames)--no-pane-frames[Disable display of pane frames]' \
 '-h[Print help information]' \
@@ -141,9 +144,6 @@ tmux\:"`Tmux` mode allows for basic tmux keybindings functionality"))' \
 ;;
 (help)
 _arguments "${_arguments_options[@]}" \
-'--version[Print version information]' \
-'-h[Print help information]' \
-'--help[Print help information]' \
 '*::subcommand -- The subcommand whose help message to display:' \
 && ret=0
 ;;
@@ -182,9 +182,13 @@ _zellij_commands() {
 'options:Change the behaviour of zellij' \
 'setup:Setup zellij and check its configuration' \
 'list-sessions:List active sessions' \
-'attach:Attach to session' \
+'ls:List active sessions' \
+'attach:Attach to a session' \
+'a:Attach to a session' \
 'kill-session:Kill the specific session' \
+'k:Kill the specific session' \
 'kill-all-sessions:Kill all sessions' \
+'ka:Kill all sessions' \
 'help:Print this message or the help of the given subcommand(s)' \
     )
     _describe -t commands 'zellij commands' commands "$@"
