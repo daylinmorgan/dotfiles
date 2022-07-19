@@ -15,8 +15,22 @@
 	autosetuprebase = always
 [alias]
 	adog = log --all --decorate --oneline --graph
+	gl = config --global -l
+	last = log -1 HEAD --stat
+	ll = log --oneline
+	st = status -sb
+
+  s = status -s
+  co = checkout
+  cob = checkout -b
+
+  cmt = "!git commit -m $(date)"
+  # list aliases
+  la = "!git config -l | grep alias | cut -c 7-"
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[help]
+	autocorrect = 20
