@@ -24,7 +24,7 @@
   co = checkout
   cob = checkout -b
 
-  cmt = "!git commit -m $(date)"
+  cmt = "!git commit -m \"$(date)\""
   # list aliases
   la = "!git config -l | grep alias | cut -c 7-"
 [filter "lfs"]
