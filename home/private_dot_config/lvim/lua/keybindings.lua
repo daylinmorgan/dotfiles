@@ -14,6 +14,8 @@ map('n', "H", "^", { noremap = true })
 map('n', "L", "$", { noremap = true })
 map('n', 'j', "v:count ? 'j' : 'gj'", { expr = true, noremap = true })
 map('n', 'k', "v:count ? 'k' : 'gk'", { expr = true, noremap = true })
+map('n', "<C-j>","}",{noremap = true})
+map('n', "<C-k>","{",{noremap = true})
 
 -- zettelkasten keybindings
 -- Create a new note after asking for its title.
@@ -41,7 +43,6 @@ mappings["z"] = {
 }
 mappings["s"]["p"] = { "<cmd>Telescope projects<CR>", "Recent Projects" }
 mappings["s"]["w"] = { "<cmd>Telescope live_grep<CR>", "Find Word" }
--- mappings[';'] = { "<cmd>Alpha<CR>", "Dashboard" }
 
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
