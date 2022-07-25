@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+#colors
+help() {
+	cat <<EOF
+
+ssh-serve-files
+
+usage: ssh-serve-files [user@]hostname [-p port] [-d dir]
+
+optional flags:
+  -h, --help  show this help text
+  -p, --port   port to tunnel and start http server at
+  -d, --dir    directory of files to serve [default: ~/]
+EOF
+}
+
+if [[ $# -eq 0 ]]; then
+	echo "please provide [user@]hostname"
+	help
+	exit 1
+fi
+
+PORT=8090
+DIR="~/"
+
+USER_HOST=$1
+shift
+
+while [[ $1 =~ ^- && $1 != "--" ]]; do
+	echo checking $1
+	case $1 in
+	-h | --help)
+		help
+		exit 0
+		;;
+	-p | --port)
+		shift
+		PORT=${PORT:+$1}
+		;;
+	-d | --dir)
+		shift
+		DIR=${DIR:+$1}
+		;;
+	-* | --*)
+		echo "Invalid option: $opt"
+		help
+		exit 1
+		;;
+	esac
+	shift
+done
+
+echo "connecting to $USER_HOST with port $PORT"
+echo "serving directory:"
+echo "->>$DIR"
+
+# first change directory in case python<3.7
+ssh -tL localhost:$PORT:localhost:$PORT $USER_HOST \
+	"cd $DIR && python3 -m http.server $PORT"
