@@ -26,6 +26,7 @@ return {
   tab_bar_at_bottom = true,
   disable_default_key_bindings = true,
   bold_brightens_ansi_colors = true,
+  default_gui_startup_args = {"start","--always-new-process"},
   keys = keys.keys,
   key_tables = keys.key_tables,
 }
