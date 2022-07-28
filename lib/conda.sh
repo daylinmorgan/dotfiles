@@ -19,4 +19,4 @@ if [ -f "$HOME/mambaforge/etc/profile.d/mamba.sh" ]; then
 fi
 # <<< conda initialize <<<
 
-[ -d "$HOME/mambaforge/envs/dev" ] && conda activate dev
+! is-tty && [ -d "$HOME/mambaforge/envs/dev" ] && conda activate dev
