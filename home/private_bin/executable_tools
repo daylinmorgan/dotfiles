@@ -40,12 +40,14 @@ eget_tool() {
 	file=$(key=$tool yq e 'explode(.) | .[env(key)].file // ""' $YAMLDOC)
 	to=$(key=$tool yq e 'explode(.) | .[env(key)].to // ""' $YAMLDOC)
 	download_only=$(key=$tool yq e 'explode(.) | .[env(key)].download-only // ""' $YAMLDOC)
+  custom_flags=$(key=$tool yq e 'explode(.) | .[env(key)].custom_flags // ""' $YAMLDOC)
 
 	eget $user/$tool \
 		${asset:+--asset $asset} \
 		${file:+--file $file} \
 		${to:+--to $to} \
 		${download_only:+--download-only} \
+    ${custom_flags} \
 		-q
 
 	if [[ $download_only ]]; then

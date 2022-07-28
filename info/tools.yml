@@ -26,8 +26,12 @@ just:
   user: casey
 zoxide:
   user: ajeetdsouza
+gum:
+  user: charmbracelet
+  asset: linux_x86_64.tar.gz
+  custom_flags: "--asset ^.sbom"
 
-# system monitoring
+  # system monitoring
 bottom:
   asset: x86_64-unknown-linux-gnu.tar.gz
   user: ClementTsang
