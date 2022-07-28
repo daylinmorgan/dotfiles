@@ -51,9 +51,14 @@ while [[ $1 =~ ^- && $1 != "--" ]]; do
 	shift
 done
 
+URL="http://localhost:$PORT"
+
 echo "connecting to $USER_HOST with port $PORT"
 echo "serving directory:"
 echo "->>$DIR"
+
+echo "opening $URL using $BROWSER"
+$BROWSER $URL > /dev/null 2>&1 &
 
 # first change directory in case python<3.7
 ssh -tL localhost:$PORT:localhost:$PORT $USER_HOST \

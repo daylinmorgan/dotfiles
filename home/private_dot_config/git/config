@@ -24,9 +24,12 @@
   co = checkout
   cob = checkout -b
 
-  cmt = "!git commit -m \"$(date)\""
+	cmt = !git commit -m \"time: $(date +\"%Y.%m.%d %H:%M:%S\")\"
+	save = !git add -A && git commit -m \"time: $(date +\"%Y.%m.%d %H:%M:%S\")\"
+
   # list aliases
   la = "!git config -l | grep alias | cut -c 7-"
+	test = !git add -A && git commit -m \"$(date)\"
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
