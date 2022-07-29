@@ -4,7 +4,7 @@ import shlex
 import subprocess
 import sys
 from shutil import which
-
+from pathlib import Path
 
 def is_tool(name):
     """Check whether `name` is on PATH and marked as executable."""
@@ -12,6 +12,11 @@ def is_tool(name):
         print(f"ERROR: {name} is not found in your PATH")
         sys.exit(1)
 
+def is_repo():
+    if not (Path.cwd() / ".git").is_dir():
+        print(color("Not a git repo.","9"))
+        print("exiting...")
+        sys.exit(1)
 
 def run(cmd, capture=True, returncode=False):
     result = subprocess.run(
@@ -38,8 +43,7 @@ def confirm(q):
     )
 
 
-# TODO: make gum a class an obsufcate the command commands
-
+# TODO: make gum (and git?) a class an obsufcate the commands
 
 def color(text, color):
     return run(f"gum style --foreground {color} '{text}'")
@@ -93,6 +97,7 @@ def get_staged_info():
 def main():
     is_tool("gum")
     is_tool("git")
+    is_repo()
 
     run(
         "gum style "
