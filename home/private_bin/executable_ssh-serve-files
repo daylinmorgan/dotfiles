@@ -58,7 +58,7 @@ echo "serving directory:"
 echo "->>$DIR"
 
 echo "opening $URL using $BROWSER"
-$BROWSER $URL > /dev/null 2>&1 &
+$BROWSER $URL >/dev/null 2>&1 &
 
 # first change directory in case python<3.7
 ssh -tL localhost:$PORT:localhost:$PORT $USER_HOST \

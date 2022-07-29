@@ -48,14 +48,16 @@ def dots():
 
     console.print(Text(" ").join([Text("●", style=color) for color in colors[:8]]))
 
+
 def double_dots():
     """
-    ● ● ● ● ● ● ● ● 
+    ● ● ● ● ● ● ● ●
     ● ● ● ● ● ● ● ●
     """
-    
+
     console.print(Text(" ").join([Text("●", style=color) for color in colors[:8]]))
     console.print(Text(" ").join([Text("●", style=color) for color in colors[8:]]))
+
 
 def wave_w_dots():
     """
@@ -80,7 +82,12 @@ def wave_w_dots():
 
 
 def main():
-    prompts = {"wave": wave, "dots": dots,'double-dots':double_dots, "wave-dots": wave_w_dots}
+    prompts = {
+        "wave": wave,
+        "dots": dots,
+        "double-dots": double_dots,
+        "wave-dots": wave_w_dots,
+    }
     parser = argparse.ArgumentParser(
         description="generate ansi color coded login prompts"
     )

@@ -12,6 +12,7 @@ Regenerate with generate_install_scripts.py
 
 FILE_DIR = Path(__file__).parent
 
+
 def shell_script_writer(extensions_dict, filename):
     with Path(filename).open("w") as f:
         f.write("#!/bin/bash\n")
