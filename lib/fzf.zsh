@@ -20,7 +20,6 @@ FZF_COLORS="
 --color=marker:#F8BD96,fg+:#F2CDCD,prompt:#DDB6F2,hl+:#F28FAD
 "
 
-
 FZF_LAYOUT="
 --height=40%
 --border=rounded
@@ -60,7 +59,7 @@ export FZF_ALT_C_OPTS="
     "
 
 # [[ -v FZF_CTRL_T_COMMAND ]] && && export FZF_CTRL_T_COMMAND=${FZF_DEFAULT_COMMAND}
-[[ -z "$FZF_CTRL_T_COMMAND" ]] && export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
+[[ -z $FZF_CTRL_T_COMMAND ]] && export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
 
 # fix spacing on fzf-tab to show max options
 zstyle ':fzf-tab:*' fzf-pad 4

@@ -58,7 +58,6 @@ sleep 0.1
 i3lock \
 	-n \
 	--screen 1 \
-	\
 	--color $bg_color \
 	--inside-color ffffff00 \
 	--ring-color $green \
@@ -71,12 +70,10 @@ i3lock \
 	--keyhl-color $cyan \
 	--bshl-color $red \
 	--wrong-color $red \
-	\
 	--ind-pos x+w-5-r:y+h-10-r \
 	--ring-width 25 \
 	--radius 100 \
 	--verif-text "" \
-	\
 	--greeter-text "$(make_figlet)" \
 	--greeter-font "${font}" \
 	--greeter-size $font_size \
