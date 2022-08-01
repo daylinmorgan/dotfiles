@@ -32,4 +32,3 @@ end
 
 o.timeoutlen = 300
 
-vim.cmd[[colorscheme dracula]]
