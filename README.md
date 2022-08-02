@@ -2,8 +2,14 @@
 
 ## Install
 
+From Source:
 ```bash
-sh -c "$(curl -fsLS git.io/chezmoi)" -- init --apply daylinmorgan -S ~/.dotfiles --ssh
+sh -c "$(curl -fsLS https://chezmoi.io/get)" -- init --apply git.dayl.in/daylin -S ~/.dotfiles --ssh
+```
+
+From Mirror:
+```bash
+sh -c "$(curl -fsLS https://chezmoi.io/get)" -- init --apply daylinmorgan -S ~/.dotfiles --ssh
 ```
 
 ## Relevant XKCD
