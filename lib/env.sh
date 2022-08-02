@@ -9,6 +9,7 @@ export HISTFILESIZE="${HISTSIZE}"
 export SAVEHIST=4096
 export HISTCONTROL=ignoredups:erasedups
 export LESS='-R'
+export LS_COLORS="$LS_COLORS:ow=1;34:tw=1;34:"
 
 # add completions to fpath
 fpath=($DOTFILES_DIR/lib/completions $fpath)
