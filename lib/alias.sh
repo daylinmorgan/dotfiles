@@ -42,7 +42,11 @@ is-executable lazygit && alias lg=lazygit
 alias tmux="tmux -f ~/.config/tmux/tmux.conf"
 alias rc="rclone --filter-from ~/.config/rclone/filter-file.txt"
 # prefer nvim if installed
-is-executable nvim && alias vim=nvim
+if is-executable lvim; then
+    alias vim=lvim
+elif is-executable nvim; then
+    alias vim=nvim
+fi
 # gdu defualts
 is-executable gdu && alias gdu -I '.*node_modules' -H
 # more fzf
