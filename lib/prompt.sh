@@ -6,7 +6,7 @@ compinit
 if is-executable sheldon; then
 	eval "$(sheldon -q --config-file ~/.config/sheldon/plugins.toml source)"
 else
-    echo "no sheldon = no shell extensions loaded"
+	echo "no sheldon = no shell extensions loaded"
 fi
 
 is-executable zoxide && eval eval "$(zoxide init zsh --cmd cd)"

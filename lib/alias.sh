@@ -43,9 +43,9 @@ alias tmux="tmux -f ~/.config/tmux/tmux.conf"
 alias rc="rclone --filter-from ~/.config/rclone/filter-file.txt"
 # prefer nvim if installed
 if is-executable lvim; then
-    alias vim=lvim
+	alias vim=lvim
 elif is-executable nvim; then
-    alias vim=nvim
+	alias vim=nvim
 fi
 # gdu defualts
 is-executable gdu && alias gdu -I '.*node_modules' -H
