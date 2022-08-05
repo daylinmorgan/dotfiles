@@ -36,10 +36,6 @@ fi
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
-not_leftwm() {
-	unclutter --timeout 1 &
-}
-
 # $1 is xterm
 # $2 is the wm arg passed to startx
 # i.e. startx qtile
@@ -58,12 +54,10 @@ xmonad)
 	xmonad
 	;;
 qtile)
-	not_leftwm
 	export DESKTOP_SESSION=qtile
 	exec qtile start
 	;;
 *)
-	not_leftwm
 	export DESKTOP_SESSION=qtile
 	exec qtile start
 	;;

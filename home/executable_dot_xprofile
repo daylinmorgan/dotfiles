@@ -5,5 +5,6 @@ xinput --map-to-output 'ELAN901C:00 04F3:2C29' eDP-1
 
 xss-lock -- ~/bin/lock &
 
-SKIP_WM_RESET=1
-autorandr -c
+unclutter --timeout 1 &
+
+SKIP_WM_RESET=1 autorandr -c --default default
