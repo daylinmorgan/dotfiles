@@ -1,0 +1,206 @@
+#!/usr/bin/env python3
+
+import argparse
+import shlex
+import subprocess
+import sys
+from pathlib import Path
+from shutil import which
+
+
+def is_tool(name):
+    """Check whether `name` is on PATH and marked as executable."""
+    if not which(name):
+        print(f"ERROR: {name} is not found in your PATH")
+        sys.exit(1)
+
+
+def run(cmd, capture=True, returncode=False):
+    result = subprocess.run(
+        shlex.split(cmd),
+        stdout=subprocess.PIPE if capture else None,
+        text=True,
+        shell=False,
+    )
+
+    if returncode:
+        return result.returncode
+    elif capture:
+        return result.stdout.strip()
+
+
+class Gum:
+    def __init__(self):
+        is_tool("gum")
+
+    def confirm(self, question):
+        return not run(
+            "gum confirm "
+            "--selected.bold "
+            "--selected.background 11 "
+            "--selected.foreground 8 "
+            f"'{question}'",
+            returncode=True,
+        )
+
+    def color(self, text, color):
+        return run(f'gum style --foreground {color} "{text}"')
+
+    def header(self, text, color=11):
+        run(
+            "gum style "
+            "--foreground 212 --border-foreground 212 --border rounded "
+            '--align center --width 30 --margin "1 4" '
+            f"'{self.color(text,color)}'",
+            capture=False,
+        )
+
+    def choose(self, options):
+        if isinstance(options, str):
+            options = options.split("")
+        if isinstance(options, list):
+            options = "".join([f"'{i}'" for i in options])
+        return run(f"gum choose {options}")
+
+    def input(self, placeholder, value):
+        run(
+            "gum input" + f"--placeholder {placeholder}"
+            if placeholder
+            else "" + f"--value {value}"
+            if value
+            else ""
+        )
+
+    def spinner(self, placeholder, cmd):
+        run(f"gum spin -s points --title '{placeholder}'" + cmd)
+
+
+gum = Gum()
+
+
+def pprint(text, color):
+    print(gum.color(text, color))
+
+
+def parse_exts(mdfile):
+
+    with Path(mdfile).open("r") as f:
+        md = f.read()
+        md = md.split("##")[1:]
+    exts = {}
+    all = []
+    for section in md:
+        head = section.splitlines()[0].strip()
+        exts[head] = []
+        for line in section.splitlines()[1:]:
+            if line == "":
+                continue
+            exts[head].append(line.strip())
+            all.append(line.strip())
+
+    return exts, sorted(all)
+
+
+class SubcommandHelpFormatter(argparse.RawDescriptionHelpFormatter):
+    def _format_action(self, action):
+        parts = super(argparse.RawDescriptionHelpFormatter, self)._format_action(action)
+        if action.nargs == argparse.PARSER:
+            parts = "\n".join(parts.split("\n")[1:])
+        return parts
+
+
+def get_args():
+
+    p = argparse.ArgumentParser(formatter_class=SubcommandHelpFormatter)
+    sp = p.add_subparsers(title="commands", metavar="", dest="command",required=True)
+    check = sp.add_parser(
+        "check",
+        help="check the extensions which have already been installed",
+        aliases = ['c']
+    )
+    install = sp.add_parser(
+        "install",
+        help="install the extensions from the spec",
+        aliases =['i']
+    )
+    install.add_argument(
+        "-f", "--force", help="force the installation of exts", action="store_true"
+    )
+    remove = sp.add_parser(
+        "remove",
+        help="remove all extra packages",
+        aliases = ['r']
+    )
+
+    p.add_argument(
+        "-s",
+        "--spec",
+        help="mardown spec list (default ~/.dotfiles/vscode/spec.md)",
+        default=Path.home() / ".dotfiles" / "vscode" / "spec.md",
+    )
+
+    if len(sys.argv) < 2:
+        # p.print_usage()
+        p.print_help()
+        sys.exit(1)
+
+    return p.parse_args()
+
+
+def get_extra_exts(spec, installed):
+    # sanitize lists
+    spec = [ext.lower() for ext in spec]
+    installed = [ext.lower() for ext in installed]
+
+    return [ext for ext in spec if ext not in installed], [
+        ext for ext in installed if ext not in spec
+    ]
+
+
+def code(flag, exts, force=False):
+    cmd = "code " + " ".join([f"{flag} {ext}" for ext in exts])
+    if force:
+        cmd +=" --force"
+    run(cmd, capture=False)
+
+
+def main():
+    args = get_args()
+    gum.header("VS Code Extensions Installer")
+
+    spec_sections, spec_list = parse_exts(args.spec)
+
+    not_installed, extra_installed = get_extra_exts(
+        spec_list, run("code --list-extensions").splitlines()
+    )
+
+    if args.command == "check" or args.command == "c":
+
+        for head, exts in spec_sections.items():
+            pprint(f"## {head}", 11)
+            for ext in exts:
+                if ext.lower() in not_installed:
+                    pprint(ext, 9)
+                else:
+                    print(ext)
+        if extra_installed:
+            pprint("\nExtra installed extensions:", 11)
+            print("\n".join(extra_installed))
+
+    elif args.command == "install" or args.command =='i':
+
+        pprint("Installing extensions from spec list", 11)
+        code("--install-extension", spec_list, args.force)
+
+    elif args.command == "remove" or args.command == "r":
+        pprint("Removing extensions I don't know about", 11)
+
+        print("\n".join(extra_installed) + "\n")
+
+        if gum.confirm(f"Remove the above {len(extra_installed)} packages"):
+            print("bye bye packages")
+            code("--uninstall-extension", extra_installed)
+
+
+if __name__ == "__main__":
+    main()
