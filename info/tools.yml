@@ -52,13 +52,6 @@ glab:
 #node
 fnm:
   user: Schniz
-  download-only: true
-  post-download: |
-    unzip -qq fnm-linux.zip
-    mv fnm $EGET_BIN/fnm
-    rm -r fnm-linux.zip
-    chmod u+x $EGET_BIN/fnm
-
 
 # editing
 neovim:
