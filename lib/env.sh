@@ -102,3 +102,8 @@ fi
 export PNPM_HOME="/home/daylin/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+
+if [ -d "$HOME/.pkgs/google-cloud-sdk" ]; then
+  source /home/daylin/.pkgs/google-cloud-sdk/completion.zsh.inc
+  source /home/daylin/.pkgs/google-cloud-sdk/path.zsh.inc
+fi
