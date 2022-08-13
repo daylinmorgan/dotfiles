@@ -18,7 +18,7 @@ return {
     top = padding,
     bottom = padding,
   },
-  font = wezterm.font("MonoLisa NF"),
+  font = wezterm.font("MonoLisa Nerd Font"),
   adjust_window_size_when_changing_font_size = false,
   colors = catppuccin,
   use_fancy_tab_bar = false,

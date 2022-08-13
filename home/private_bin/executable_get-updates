@@ -12,20 +12,29 @@ HELP
 	exit 0
 }
 
+header() {
+  echo "============="
+}
+
 updates_output() {
 	notify=$1
 	if ! [[ -z $updates_arch ]]; then
+    header
 		echo "ARCH: $(echo "$updates_arch" | wc -l)"
+    header
 		[[ -z $notify ]] && echo "$updates_arch"
 	fi
 	if ! [[ -z $updates_aur ]]; then
+    header
 		echo "AUR: $(echo "$updates_aur" | wc -l)"
+    header
 		[[ -z $notify ]] && echo "$updates_aur"
 	fi
 	echo
 }
 
 update_system() {
+  echo 
 	read -p "Would you like to update? (y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
 	pikaur -Syu --noedit --nodiff
 }
@@ -48,6 +57,7 @@ for opt in "$@"; do
 done
 
 echo "fetching updates..."
+echo
 
 updates_arch="$(checkupdates 2>/dev/null | awk '{print $1}')"
 updates_aur="$(pikaur -Qua 2>/dev/null | awk '{print $1}')"
