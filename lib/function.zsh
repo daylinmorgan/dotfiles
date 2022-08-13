@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 function cl() {
 	DIR="$*"
 	# if no DIR given, go home

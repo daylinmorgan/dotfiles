@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # Updated to use $HOME
 
 # >>> conda initialize >>>

@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # Start with system path
 # Retrieve it from getconf, otherwise it's just current $PATH
 prepend-path() {

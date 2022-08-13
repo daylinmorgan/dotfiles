@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # system usage
 #########################################
 alias reload="source ~/.zshrc"

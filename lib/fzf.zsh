@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # Auto-completion
 # ---------------
 [[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2>/dev/null
