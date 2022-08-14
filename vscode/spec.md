@@ -13,11 +13,14 @@ naumovs.color-highlight
 davidhouchin.whitespace-plus
 dlasagno.rasi
 antfu.slidev
+antfu.file-nesting
 
 ## web-dev
 bradlc.vscode-tailwindcss
 ritwickdey.liveserver
 esbenp.prettier-vscode
+antfu.unocss
+astro-build.astro-vscode
 
 ## styling
 johnpapa.vscode-peacock
