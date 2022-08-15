@@ -1,4 +1,5 @@
 {{- if ne .chezmoi.hostname "thinkpad" }}
+bin/get-updates
 bin/lock
 .xinitrc
 .xprofile
