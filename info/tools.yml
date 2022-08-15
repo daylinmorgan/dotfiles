@@ -66,12 +66,7 @@ sh:
 gdu:
   user: dundee
   to: gdu
-#  download-only: true
-#  post-download: |
-#    tar -xzf gdu_linux_amd64.tgz
-#    mv gdu_linux_amd64 $EGET_BIN/gdu
-#    rm gdu_linux_amd64.tgz
-
+  asset: gdu_linux_amd64.tgz
 lf:
   user: gokcehan
 
