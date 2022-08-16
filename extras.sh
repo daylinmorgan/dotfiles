@@ -35,7 +35,6 @@ for opt in "$@"; do
 		;;
 	--force) force=1 ;;
 	--fzf) fzf=1 ;;
-	--nvm) nvm=1 ;;
 	--mambaforge) mamba=1 ;;
 	*)
 		echo "unknown option: $opt"
@@ -91,35 +90,7 @@ install_fzf() {
 	echo "installing fzf using git"
 
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-	~/.fzf/install \
-		--key-bindings \
-		--completion \
-		--no-bash \
-		--no-zsh \
-		--no-update-rc
-
-}
-
-install_nvm() {
-	echo "##############"
-	echo installing nvm
-	echo "##############"
-
-	check_existing "nvm" "$HOME/.nvm" skip
-
-	if [[ $skip -eq 1 ]]; then
-		echo "remove your previous installation or rerun with --force"
-		return
-	fi
-
-	local current_dir=$PWD
-
-	git clone https://github.com/nvm-sh/nvm.git ~/.nvm
-	cd ~/.nvm
-	git checkout v0.39.0
-	. ./nvm.sh
-
-	cd $current_dir
+	~/.fzf/install --bin 
 }
 
 install_mambaforge() {
@@ -154,14 +125,9 @@ install_all() {
 	echo
 	install_fzf
 	echo
-	install_nvm
-	echo
 	install_mambaforge
 
 }
-
-# remove once functional
-echo $@
 
 echo "#################"
 echo EXTRAS DOWNLOADER
@@ -175,10 +141,6 @@ fi
 
 if [ "$fzf" ]; then
 	install_fzf
-fi
-
-if [ "$nvm" ]; then
-	install_nvm
 fi
 
 if [ "$mamba" ]; then
