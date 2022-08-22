@@ -5,7 +5,9 @@ bin/lock
 .xprofile
 .zprofile
 .config/alacritty
+.config/wezterm
 .config/leftwm
 .config/autorandr
 .config/pikaur.conf
+.config/lsd
 {{- end }}
