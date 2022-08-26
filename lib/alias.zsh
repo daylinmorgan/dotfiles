@@ -45,11 +45,9 @@ alias fzf-bat="fzf --preview 'bat --style=numbers --color=always --line-range :5
 alias vivaldi="vivaldi-stable"
 
 if is-executable zellij; then
-
 	alias zs="zellij -s"
 	alias zl="zellij ls"
 	alias za="zellij a"
-
 fi
 
 alias zenith="zenith -d 0 -n 0"

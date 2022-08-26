@@ -12,6 +12,7 @@ is-executable getconf && PATH=$($(command -v getconf) PATH)
 prepend-path "/bin"
 prepend-path "/usr/bin"
 prepend-path "/usr/local/bin"
+
 PATH="$DOTFILES_DIR/bin:$PATH"
 PATH="$HOME/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
