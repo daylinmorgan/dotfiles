@@ -34,6 +34,4 @@ unset EXTRAFILE
 export DOTFILES_DIR DOTFILES_EXTRA_DIR
 
 # welcome art
-# clear
-! is-tty && [ -f ~/.welcome ] && cat ~/.welcome
-
+! is-tty && $DOTFILES_DIR/bin/gradient
