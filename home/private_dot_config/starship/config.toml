@@ -28,6 +28,7 @@ symbol = " "
 
 [conda]
 symbol = " "
+truncation_length = 2
 
 [dart]
 symbol = " "
