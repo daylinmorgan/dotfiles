@@ -79,3 +79,8 @@ alias bathelp='bat --plain --language=help'
 help() {
 	"$@" --help 2>&1 | bathelp
 }
+
+format-qmd() {
+  jupytext --from qmd $1 --pipe black
+}
+
