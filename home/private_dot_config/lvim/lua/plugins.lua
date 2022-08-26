@@ -7,33 +7,17 @@ lvim.plugins = {
     'catppuccin/nvim',
     as = 'catppuccin'
   },
+  { 'Djancyp/better-comments.nvim',
+    config = function()
+      require('better-comment').Setup()
+    end
+  },
   { 'NoahTheDuke/vim-just' },
   { 'ggandor/lightspeed.nvim' },
   { 'elkowar/yuck.vim' },
   {
     'mickael-menu/zk-nvim',
-    config = function()
-      require("zk").setup({
-        -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
-        -- it's recommended to use "telescope" or "fzf"
-        picker = "telescope",
-        lsp = {
-          -- `config` is passed to `vim.lsp.start_client(config)`
-          config = {
-            cmd = { "zk", "lsp" },
-            name = "zk",
-            -- on_attach = ...
-            -- etc, see `:h vim.lsp.start_client()`
-          },
-
-          -- automatically attach buffers in a zk notebook that match the given filetypes
-          auto_attach = {
-            enabled = true,
-            filetypes = { "markdown" },
-          },
-        },
-      })
-    end,
+    config = p "zk";
   },
 }
 
