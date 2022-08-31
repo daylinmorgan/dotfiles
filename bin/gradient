@@ -1,31 +1,20 @@
 #!/usr/bin/env bash
-echo ""
-COLUMNS=$(tput cols)
+
+# ensure COLUMNS is set
+stty size > /dev/null
+
+# delay for wezterm to learn it's size
+sleep 0.2
 
 line() {
 	i=1
-  while [[ $i -le $COLUMNS ]]; do
-		num=
-		echo -en "\u258$(($RANDOM % 8 + 1))"
-		i=$(($i + 1))
+	while [[ $i -le $COLUMNS ]]; do
+		echo -en "\u258$((RANDOM % 8 + 1))"
+		i=$((i + 1))
 	done
 }
 
-# print the text with gradient
-# awk -v columns=$COLUMNS -v s=$(line) \
-# 	'BEGIN{
-#     for (colnum = 0; colnum<columns+1; colnum++) {
-#         r = 255-(colnum*255/columns);
-#         g = (colnum*510/columns);
-#         b = (colnum*255/columns);
-#         if (g>255) g = 510-g;
-#         printf "\033[48;2;%d;%d;%dm", r,g,b;
-#         printf "\033[38;2;%d;%d;%dm", 255-r,255-g,255-b;
-#         printf "%s\033[0m", substr(s,colnum+1,1);
-#     }
-#     printf "\n";
-# }'
-awk -v columns=$COLUMNS -v s=$(line) \
+awk -v columns="$COLUMNS" -v s="$(line)" \
 	'BEGIN{
     for (colnum = 0; colnum<columns+1; colnum++) {
         r = 255-(colnum*255/columns);
