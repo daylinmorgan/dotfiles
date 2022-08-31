@@ -81,6 +81,5 @@ help() {
 }
 
 format-qmd() {
-  jupytext --from qmd $1 --pipe black
+	jupytext --from qmd $1 --pipe black
 }
-

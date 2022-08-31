@@ -106,20 +106,20 @@ export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
 if [ -d "$HOME/.pkgs/google-cloud-sdk" ]; then
-  source /home/daylin/.pkgs/google-cloud-sdk/completion.zsh.inc
-  source /home/daylin/.pkgs/google-cloud-sdk/path.zsh.inc
+	source /home/daylin/.pkgs/google-cloud-sdk/completion.zsh.inc
+	source /home/daylin/.pkgs/google-cloud-sdk/path.zsh.inc
 fi
 
 if [ -d "$HOME/.deno" ]; then
-  export DENO_INSTALL="/home/daylin/.deno"
-  export PATH="$DENO_INSTALL/bin:$PATH"
+	export DENO_INSTALL="/home/daylin/.deno"
+	export PATH="$DENO_INSTALL/bin:$PATH"
 fi
 
 if [ -d "$HOME/.bun" ]; then
-  # bun completions
-  [ -s "/home/daylin/.bun/_bun" ] && source "/home/daylin/.bun/_bun"
+	# bun completions
+	[ -s "/home/daylin/.bun/_bun" ] && source "/home/daylin/.bun/_bun"
 
-  # bun
-  export BUN_INSTALL="$HOME/.bun"
-  export PATH="$BUN_INSTALL/bin:$PATH"
+	# bun
+	export BUN_INSTALL="$HOME/.bun"
+	export PATH="$BUN_INSTALL/bin:$PATH"
 fi

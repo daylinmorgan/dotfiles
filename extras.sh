@@ -90,7 +90,7 @@ install_fzf() {
 	echo "installing fzf using git"
 
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-	~/.fzf/install --bin 
+	~/.fzf/install --bin
 }
 
 install_mambaforge() {
