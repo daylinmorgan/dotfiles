@@ -23,7 +23,7 @@ if is-executable lsd; then
 	alias ls='lsd'
 	alias lt='lsd --tree --depth=3'
 else
-  alias lt="tree -L 3"
+	alias lt="tree -L 3"
 fi
 
 is-executable lazygit && alias lg=lazygit
@@ -53,4 +53,9 @@ fi
 alias zenith="zenith -d 0 -n 0"
 
 alias pdm-start='eval "$(pdm shell)"'
+
+# GNU make
+alias mkrt='make -C $(git rev-parse --show-toplevel)'
+alias mk="make"
+alias mkc="make -C"
 
