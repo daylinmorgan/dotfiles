@@ -58,3 +58,5 @@ alias pdm-start='eval "$(pdm shell)"'
 alias mkrt='make -C $(git rev-parse --show-toplevel)'
 alias mk="make"
 alias mkc="make -C"
+
+alias umamba="micromamba"
