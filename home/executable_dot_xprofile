@@ -7,4 +7,8 @@ xss-lock -- ~/bin/lock &
 
 unclutter --timeout 1 &
 
+# set a new random color
+~/.config/qtile/.colors/colors.py
+
 SKIP_WM_RESET=1 autorandr -c --default default
+

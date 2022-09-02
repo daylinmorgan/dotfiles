@@ -1,5 +1,6 @@
-# startx automatically if on first tty
-if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
-  startx
-  logout
-fi
+# # startx automatically if on first tty
+# if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
+#   startx
+#   logout
+# fi
+
