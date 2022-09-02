@@ -1,0 +1,4 @@
+starship
+sheldon
+ripgrep
+lsd
