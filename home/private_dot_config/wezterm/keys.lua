@@ -11,7 +11,7 @@ M.keys = {
   { key = "V", mods = "CTRL|SHIFT", action = act.PasteFrom "PrimarySelection" },
   -- change font size
   { key = "-", mods = "CTRL", action = "DecreaseFontSize" },
-  { key = "+", mods = "CTRL", action = "IncreaseFontSize" },
+  { key = "=", mods = "CTRL", action = "IncreaseFontSize" },
   -- { key = "Space", mods = "CTRL|SHIFT", action = "QuickSelect" },
   { key = "Space", mods = "CTRL|SHIFT", action = "ActivateCopyMode" },
 }
