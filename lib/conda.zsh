@@ -22,6 +22,23 @@ fi
 
 ! is-tty && [ -d "$HOME/mambaforge/envs/dev" ] && conda activate dev
 
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba init' !!
+export MAMBA_EXE="/home/daylin/.local/bin/micromamba";
+export MAMBA_ROOT_PREFIX="/home/daylin/micromamba";
+__mamba_setup="$('/home/daylin/.local/bin/micromamba' shell hook --shell zsh --prefix '/home/daylin/micromamba' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    if [ -f "/home/daylin/micromamba/etc/profile.d/micromamba.sh" ]; then
+        . "/home/daylin/micromamba/etc/profile.d/micromamba.sh"
+    else
+        export  PATH="/home/daylin/micromamba/bin:$PATH"  # extra space after export prevents interference from conda init
+    fi
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<
+
 snake() {
 	if [[ $1 == "no" ]]; then
 		if [[ $VIRTUAL_ENV != "" ]]; then
