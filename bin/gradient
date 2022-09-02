@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 # ensure COLUMNS is set
-stty size > /dev/null
+# stty size > /dev/null
 
+COLUMNS=$(tput cols)
 # delay for wezterm to learn it's size
 sleep 0.2
 
@@ -13,7 +14,7 @@ line() {
 		i=$((i + 1))
 	done
 }
-
+echo
 awk -v columns="$COLUMNS" -v s="$(line)" \
 	'BEGIN{
     for (colnum = 0; colnum<columns+1; colnum++) {
