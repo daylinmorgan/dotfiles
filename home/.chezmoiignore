@@ -9,5 +9,4 @@ bin/lock
 .config/leftwm
 .config/autorandr
 .config/pikaur.conf
-.config/lsd
 {{- end }}
