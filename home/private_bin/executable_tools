@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
 #colors
-MAGENTA=$(tput setaf 5)
-CYAN=$(tput setaf 6)
-YELLOW=$(tput setaf 3)
-RED=$(tput setaf 1)
-GREEN=$(tput setaf 2)
-NORMAL=$(tput sgr0)
+
+# remove tput just use ansi
+MAGENTA="\033[35m"
+CYAN="\033[34m"
+YELLOW="\033[33m"
+RED="\033[31m"
+GREEN="\033[32m"
+NORMAL="\033[0m"
 
 BIN_DIR=$HOME/bin
 YAMLDOC="$DOTFILES_DIR/info/tools.yml"
@@ -17,6 +19,8 @@ INSTALL_NO=${RED}✗${NORMAL}
 shopt -s nullglob
 BINARY_FILES=($HOME/bin/*)
 
+
+export EGET_BIN=$HOME/bin
 alias eget="eget --system linux/amd64"
 
 post_download_install() {
@@ -112,7 +116,7 @@ list() {
 	tool_cell=$(printf "%${tool_len}s" "")
 	user_cell=$(printf "%${user_len}s" "")
 
-	echo "${CYAN}CONFIGURED TOOLS${NORMAL}"
+	echo -e "${CYAN}CONFIGURED TOOLS${NORMAL}"
 	printf "%${table_width}s\n" "" | tr ' ' =
 	printf \
 		"${CYAN}tool${NORMAL}%s | \
@@ -225,7 +229,7 @@ if [ -z "$args" ]; then
 else
 	echo "Downloading binaries to ${GREEN}$BIN_DIR${NORMAL}"
 	deps_check
-	for tool in "$args"; do
-		download $tool
+	for tool in "${args[@]}"; do
+		download "$tool"
 	done
 fi
