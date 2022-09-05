@@ -19,7 +19,6 @@ INSTALL_NO=${RED}✗${NORMAL}
 shopt -s nullglob
 BINARY_FILES=($HOME/bin/*)
 
-
 export EGET_BIN=$HOME/bin
 alias eget="eget --system linux/amd64"
 
