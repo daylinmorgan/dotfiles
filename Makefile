@@ -35,9 +35,6 @@ dr-keep:
 #     fill,name[1],help[1];} match($$0,/^### (.*)/,str) \
 #     {printf "%*s   \033[30m%s\033[0m\n",fill," ",str[1];}' $<
 GOAL_COLOR=b_magenta
-HELP_SEP= >>
+HELP_SEP= ->>
 -include .task.mk
-ifeq "help" "$(filter help,$(MAKECMDGOALS))"
-.task.mk:
-	curl https://raw.githubusercontent.com/daylinmorgan/task.mk/main/task.mk -o .task.mk
-endif
+$(if $(filter help,$(MAKECMDGOALS)),.task.mk: ; curl -fsSL https://raw.githubusercontent.com/daylinmorgan/task.mk/v22.9.5/task.mk -o .task.mk)
