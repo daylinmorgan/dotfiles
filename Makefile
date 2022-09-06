@@ -25,16 +25,8 @@ dr d-run:
 dr-keep:
 	docker run -it dots
 
-.DEFAULT_GOAL := help
-# ## h, help | show this help
-# .PHONY: help h
-# help h: Makefile
-# 	@awk -v fill=$(shell sed -n 's/^## \(.*\) | .*/\1/p' $< | wc -L)\
-#     'match($$0,/^## (.*) \|/,name) && match($$0,/\| (.*)$$/,help)\
-#     {printf "\033[1;93m%*s\033[0m | \033[30m%s\033[0m\n",\
-#     fill,name[1],help[1];} match($$0,/^### (.*)/,str) \
-#     {printf "%*s   \033[30m%s\033[0m\n",fill," ",str[1];}' $<
-GOAL_COLOR=b_magenta
-HELP_SEP= ->>
+.DEFAULT_GOAL = help
+GOAL_COLOR = b_magenta
+HELP_SEP = ->>
 -include .task.mk
 $(if $(filter help,$(MAKECMDGOALS)),.task.mk: ; curl -fsSL https://raw.githubusercontent.com/daylinmorgan/task.mk/v22.9.5/task.mk -o .task.mk)
