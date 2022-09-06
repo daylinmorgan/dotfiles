@@ -1,23 +1,24 @@
-.PHONY: lint lint.py lint.sh
-
 ## lint | lint.*
+.PHONY: lint
 lint: lint.py lint.sh
 
 ## lint.python | lint python files
+.PHONY: lint.python
 lint.python:
 	black $(shell find -type f -name "*.py")
 
 ## lint.sh | lint shell files
+.PHONY: lint.sh
 lint.sh:
 	shfmt -s -w $(shell shfmt -f .)
 
-.PHONY: $(addprefix d-,b r build run)
-
 ## db, d-build | build docker image
+.PHONY: db d-build
 db d-build:
 	docker build -f docker/Dockerfile -t dots .
 
 ## dr, d-run | run docker image
+.PHONY: dr d-run
 dr d-run:
 	docker run --rm -it dots
 
