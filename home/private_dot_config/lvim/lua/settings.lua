@@ -2,6 +2,8 @@
 local opt = vim.opt
 opt.timeoutlen = 200
 -- opt.cmdheight = 0 -- broken??
+opt.listchars:append({ tab = "⍿·", trail = "×" })
+vim.opt.list = true
 
 -- lvim specific settings
 -- general
