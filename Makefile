@@ -2,9 +2,9 @@
 .PHONY: lint
 lint: lint.py lint.sh
 
-## lint.python | lint python files
-.PHONY: lint.python
-lint.python:
+## lint.py | lint python files
+.PHONY: lint.py
+lint.py:
 	black $(shell find -type f -name "*.py")
 
 ## lint.sh | lint shell files
