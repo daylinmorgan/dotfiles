@@ -10,6 +10,7 @@ line() {
 	done
 }
 
+echo
 print-line() {
 	awk -v columns="$COLUMNS" -v s="$(line)" \
 		'BEGIN{
