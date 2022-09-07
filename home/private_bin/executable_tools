@@ -89,9 +89,9 @@ get_days() {
 	now=$(date +'%s')
 	days=$(((now - install_date) / 86400))
 	if ((days > 60)); then
-		echo "${RED}$date_out${NORMAL}"
+		echo -e "${RED}$date_out${NORMAL}"
 	elif ((days > 30)); then
-		echo "${YELLOW}$date_out${NORMAL}"
+		echo -e "${YELLOW}$date_out${NORMAL}"
 	else
 		echo "$date_out"
 	fi
@@ -165,7 +165,7 @@ download() {
 
 download_all() {
 
-	echo "Downloading binaries to ${GREEN}$BIN_DIR${NORMAL}"
+	echo -e "Downloading binaries to ${GREEN}$BIN_DIR${NORMAL}"
 
 	deps_check
 
@@ -222,11 +222,11 @@ done
 # if no args, show help
 
 if [ -z "$args" ]; then
-	echo "${RED}No arguments supplied${NORMAL}"
+	echo -e "${RED}No arguments supplied${NORMAL}"
 	help
 	exit 0
 else
-	echo "Downloading binaries to ${GREEN}$BIN_DIR${NORMAL}"
+	echo -e "Downloading binaries to ${GREEN}$BIN_DIR${NORMAL}"
 	deps_check
 	for tool in "${args[@]}"; do
 		download "$tool"
