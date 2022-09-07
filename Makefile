@@ -30,4 +30,4 @@ dr-keep:
 GOAL_COLOR = b_magenta
 HELP_SEP = ->>
 -include .task.mk
-$(if $(wildcard .task.mk),,.task.mk: ; curl -fsSL https://raw.githubusercontent.com/daylinmorgan/task.mk/v22.9.5/task.mk -o .task.mk)
+$(if $(wildcard .task.mk),,.task.mk: ; curl -fsSL https://raw.githubusercontent.com/daylinmorgan/task.mk/main/task.mk -o .task.mk)
