@@ -37,6 +37,9 @@ bottom:
   user: ClementTsang
   file: btm
   to: btm
+btop:
+  user: aristocratos
+
 
 # git
 lazygit:
