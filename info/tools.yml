@@ -31,7 +31,7 @@ gum:
   asset: linux_x86_64.tar.gz
   custom_flags: "--asset ^.sbom"
 
-  # system monitoring
+# system monitoring
 bottom:
   asset: x86_64-unknown-linux-gnu.tar.gz
   user: ClementTsang
@@ -61,6 +61,11 @@ sh:
   user: mvdan
   to: shfmt
 
+atuin:
+  user: ellie
+
+lazydocker:
+  user: jesseduffield
 
 # file management
 gdu:

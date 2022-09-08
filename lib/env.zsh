@@ -43,10 +43,6 @@ fi
 if [[ $PATH != *$HOME/.fzf/bin* ]]; then
 	export PATH="${PATH:+${PATH}:}$HOME/.fzf/bin"
 fi
-
-if is-executable fzf; then
-	source $DOTFILES_DIR/lib/fzf.zsh
-fi
 # ---------
 
 # Add lfcd command

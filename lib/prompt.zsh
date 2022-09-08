@@ -28,3 +28,8 @@ else
 fi
 
 zstyle ':completion::complete:make:*:targets' call-command true
+
+is-executable fzf && source $DOTFILES_DIR/lib/fzf.zsh
+
+# atuin must be loaded after to override zsh's ctrl+R completion
+is-executable atuin && eval "$(atuin init zsh)"
