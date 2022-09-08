@@ -19,7 +19,7 @@ shell = "zsh"
 [plugins.ohmyzsh-plugins]
 github = 'ohmyzsh/ohmyzsh'
 dir = 'plugins'
-use = ['{git,dotenv,extract,tmux}.plugin.zsh']
+use = ['{dotenv,extract,python}/*.plugin.zsh']
 
 [plugins.ohmyzsh-lib]
 github = 'ohmyzsh/ohmyzsh'
@@ -45,11 +45,6 @@ apply = ["defer"]
 [plugins.fzf-tab]
 github = "Aloxaf/fzf-tab"
 apply = ["defer"]
-
-[plugins.ohmyzsh]
-github = 'ohmyzsh/ohmyzsh'
-dir = 'plugins'
-use = ['{git,dotenv,extract,tmux}/*.plugin.zsh']
 
 [templates]
 defer = { value = 'zsh-defer source "{{ file }}"', each = true }
