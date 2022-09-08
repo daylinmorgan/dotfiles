@@ -2,24 +2,30 @@
 .PHONY: lint
 lint: lint.py lint.sh
 
+msg = $(call tprint,{a.b_magenta}==>{a.end}{a.bold} $(1){a.end})
+
 ## lint.py | lint python files
 .PHONY: lint.py
-lint.py:
-	black $(shell find -type f -name "*.py")
+lint.py: info
+	$(call msg,Linting Python Files)
+	@black $(shell find -type f -name "*.py")
 
 ## lint.sh | lint shell files
 .PHONY: lint.sh
 lint.sh:
-	shfmt -s -w $(shell shfmt -f .)
+	$(call msg,Linting Shell Files)
+	@shfmt -s -w $(shell shfmt -f .)
 
 ## db, d-build | build docker image
 .PHONY: db d-build
 db d-build:
-	docker build -f docker/Dockerfile -t dots .
+	$(call msg,Building Docker Image)
+	@docker build -f docker/Dockerfile -t dots .
 
 ## dr, d-run | run docker image
 .PHONY: dr d-run
 dr d-run:
+	$(call msg,Running Docker Image)
 	docker run --rm -it dots
 
 .PHONY: dr-keep
@@ -29,5 +35,6 @@ dr-keep:
 .DEFAULT_GOAL = help
 GOAL_COLOR = b_magenta
 HELP_SEP = ->>
+USAGE = {a.italic}{a.b_cyan}Best Dots Around{a.end}\n
 -include .task.mk
 $(if $(wildcard .task.mk),,.task.mk: ; curl -fsSL https://raw.githubusercontent.com/daylinmorgan/task.mk/main/task.mk -o .task.mk)
