@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 sleep 0.2 # let wezterm catch up
 COLUMNS=$(tput cols)
 
@@ -10,21 +11,28 @@ line() {
 	done
 }
 
-echo
+peoples() {
+	i=1
+	while [[ $i -le $COLUMNS ]]; do
+    echo -en "\U1FBC$((RANDOM % 5 +5))"
+		i=$((i + 1))
+	done
+}
+
 print-line() {
-	awk -v columns="$COLUMNS" -v s="$(line)" \
+	awk -v columns="$COLUMNS" -v s="$1" \
 		'BEGIN{
       for (colnum = 0; colnum<columns+1; colnum++) {
         r = 255-(colnum*255/columns);
         g = (colnum*510/columns);
         b = (colnum*255/columns);
         if (g>255) g = 510-g;
-        printf "\033[38;2;%d;%d;%d;49m", r,g,b;
+        printf "\033[38;2;%d;%d;%d;49;4m", r,g,b;
         printf "%s\033[0m", substr(s,colnum+1,1);
       }
       printf "\n";
     }'
 }
 
-print-line
-print-line
+echo
+print-line "$(peoples)"
