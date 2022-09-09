@@ -3,7 +3,7 @@
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('$HOME/mambaforge/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
+__conda_setup="$("$HOME/mambaforge/bin/conda" 'shell.zsh' 'hook' 2>/dev/null)"
 if [ $? -eq 0 ]; then
 	eval "$__conda_setup"
 else
@@ -26,7 +26,7 @@ fi
 # !! Contents within this block are managed by 'mamba init' !!
 export MAMBA_EXE="$HOME/.local/bin/micromamba"
 export MAMBA_ROOT_PREFIX="$HOME/micromamba"
-__mamba_setup="$('$HOME/.local/bin/micromamba' shell hook --shell zsh --prefix '/home/daylin/micromamba' 2>/dev/null)"
+__mamba_setup="$("$HOME/.local/bin/micromamba" shell hook --shell zsh --prefix "$HOME/micromamba" 2>/dev/null)"
 if [ $? -eq 0 ]; then
 	eval "$__mamba_setup"
 else
@@ -66,3 +66,4 @@ snake() {
 		fi
 	fi
 }
+
