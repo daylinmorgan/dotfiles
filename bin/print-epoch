@@ -3,32 +3,32 @@
 COLUMNS=$(tput cols)
 
 digit() {
-  echo -en "\U1FBF$1 "
+	echo -en "\U1FBF$1 "
 }
 
 print-time() {
-  TIMESTAMP="$1"
-  for (( i=0; i<${#TIMESTAMP}; i++ )); do
-    digit "${TIMESTAMP:$i:1}"
-  done
+	TIMESTAMP="$1"
+	for ((i = 0; i < ${#TIMESTAMP}; i++)); do
+		digit "${TIMESTAMP:i:1}"
+	done
 }
 
 spacing() {
-  for (( i=0; i<$1; i++ )); do
-    printf "%s" "-"
-  done
+	for ((i = 0; i < $1; i++)); do
+		printf "%s" "-"
+	done
 
 }
 
 epoch=$(print-time "$(date +'%s')")
-side=$(spacing $(((COLUMNS-(${#epoch}+6))/2)))
+side=$(spacing $(((COLUMNS - (${#epoch} + 6)) / 2)))
 
 print-line() {
-  printf "\n\033[1m%s [ \033[1;9%dm%s\033[39m ] %s\033[0m\n" \
-  "$side" \
-  "$((RANDOM % 7+1))" \
-  "$1" \
-  "$side"
+	printf "\n\033[1m%s [ \033[1;9%dm%s\033[39m ] %s\033[0m\n" \
+		"$side" \
+		"$((RANDOM % 7 + 1))" \
+		"$1" \
+		"$side"
 }
 
 print-line "$epoch"
