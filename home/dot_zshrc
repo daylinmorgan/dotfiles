@@ -34,5 +34,5 @@ unset EXTRAFILE
 export DOTFILES_DIR DOTFILES_EXTRA_DIR
 
 # welcome art
-! is-tty && $DOTFILES_DIR/bin/gradient
+! is-tty && $DOTFILES_DIR/bin/print-epoch
 
