@@ -66,4 +66,3 @@ snake() {
 		fi
 	fi
 }
-

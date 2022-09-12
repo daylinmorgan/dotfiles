@@ -1,7 +1,8 @@
 #!/bin/sh
 
 # enable touch on only laptop monitor
-xinput --map-to-output 'ELAN901C:00 04F3:2C29' eDP-1
+# this isn't working for some reason
+xinput --map-to-output '18' eDP-1
 
 xss-lock -- ~/bin/lock &
 
