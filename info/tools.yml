@@ -70,6 +70,10 @@ atuin:
 lazydocker:
   user: jesseduffield
 
+delta:
+  <<: *default
+  user: dandavison
+
 # file management
 gdu:
   user: dundee
