@@ -37,6 +37,5 @@
 
 [delta]
   line-numbers = true
-  zero-style = dim syntax
-  diff-so-fancy = true
   theme = catppuccin
+  hunk-header-decoration-style = none
