@@ -60,3 +60,5 @@ alias mk="make"
 alias mkc="make -C"
 
 alias umamba="micromamba"
+
+alias g="git"
