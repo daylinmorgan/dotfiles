@@ -9,4 +9,4 @@ git:
   branchLogCmd: 'git log --graph --all --color=always --decorate --date=relative --oneline'
   paging:
     colorArg: always
-    pager: delta --dark --paging=never --theme catppuccin
+    pager: delta --dark --paging=never
