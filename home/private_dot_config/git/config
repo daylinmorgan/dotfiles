@@ -21,6 +21,8 @@
 	ll = log --oneline
 	st = status -sb
   s = status -s
+  dd = !git diff | delta
+  sd = !git show | delta
   co = checkout
   cob = checkout -b
 	cmt = !git commit -m \"time: $(date +\"%Y.%m.%d %H:%M:%S\")\"
@@ -38,4 +40,6 @@
 [delta]
   line-numbers = true
   theme = catppuccin
-  hunk-header-decoration-style = none
+  ; hunk-header-decoration-style = none
+  diff-so-fancy = true
+  hunk-header-style             = bold
