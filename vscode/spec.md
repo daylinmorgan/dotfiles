@@ -4,6 +4,9 @@
 ms-vscode-remote.remote-ssh
 ms-vscode-remote.remote-ssh-edit
 ms-vscode-remote.remote-wsl
+ms-azuretools.vscode-docker
+ms-vscode-remote.remote-containers
+ms-vscode.remote-repositories
 vscodevim.vim
 
 ## misc-tools
@@ -39,6 +42,7 @@ mhutchie.git-graph
 
 ## python
 ms-python.python
+ms-python.flake8
 ms-toolsai.jupyter
 ms-python.vscode-pylance
 ms-toolsai.jupyter-keymap
