@@ -33,8 +33,8 @@ dr-keep:
 	docker run -it dots
 
 .DEFAULT_GOAL = help
-GOAL_COLOR = b_magenta
-HELP_SEP = ->>
+GOAL_STYLE = b_magenta
+HELP_SEP = {a.b_green}->>{a.end}
 USAGE = {a.italic}{a.b_cyan}Best Dots Around{a.end}\n
 -include .task.mk
 $(if $(wildcard .task.mk),,.task.mk: ; @curl -fsSL https://raw.githubusercontent.com/daylinmorgan/task.mk/main/task.mk -o .task.mk 2>/dev/null || echo "no curl, skipping task.mk download")
