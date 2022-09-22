@@ -15,7 +15,7 @@ alias la="ls -a"
 alias ll="ls -lhA"
 alias lr='ls -R'
 alias lla="ls -la"
-alias lsl="ls -lhFA | less"
+alias lsl="ls -lhFA --color=always | less"
 alias left='ls -t -1'
 
 if is-executable lsd; then
