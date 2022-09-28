@@ -9,4 +9,5 @@ bin/lock
 .config/leftwm
 .config/autorandr
 .config/pikaur.conf
+.config/gtk-3.0
 {{- end }}
