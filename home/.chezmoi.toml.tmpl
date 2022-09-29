@@ -5,7 +5,7 @@ command = 'delta'
 
 {{ $email := promptString "git email" -}}
 {{ $name := promptString "git name" -}}
-{{ $gui := promptBool "use gui configs?" -}}
+{{ $gui := promptBool "use gui configs" -}}
 [data]
 email = {{ $email | quote }}
 name = {{ $name | quote }}
