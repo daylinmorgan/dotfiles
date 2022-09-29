@@ -19,6 +19,13 @@ lvim.plugins = {
     'mickael-menu/zk-nvim',
     config = p "zk";
   },
+  {
+    "quarto-dev/quarto-vim",
+    requires = {
+      { "vim-pandoc/vim-pandoc-syntax" },
+    },
+    ft = { "quarto" },
+  }
 }
 
 -- default plugins settings
