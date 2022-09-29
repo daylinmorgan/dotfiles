@@ -25,7 +25,10 @@ lvim.plugins = {
       { "vim-pandoc/vim-pandoc-syntax" },
     },
     ft = { "quarto" },
-  }
+  },
+  { 'xiyaowong/nvim-transparent',
+    config = p 'nvim-transparent';
+  },
 }
 
 -- default plugins settings
