@@ -36,6 +36,12 @@ lvim.plugins = {
 
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
+lvim.builtin.telescope.pickers.find_files.find_command = {
+  "rg",
+    "--hidden",
+    "--files",
+    "--glob=!.git/",
+}
 
 local function pick_color()
   local colors = { "String", "Identifier", "Keyword", "Number", "Constant" }
@@ -79,9 +85,6 @@ lvim.builtin.alpha.dashboard.section.header.val = {
   [[|------"--------------------------------------"-------|]],
   [[`-----------------------------------------------------']],
 }
-
-
-
 
 
 -- simpler header
