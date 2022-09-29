@@ -97,23 +97,23 @@ if [ -d "$HOME/.pyenv" ]; then
 fi
 
 # pnpm
-export PNPM_HOME="/home/daylin/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
 if [ -d "$HOME/.pkgs/google-cloud-sdk" ]; then
-	source /home/daylin/.pkgs/google-cloud-sdk/completion.zsh.inc
-	source /home/daylin/.pkgs/google-cloud-sdk/path.zsh.inc
+	source "$HOME/.pkgs/google-cloud-sdk/completion.zsh.inc"
+	source "$HOME/.pkgs/google-cloud-sdk/path.zsh.inc"
 fi
 
 if [ -d "$HOME/.deno" ]; then
-	export DENO_INSTALL="/home/daylin/.deno"
+	export DENO_INSTALL="$HOME/.deno"
 	export PATH="$DENO_INSTALL/bin:$PATH"
 fi
 
 if [ -d "$HOME/.bun" ]; then
 	# bun completions
-	[ -s "/home/daylin/.bun/_bun" ] && source "/home/daylin/.bun/_bun"
+  [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 	# bun
 	export BUN_INSTALL="$HOME/.bun"
