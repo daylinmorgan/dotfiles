@@ -3,12 +3,13 @@ if ! [[ -f /usr/bin/i3lock ]]; then
 	notify-send "no i3lock...install i3lock-color"
 	exit
 fi
+
 # colors
-bg_color=22212cbb
-red=ff9580ff
-cyan=80ffeaff
-green=8aff80ff
-orange=ffca80ff
+bg_color=1e1e2ebb
+red=f38ba8ff
+teal=94e2d5ff
+rosewater=f5e0dcff
+green=a6e3a1ff
 selection=454158ff
 
 # greeter config
@@ -46,7 +47,10 @@ font_to_px=$((font_size * 16 / 12))
 greeter_h=$(($(make_figlet | wc -l) * font_to_px))
 greeter_w=$(($(make_figlet | wc -L) * font_to_px))
 
+# centered 
 greeter_pos="x+w/2-${greeter_w}/4:y+h/2-${greeter_h}/4"
+# left-aligned
+greeter_pos="x+50:y+h/2-${greeter_h}/4"
 
 # do the locking
 
@@ -62,12 +66,12 @@ i3lock \
 	--inside-color ffffff00 \
 	--ring-color $green \
 	--ringwrong-color $red \
-	--ringver-color $cyan \
+	--ringver-color $teal \
 	--insidewrong-color $bg_color \
 	--insidever-color $bg_color \
 	--line-uses-ring \
 	--separator-color $selection \
-	--keyhl-color $cyan \
+	--keyhl-color $teal \
 	--bshl-color $red \
 	--wrong-color $red \
 	--ind-pos x+w-5-r:y+h-10-r \
@@ -77,7 +81,7 @@ i3lock \
 	--greeter-text "$(make_figlet)" \
 	--greeter-font "${font}" \
 	--greeter-size $font_size \
-	--greeter-color $cyan \
+	--greeter-color $rosewater \
 	--greeter-pos "${greeter_pos}" \
 	--greeter-align 1
 
