@@ -82,6 +82,5 @@ help() {
 
 format-qmd() {
 	# TODO: add support for outputs
-	jupytext --from qmd $1 --pipe black
 	jupytext --from qmd $1 --pipe black --opt 'notebook_metadata_filter=-all'
 }
