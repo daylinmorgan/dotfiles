@@ -2,7 +2,7 @@
 .PHONY: lint
 lint: lint.py lint.sh
 
-msg = $(call tprint,{a.b_magenta}==>{a.end}{a.bold} $(1){a.end})
+msg = $(if tprint,$(call tprint,{a.b_magenta}==>{a.end}{a.bold} $(1){a.end}),@echo '==> $(1)')
 
 ## lint.py | lint python files
 .PHONY: lint.py
@@ -15,6 +15,11 @@ lint.py: info
 lint.sh:
 	$(call msg,Linting Shell Files)
 	@shfmt -s -w $(shell shfmt -f .)
+
+## completions | generate completion scripts
+completions:
+	$(call msg,Generating Completions)
+	@./lib/completions/update.sh
 
 ## db, d-build | build docker image
 .PHONY: db d-build
