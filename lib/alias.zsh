@@ -62,3 +62,6 @@ alias mkc="make -C"
 alias umamba="micromamba"
 
 alias g="git"
+
+## TODO: make lock state aware function
+is-executable gum && alias plz="gum input --prompt='🔒' --password | sudo -nS"
