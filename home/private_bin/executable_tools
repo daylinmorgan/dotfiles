@@ -73,7 +73,7 @@ deps_check() {
 			exit 1
 		else
 			curl https://zyedidia.github.io/eget.sh | sh
-			mv eget $BIN_DIR/eget
+			mv eget --upgrade-only $BIN_DIR/eget
 		fi
 	fi
 
