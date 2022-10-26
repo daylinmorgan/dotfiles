@@ -7,11 +7,11 @@ lvim.plugins = {
     'catppuccin/nvim',
     as = 'catppuccin'
   },
-  { 'Djancyp/better-comments.nvim',
-    config = function()
-      require('better-comment').Setup()
-    end
-  },
+  -- { 'Djancyp/better-comments.nvim',
+    -- config = function()
+      -- require('better-comment').Setup()
+    -- end
+  -- },
   { 'NoahTheDuke/vim-just' },
   { 'ggandor/lightspeed.nvim' },
   { 'elkowar/yuck.vim' },
