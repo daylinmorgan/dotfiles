@@ -2,7 +2,8 @@
 format = "[$user]($style) on "
 
 [character]
-success_symbol = "[🢂](bold green)[🢂](bold yellow)[🢂](bold cyan)"
+#success_symbol = "[🢂](bold green)[🢂](bold yellow)[🢂](bold cyan)"
+success_symbol = "[-](bold green)[-](bold yellow)[>](bold cyan)"
 error_symbol = "[✗](bold red) "
 
 [gcloud]

@@ -6,7 +6,7 @@ prepend-path() {
 	[ -d $1 ] && PATH="$1:$PATH"
 }
 
-is-executable getconf && PATH=$($(command -v getconf) PATH)
+#is-executable getconf && PATH=$($(command -v getconf) PATH)
 
 # Prepend new items to path (if directory exists)
 prepend-path "/bin"
