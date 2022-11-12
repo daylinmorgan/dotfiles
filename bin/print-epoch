@@ -20,7 +20,8 @@ spacing() {
 
 }
 
-epoch=$(print-time "$(date +'%s')")
+# epoch=$(print-time "$(date +'%s')")
+epoch=$(date +'%s')
 side=$(spacing $(((COLUMNS - (${#epoch} + 6)) / 2)))
 
 print-line() {
