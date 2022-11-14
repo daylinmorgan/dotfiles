@@ -30,4 +30,5 @@ return {
       require("catppuccin").setup {}
     end,
   },
+  { 'LnL7/vim-nix' },
 }
