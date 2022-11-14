@@ -1,0 +1,20 @@
+$HOME/**/*
+
+!$HOME/dev
+!$HOME/archive
+!$HOME/writing
+!$HOME/Desktop
+!$HOME/fonts
+!$HOME/zettelkasten
+!$HOME/labbook
+!$HOME/clonmapper-plasmids
+!$HOME/slidedecks
+!$HOME/Geneious Data Restored
+!$HOME/Pictures
+!$HOME/notes
+!$HOME/wallpapers
+!$HOME/Documents
+
+#[...]
+node_modules
+env
