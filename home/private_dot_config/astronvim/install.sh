@@ -15,7 +15,7 @@ deps=(
 # TODO: make sure tree-sitter is rust version?
 
 is-cmd() {
-  if [ -x "$(command -v $1)" ]; then
+  if [ -x "$(command -v "$1")" ]; then
     return 0
   else
     return 1
@@ -43,10 +43,10 @@ install-astronvim(){
 echo "Checking for optional dependencies"
 
 check-dep(){
-  if is-cmd $1; then
-    printf '%15s \033[32m%s\033[0m\n' $1 'yes'
+  if is-cmd "$1"; then
+    printf '%15s \033[32m%s\033[0m\n' "$1" 'yes'
   else
-    printf '%15s \033[31m%s\033[0m\n' $1 'no'
+    printf '%15s \033[31m%s\033[0m\n' "$1" 'no'
   fi
 }
 
