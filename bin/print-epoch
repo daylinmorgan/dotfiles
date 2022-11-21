@@ -17,19 +17,49 @@ spacing() {
 	for ((i = 0; i < $1; i++)); do
 		printf "%s" "-"
 	done
-
 }
 
-# epoch=$(print-time "$(date +'%s')")
+col-len() {
+	if [[ -z "$2" ]]; then
+		echo "${#1}"
+	else
+		echo "$2"
+	fi
+}
+
+awk-color() {
+	printf 'BEGIN{
+      for (colnum = 0; colnum<columns+1; colnum++) {
+      	%s;
+        r = 255-(i*255/columns);
+        g = (i*510/columns);
+        b = (i*255/columns);
+        if (g>255) g = 510-g;
+        printf "\\033[38;2;%%d;%%d;%%d;49m" , r,g,b
+        printf "%%s\\033[0m", substr(s,colnum+1,1);
+      }
+      printf "\\n";
+    }' "$1"
+}
+
+color-line() {
+	awk -v columns="$(col-len "$1" "$2")" -v s="$1" \
+		"$(awk-color 'i = (columns-colnum);')"
+}
+
+color-line-rev() {
+	awk -v columns="$(col-len "$1" "$2")" -v s="$1" \
+		"$(awk-color 'i = colnum;')"
+}
+
+color-word() {
+	printf "\033[1;9%dm%s\033[0m" "$((RANDOM % 7 + 1))" "$1"
+}
+
 epoch=$(date +'%s')
 side=$(spacing $(((COLUMNS - (${#epoch} + 6)) / 2)))
 
-print-line() {
-	printf "\n\033[1m%s [ \033[1;9%dm%s\033[39m ] %s\033[0m\n" \
-		"$side" \
-		"$((RANDOM % 7 + 1))" \
-		"$1" \
-		"$side"
-}
-
-print-line "$epoch"
+printf "\n%s %s %s\n" \
+	"$(color-line "$side [")" \
+	"$(color-word "$epoch")" \
+	"$(color-line-rev "] $side")"
