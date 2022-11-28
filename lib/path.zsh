@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+# TODO: Refactor this entire mess
+
 # Start with system path
 # Retrieve it from getconf, otherwise it's just current $PATH
 prepend-path() {
@@ -20,9 +22,7 @@ PATH="$HOME/.cargo/bin:$PATH"
 PATH="$PATH:/usr/local/go/bin"
 PATH="/usr/local/texlive/2021/bin/x86_64-linux:$PATH"
 PATH="$HOME/go/bin:$PATH"
-# prepend-path "/sbin"
-# prepend-path "/usr/sbin"
-# prepend-path "/usr/local/sbin"
+PATH="$HOME/.extra/bin:$PATH"
 
 # Remove duplicates (preserving prepended items)
 # Source: http://unix.stackexchange.com/a/40755
