@@ -30,14 +30,18 @@ install-astronvim(){
     mv ~/.config/nvim ~/.config/nvim.bak-$(date +'%s')
   fi
 
-  if [[ -d ~/.local/share/nvim/site ]]; then
-    echo "backing up old nvim site directory"
-    mv ~/.local/share/nvim/site ~/.local/share/nvim/site.bak-$(date +'%s')
+  if [[ -d ~/.local/share/nvim ]]; then
+    echo "backing up old nvim directory"
+    mv ~/.local/share/nvim ~/.local/share/nvim-$(date +'%s')
+    mkdir ~/.local/share/nvim
   fi
 
   git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
-  nvim +PackerSync
 
+  echo "add brute force method of ignoring version complaints"
+  git -C "$HOME/.config/nvim" am "$HOME/.config/astronvim/patches/0001-remove-version-check.patch"
+
+  nvim  --headless -c 'autocmd User PackerComplete quitall'
 }
 
 echo "Checking for optional dependencies"
@@ -51,6 +55,9 @@ check-dep(){
 }
 
 install-astronvim
+
+echo
+echo "checking for dependencies"
 
 for dep in "${deps[@]}"; do
   check-dep "$dep"

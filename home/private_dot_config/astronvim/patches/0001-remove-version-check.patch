@@ -1,0 +1,26 @@
+From ddbb42f330a8d09980c812f5c05b6d8123a767ea Mon Sep 17 00:00:00 2001
+From: Daylin Morgan <daylinmorgan@gmail.com>
+Date: Mon, 28 Nov 2022 18:47:52 -0600
+Subject: [PATCH] remove version check
+
+---
+ init.lua | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/init.lua b/init.lua
+index 2bf8f14..649f5f5 100644
+--- a/init.lua
++++ b/init.lua
+@@ -16,6 +16,6 @@ end
+ 
+ astronvim.conditional_func(astronvim.user_plugin_opts("polish", nil, false))
+ 
+-if vim.fn.has "nvim-0.8" ~= 1 or vim.version().prerelease then
+-  vim.schedule(function() astronvim.notify("Unsupported Neovim Version! Please check the requirements", "error") end)
+-end
++-- if vim.fn.has "nvim-0.8" ~= 1 or vim.version().prerelease then
++ -- vim.schedule(function() astronvim.notify("Unsupported Neovim Version! Please check the requirements", "error") end)
++-- end
+-- 
+2.38.1
+
