@@ -40,9 +40,9 @@ fi
 
 # Setup fzf
 # ---------
-if [[ $PATH != *$HOME/.fzf/bin* ]]; then
-	export PATH="${PATH:+${PATH}:}$HOME/.fzf/bin"
-fi
+# if [[ $PATH != *$HOME/.fzf/bin* ]]; then
+	# export PATH="${PATH:+${PATH}:}$HOME/.fzf/bin"
+# fi
 # ---------
 
 # Add lfcd command
@@ -51,11 +51,11 @@ if is-executable lf; then
 	source "$XDG_CONFIG_HOME/lf/lfcd.sh"
 fi
 # ----------------
-
-if is-executable fnm; then
-	eval "$(fnm env)"
-fi
-
+#
+# if is-executable fnm && is-itty; then
+# 	eval "$(fnm env)"
+# fi
+#
 if is-executable bat; then
 	export BAT_THEME=Catppuccin
 	export BAT_STYLE=header,numbers,grid
@@ -98,17 +98,19 @@ fi
 
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
+# export PATH="$PNPM_HOME:$PATH"
+add-to-path prepend "$PNPM_HOME:$PATH"
 
 if [ -d "$HOME/.pkgs/google-cloud-sdk" ]; then
 	source "$HOME/.pkgs/google-cloud-sdk/completion.zsh.inc"
-	source "$HOME/.pkgs/google-cloud-sdk/path.zsh.inc"
+	# source "$HOME/.pkgs/google-cloud-sdk/path.zsh.inc"
+	add-to-path prepend "$HOME/.pkgs/google-cloud-sdk/bin"
 fi
 
 if [ -d "$HOME/.deno" ]; then
 	export DENO_INSTALL="$HOME/.deno"
-	export PATH="$DENO_INSTALL/bin:$PATH"
+	# export PATH="$DENO_INSTALL/bin:$PATH"
+	add-to-path prepend "$DENO_INSTALL/bin:$PATH"
 fi
 
 if [ -d "$HOME/.bun" ]; then
@@ -117,5 +119,6 @@ if [ -d "$HOME/.bun" ]; then
 
 	# bun
 	export BUN_INSTALL="$HOME/.bun"
-	export PATH="$BUN_INSTALL/bin:$PATH"
+	# export PATH="$BUN_INSTALL/bin:$PATH"
+	add-to-path prepend "$BUN_INSTALL/bin:$PATH"
 fi

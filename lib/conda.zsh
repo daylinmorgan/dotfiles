@@ -20,7 +20,7 @@ if [ -f "$HOME/mambaforge/etc/profile.d/mamba.sh" ]; then
 fi
 # <<< conda initialize <<<
 
-! is-tty && [ -d "$HOME/mambaforge/envs/dev" ] && conda activate dev
+# ! is-tty && [ -d "$HOME/mambaforge/envs/dev" ] && conda activate dev
 
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba init' !!

@@ -2,7 +2,6 @@
 
 alias aliases="alias | sed 's/=.*//'"
 alias functions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'"
-alias paths='echo -e ${PATH//:/\\n}'
 
 alias reload="source ~/.zshrc"
 alias rr="rm -rf"

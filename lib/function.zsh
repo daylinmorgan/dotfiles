@@ -84,3 +84,25 @@ format-qmd() {
 	# TODO: add support for outputs
 	jupytext --from qmd $1 --pipe black --opt 'notebook_metadata_filter=-all'
 }
+
+add-to-path () {
+# $1 prepend/append
+# $2 path
+	! [[ -d "$2" ]] && return 0
+	case ":$PATH:" in
+		*":$2:"*) :;; # already there
+		*)
+		if [[ "$1" == 'prepend' ]]; then
+			PATH="$2:$PATH"
+		elif [[ "$1" == 'append' ]]; then
+			PATH="$PATH:$2"
+		else 
+			echo "please specify append/prepend not $1"
+		fi
+		;;
+	esac
+}
+
+print-paths() {
+  sed 's/:/\n/g' <<< "$PATH"
+}
