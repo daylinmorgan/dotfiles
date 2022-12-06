@@ -1,8 +1,5 @@
 # If not running interactively, don't do anything
-
 [ -z "$PS1" ] && return
-
-#Get dotfiles directory
 
 if [ -d "$HOME/.dotfiles" ]; then
   DOTFILES_DIR="$HOME/.dotfiles"
@@ -12,10 +9,10 @@ else
 fi
 
 # Make utilities available
-
 PATH="$DOTFILES_DIR/bin:$PATH"
+. $DOTFILES_DIR/lib/function.zsh
 
-for DOTFILE in "$DOTFILES_DIR"/lib/{path,env,prompt,alias,function,conda,custom}.zsh; do
+for DOTFILE in "$DOTFILES_DIR"/lib/{path,env,prompt,alias,conda,custom}.zsh; do
   [ -f "$DOTFILE" ] && . "$DOTFILE"
 done
 
