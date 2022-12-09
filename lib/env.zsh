@@ -52,9 +52,9 @@ if is-executable lf; then
 fi
 # ----------------
 #
-# if is-executable fnm && is-itty; then
-# 	eval "$(fnm env)"
-# fi
+if is-executable fnm && ! is-tty; then
+	eval "$(fnm env --shell zsh)"
+fi
 #
 if is-executable bat; then
 	export BAT_THEME=Catppuccin
