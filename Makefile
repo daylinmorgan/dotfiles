@@ -21,12 +21,21 @@ completions:
 	$(call msg,Generating Completions)
 	@./lib/completions/update.sh
 
+## fzf | update fzf shell scripts
+.PHONY: fzf
+fzf: lib/.fzf/completion.zsh lib/.fzf/key-bindings.zsh 
+
+lib/.fzf/%.zsh: FORCE
+	wget -O $@ \
+		https://raw.githubusercontent.com/junegunn/fzf/master/shell/$*.zsh
+
 ## db, d-build | build docker image
 .PHONY: db d-build
 db d-build:
 	$(call msg,Building Docker Image)
 	@DOCKER_BUILDKIT=1 docker build \
 		--secret id=GITHUB_TOKEN \
+		--progress=plain \
 		-f docker/Dockerfile \
 		-t dots .
 
@@ -39,6 +48,8 @@ dr d-run:
 .PHONY: dr-keep
 dr-keep:
 	docker run -it dots
+
+FORCE:
 
 .DEFAULT_GOAL = help
 GOAL_STYLE = b_magenta

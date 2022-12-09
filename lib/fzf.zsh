@@ -2,11 +2,11 @@
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2>/dev/null
+[[ $- == *i* ]] && source "$DOTFILES_DIR/lib/.fzf/completion.zsh" 2>/dev/null
 
 # Key bindings
 # ------------
-source "$HOME/.fzf/shell/key-bindings.zsh"
+[[ $- == *i* ]] && source "$DOTFILES_DIR/lib/.fzf/key-bindings.zsh" 2>/dev/null
 
 # dracula
 # FZF_COLORS="
