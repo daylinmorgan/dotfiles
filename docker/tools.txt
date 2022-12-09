@@ -1,4 +1,8 @@
+atuin
+fnm
+fzf
+lazygit
+lsd
+ripgrep
 starship
 sheldon
-ripgrep
-lsd

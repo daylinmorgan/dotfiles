@@ -25,7 +25,10 @@ completions:
 .PHONY: db d-build
 db d-build:
 	$(call msg,Building Docker Image)
-	@docker build -f docker/Dockerfile -t dots .
+	@DOCKER_BUILDKIT=1 docker build \
+		--secret id=GITHUB_TOKEN \
+		-f docker/Dockerfile \
+		-t dots .
 
 ## dr, d-run | run docker image
 .PHONY: dr d-run
