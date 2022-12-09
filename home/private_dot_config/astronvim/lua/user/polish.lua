@@ -1,5 +1,5 @@
 return function()
-    vim.cmd [[
+    vim.cmd([[
     autocmd BufNewFile,BufRead Knitfile set syntax=lua
-    ]]
+    ]])
 end
