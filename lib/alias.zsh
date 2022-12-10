@@ -64,3 +64,5 @@ alias g="git"
 
 ## TODO: make lock state aware function
 is-executable gum && alias plz="gum input --prompt='🔒' --password | sudo -nS"
+
+alias dockdots='docker run --rm -it -u "$(id -u):$(id -g)" -v "$PWD:/home/$USER/data" dots'
