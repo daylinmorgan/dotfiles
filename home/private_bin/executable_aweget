@@ -15,7 +15,9 @@ try:
 except ImportError:
     pass
 
-EGET_CONFIG = Path.home() / ".config" / "eget" / "eget.toml"
+
+EGET_CONFIG = os.getenv("EGET_CONFIG", Path.home() /
+                        ".config" / "eget" / "eget.toml")
 
 
 class Color:
@@ -44,7 +46,7 @@ class Repo:
 
 class Config:
     def __init__(self):
-        if tomllib:
+        if "tomllib" in sys.modules:
             settings, config = self.parse_toml_tomllib()
         else:
             settings, config = self.parse_toml()
