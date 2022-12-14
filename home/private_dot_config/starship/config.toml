@@ -2,9 +2,9 @@
 format = "[$user]($style) on "
 
 [character]
-#success_symbol = "[🢂](bold green)[🢂](bold yellow)[🢂](bold cyan)"
-success_symbol = "[-](bold green)[-](bold yellow)[>](bold cyan)"
-error_symbol = "[✗](bold red) "
+# success_symbol = "[-](bold green)[-](bold yellow)[>](bold cyan)"
+success_symbol = "[>>=](bold fg:#f5e0dc)[|>](bold cyan)"
+error_symbol = "[>>=](bold fg:red)[!!](bold red)"
 
 [gcloud]
 disabled = true
@@ -86,4 +86,3 @@ symbol = "🅢 "
 
 [rust]
 symbol = " "
-
