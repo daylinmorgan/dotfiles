@@ -1,17 +1,15 @@
 local wezterm = require("wezterm")
-local catppuccin = require("colors/catppuccin").setup{}
+local catppuccin = require("colors/catppuccin").setup({})
 local keys = require("keys")
 -- add wezterm to title for wm usage
-wezterm.on("format-window-title",
-  function()
-    return " - Wezterm"
-  end
-)
+wezterm.on("format-window-title", function()
+  return " - Wezterm"
+end)
 
 local padding = 10
 
 return {
-  window_background_opacity = 0.9,
+  -- window_background_opacity = 0.9,
   window_padding = {
     left = padding,
     right = padding,
@@ -27,7 +25,7 @@ return {
   tab_bar_at_bottom = true,
   disable_default_key_bindings = true,
   bold_brightens_ansi_colors = true,
-  default_gui_startup_args = {"start","--always-new-process"},
+  default_gui_startup_args = { "start", "--always-new-process" },
   keys = keys.keys,
   key_tables = keys.key_tables,
 }
