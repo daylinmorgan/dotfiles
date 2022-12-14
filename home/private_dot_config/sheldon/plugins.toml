@@ -19,7 +19,7 @@ shell = "zsh"
 [plugins.ohmyzsh-plugins]
 github = 'ohmyzsh/ohmyzsh'
 dir = 'plugins'
-use = ['{dotenv,extract,python}/*.plugin.zsh']
+use = ['{dotenv,extract}/*.plugin.zsh']
 
 [plugins.ohmyzsh-lib]
 github = 'ohmyzsh/ohmyzsh'
@@ -28,9 +28,6 @@ use = ['{completion,clipboard}.zsh']
 
 [plugins.base16]
 github = "chriskempson/base16-shell"
-
-# [plugins.enhancd]
-# github = "b4b4r07/enhancd"
 
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
