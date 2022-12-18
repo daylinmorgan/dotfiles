@@ -1,6 +1,6 @@
 [global]
-target = "~/bin"
-asset_filters = "^musl"
+target = "~/bin/"
+asset_filters = ["^musl"]
 
 ["ellie/atuin"]
 
@@ -15,7 +15,7 @@ file = "btm"
 
 ["cli/cli"]
 asset_filters = ["linux_amd64.tar.gz"]
-target = "gh"
+target = "~/bin/gh"
 
 ["dandavison/delta"]
 asset_filters = ["x86_64-unknown-linux-gnu"]
@@ -28,7 +28,8 @@ asset_filters = ["x86_64-unknown-linux-gnu"]
 ["junegunn/fzf"]
 
 ["dundee/gdu"]
-asset_filters = ["gdu_linux_amd64.tgz"]
+asset_filters = ["gdu_linux_amd64.tgz", "^gdu_linux_amd64_static.tgz"]
+target = "~/bin/gdu"
 
 ["profclems/glab"]
 asset_filters = ["Linux_x86_64.tar.gz"]
