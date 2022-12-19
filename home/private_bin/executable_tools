@@ -17,18 +17,18 @@ INSTALL_NO=${RED}✗${NORMAL}
 
 # get current binary files
 shopt -s nullglob
-BINARY_FILES=($HOME/bin/*)
+BINARY_FILES="($HOME/bin/*)"
 
-export EGET_BIN=${EGET_BIN:-$HOME/bin}
+export EGET_BIN=$HOME/bin
 alias eget="eget --system linux/amd64"
 
 post_download_install() {
 
 	tool=$1
-	temp_file=$(mktemp -p . ${tool}.XXX.sh)
-	key=$tool yq e 'explode(.) | .[env(key)].post-download' $YAMLDOC >$temp_file
-	. $temp_file
-	rm $temp_file
+	temp_file=$(mktemp -p . "${tool}.XXX.sh")
+	key=$tool yq e 'explode(.) | .[env(key)].post-download' "$YAMLDOC" >"$temp_file"
+	bash "$temp_file"
+	rm "$temp_file"
 
 }
 
@@ -36,7 +36,7 @@ eget_tool() {
 
 	tool=$1
 
-	echo -n $tool
+	echo -n "$tool"
 
 	user=$(key=$tool yq e 'explode(.) | .[env(key)].user' $YAMLDOC)
 	asset=$(key=$tool yq e 'explode(.) | .[env(key)].asset // ""' $YAMLDOC)
