@@ -23,6 +23,7 @@ color:
   # When "classic" is set, this is set to "never".
   # Possible values: never, auto, always
   when: auto
+  theme: catppuccin
 
 # == Date ==
 # This specifies the date format for the date column. The freeform format
@@ -52,8 +53,7 @@ icons:
   theme: fancy
   # Separator between icon and the name
   # Default to 1 space
-  separator: ' '
-
+  separator: " "
 
 # == Ignore Globs ==
 # A list of globs to ignore when listing.
