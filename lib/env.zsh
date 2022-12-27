@@ -122,3 +122,8 @@ if [ -d "$HOME/.bun" ]; then
 	# export PATH="$BUN_INSTALL/bin:$PATH"
 	add-to-path prepend "$BUN_INSTALL/bin:$PATH"
 fi
+
+if [ -d "$HOME/.nimble" ]; then
+	# export PATH=/home/daylin/.nimble/bin:$PATH
+	add-to-path prepend "$HOME/.nimble/bin"
+fi
