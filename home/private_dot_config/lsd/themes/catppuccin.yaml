@@ -5,7 +5,7 @@ permission:
   write: dark_yellow
   exec: dark_red
   exec-sticky: 5
-  no-access: red
+  no-access: 0
   octal: 3
   acl: dark_cyan
   context: cyan
