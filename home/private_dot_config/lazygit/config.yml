@@ -1,12 +1,33 @@
-gui:
-  theme:
-    selectedLineBgColor:
-      - reverse
-    selectedRangeBgColor:
-      - reverse
-  showFileTree: true
 git:
-  branchLogCmd: 'git log --graph --all --color=always --decorate --date=relative --oneline'
+  # branchLogCmd: "git log --graph --all --color=always --decorate --date=relative --oneline"
+  branchLogCmd: "git log --graph --abbrev-commit --decorate --format=format:'%C(bold cyan)%h%C(reset) ->%C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ar)%C(reset) %C(dim white)- %an%C(reset)'"
   paging:
     colorArg: always
     pager: delta --dark --paging=never
+
+# fall back theme in case terminal app not configured
+gui:
+  showFileTree: true
+  theme:
+    lightTheme: false
+    # selectedLineBgColor:
+    # - reverse
+    # selectedRangeBgColor:
+    # - reverse
+    activeBorderColor:
+      - "#a6e3a1" # Green
+      - bold
+    inactiveBorderColor:
+      - "#cdd6f4" # Text
+    optionsTextColor:
+      - "#89b4fa" # Blue
+    selectedLineBgColor:
+      - "#313244" # Surface0
+    selectedRangeBgColor:
+      - "#313244" # Surface0
+    cherryPickedCommitBgColor:
+      - "#94e2d5" # Teal
+    cherryPickedCommitFgColor:
+      - "#89b4fa" # Blue
+    unstagedChangesColor:
+      - red # Red
