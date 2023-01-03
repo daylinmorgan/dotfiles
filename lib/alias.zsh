@@ -28,7 +28,15 @@ fi
 is-executable lazygit && alias lg=lazygit
 
 # source custom tmux.conf with older tmux
+
 alias tmux="tmux -f ~/.config/tmux/tmux.conf"
+# Attaches tmux to the last session; creates a new session if none exists.
+alias t='tmux attach || tmux new-session'
+alias ta='tmux attach -t'
+alias tn='tmux new-session'
+alias tl='tmux list-sessions'
+
+
 alias rc="rclone --filter-from ~/.config/rclone/filter-file.txt"
 
 # prefer lvim > nvim > vim
