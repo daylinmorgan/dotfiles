@@ -69,9 +69,9 @@ if [[ -z $updates_info ]]; then
 fi
 
 if [[ -n $notify ]]; then
-	notify-send -w "System Updates Available!" "$updates_info"
+	notify-send -w "System Updates Available!" "$updates_info" &
 else
-	echo "nystem Updates Available!"
+	echo "System Updates Available!"
 	echo "$updates_info"
 	update_system
 fi
