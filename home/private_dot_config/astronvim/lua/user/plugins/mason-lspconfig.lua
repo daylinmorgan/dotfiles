@@ -4,7 +4,7 @@ return {
 		"gopls",
 		"html",
 		"jsonls",
-		"pyright",
+		-- "pyright",
 		"sumneko_lua",
 		"texlab",
 		"yamlls",

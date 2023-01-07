@@ -1,4 +1,24 @@
+-- load config from local file...
+-- local p = function(name)
+--   return string.format("require'config.%s'", name)
+-- end
+
+-- d for default :P
+local d = function(name)
+  return string.format("require'%s'.setup({})", name)
+end
+
 return {
+  { "lambdalisue/suda.vim" }, -- for sudo reading and writing
+  -- theming
+  {
+    "catppuccin/nvim",
+    as = "catppuccin",
+    config = d("zk"),
+  },
+  -- { "LnL7/vim-nix" },
+  -- language specific
+  { "alaviss/nim.nvim" },
   {
     "quarto-dev/quarto-vim",
     requires = {
@@ -6,11 +26,9 @@ return {
     },
     ft = { "quarto" },
   },
-  { "catppuccin/nvim", as = "catppuccin",
-    config = function()
-      require("catppuccin").setup {}
-    end,
+  -- general tools
+  {
+    "mickael-menu/zk-nvim",
+    config = d("zk"),
   },
-  { 'LnL7/vim-nix' },
-  { 'lambdalisue/suda.vim' }, -- for sudo reading and writing
 }

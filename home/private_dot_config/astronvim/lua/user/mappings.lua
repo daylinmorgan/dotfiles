@@ -20,10 +20,6 @@ return {
     ["<C-Up>"] = false,
     ["<C-q>"] = false,
     ["<C-s>"] = false,
-    ["<leader>fh"] = false,
-    ["<leader>fm"] = false,
-    ["<leader>fn"] = false,
-    ["<leader>fo"] = false,
     ["<leader>sb"] = false,
     ["<leader>sc"] = false,
     ["<leader>sh"] = false,
@@ -35,10 +31,6 @@ return {
     -- navigating wrapped lines
     j = { "gj", desc = "Navigate down" },
     k = { "gk", desc = "Navigate down" },
-  },
-  t = {
-    -- setting a mapping to false will disable it
-    -- ["<esc>"] = false,
   },
 }
 

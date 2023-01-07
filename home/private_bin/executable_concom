@@ -130,7 +130,7 @@ def main():
     print(f"{color('message:',11)}\n  {summary}")
 
     actions = {
-        "commit": lambda: run(f"git commit -m '{summary}'", capture=False),
+        "commit": lambda: run(f"git commit -m \'{summary}\'", capture=False),
         "commit(with message)": lambda: run(
             f"git commit -m '{summary}' -m '# note: abort with :cq!' -e", capture=False
         ),
