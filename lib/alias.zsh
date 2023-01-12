@@ -74,3 +74,6 @@ alias g="git"
 is-executable gum && alias plz="gum input --prompt='🔒' --password | sudo -nS"
 
 alias dockdots='docker run --rm -it -u "$(id -u):$(id -g)" -v "$PWD:/home/$USER/data" dots'
+
+
+alias tmux-labbook="$DOTFILES_DIR/tmux/labbook.sh"
