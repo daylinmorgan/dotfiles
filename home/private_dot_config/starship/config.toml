@@ -2,7 +2,7 @@
 format = "[$user]($style) on "
 
 [character]
-success_symbol = "[λ](bold fg:#f5e0dc)[ 🠊](bold cyan)"
+success_symbol = "[λ](bold fg:#f5e0dc)[ ▷](bold cyan)"
 error_symbol = "[λ](bold fg:red)[ !](bold red)"
 
 [gcloud]
