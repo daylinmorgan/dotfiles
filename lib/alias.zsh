@@ -27,16 +27,6 @@ fi
 
 is-executable lazygit && alias lg=lazygit
 
-# source custom tmux.conf with older tmux
-
-alias tmux="tmux -f ~/.config/tmux/tmux.conf"
-# Attaches tmux to the last session; creates a new session if none exists.
-alias t='tmux attach || tmux new-session'
-alias ta='tmux attach -t'
-alias tn='tmux new-session'
-alias tl='tmux list-sessions'
-
-
 alias rc="rclone --filter-from ~/.config/rclone/filter-file.txt"
 
 # prefer lvim > nvim > vim
@@ -75,5 +65,12 @@ is-executable gum && alias plz="gum input --prompt='🔒' --password | sudo -nS"
 
 alias dockdots='docker run --rm -it -u "$(id -u):$(id -g)" -v "$PWD:/home/$USER/data" dots'
 
+# tmux
+alias t-labbook="$DOTFILES_DIR/tmux/labbook.sh"
+# source custom tmux.conf with older tmux
+alias tmux="tmux -f ~/.config/tmux/tmux.conf"
+alias t='tmux'
+alias tn='tmux new-session'
+alias tl='tmux list-sessions'
 
-alias tmux-labbook="$DOTFILES_DIR/tmux/labbook.sh"
+

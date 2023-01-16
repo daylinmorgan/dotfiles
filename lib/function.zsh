@@ -106,3 +106,7 @@ add-to-path () {
 print-paths() {
   sed 's/:/\n/g' <<< "$PATH"
 }
+
+ta () {
+	tmux attach -t "$@"	|| tmux new-session -s "$@"
+}
