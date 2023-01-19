@@ -97,7 +97,7 @@ fi
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
 # export PATH="$PNPM_HOME:$PATH"
-add-to-path prepend "$PNPM_HOME:$PATH"
+add-to-path prepend "$PNPM_HOME"
 
 if [ -d "$HOME/.pkgs/google-cloud-sdk" ]; then
 	source "$HOME/.pkgs/google-cloud-sdk/completion.zsh.inc"
@@ -108,7 +108,7 @@ fi
 if [ -d "$HOME/.deno" ]; then
 	export DENO_INSTALL="$HOME/.deno"
 	# export PATH="$DENO_INSTALL/bin:$PATH"
-	add-to-path prepend "$DENO_INSTALL/bin:$PATH"
+	add-to-path prepend "$DENO_INSTALL/bin"
 fi
 
 if [ -d "$HOME/.bun" ]; then
@@ -118,7 +118,7 @@ if [ -d "$HOME/.bun" ]; then
 	# bun
 	export BUN_INSTALL="$HOME/.bun"
 	# export PATH="$BUN_INSTALL/bin:$PATH"
-	add-to-path prepend "$BUN_INSTALL/bin:$PATH"
+	add-to-path prepend "$BUN_INSTALL/bin"
 fi
 
 if [ -d "$HOME/.nimble" ]; then
