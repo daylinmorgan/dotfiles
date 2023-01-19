@@ -17,7 +17,7 @@ if ! tmux list-sessions | grep $SESSION; then
 	tmux new-session -d -s $SESSION -c "$HOME/labbook"
 
 	# Name first Pane and start zsh
-	tmux rename-window -t $SESSION:0 'Main'
+	tmux rename-window -t $SESSION:0 'shell'
 	tmux send-keys -t 'Main'
 
 	# Create and setup pane for sphinx
