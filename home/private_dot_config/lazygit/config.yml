@@ -5,6 +5,15 @@ git:
     colorArg: always
     pager: delta --dark --paging=never
 
+customCommands:
+  - key: "W"
+    description: "wip in progess"
+    command: 'git commit -m "wip: $(date +"%Y.%m.%d %H:%M:%S")"'
+    context: "files"
+
+files:
+  commitChangesWithoutHook: null # commit changes without pre-commit hook
+
 # fall back theme in case terminal app not configured
 gui:
   showFileTree: true
