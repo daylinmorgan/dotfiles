@@ -132,7 +132,7 @@ install_all() {
 echo "#################"
 echo EXTRAS DOWNLOADER
 echo "#################"
-echo
+echo "warning this script is not well maintained"
 
 if [ $# -eq 0 ]; then
 	install_all
