@@ -12,7 +12,7 @@ fi
 PATH="$DOTFILES_DIR/bin:$PATH"
 . $DOTFILES_DIR/lib/function.zsh
 
-for DOTFILE in "$DOTFILES_DIR"/lib/{path,env,prompt,alias,conda,custom}.zsh; do
+for DOTFILE in "$DOTFILES_DIR"/lib/{path,env,prompt,alias,conda,plugins,custom}.zsh; do
   [ -f "$DOTFILE" ] && . "$DOTFILE"
 done
 

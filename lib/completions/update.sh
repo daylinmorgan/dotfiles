@@ -5,7 +5,7 @@ CURDIR=${0:a:h}
 gen() {
 	if is-executable $1; then
 		echo "$1 updated"
-		"$@" | sed "s#$HOME#\$HOME#g" > $CURDIR/"_$argv[1]"
+		"$@" | sed "s#$HOME#\$HOME#g" >$CURDIR/"_$argv[1]"
 	else
 		echo "skipping $1"
 	fi

@@ -1,0 +1,52 @@
+.dotfiles/lib/plugins/base16:
+  rereshPeriod: 168h
+  type: git-repo
+  url: https://github.com/chriskempson/base16-shell.git
+
+.dotfiles/lib/plugins/zsh-defer:
+  rereshPeriod: 168h
+  type: git-repo
+  url: https://github.com/romkatv/zsh-defer.git
+
+.dotfiles/lib/plugins/zsh-syntax-highlighting:
+  rereshPeriod: 168h
+  type: git-repo
+  url: https://github.com/zsh-users/zsh-syntax-highlighting.git
+
+.dotfiles/lib/plugins/fzf-tab:
+  rereshPeriod: 168h
+  type: git-repo
+  url: https://github.com/Aloxaf/fzf-tab.git
+.dotfiles/lib/plugins/oh-my-zsh:
+  type: "archive"
+  url: https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz
+  # exact: true
+  # chezmoi refuses to mkdir with nested directories
+  stripComponents: 2
+  refreshPeriod: "168h"
+  include:
+    - "*/lib/{clipboard,completion}.zsh"
+    - "*/plugins/{dotenv,extract}/**"
+#
+# include:
+#
+# - "*/plugins/{dotenv,extract}/**/*"
+# include: ["plugins/dotenv/**", "plugins/extract/**"]
+
+# .oh-my-zsh:
+#   exact: true
+#   refreshPeriod: 168h
+#   stripComponents: 1
+#   type: archive
+#   url: https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz
+# .oh-my-zsh/custom/plugins/zsh-syntax-highlighting:
+#   exact: true
+#   refreshPeriod: 168h
+#   stripComponents: 1
+#   type: archive
+#   url: https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz
+# .oh-my-zsh/custom/themes/powerlevel10k:
+#   exact: true
+#   stripComponents: 1
+#   type: archive
+#   url: https://github.com/romkatv/powerlevel10k/archive/v1.15.0.tar.gz

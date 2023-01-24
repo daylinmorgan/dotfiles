@@ -34,6 +34,7 @@ export FZF_DEFAULT_OPTS=${FZF_COLORS}${FZF_LAYOUT}
 export FZF_CTRL_GENERAL="--height=100% --margin=0,0,0"
 
 #adapted from https://github.com/zimfw/fzf/blob/master/init.zsh
+# TODO: fix this so it works with $ **<tab>
 if [ -x "$(command -v fd)" ]; then
 	export FZF_DEFAULT_COMMAND="command fd --type file --exclude ".git/" --hidden --no-ignore"
 	_fzf_compgen_path() {
