@@ -1,5 +1,7 @@
 - .git/**
 - .vscode/**
 - ~$*
+# libre office files
+- .~*#
 - node_modules/**
 + **
