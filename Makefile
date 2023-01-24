@@ -33,5 +33,4 @@ dr-keep:
 FORCE:
 
 .DEFAULT_GOAL = help
--include .task.cfg.mk .task.mk
-$(if $(wildcard .task.mk),,.task.mk: ; @curl -fsSL https://raw.githubusercontent.com/daylinmorgan/task.mk/main/task.mk -o .task.mk 2>/dev/null || echo "no curl, skipping task.mk download")
+-include .task.cfg.mk
