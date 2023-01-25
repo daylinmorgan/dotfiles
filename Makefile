@@ -8,13 +8,6 @@ completions: ## generate completion scripts
 	$(call msg,Generating Completions)
 	@./lib/completions/update.sh
 
-fzf: lib/.fzf/completion.zsh lib/.fzf/key-bindings.zsh ## update fzf shell scripts
-
-# update fzf shell scripts
-lib/.fzf/%.zsh: FORCE
-	wget -O $@ \
-		https://raw.githubusercontent.com/junegunn/fzf/master/shell/$*.zsh
-
 db d-build: ## build docker image
 	$(call msg,Building Docker Image)
 	@DOCKER_BUILDKIT=1 docker build \

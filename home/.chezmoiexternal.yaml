@@ -17,36 +17,22 @@
   rereshPeriod: 168h
   type: git-repo
   url: https://github.com/Aloxaf/fzf-tab.git
+
 .dotfiles/lib/plugins/oh-my-zsh:
-  type: "archive"
+  type: archive
   url: https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz
-  # exact: true
-  # chezmoi refuses to mkdir with nested directories
   stripComponents: 2
-  refreshPeriod: "168h"
+  refreshPeriod: 168h
   include:
     - "*/lib/{clipboard,completion}.zsh"
     - "*/plugins/{dotenv,extract}/**"
-#
-# include:
-#
-# - "*/plugins/{dotenv,extract}/**/*"
-# include: ["plugins/dotenv/**", "plugins/extract/**"]
 
-# .oh-my-zsh:
-#   exact: true
-#   refreshPeriod: 168h
-#   stripComponents: 1
-#   type: archive
-#   url: https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz
-# .oh-my-zsh/custom/plugins/zsh-syntax-highlighting:
-#   exact: true
-#   refreshPeriod: 168h
-#   stripComponents: 1
-#   type: archive
-#   url: https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz
-# .oh-my-zsh/custom/themes/powerlevel10k:
-#   exact: true
-#   stripComponents: 1
-#   type: archive
-#   url: https://github.com/romkatv/powerlevel10k/archive/v1.15.0.tar.gz
+.dotfiles/lib/plugins/fzf:
+  type: archive
+  # type: git-repo
+  url: https://github.com/junegunn/fzf/archive/master.tar.gz
+  # url: https://github.com/junegunn/fzf.git
+  refreshPeriod: 168h
+  stripComponents: 2
+  include:
+    - "*/shell/*.zsh"

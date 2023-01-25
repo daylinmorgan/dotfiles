@@ -2,18 +2,10 @@
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "$DOTFILES_DIR/lib/.fzf/completion.zsh" 2>/dev/null
-
+[[ $- == *i* ]] && source "$DOTFILES_DIR/lib/plugins/fzf/completion.zsh" 2>/dev/null
 # Key bindings
 # ------------
-[[ $- == *i* ]] && source "$DOTFILES_DIR/lib/.fzf/key-bindings.zsh" 2>/dev/null
-
-# dracula
-# FZF_COLORS="
-# --color=dark
-# --color=fg:-1,bg:-1,hl:#5fff87,fg+:-1,bg+:-1,hl+:#ffaf5f
-# --color=info:#af87ff,prompt:#5fff87,pointer:#ff87d7,marker:#ff87d7,spinner:#ff87d7
-# "
+[[ $- == *i* ]] && source "$DOTFILES_DIR/lib/plugins/fzf/key-bindings.zsh" 2>/dev/null
 
 # catppuccin
 FZF_COLORS="

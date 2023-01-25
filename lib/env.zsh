@@ -36,13 +36,6 @@ fi
 # setopt CORRECT
 # setopt CORRECT_ALL
 
-# Setup fzf
-# ---------
-# if [[ $PATH != *$HOME/.fzf/bin* ]]; then
-	# export PATH="${PATH:+${PATH}:}$HOME/.fzf/bin"
-# fi
-# ---------
-
 # Add lfcd command
 # ----------------
 if is-executable lf; then
