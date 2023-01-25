@@ -24,47 +24,26 @@ setopt APPEND_HISTORY
 # Disable autocd
 unsetopt autocd
 
-# Vim Settings
-# export VIMINIT='source $MYVIMRC'
-# export MYVIMRC='$DOTFILES_DIR/lib/.vimrc'
+is-executable nvim && export EDITOR=nvim || export EDITOR=vim
 
-if is-executable nvim; then
-	export EDITOR=nvim
-else
-	export EDITOR=vim
-fi
+is-executable lf && source "$XDG_CONFIG_HOME/lf/lfcd.sh"
 
-# spelling correction
-# setopt CORRECT
-# setopt CORRECT_ALL
-
-# Add lfcd command
-# ----------------
-if is-executable lf; then
-	source "$XDG_CONFIG_HOME/lf/lfcd.sh"
-fi
-# ----------------
-#
 if is-executable fnm && ! is-tty; then
 	eval "$(fnm env --shell zsh)"
 fi
-#
-if is-executable bat; then
-	export BAT_THEME=Catppuccin
+
+is-executable bat && \
+	export BAT_THEME=Catppuccin; \
 	export BAT_STYLE=header,numbers,grid
-fi
 
-if is-executable zoxide; then
+
+is-executable zoxide && \
 	export _ZO_FZF_OPTS="--preview 'command lsd --tree --color always --icon always {2..}'"
-fi
 
-export ENHANCD_DOT_ARG="up"
-
-if is-tty; then
-	export STARSHIP_CONFIG=~/.config/starship/plain.toml
-else
+is-tty && \
+	export STARSHIP_CONFIG=~/.config/starship/plain.toml \
+	|| \
 	export STARSHIP_CONFIG=~/.config/starship/config.toml
-fi
 
 export EGET_BIN=$HOME/bin
 
@@ -76,9 +55,7 @@ export ZSH_DOTENV_DISALLOWED_LIST=$HOME/.cache/dotenv-disallowed.list
 export MAMBA_NO_BANNER=1
 
 # shiv
-if is-executable shiv; then
-	export SHIV_ROOT=$HOME/.local/share/shiv
-fi
+is-executable shiv && export SHIV_ROOT=$HOME/.local/share/shiv
 
 # pyenv
 if [ -d "$HOME/.pyenv" ]; then
@@ -90,21 +67,17 @@ if [ -d "$HOME/.pyenv" ]; then
 fi
 
 # pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
-# export PATH="$PNPM_HOME:$PATH"
-add-to-path prepend "$PNPM_HOME"
+is-executable pnpm && \
+	export PNPM_HOME="$HOME/.local/share/pnpm"; \
+	add-to-path prepend "$PNPM_HOME"
 
-if [ -d "$HOME/.pkgs/google-cloud-sdk" ]; then
-	source "$HOME/.pkgs/google-cloud-sdk/completion.zsh.inc"
-	# source "$HOME/.pkgs/google-cloud-sdk/path.zsh.inc"
+[ -d "$HOME/.pkgs/google-cloud-sdk" ] && \
+	source "$HOME/.pkgs/google-cloud-sdk/completion.zsh.inc"; \
 	add-to-path prepend "$HOME/.pkgs/google-cloud-sdk/bin"
-fi
 
-if [ -d "$HOME/.deno" ]; then
-	export DENO_INSTALL="$HOME/.deno"
-	# export PATH="$DENO_INSTALL/bin:$PATH"
+[ -d "$HOME/.deno" ] && \
+	export DENO_INSTALL="$HOME/.deno"; \
 	add-to-path prepend "$DENO_INSTALL/bin"
-fi
 
 if [ -d "$HOME/.bun" ]; then
 	# bun completions
@@ -112,11 +85,7 @@ if [ -d "$HOME/.bun" ]; then
 
 	# bun
 	export BUN_INSTALL="$HOME/.bun"
-	# export PATH="$BUN_INSTALL/bin:$PATH"
 	add-to-path prepend "$BUN_INSTALL/bin"
 fi
 
-if [ -d "$HOME/.nimble" ]; then
-	# export PATH=/home/daylin/.nimble/bin:$PATH
-	add-to-path prepend "$HOME/.nimble/bin"
-fi
+[ -d "$HOME/.nimble" ] && add-to-path prepend "$HOME/.nimble/bin"
