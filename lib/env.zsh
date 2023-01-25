@@ -16,6 +16,8 @@ export LS_COLORS="ow=1;34:tw=1;34:st=00;"
 # add completions to fpath
 fpath=($DOTFILES_DIR/lib/completions $fpath)
 
+autoload -Uz compinit && compinit
+
 # Append to the history file, rather than overwriting it
 setopt APPEND_HISTORY
 

@@ -1,8 +1,5 @@
 #!/usr/bin/env zsh
 
-autoload -Uz compinit
-compinit
-
 is-executable zoxide && eval eval "$(zoxide init zsh --cmd cd)"
 
 if is-executable starship; then
