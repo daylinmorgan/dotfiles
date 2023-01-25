@@ -1,54 +1,73 @@
-[credential]
-	helper = cache
 [core]
-	excludesfile = /home/{{- .chezmoi.username -}}/.config/git/ignore
+excludesfile = /home/{{- .chezmoi.username -}}/.config/git/ignore
+
 [user]
-	name = {{ .name }}
-	email = {{ .email }}
+name = {{ .name }}
+email = {{ .email }}
+
+
+
+[credential]
+helper = cache
+
 [submodule]
-	recurse = true
+recurse = true
+
 [pull]
-	rebase = true
+rebase = true
+
 [init]
-	defaultBranch = main
+defaultBranch = main
+
 [branch]
-	autosetuprebase = always
+autosetuprebase = always
+
 [alias]
-	root = rev-parse --show-toplevel
+root = rev-parse --show-toplevel
+adog = log --all --decorate --oneline --graph
+lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold cyan)%h%C(reset) ->%C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ar)%C(reset) %C(dim white)- %an%C(reset)'
+last = log -1 HEAD --stat
+ll = log --oneline
+st = status -sb
+s = status -s
+dd = !git diff | delta
+sd = !git show | delta
+co = checkout
+cob = checkout -b
+br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+undo = reset HEAD~1 --mixed
+wip = !git add -A && git commit -m \"wip: $(date +\"%Y.%m.%d %H:%M:%S\")\"
+cmt = !git commit -m \"time: $(date +\"%Y.%m.%d %H:%M:%S\")\"
+save = !git add -A && git commit -m \"time: $(date +\"%Y.%m.%d %H:%M:%S\")\"
+la = "!git config -l | grep alias | cut -c 7-"
+gl = config --global -l
 
-	adog = log --all --decorate --oneline --graph
-	lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold cyan)%h%C(reset) ->%C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ar)%C(reset) %C(dim white)- %an%C(reset)'
-	last = log -1 HEAD --stat
-	ll = log --oneline
-
-	st = status -sb
-  s = status -s
-  dd = !git diff | delta
-  sd = !git show | delta
- 
-  co = checkout
-  cob = checkout -b
-  br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
-	
-	undo = reset HEAD~1 --mixed
-	
-	wip = !git add -A && git commit -m \"wip: $(date +\"%Y.%m.%d %H:%M:%S\")\"
-	cmt = !git commit -m \"time: $(date +\"%Y.%m.%d %H:%M:%S\")\"
-	save = !git add -A && git commit -m \"time: $(date +\"%Y.%m.%d %H:%M:%S\")\"
-  
-  la = "!git config -l | grep alias | cut -c 7-"
-	gl = config --global -l
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
+required = true
+
 [help]
-  autocorrect = 20
+autocorrect = 20
 
 [delta]
-  line-numbers = true
-  theme = catppuccin
-  ; hunk-header-decoration-style = none
-  diff-so-fancy = true
-  hunk-header-style             = bold
+line-numbers = true
+navigate = true    # use n and N to move between diff sections
+theme = catppuccin
+; hunk-header-decoration-style = none
+diff-so-fancy = true
+hunk-header-style = bold
+
+[core]
+pager = delta
+
+[interactive]
+diffFilter = delta --color-only
+
+[merge]
+conflictstyle = diff3
+
+[diff]
+colorMoved = default
+
