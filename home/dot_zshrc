@@ -10,13 +10,23 @@ fi
 
 # Make utilities available
 PATH="$DOTFILES_DIR/bin:$PATH"
-. $DOTFILES_DIR/lib/function.zsh
 
-for DOTFILE in "$DOTFILES_DIR"/lib/{path,env,prompt,alias,conda,plugins,custom}.zsh; do
-  [ -f "$DOTFILE" ] && . "$DOTFILE"
+src=(
+  'base'
+  'function'
+  'path'
+  'env'
+  'prompt'
+  'alias'
+  'conda'
+  'plugins'
+)
+
+for dotfile in $src; do
+  . $DOTFILES_DIR/lib/$dotfile.zsh
 done
 
-unset DOTFILE
+unset dotfile
 
 DOTFILES_EXTRA_DIR="$HOME/.extra"
 
