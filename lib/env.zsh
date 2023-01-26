@@ -1,29 +1,5 @@
 #!/usr/bin/env zsh
 
-# XDG
-export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
-export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
-export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.local/cache}"
-
-export HISTFILE=~/.zsh_history
-export HISTSIZE=32768
-export HISTFILESIZE="${HISTSIZE}"
-export SAVEHIST=4096
-export HISTCONTROL=ignoredups:erasedups
-export LESS='-R'
-export LS_COLORS="ow=1;34:tw=1;34:st=00;"
-
-# add completions to fpath
-fpath=($DOTFILES_DIR/lib/completions $fpath)
-
-autoload -Uz compinit && compinit
-
-# Append to the history file, rather than overwriting it
-setopt APPEND_HISTORY
-
-# Disable autocd
-unsetopt autocd
-
 is-executable nvim && export EDITOR=nvim || export EDITOR=vim
 
 is-executable lf && source "$XDG_CONFIG_HOME/lf/lfcd.sh"
@@ -71,8 +47,8 @@ is-executable pnpm && \
 	export PNPM_HOME="$HOME/.local/share/pnpm"; \
 	add-to-path prepend "$PNPM_HOME"
 
-[ -d "$HOME/.pkgs/google-cloud-sdk" ] && \
-	source "$HOME/.pkgs/google-cloud-sdk/completion.zsh.inc"; \
+[[ -d "$HOME/.pkgs/google-cloud-sdk" ]] && \
+	. "$HOME/.pkgs/google-cloud-sdk/completion.zsh.inc"; \
 	add-to-path prepend "$HOME/.pkgs/google-cloud-sdk/bin"
 
 [ -d "$HOME/.deno" ] && \
@@ -82,7 +58,6 @@ is-executable pnpm && \
 if [ -d "$HOME/.bun" ]; then
 	# bun completions
   [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-
 	# bun
 	export BUN_INSTALL="$HOME/.bun"
 	add-to-path prepend "$BUN_INSTALL/bin"
