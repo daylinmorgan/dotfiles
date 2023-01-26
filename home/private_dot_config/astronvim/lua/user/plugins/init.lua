@@ -16,8 +16,9 @@ return {
     as = "catppuccin",
     config = d("zk"),
   },
-  -- { "LnL7/vim-nix" },
+  --
   -- language specific
+  { "LnL7/vim-nix" },
   { "alaviss/nim.nvim" },
   {
     "quarto-dev/quarto-vim",
