@@ -16,8 +16,8 @@ except ImportError:
     pass
 
 
-EGET_CONFIG = os.getenv("EGET_CONFIG", Path.home() /
-                        ".config" / "eget" / "eget.toml")
+EGET_CONFIG = Path(os.getenv("EGET_CONFIG", Path.home() /
+                        ".config" / "eget" / "eget.toml"))
 
 
 class Color:

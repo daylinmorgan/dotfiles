@@ -12,7 +12,7 @@ db d-build: ## build docker image
 	$(call msg,Building Docker Image)
 	@DOCKER_BUILDKIT=1 docker build \
 		--secret id=GITHUB_TOKEN \
-		--progress=plain \
+		$(if DOCKER_ARGS,$(DOCKER_ARGS),)\
 		-f docker/Dockerfile \
 		-t dots .
 

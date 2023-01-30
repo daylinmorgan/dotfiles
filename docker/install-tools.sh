@@ -1,21 +1,22 @@
 #!/usr/bin/env bash
 
-# eget() {
-# 	"$HOME/bin/eget" "$@"
-# }
-#
 export PATH="$PATH:/home/daylin/bin:/home/daylin/.dotfiles/bin"
 export EGET_BIN=/home/$USER/bin
 export EGET_CONFIG=/home/$USER/.config/eget/eget.toml
 export DOTFILES_DIR=/home/$USER/.dotfiles
 
+echo $HOME
+# until next version release
+cp "$EGET_CONFIG" "/root/.eget.toml"
+
 curl https://zyedidia.github.io/eget.sh | sh && mv ./eget ./bin/eget
 eget Tomwright/dasel --asset dasel_linux_amd64
 
-aweget $(awk '{printf "-i %s ", $0}' "$DOTFILES_DIR/docker/tools.txt")
+aweget --verbose \
+	$(awk '{printf "-i %s ", $0}' "$DOTFILES_DIR/docker/tools.txt")
 
 # eget rossmacarthur/sheldon
-eget tree-sitter/tree-sitter
+eget tree-sitter/tree-sitter --to "$EGET_BIN/tree-sitter"
 
 # installing nvim
 eget neovim/neovim --to ./nvim.appimage --pre-release

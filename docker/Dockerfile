@@ -30,13 +30,15 @@ RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
-
 USER "${USER}"
 WORKDIR /home/"${USER}"
 
 RUN sh -c "$(curl -fsLS https://chezmoi.io/get)"
 
-COPY . .dotfiles
+COPY --chown="${USER}:${USER}" . .dotfiles
+
+# let chezmoi add the plugins
+RUN git config --global --add safe.directory '*'
 
 RUN ./bin/chezmoi init \
   --apply \
@@ -52,15 +54,10 @@ USER root
 RUN --mount=type=secret,id=GITHUB_TOKEN \
   GITHUB_TOKEN=$(cat /run/secrets/GITHUB_TOKEN) \
   /home/daylin/.dotfiles/docker/install-tools.sh
-USER daylin
+USER "${USER}" 
 
 ENV DOTFILES_DIR="/home/daylin/.dotfiles" \
   PATH="$PATH:/home/daylin/bin:/home/daylin/.dotfiles/bin"
-
-# RUN tree
-RUN echo "$PATH"
-# get shell extensions
-RUN sheldon -q --config-file ~/.config/sheldon/plugins.toml lock
 
 # install general tools used by neovim
 RUN ~/.dotfiles/docker/install-dev-envs.sh
