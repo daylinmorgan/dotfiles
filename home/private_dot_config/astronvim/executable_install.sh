@@ -38,8 +38,8 @@ install-astronvim() {
 
 	git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 
-	echo "add brute force method of ignoring version complaints"
-	git -C "$HOME/.config/nvim" am "$HOME/.config/astronvim/patches/0001-remove-version-check.patch"
+	# echo "add brute force method of ignoring version complaints"
+	# git -C "$HOME/.config/nvim" am "$HOME/.config/astronvim/patches/0001-remove-version-check.patch"
 
 	nvim --headless -c 'autocmd User PackerComplete quitall'
 }

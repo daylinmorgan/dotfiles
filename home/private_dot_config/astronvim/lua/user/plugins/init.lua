@@ -26,6 +26,7 @@ return {
     },
     ft = { "quarto" },
   },
+  { "kenkundert/vim-nestedtext" },
   -- general tools
   {
     "mickael-menu/zk-nvim",
