@@ -5,8 +5,6 @@ excludesfile = /home/{{- .chezmoi.username -}}/.config/git/ignore
 name = {{ .name }}
 email = {{ .email }}
 
-
-
 [credential]
 helper = cache
 
@@ -41,6 +39,7 @@ cmt = !git commit -m \"time: $(date +\"%Y.%m.%d %H:%M:%S\")\"
 save = !git add -A && git commit -m \"time: $(date +\"%Y.%m.%d %H:%M:%S\")\"
 la = "!git config -l | grep alias | cut -c 7-"
 gl = config --global -l
+rb5 = rebase -i HEAD~5
 
 [filter "lfs"]
 clean = git-lfs clean -- %f
