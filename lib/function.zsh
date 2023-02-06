@@ -110,3 +110,20 @@ print-paths() {
 ta () {
 	tmux attach -t "$@"	|| tmux new-session -s "$@"
 }
+
+web () {
+	if [[ -z "$BROWSER" ]]; then
+		echo 'set $BROWSER'
+		return
+	fi
+	for i
+	do
+		if [[ ! -r $i ]]
+		then
+			echo "$0: file doesn't exist: \`$i'" >&2
+			continue
+		fi
+		$BROWSER "$i" > /dev/null 2>&1 &
+		disown
+	done
+}
