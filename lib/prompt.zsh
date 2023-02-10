@@ -23,4 +23,4 @@ zstyle ':completion::complete:make:*:targets' call-command true
 is-executable fzf && source $DOTFILES_DIR/lib/fzf.zsh
 
 # TODO: make this fail for both no-atuin and no is-tty
-is-executable atuin && is-tty || eval "$(atuin init zsh)"
+# is-executable atuin && is-tty || eval "$(atuin init zsh)"
