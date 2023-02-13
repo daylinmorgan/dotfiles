@@ -8,6 +8,7 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- init --apply git.dayl.in/daylin 
 ```
 
 From Mirror:
+
 ```bash
 sh -c "$(curl -fsLS https://chezmoi.io/get)" -- init --apply daylinmorgan -S ~/.dotfiles --ssh
 ```

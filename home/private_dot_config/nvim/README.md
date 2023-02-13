@@ -1,4 +1,10 @@
-# 💤 LazyVim
+# 💤 LazyVim based Neovim
 
-A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
-Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
+
+## Notes
+
+Currently includes a custom `treesitter` query for markdown to prevent it from hiding code block fences, when conceal is enabled.
+
+## TODO
+
+- [ ] make flake8 use a sensible line-length.... -> 88
