@@ -38,4 +38,16 @@ return {
       end,
     },
   },
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "stylua",
+        "shellcheck",
+        "shfmt",
+        "ruff",
+        "lua-language-server",
+      },
+    },
+  },
 }

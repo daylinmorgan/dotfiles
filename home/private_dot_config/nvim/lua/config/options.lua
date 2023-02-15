@@ -6,3 +6,4 @@ vim.opt.listchars = {
   nbsp = "␣",
 }
 vim.opt.foldenable = false
+vim.opt.timeoutlen = 200
