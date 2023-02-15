@@ -1,33 +1,33 @@
-.dotfiles/lib/plugins/base16:
+.dotfiles/plugins/base16:
   rereshPeriod: 168h
   type: git-repo
   url: https://github.com/chriskempson/base16-shell.git
 
-.dotfiles/lib/plugins/zsh-defer:
+.dotfiles/plugins/zsh-defer:
   rereshPeriod: 168h
   type: git-repo
   url: https://github.com/romkatv/zsh-defer.git
 
-.dotfiles/lib/plugins/zsh-syntax-highlighting:
+.dotfiles/plugins/zsh-syntax-highlighting:
   rereshPeriod: 168h
   type: git-repo
   url: https://github.com/zsh-users/zsh-syntax-highlighting.git
 
-.dotfiles/lib/plugins/fzf-tab:
+.dotfiles/plugins/fzf-tab:
   rereshPeriod: 168h
   type: git-repo
   url: https://github.com/Aloxaf/fzf-tab.git
 
-.dotfiles/lib/plugins/oh-my-zsh:
+.dotfiles/plugins/oh-my-zsh:
   type: archive
   url: https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz
   stripComponents: 2
   refreshPeriod: 168h
   include:
-    - "*/lib/{clipboard,completion}.zsh"
+    - "*/{clipboard,completion}.zsh"
     - "*/plugins/{dotenv,extract}/**"
 
-.dotfiles/lib/plugins/fzf:
+.dotfiles/plugins/fzf:
   type: archive
   # type: git-repo
   url: https://github.com/junegunn/fzf/archive/master.tar.gz

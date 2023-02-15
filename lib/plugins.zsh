@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-PLUGINS_DIR=$DOTFILES_DIR/lib/plugins
+PLUGINS_DIR=$DOTFILES_DIR/plugins
 
 source $PLUGINS_DIR/zsh-defer/zsh-defer.plugin.zsh
 
