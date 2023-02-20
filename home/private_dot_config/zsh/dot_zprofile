@@ -34,6 +34,11 @@ path=(
   $path
 )
 
+# start by sourcing extras
+for rcfile in $HOME/.extra/runcom/*; do
+  source $rcfile
+done
+
 #
 # Less
 #
