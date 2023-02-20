@@ -1,4 +1,6 @@
+# utility
 romkatv/zsh-bench kind:path
+
 
 ohmyzsh/ohmyzsh path:lib/clipboard.zsh
 ohmyzsh/ohmyzsh path:plugins/copybuffer
@@ -14,9 +16,7 @@ belak/zsh-utils path:utility
 zdharma-continuum/fast-syntax-highlighting kind:defer
 Aloxaf/fzf-tab kind:defer
 
-zsh-users/zsh-completions path:src kind:fpath
-# doesn't play well with fzf-tab
-# belak/zsh-utils path:completion
+# zsh-users/zsh-completions path:src kind:fpath
 
 junegunn/fzf path:shell/completion.zsh
 junegunn/fzf path:shell/key-bindings.zsh
@@ -25,7 +25,3 @@ junegunn/fzf path:shell/key-bindings.zsh
 mattmc3/zshrc.d
 ~/.config/zsh/plugins/zexists
 
-# These popular core plugins should be loaded at the end
-# zsh-users/zsh-autosuggestions kind:defer
-
-# vim: ft=zsh sw=2 ts=2 et
