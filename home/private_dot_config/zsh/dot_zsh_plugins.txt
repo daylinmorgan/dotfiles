@@ -1,34 +1,4 @@
-#
-# .zsh_plugins.txt - antidote plugins file
-#
-
-### Overview
-#
-# The `.zsh_plugins.txt` file is used by antidote to configure Zsh bundles. Bundles are
-# just a fancy way of referring to Zsh utilities, frameworks, prompts, or plugins.
-# `.zsh_plugins.txt` is used by antidote to generate a static `.zsh_plugins.zsh` file,
-# which can then be sourced in your `.zshrc`. You can use this file as a starting point
-# for your own config. Strip out instructional comments (ie: lines beginning with a '#')
-# and any plugins you don't need, then add what you like and make it yours!
-#
-# NOTE: Order matters in this file! Some bundles need to be last, and others are
-# prerequisites. Read the documentation for the plugins you use to ensure proper
-# configuration.
-#
-###
-
-
-### Utilities
-#
-# Utilities aren't traditional Zsh plugins - they aren't sourced Zsh scripts. Instead
-# they provide commands that can be executed from your terminal session. One good
-# example is zsh-bench, which is a utility that benchmarks your Zsh config. Utility
-# bundles can often be made available simply with the `kind:path` annotation.
-#
-###
 romkatv/zsh-bench kind:path
-
-### Framework: Oh-My-Zsh
 
 ohmyzsh/ohmyzsh path:lib/clipboard.zsh
 ohmyzsh/ohmyzsh path:plugins/copybuffer
@@ -38,67 +8,16 @@ ohmyzsh/ohmyzsh path:plugins/extract
 ohmyzsh/ohmyzsh path:plugins/magic-enter
 ohmyzsh/ohmyzsh path:plugins/fancy-ctrl-z
 
-### Framework: zsh-utils
-#
-# zsh-utils is a micro-framework that is also well suited to pair with antidote. It
-# provides much of the same core functionality from other bigger frameworks without the
-# bloat or performance hit. Using zsh-utils, you may find you don't need much else.
-# If you want a really thin framework, this is great.
-#
-###
 belak/zsh-utils path:history
 belak/zsh-utils path:utility
-#belak/zsh-utils path:editor
-#belak/zsh-utils path:prompt
-#belak/zsh-utils path:completion
 
-
-### Deferred Plugins
-#
-# Antidote allows you to defer loading plugins. This is similar to concepts like "turbo
-# mode" in other plugin managers. Antidote handles deferring plugins by leveraging
-# romkatv/zsh-defer, which "defers execution of a zsh command until zsh has nothing else
-# to do and is waiting for user input". In general, you should not defer plugins unless
-# you know for sure they properly support deferred loading, and there are no adverse
-# side-effects (see: https://github.com/romkatv/zsh-defer#Caveats). However, for
-# certain plugins, this can greatly increase your zsh startup speed.
-#
-###
-# Syntax highlighting
-#zsh-users/zsh-syntax-highlighting kind:defer
 zdharma-continuum/fast-syntax-highlighting kind:defer
 Aloxaf/fzf-tab kind:defer
 
-### Completions
-#
-# You may want to add some additional completions to Zsh. Completions look in your fpath
-# for completion functions, which are functions named with a leading underscore
-# (eg: _git). You need to add all supplemental completions to your fpath prior to
-# running `compinit` to use completions functionality properly. You will want to find
-# a completion plugin that runs `compinit` for you, or you can run it yourself in
-# your .zshrc after antidote loads like this:
-#
-#   autoload -Uz compinit && compinit
-#
-###
-
-# zsh-users/zsh-completions is a popular plugin for adding supplemental completions.
-# We combine the `path:` and `kind:fpath` annotations here:
 zsh-users/zsh-completions path:src kind:fpath
+# doesn't play well with fzf-tab
+# belak/zsh-utils path:completion
 
-# Compinit plugins should be near the end of .zsh_plugins.txt so that $fpath has been
-# fully populated. Use zsh-utils for its completion plugin.
-belak/zsh-utils path:completion
-
-
-### Final Plugins
-#
-# Remember plugin order matters! Put plugins that need run last at the bottom of your
-# .zsh_plugins.txt file.
-#
-###
-
-# Add fzf completions scripts
 junegunn/fzf path:shell/completion.zsh
 junegunn/fzf path:shell/key-bindings.zsh
 
@@ -107,7 +26,6 @@ mattmc3/zshrc.d
 ~/.config/zsh/plugins/zexists
 
 # These popular core plugins should be loaded at the end
-zsh-users/zsh-autosuggestions kind:defer
-zsh-users/zsh-history-substring-search
+# zsh-users/zsh-autosuggestions kind:defer
 
 # vim: ft=zsh sw=2 ts=2 et

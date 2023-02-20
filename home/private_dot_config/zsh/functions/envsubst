@@ -1,6 +1,5 @@
 ##? envsubst - fall-back wrapper in the event the envsubst command does not exist.
 
-# function envsubst {
 if (( ! $+commands[envsubst] )); then
   function envsubst {
     command envsubst "$@"
@@ -10,6 +9,5 @@ else
     python -c 'import os,sys;[sys.stdout.write(os.path.expandvars(l)) for l in sys.stdin]'
   }
 fi
-# }
 
 # vim: ft=zsh sw=2 ts=2 et

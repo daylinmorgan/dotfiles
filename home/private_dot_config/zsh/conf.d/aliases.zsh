@@ -14,7 +14,7 @@ alias rr="rm -rf"
 # more ways to ls
 alias ls="ls --group-directories-first --color=always"
 alias l='ls -lh'
-alias la='ls -lAh'
+alias la='ls -a'
 alias ldot='ls -ld .*'
 alias lr='ls -R'
 alias lsl="ls -lhFA --color=always | less"
@@ -35,3 +35,4 @@ alias urlencode='python3 -c "import sys, urllib.parse as ul; \
 alias zshrc='${EDITOR:-vim} "${ZDOTDIR:-$HOME}"/.zshrc'
 # alias zbench='for i in {1..10}; do /usr/bin/time zsh -lic exit; done'
 alias zdot='cd ${ZDOTDIR:-~}'
+
