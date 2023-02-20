@@ -1,5 +1,6 @@
 
 alias umamba=micromamba
+alias um=micromamba
 
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba init' !!
