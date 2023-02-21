@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 function source-zshcmdd {
   setopt extended_glob
 
@@ -35,15 +37,13 @@ function source-zshcmdd {
 source-zshcmdd
 
 function zshdir-decode {
-  # echo ${${1//--DOLLAR--/$}//--SLASH--/\/} | envsubst
   # for now just remove the 'dir' part
-  # :3 for 'dir'
-  echo ${${1//-DOLLAR-/$}//-SLASH-/\/} | envsubst
+  echo ${${1//-SLASH-//}/-DOT-/\.}
 }
 
 function zshdir-encode {
   # dir is hardcoded...
-  echo dir${${1//${HOME}/\-DOLLAR-HOME}//\//-SLASH-}
+  echo dir${${1//${HOME}\//}//\//-SLASH-}
 }
 
 
@@ -82,12 +82,11 @@ function source-zshpathd {
       return 1
     fi
 
-
     # ignore files that begin with a tilde
     case ${rcfile:t} in '~'*) continue;; esac
     # remove 'dir' from name
-    name=${${rcfile:t}/$pathtype/}
-    directory=$(zshdir-decode ${name})
+    name=${${rcfile:t}/${pathtype}-/}
+    directory=$HOME/$(zshdir-decode ${name})
     # source files only if exe with that name exists
     if [[ -d $directory ]]; then
       source $rcfile
@@ -101,3 +100,4 @@ function source-zshpathd {
 
 source-zshpathd
 
+unset _envsubst
