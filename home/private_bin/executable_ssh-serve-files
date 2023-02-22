@@ -13,7 +13,7 @@ ssh-serve-files
 usage: ssh-serve-files [user@]hostname [-p port] [-d dir]
 
 optional flags:
-  -h, --help  show this help text
+  -h, --help   show this help text
   -p, --port   port to tunnel and start http server at
   -d, --dir    directory of files to serve [default: ~/]
 EOF
