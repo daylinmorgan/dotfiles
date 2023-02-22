@@ -22,10 +22,9 @@ function source-zshcmdd {
   # sort and source conf files
   for rcfile in ${(o)conf_files}; do
     # ignore files that begin with a tilde and antircfiles
-    case ${rcfile:t} in 'anti'*|'~'*) continue;; esac
-
+    case ${rcfile:t} in 'anti'* | '~'*) continue;; esac
     # source files only if exe with that name exists
-    if (( ! $+commands[{rcfile:t:r}] )); then
+    if (( $+commands[${rcfile:t:r}] )); then
       source "$rcfile"
     else
       # if it doesn't exist try the anti version
