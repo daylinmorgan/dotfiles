@@ -10,6 +10,7 @@
 .zdirs
 .zsh_history
 .zsh_plugins.zsh
+.extras
 *.bak
 *.local
 *.local.zsh
