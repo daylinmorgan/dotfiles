@@ -1,0 +1,56 @@
+#!/usr/bin/env zsh
+
+#? WIP config file editor
+
+# TODO: don't error if directory doesn't exist
+# Maybe use globs? or betters substitution
+
+declare -a configs
+
+configs=(
+	wezterm
+	pdm
+	bat
+	micromamba
+	alacritty
+	rmapi
+	tea
+	chezmoi
+	lazygit
+	pip
+	conda
+	nvim
+	nim
+	glab-cli
+	starship
+	git
+	xplr
+	rclone
+	gtk-3.0
+	zsh
+	gh
+	aconfmgr
+	asciinema
+	restic
+	tmux
+	autorandr
+	mangal
+	seqdat
+	vivid
+	eget
+	lsd
+	qmk
+	lazydocker
+	gcloud
+	glow
+)
+
+setopt RC_EXPAND_PARAM
+setopt EXTENDED_GLOB
+
+# selection=$(find ${HOME/.config/${configs}(N)} -type f -not -path '*/\.git/*' -not -path '*/__pycache__/*' | fzf -m)
+
+find $HOME/.config/${configs} -type f \
+	-not -path '*/\.git/*' -not -path '*/__pycache__/*' |
+	fzf --multi --print0 | xargs -0 -o $EDITOR
+
