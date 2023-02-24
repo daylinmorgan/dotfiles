@@ -38,7 +38,7 @@ path=(
 )
 
 # start by sourcing extras
-for rcfile in $ZDOTDIR/.extras/current/*(N); do
+for rcfile in $ZDOTDIR/.extras/current/*.{,z}sh(N); do
   source $rcfile
 done
 
