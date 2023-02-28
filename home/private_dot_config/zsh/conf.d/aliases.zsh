@@ -12,7 +12,7 @@ alias vi=vim
 alias rr="rm -rf"
 
 # more ways to ls
-alias ls="ls --group-directories-first --color=always"
+alias ls="${aliases[ls]:-ls} --group-directories-first --color=auto"
 alias l='ls -lh'
 alias la='ls -a'
 alias ldot='ls -ld .*'
