@@ -1,5 +1,3 @@
-
-
 from macros import error
 from strutils import `%`, endsWith, strip, replace
 from sequtils import filterIt, concat
