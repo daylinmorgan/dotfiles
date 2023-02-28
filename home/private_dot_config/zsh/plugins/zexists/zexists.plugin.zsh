@@ -15,7 +15,6 @@ function source-zshcmdd {
     echo >&2 "zexists: dir not found '${ZSHCMDD:-${ZDOTDIR:-$HOME}/zexists.d/cmd}'"
     return 1
   fi
-
   local -a conf_files=("$zshcmdd[1]"/*.{sh,zsh}(N))
   local rcfile
   local antircfile
@@ -33,7 +32,6 @@ function source-zshcmdd {
     fi
   done
 }
-source-zshcmdd
 
 function zshdir-decode {
   # for now just remove the 'dir' part
@@ -88,15 +86,18 @@ function source-zshpathd {
     directory=$HOME/$(zshdir-decode ${name})
     # source files only if exe with that name exists
     if [[ -d $directory ]]; then
+      # echo "$directory"
       source $rcfile
     else
-      # if it doesn't exist try the anti version
-      antircfile=${rcfile:h}/anti-${pathtype}-${rcfile:t}
-      [[ -f $antircfile ]] && source $antircfile
+      # TODO: antirc naming broken
+      # # if it doesn't exist try the anti version
+      # antircfile="${rcfile:h}/anti-${pathtype}-${rcfile:t}"
+      # [[ -f $antircfile ]] && source $antircfile
     fi
+
   done
+
 }
 
-source-zshpathd
-
-unset _envsubst
+source-zshcmdd || echo >&2 'issues loading zexists.d/cmd'
+source-zshpathd || echo >&2 'issues loading zexists.d/path'
