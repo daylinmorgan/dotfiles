@@ -1,7 +1,6 @@
 # utility
 romkatv/zsh-bench kind:path
 
-
 ohmyzsh/ohmyzsh path:lib/clipboard.zsh
 ohmyzsh/ohmyzsh path:plugins/copybuffer
 ohmyzsh/ohmyzsh path:plugins/copyfile
@@ -11,12 +10,9 @@ ohmyzsh/ohmyzsh path:plugins/magic-enter
 ohmyzsh/ohmyzsh path:plugins/fancy-ctrl-z
 
 belak/zsh-utils path:history
-belak/zsh-utils path:utility
 
 zdharma-continuum/fast-syntax-highlighting kind:defer
 Aloxaf/fzf-tab kind:defer
-
-# zsh-users/zsh-completions path:src kind:fpath
 
 junegunn/fzf path:shell/completion.zsh
 junegunn/fzf path:shell/key-bindings.zsh
@@ -24,4 +20,3 @@ junegunn/fzf path:shell/key-bindings.zsh
 # Source everything in $ZDOTDIR/rc.d prior to wrapping up.
 mattmc3/zshrc.d
 ~/.config/zsh/plugins/zexists
-
