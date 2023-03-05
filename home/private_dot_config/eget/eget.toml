@@ -2,6 +2,10 @@
 target = "~/bin/"
 asset_filters = ["^musl"]
 
+["solidiquis/erdtree"]
+asset_filters = ["x86_64-unknown-linux-gnu"]
+file = "et"
+
 ["ellie/atuin"]
 
 ["sharkdp/bat"]
