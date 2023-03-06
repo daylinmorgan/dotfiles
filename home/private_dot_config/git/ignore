@@ -2,3 +2,6 @@
 tmp/
 _TODO.md
 .todo.md
+
+# LibreOffice locks
+.~lock.*#
