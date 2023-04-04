@@ -65,4 +65,11 @@ return {
       }
     end,
   },
+  {
+    -- can remove once https://github.com/LazyVim/LazyVim/pull/521 is merged
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      opts.ignore_install = { "help" }
+    end,
+  },
 }
