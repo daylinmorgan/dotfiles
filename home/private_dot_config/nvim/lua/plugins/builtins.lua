@@ -46,7 +46,7 @@ return {
         "shfmt",
         "ruff",
         "ruff-lsp",
-        "nimlsp",
+        -- "nimlsp",
         "lua-language-server",
       },
     },
