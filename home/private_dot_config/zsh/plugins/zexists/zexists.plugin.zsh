@@ -43,7 +43,6 @@ function zshdir-encode {
   echo dir${${1//${HOME}\//}//\//-SLASH-}
 }
 
-
 function source-zshpathd {
   setopt extended_glob
 
@@ -99,5 +98,5 @@ function source-zshpathd {
 
 }
 
-source-zshcmdd || echo >&2 'issues loading zexists.d/cmd'
-source-zshpathd || echo >&2 'issues loading zexists.d/path'
+source-zshcmdd
+source-zshpathd
