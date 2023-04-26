@@ -18,3 +18,4 @@ gen() {
 echo "GENERATING COMPLETION SCRIPTS"
 echo "-----------------------------"
 gen pdm completion zsh
+gen chezmoi completion zsh

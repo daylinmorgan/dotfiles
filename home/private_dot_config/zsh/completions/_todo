@@ -1,0 +1,4 @@
+#compdef todo
+
+# show files in the functions dir (exclude dirs)
+_path_files -W "$PWD" -g "**/*(.)"
