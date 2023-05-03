@@ -72,4 +72,10 @@ return {
       opts.ignore_install = { "help" }
     end,
   },
+  {
+    "neovim/nvim-lspconfig",
+    setup = function(_, opts)
+      require("lspconfig").nim_langserver.setup({})
+    end,
+  },
 }
