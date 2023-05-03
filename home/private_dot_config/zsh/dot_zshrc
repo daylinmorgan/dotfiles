@@ -61,3 +61,4 @@ fi
 # Source your static plugins file.
 source $zsh_plugins
 
+(( $+commands[todo] )) && todo show -s
