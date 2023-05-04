@@ -24,19 +24,6 @@ return {
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
     end,
   },
-
-  -- add telescope-fzf-native
-  -- do I need this tho? maybe the native is faster?
-  {
-    "telescope.nvim",
-    dependencies = {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-      config = function()
-        require("telescope").load_extension("fzf")
-      end,
-    },
-  },
   {
     "williamboman/mason.nvim",
     opts = {
