@@ -7,4 +7,5 @@ return {
       })
     end,
   },
+  { "lambdalisue/suda.vim" },
 }
