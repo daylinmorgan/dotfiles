@@ -7,3 +7,4 @@ if [ -z "$1" ]; then
 else
 	tmux new-session -s "$1"
 fi
+
