@@ -10,6 +10,7 @@ else
 	SESSION="$1"
 fi
 
+echo $(which tmux)
 # sanitize name
 SESSION="${SESSION:gs/\./_}"
 
