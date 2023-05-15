@@ -1,7 +1,15 @@
 - .git/**
 - .vscode/**
+
+# office lock files
 - ~$*
-# libre office files
 - .~*#
+
+# node
 - node_modules/**
+
+# python
+- .venv/**
+- venv/**
+- env/**
 + **

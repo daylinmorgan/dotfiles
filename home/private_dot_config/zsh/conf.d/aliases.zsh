@@ -31,8 +31,11 @@ alias urldecode='python3 -c "import sys, urllib.parse as ul; \
 alias urlencode='python3 -c "import sys, urllib.parse as ul; \
     print (ul.quote_plus(sys.argv[1]))"'
 
+alias rclone='rclone --filter-from ~/.config/rclone/filter-file.txt'
+
 # alias zbench='for i in {1..10}; do /usr/bin/time zsh -lic exit; done'
 alias zdot='cd ${ZDOTDIR:-~}'
 alias dots='cd ${DOTFILES_DIR:-~/.dotfiles}'
 alias today="date +'%Y-%m-%d'"
 alias dots-drop='chezmoi forget --interactive $(chezmoi managed -p absolute | fzf)'
+
