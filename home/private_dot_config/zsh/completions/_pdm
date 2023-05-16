@@ -21,6 +21,7 @@ _pdm() {
     'completion:Generate completion scripts for the given shell'
     'config:Display the current configuration'
     'export:Export the locked packages set to other formats'
+    'fix:Fix the project problems according to the latest version of PDM'
     'import:Import project metadata from other formats'
     'info:Show the project information'
     'init:Initialize a pyproject.toml for PDM'
@@ -36,13 +37,14 @@ _pdm() {
     'sync:Synchronize the current working set with lock file'
     'update:Update package(s) in pyproject.toml'
     'use:Use the given python version or path as base interpreter'
+    'venv:Virtualenv management'
   )
 
   _arguments -s -C -A '-*' \
     $arguments \
     {-c,--config}'[Specify another config file path(env var: PDM_CONFIG_FILE)]' \
     {-V,--version}'[Show the version and exit]' \
-    {-I,--ignore-python}'[Ignore the Python path saved in the .pdm.toml config]' \
+    {-I,--ignore-python}'[Ignore the Python path saved in .pdm-python]' \
     '--pep582:Print the command line to be eval by the shell:shell:(zsh bash fish tcsh csh)' \
     '*:: :->_subcmds' \
     && return 0
@@ -71,10 +73,12 @@ _pdm() {
         '--update-all[Update all dependencies and sub-dependencies]'
         '--no-editable[Install non-editable versions for all packages]'
         "--no-self[Don't install the project itself]"
+        '--venv[Run the command in the virtual environment with the given key. (env var: PDM_IN_VENV)]:venv:'
         {-k,--skip}'[Skip some tasks and/or hooks by their comma-separated names]'
         {-u,--unconstrained}'[Ignore the version constraint of packages]'
         {--pre,--prerelease}'[Allow prereleases to be pinned]'
         {-e+,--editable+}'[Specify editable packages]:packages'
+        {-x,--fail-fast}'[Abort on first installation error]'
         "--no-isolation[do not isolate the build in a clean environment]"
         "--dry-run[Show the difference only without modifying the lockfile content]"
         '*:packages:_pdm_pip_packages'
@@ -149,6 +153,13 @@ _pdm() {
         "--no-default[Don't include dependencies from the default group]"
       )
       ;;
+    fix)
+      arguments+=(
+        {-g,--global}'[Use the global project, supply the project root with `-p` option]'
+        '--dry-run[Only show the problems]'
+        '1:problem:'
+      )
+      ;;
     import)
       arguments+=(
         {-g,--global}'[Use the global project, supply the project root with `-p` option]'
@@ -163,6 +174,8 @@ _pdm() {
         '--where[Show the project root path]'
         '--env[Show PEP 508 environment markers]'
         '--packages[Show the packages root]'
+        '--json[Dump the information in JSON]'
+        '--venv[Run the command in the virtual environment with the given key. (env var: PDM_IN_VENV)]:venv:'
       )
       ;;
     init)
@@ -170,6 +183,8 @@ _pdm() {
         {-g,--global}'[Use the global project, supply the project root with `-p` option]'
         {-n,--non-interactive}"[Don't ask questions but use default values]"
         {-k,--skip}'[Skip some tasks and/or hooks by their comma-separated names]'
+        '--backend[Specify the build backend]:backend:(pdm-backend setuptools hatchling flit pdm-pep517)'
+        '--lib[Create a library project]'
         '--python[Specify the Python version/path to use]:python:'
       )
       ;;
@@ -185,9 +200,12 @@ _pdm() {
         "--no-default[Don\'t include dependencies from the default group]"
         '--no-editable[Install non-editable versions for all packages]'
         "--no-self[Don't install the project itself]"
+        {-x,--fail-fast}'[Abort on first installation error]'
         "--no-isolation[do not isolate the build in a clean environment]"
         "--dry-run[Show the difference only without modifying the lock file content]"
         "--check[Check if the lock file is up to date and fail otherwise]"
+        "--plugins[Install the plugins specified in pyproject.toml]"
+        '--venv[Run the command in the virtual environment with the given key. (env var: PDM_IN_VENV)]:venv:'
       )
       ;;
     list)
@@ -203,7 +221,8 @@ _pdm() {
         "--freeze[Show the installed dependencies as pip's requirements.txt format]"
         "--include[Dependency groups to include in the output. By default all are included]:include:"
         "--exclude[Dependency groups to exclude from the output]:exclude:"
-        "--resolve[Resolve all requirements to output licenses (instead of just showing those currently installed)"
+        "--resolve[Resolve all requirements to output licenses (instead of just showing those currently installed)]"
+        '--venv[Run the command in the virtual environment with the given key. (env var: PDM_IN_VENV)]:venv:'
       )
       ;;
     lock)
@@ -214,6 +233,11 @@ _pdm() {
         {-k,--skip}'[Skip some tasks and/or hooks by their comma-separated names]'
         "--refresh[Don't update pinned versions, only refresh the lock file]"
         "--check[Check if the lock file is up to date and quit]"
+        {-G+,--group+}'[Select group of optional-dependencies or dev-dependencies(with -d). Can be supplied multiple times, use ":all" to include all groups under the same species]:group:_pdm_groups'
+        {-d,--dev}"[Select dev dependencies]"
+        {--prod,--production}"[Unselect dev dependencies]"
+        "--no-default[Don\'t include dependencies from the default group]"
+        "--no-cross-platform[Only lock packages for the current platform]"
       )
       ;;
     self)
@@ -288,8 +312,10 @@ _pdm() {
         "--no-sync[Only write pyproject.toml and do not uninstall packages]"
         '--no-editable[Install non-editable versions for all packages]'
         "--no-self[Don't install the project itself]"
+        {-x,--fail-fast}'[Abort on first installation error]'
         "--no-isolation[do not isolate the build in a clean environment]"
         "--dry-run[Show the difference only without modifying the lockfile content]"
+        '--venv[Run the command in the virtual environment with the given key. (env var: PDM_IN_VENV)]:venv:'
         "*:packages:_pdm_packages"
       )
       ;;
@@ -297,8 +323,10 @@ _pdm() {
       _arguments -s \
         {-g,--global}'[Use the global project, supply the project root with `-p` option]' \
         {-l,--list}'[Show all available scripts defined in pyproject.toml]' \
+        '--json[Output all scripts infos in JSON]' \
         {-k,--skip}'[Skip some tasks and/or hooks by their comma-separated names]' \
         {-s,--site-packages}'[Load site-packages from the selected interpreter]' \
+        '--venv[Run the command in the virtual environment with the given key. (env var: PDM_IN_VENV)]:venv:' \
         '(-)1:command:->command' \
         '*:arguments: _normal ' && return 0
       if [[ $state == command ]]; then
@@ -322,6 +350,7 @@ _pdm() {
         '--license[Show license]'
         '--platform[Show platform]'
         '--keywords[Show keywords]'
+        '--venv[Run the command in the virtual environment with the given key. (env var: PDM_IN_VENV)]:venv:'
         '1:package:'
       )
       ;;
@@ -338,9 +367,11 @@ _pdm() {
         '--clean[Clean unused packages]'
         "--only-keep[Only keep the selected packages]"
         "--no-default[Don\'t include dependencies from the default group]"
+        {-x,--fail-fast}'[Abort on first installation error]'
         '--no-editable[Install non-editable versions for all packages]'
         "--no-self[Don't install the project itself]"
         "--no-isolation[do not isolate the build in a clean environment]"
+        '--venv[Run the command in the virtual environment with the given key. (env var: PDM_IN_VENV)]:venv:'
       )
       ;;
     update)
@@ -367,7 +398,9 @@ _pdm() {
         {-t,--top}'[Only update those list in pyproject.toml]'
         "--dry-run[Show the difference only without modifying the lockfile content]"
         "--outdated[Show the difference only without modifying the lockfile content]"
+        {-x,--fail-fast}'[Abort on first installation error]'
         "--no-isolation[do not isolate the build in a clean environment]"
+        '--venv[Run the command in the virtual environment with the given key. (env var: PDM_IN_VENV)]:venv:'
         "*:packages:_pdm_packages"
       )
       ;;
@@ -375,8 +408,57 @@ _pdm() {
       arguments+=(
         {-f,--first}'[Select the first matched interpreter]'
         {-i,--ignore-remembered}'[Ignore the remembered selection]'
+        '--venv[Use the interpreter in the virtual environment with the given name]:venv:'
         '*:python:_files'
       )
+      ;;
+    venv)
+      _arguments -C \
+        $arguments \
+        ': :->command' \
+        '*:: :->args' && ret=0
+      case $state in
+        command)
+          local -a actions=(
+            "create:Create a virtualenv"
+            "list:List all virtualenvs associated with this project"
+            "remove:Remove the virtualenv with the given name"
+            "activate:Activate the virtualenv with the given name"
+            "purge:Purge selected/all created Virtualenvs"
+          )
+          arguments+=(
+            '--path[Show the path to the given virtualenv]'
+            '--python[Show the Python interpreter path of the given virtualenv]'
+          )
+          _describe -t command 'pdm venv actions' actions && ret=0
+          ;;
+        args)
+          case $words[1] in
+            create)
+              arguments+=(
+                {-w,--with}'[Specify the backend to create the virtualenv]:backend:(virtualenv venv conda)'
+                '--with-pip[Install pip with the virtualenv]'
+                {-n,--name}'[Specify the name of the virtualenv]:name:'
+                {-f,--force}'[Recreate if the virtualenv already exists]'
+              )
+              ;;
+            remove)
+              arguments+=(
+                {-y,--yes}'[Answer yes on the following question]'
+              )
+              ;;
+            purge)
+              arguments+=(
+                {-f,--force}'[Force purging without prompting for confirmation]'
+                {-i,--interactive}'[Interactively purge selected Virtualenvs]'
+              )
+              ;;
+            *)
+              ;;
+          esac
+          ;;
+      esac
+      return $ret
       ;;
   esac
 
