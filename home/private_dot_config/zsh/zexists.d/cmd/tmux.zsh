@@ -4,5 +4,5 @@ alias t-labbook="$DOTFILES_DIR/tmux/labbook.sh"
 # alias t='tmux'
 alias ta='tmux attach -t'
 # alias tn='tmux new-session -s'
-alias tls='tmux list-sessions'
+alias tl='tmux list-sessions'
 
