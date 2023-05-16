@@ -1,4 +1,6 @@
 # Dotfile Todo's
 
-- [x] make a command to 'forget' files using fzf as selector
-<!-- i.e. something line chezmoi forget --interactive ~/$(chezmoi managed | fzf) -->
+<!-- i.e. something like chezmoi forget --interactive ~/$(chezmoi managed | fzf) -->
+- [ ] make a command to 'forget' files using fzf as selector
+
+- [ ] deal with the abomination that is the ./vscode directory
