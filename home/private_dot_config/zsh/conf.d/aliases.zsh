@@ -38,4 +38,5 @@ alias zdot='cd ${ZDOTDIR:-~}'
 alias dots='cd ${DOTFILES_DIR:-~/.dotfiles}'
 alias today="date +'%Y-%m-%d'"
 alias dots-drop='chezmoi forget --interactive $(chezmoi managed -p absolute | fzf)'
+alias dots-add='chezmoi re-add --interactive'
 

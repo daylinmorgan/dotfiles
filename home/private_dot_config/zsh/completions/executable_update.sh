@@ -20,3 +20,4 @@ echo "-----------------------------"
 gen pdm completion zsh
 gen chezmoi completion zsh
 gen rye self completion -s zsh
+gen gh completion -s zsh
