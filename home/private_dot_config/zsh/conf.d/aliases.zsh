@@ -40,3 +40,5 @@ alias today="date +'%Y-%m-%d'"
 alias dots-drop='chezmoi forget --interactive $(chezmoi managed -p absolute | fzf)'
 alias dots-add='chezmoi re-add --interactive'
 
+alias viv-remote='python3 <(curl -fsSL gh.dayl.in/viv/viv.py)'
+alias viv-dev='python3 <(curl -fsSL https://raw.githubusercontent.com/daylinmorgan/viv/dev/src/viv/viv.py)'
