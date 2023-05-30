@@ -1,9 +1,5 @@
 return {
   {
-    "folke/tokyonight.nvim",
-    enabled = false,
-  },
-  {
     "LazyVim/LazyVim",
     version = false,
     opts = {
