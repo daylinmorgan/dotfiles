@@ -14,6 +14,9 @@ read_only = " "
 # Catppuccin 'lavender'
 style = "bold lavender"
 
+[hostname]
+ssh_symbol = "󰖟 "
+
 [gcloud]
 disabled = true
 
