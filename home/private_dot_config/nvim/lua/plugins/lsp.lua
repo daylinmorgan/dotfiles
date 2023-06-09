@@ -4,7 +4,24 @@ return {
   opts = {
     ---@type lspconfig.options
     servers = {
-      -- pyright will be automatically installed with mason and loaded with lspconfig
+      pylsp = {
+        settings = {
+          pylsp = {
+            plugins = {
+              -- I'll do the formatting myself
+              autopep8 = { enabled = false },
+              mccabe = { enabled = false },
+              pycodestyle = { enabled = false },
+              pyflakes = { enabled = false },
+              yapf = { enabled = false },
+              ruff = {
+                enabled = true,
+                extendSelect = { "I" },
+              },
+            },
+          },
+        },
+      },
       nim_langserver = {},
     },
   },
