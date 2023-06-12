@@ -3,5 +3,5 @@
 if [[ "$*" == *"-j"* || "$*" == *"--jobs"* || "$*" == *"--cores"* ]]; then
     snakemake $@
 else
-    snakemake -j all $@
+    snakemake --cores all $@
 fi
