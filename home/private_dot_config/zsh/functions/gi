@@ -1,5 +1,0 @@
-#!/usr/bin/env zsh
-##? use toptal.com api to generate gitignore file
-
-curl -sL "https://www.toptal.com/developers/gitignore/api/$@"
-
