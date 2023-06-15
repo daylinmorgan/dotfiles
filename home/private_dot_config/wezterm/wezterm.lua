@@ -27,5 +27,4 @@ return {
 	bold_brightens_ansi_colors = true,
 	default_gui_startup_args = { "start", "--always-new-process" },
 	keys = keys.keys,
-	key_tables = keys.key_tables,
 }
