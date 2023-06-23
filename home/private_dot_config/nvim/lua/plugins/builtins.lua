@@ -30,10 +30,9 @@ return {
       ensure_installed = {
         "stylua",
         "shellcheck",
-        "shfmt",
         "ruff",
         "ruff-lsp",
-        -- "nimlsp",
+        "nimlangserver",
         "lua-language-server",
       },
     },
