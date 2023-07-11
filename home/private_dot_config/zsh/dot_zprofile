@@ -29,7 +29,7 @@ path=(
   $HOME/{,.local/}{,s}bin(N)
   $HOME/.extra/bin(N)
 
-  $HOME/{.go,.cargo}/bin(N)
+  $HOME/{.go,.cargo,.pixi}/bin(N)
 
   /opt/local/{,s}bin(N)
   /usr/{,local/}{,s}bin(N)
