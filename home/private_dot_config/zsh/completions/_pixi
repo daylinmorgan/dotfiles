@@ -1,0 +1,768 @@
+#compdef pixi
+
+autoload -U is-at-least
+
+_pixi() {
+    typeset -A opt_args
+    typeset -a _arguments_options
+    local ret=1
+
+    if is-at-least 5.2; then
+        _arguments_options=(-s -S -C)
+    else
+        _arguments_options=(-s -C)
+    fi
+
+    local context curcontext="$curcontext" state line
+    _arguments "${_arguments_options[@]}" \
+'*-v[More output per occurrence]' \
+'*--verbose[More output per occurrence]' \
+'(-v --verbose)*-q[Less output per occurrence]' \
+'(-v --verbose)*--quiet[Less output per occurrence]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+":: :_pixi_commands" \
+"*::: :->pixi" \
+&& ret=0
+    case $state in
+    (pixi)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:pixi-command-$line[1]:"
+        case $line[1] in
+            (completion)
+_arguments "${_arguments_options[@]}" \
+'-s+[The shell to generate a completion script for (defaults to '\''bash'\'')]:SHELL:(bash elvish fish powershell zsh)' \
+'--shell=[The shell to generate a completion script for (defaults to '\''bash'\'')]:SHELL:(bash elvish fish powershell zsh)' \
+'*-v[More output per occurrence]' \
+'*--verbose[More output per occurrence]' \
+'(-v --verbose)*-q[Less output per occurrence]' \
+'(-v --verbose)*--quiet[Less output per occurrence]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(init)
+_arguments "${_arguments_options[@]}" \
+'*-c+[Channels to use in the project]:channel: ' \
+'*--channel=[Channels to use in the project]:channel: ' \
+'*-v[More output per occurrence]' \
+'*--verbose[More output per occurrence]' \
+'(-v --verbose)*-q[Less output per occurrence]' \
+'(-v --verbose)*--quiet[Less output per occurrence]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'::path -- Where to place the project (defaults to current path):_files' \
+&& ret=0
+;;
+(add)
+_arguments "${_arguments_options[@]}" \
+'--manifest-path=[The path to '\''pixi.toml'\'']:MANIFEST_PATH:_files' \
+'(--build)--host[This is a host dependency]' \
+'(--host)--build[This is a build dependency]' \
+'*-v[More output per occurrence]' \
+'*--verbose[More output per occurrence]' \
+'(-v --verbose)*-q[Less output per occurrence]' \
+'(-v --verbose)*--quiet[Less output per occurrence]' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+'*::specs -- Specify the dependencies you wish to add to the project:' \
+&& ret=0
+;;
+(run)
+_arguments "${_arguments_options[@]}" \
+'--manifest-path=[The path to '\''pixi.toml'\'']:MANIFEST_PATH:_files' \
+'*-v[More output per occurrence]' \
+'*--verbose[More output per occurrence]' \
+'(-v --verbose)*-q[Less output per occurrence]' \
+'(-v --verbose)*--quiet[Less output per occurrence]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'*::task -- The task you want to run in the projects environment:' \
+&& ret=0
+;;
+(shell)
+_arguments "${_arguments_options[@]}" \
+'--manifest-path=[The path to '\''pixi.toml'\'']:MANIFEST_PATH:_files' \
+'*-v[More output per occurrence]' \
+'*--verbose[More output per occurrence]' \
+'(-v --verbose)*-q[Less output per occurrence]' \
+'(-v --verbose)*--quiet[Less output per occurrence]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(global)
+_arguments "${_arguments_options[@]}" \
+'*-v[More output per occurrence]' \
+'*--verbose[More output per occurrence]' \
+'(-v --verbose)*-q[Less output per occurrence]' \
+'(-v --verbose)*--quiet[Less output per occurrence]' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+":: :_pixi__global_commands" \
+"*::: :->global" \
+&& ret=0
+
+    case $state in
+    (global)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:pixi-global-command-$line[1]:"
+        case $line[1] in
+            (install)
+_arguments "${_arguments_options[@]}" \
+'*-c+[Represents the channels from which the package will be installed. Multiple channels can be specified by using this field multiple times]:CHANNEL: ' \
+'*--channel=[Represents the channels from which the package will be installed. Multiple channels can be specified by using this field multiple times]:CHANNEL: ' \
+'*-v[More output per occurrence]' \
+'*--verbose[More output per occurrence]' \
+'(-v --verbose)*-q[Less output per occurrence]' \
+'(-v --verbose)*--quiet[Less output per occurrence]' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+':package -- Specifies the package that is to be installed:' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" \
+":: :_pixi__global__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:pixi-global-help-command-$line[1]:"
+        case $line[1] in
+            (install)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+;;
+(auth)
+_arguments "${_arguments_options[@]}" \
+'*-v[More output per occurrence]' \
+'*--verbose[More output per occurrence]' \
+'(-v --verbose)*-q[Less output per occurrence]' \
+'(-v --verbose)*--quiet[Less output per occurrence]' \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_pixi__auth_commands" \
+"*::: :->auth" \
+&& ret=0
+
+    case $state in
+    (auth)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:pixi-auth-command-$line[1]:"
+        case $line[1] in
+            (login)
+_arguments "${_arguments_options[@]}" \
+'--token=[The token to use (for authentication with prefix.dev)]:TOKEN: ' \
+'--username=[The username to use (for basic HTTP authentication)]:USERNAME: ' \
+'--password=[The password to use (for basic HTTP authentication)]:PASSWORD: ' \
+'--conda-token=[The token to use on anaconda.org / quetz authentication]:CONDA_TOKEN: ' \
+'*-v[More output per occurrence]' \
+'*--verbose[More output per occurrence]' \
+'(-v --verbose)*-q[Less output per occurrence]' \
+'(-v --verbose)*--quiet[Less output per occurrence]' \
+'-h[Print help]' \
+'--help[Print help]' \
+':host -- The host to authenticate with (e.g. repo.prefix.dev):' \
+&& ret=0
+;;
+(logout)
+_arguments "${_arguments_options[@]}" \
+'*-v[More output per occurrence]' \
+'*--verbose[More output per occurrence]' \
+'(-v --verbose)*-q[Less output per occurrence]' \
+'(-v --verbose)*--quiet[Less output per occurrence]' \
+'-h[Print help]' \
+'--help[Print help]' \
+':host -- The host to remove authentication for:' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" \
+":: :_pixi__auth__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:pixi-auth-help-command-$line[1]:"
+        case $line[1] in
+            (login)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(logout)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+;;
+(install)
+_arguments "${_arguments_options[@]}" \
+'--manifest-path=[The path to '\''pixi.toml'\'']:MANIFEST_PATH:_files' \
+'*-v[More output per occurrence]' \
+'*--verbose[More output per occurrence]' \
+'(-v --verbose)*-q[Less output per occurrence]' \
+'(-v --verbose)*--quiet[Less output per occurrence]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(task)
+_arguments "${_arguments_options[@]}" \
+'--manifest-path=[The path to '\''pixi.toml'\'']:MANIFEST_PATH:_files' \
+'*-v[More output per occurrence]' \
+'*--verbose[More output per occurrence]' \
+'(-v --verbose)*-q[Less output per occurrence]' \
+'(-v --verbose)*--quiet[Less output per occurrence]' \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_pixi__task_commands" \
+"*::: :->task" \
+&& ret=0
+
+    case $state in
+    (task)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:pixi-task-command-$line[1]:"
+        case $line[1] in
+            (add)
+_arguments "${_arguments_options[@]}" \
+'*--depends-on=[Depends on these other commands]:DEPENDS_ON: ' \
+'*-v[More output per occurrence]' \
+'*--verbose[More output per occurrence]' \
+'(-v --verbose)*-q[Less output per occurrence]' \
+'(-v --verbose)*--quiet[Less output per occurrence]' \
+'-h[Print help]' \
+'--help[Print help]' \
+':name -- Task name:' \
+'*::commands -- One or more commands to actually execute:' \
+&& ret=0
+;;
+(remove)
+_arguments "${_arguments_options[@]}" \
+'*-v[More output per occurrence]' \
+'*--verbose[More output per occurrence]' \
+'(-v --verbose)*-q[Less output per occurrence]' \
+'(-v --verbose)*--quiet[Less output per occurrence]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'*::names -- Task names to remove:' \
+&& ret=0
+;;
+(alias)
+_arguments "${_arguments_options[@]}" \
+'*-v[More output per occurrence]' \
+'*--verbose[More output per occurrence]' \
+'(-v --verbose)*-q[Less output per occurrence]' \
+'(-v --verbose)*--quiet[Less output per occurrence]' \
+'-h[Print help]' \
+'--help[Print help]' \
+':alias -- Alias name:' \
+'*::depends_on -- Depends on these tasks to execute:' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" \
+":: :_pixi__task__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:pixi-task-help-command-$line[1]:"
+        case $line[1] in
+            (add)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(remove)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(alias)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+;;
+(info)
+_arguments "${_arguments_options[@]}" \
+'--manifest-path=[The path to '\''pixi.toml'\'']:MANIFEST_PATH:_files' \
+'--json[Wether to show the output as JSON or not]' \
+'*-v[More output per occurrence]' \
+'*--verbose[More output per occurrence]' \
+'(-v --verbose)*-q[Less output per occurrence]' \
+'(-v --verbose)*--quiet[Less output per occurrence]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" \
+":: :_pixi__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:pixi-help-command-$line[1]:"
+        case $line[1] in
+            (completion)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(init)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(add)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(run)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(shell)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(global)
+_arguments "${_arguments_options[@]}" \
+":: :_pixi__help__global_commands" \
+"*::: :->global" \
+&& ret=0
+
+    case $state in
+    (global)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:pixi-help-global-command-$line[1]:"
+        case $line[1] in
+            (install)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(auth)
+_arguments "${_arguments_options[@]}" \
+":: :_pixi__help__auth_commands" \
+"*::: :->auth" \
+&& ret=0
+
+    case $state in
+    (auth)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:pixi-help-auth-command-$line[1]:"
+        case $line[1] in
+            (login)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(logout)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(install)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(task)
+_arguments "${_arguments_options[@]}" \
+":: :_pixi__help__task_commands" \
+"*::: :->task" \
+&& ret=0
+
+    case $state in
+    (task)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:pixi-help-task-command-$line[1]:"
+        case $line[1] in
+            (add)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(remove)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(alias)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(info)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+}
+
+(( $+functions[_pixi_commands] )) ||
+_pixi_commands() {
+    local commands; commands=(
+'completion:Generates a completion script for a shell' \
+'init:Creates a new project' \
+'add:Adds a dependency to the project' \
+'run:Runs task in project' \
+'shell:Start a shell in the pixi environment of the project' \
+'global:Global is the main entry point for the part of pixi that executes on the global(system) level' \
+'auth:Login to prefix.dev or anaconda.org servers to access private channels' \
+'install:Install all dependencies' \
+'task:Command management in project' \
+'info:' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'pixi commands' commands "$@"
+}
+(( $+functions[_pixi__add_commands] )) ||
+_pixi__add_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi add commands' commands "$@"
+}
+(( $+functions[_pixi__help__add_commands] )) ||
+_pixi__help__add_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi help add commands' commands "$@"
+}
+(( $+functions[_pixi__help__task__add_commands] )) ||
+_pixi__help__task__add_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi help task add commands' commands "$@"
+}
+(( $+functions[_pixi__task__add_commands] )) ||
+_pixi__task__add_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi task add commands' commands "$@"
+}
+(( $+functions[_pixi__task__help__add_commands] )) ||
+_pixi__task__help__add_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi task help add commands' commands "$@"
+}
+(( $+functions[_pixi__help__task__alias_commands] )) ||
+_pixi__help__task__alias_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi help task alias commands' commands "$@"
+}
+(( $+functions[_pixi__task__alias_commands] )) ||
+_pixi__task__alias_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi task alias commands' commands "$@"
+}
+(( $+functions[_pixi__task__help__alias_commands] )) ||
+_pixi__task__help__alias_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi task help alias commands' commands "$@"
+}
+(( $+functions[_pixi__auth_commands] )) ||
+_pixi__auth_commands() {
+    local commands; commands=(
+'login:Store authentication information for a given host' \
+'logout:Remove authentication information for a given host' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'pixi auth commands' commands "$@"
+}
+(( $+functions[_pixi__help__auth_commands] )) ||
+_pixi__help__auth_commands() {
+    local commands; commands=(
+'login:Store authentication information for a given host' \
+'logout:Remove authentication information for a given host' \
+    )
+    _describe -t commands 'pixi help auth commands' commands "$@"
+}
+(( $+functions[_pixi__completion_commands] )) ||
+_pixi__completion_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi completion commands' commands "$@"
+}
+(( $+functions[_pixi__help__completion_commands] )) ||
+_pixi__help__completion_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi help completion commands' commands "$@"
+}
+(( $+functions[_pixi__global_commands] )) ||
+_pixi__global_commands() {
+    local commands; commands=(
+'install:Installs the defined package in a global accessible location' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'pixi global commands' commands "$@"
+}
+(( $+functions[_pixi__help__global_commands] )) ||
+_pixi__help__global_commands() {
+    local commands; commands=(
+'install:Installs the defined package in a global accessible location' \
+    )
+    _describe -t commands 'pixi help global commands' commands "$@"
+}
+(( $+functions[_pixi__auth__help_commands] )) ||
+_pixi__auth__help_commands() {
+    local commands; commands=(
+'login:Store authentication information for a given host' \
+'logout:Remove authentication information for a given host' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'pixi auth help commands' commands "$@"
+}
+(( $+functions[_pixi__auth__help__help_commands] )) ||
+_pixi__auth__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi auth help help commands' commands "$@"
+}
+(( $+functions[_pixi__global__help_commands] )) ||
+_pixi__global__help_commands() {
+    local commands; commands=(
+'install:Installs the defined package in a global accessible location' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'pixi global help commands' commands "$@"
+}
+(( $+functions[_pixi__global__help__help_commands] )) ||
+_pixi__global__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi global help help commands' commands "$@"
+}
+(( $+functions[_pixi__help_commands] )) ||
+_pixi__help_commands() {
+    local commands; commands=(
+'completion:Generates a completion script for a shell' \
+'init:Creates a new project' \
+'add:Adds a dependency to the project' \
+'run:Runs task in project' \
+'shell:Start a shell in the pixi environment of the project' \
+'global:Global is the main entry point for the part of pixi that executes on the global(system) level' \
+'auth:Login to prefix.dev or anaconda.org servers to access private channels' \
+'install:Install all dependencies' \
+'task:Command management in project' \
+'info:' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'pixi help commands' commands "$@"
+}
+(( $+functions[_pixi__help__help_commands] )) ||
+_pixi__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi help help commands' commands "$@"
+}
+(( $+functions[_pixi__task__help_commands] )) ||
+_pixi__task__help_commands() {
+    local commands; commands=(
+'add:Add a command to the project' \
+'remove:Remove a command from the project' \
+'alias:Alias another specific command' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'pixi task help commands' commands "$@"
+}
+(( $+functions[_pixi__task__help__help_commands] )) ||
+_pixi__task__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi task help help commands' commands "$@"
+}
+(( $+functions[_pixi__help__info_commands] )) ||
+_pixi__help__info_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi help info commands' commands "$@"
+}
+(( $+functions[_pixi__info_commands] )) ||
+_pixi__info_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi info commands' commands "$@"
+}
+(( $+functions[_pixi__help__init_commands] )) ||
+_pixi__help__init_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi help init commands' commands "$@"
+}
+(( $+functions[_pixi__init_commands] )) ||
+_pixi__init_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi init commands' commands "$@"
+}
+(( $+functions[_pixi__global__help__install_commands] )) ||
+_pixi__global__help__install_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi global help install commands' commands "$@"
+}
+(( $+functions[_pixi__global__install_commands] )) ||
+_pixi__global__install_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi global install commands' commands "$@"
+}
+(( $+functions[_pixi__help__global__install_commands] )) ||
+_pixi__help__global__install_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi help global install commands' commands "$@"
+}
+(( $+functions[_pixi__help__install_commands] )) ||
+_pixi__help__install_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi help install commands' commands "$@"
+}
+(( $+functions[_pixi__install_commands] )) ||
+_pixi__install_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi install commands' commands "$@"
+}
+(( $+functions[_pixi__auth__help__login_commands] )) ||
+_pixi__auth__help__login_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi auth help login commands' commands "$@"
+}
+(( $+functions[_pixi__auth__login_commands] )) ||
+_pixi__auth__login_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi auth login commands' commands "$@"
+}
+(( $+functions[_pixi__help__auth__login_commands] )) ||
+_pixi__help__auth__login_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi help auth login commands' commands "$@"
+}
+(( $+functions[_pixi__auth__help__logout_commands] )) ||
+_pixi__auth__help__logout_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi auth help logout commands' commands "$@"
+}
+(( $+functions[_pixi__auth__logout_commands] )) ||
+_pixi__auth__logout_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi auth logout commands' commands "$@"
+}
+(( $+functions[_pixi__help__auth__logout_commands] )) ||
+_pixi__help__auth__logout_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi help auth logout commands' commands "$@"
+}
+(( $+functions[_pixi__help__task__remove_commands] )) ||
+_pixi__help__task__remove_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi help task remove commands' commands "$@"
+}
+(( $+functions[_pixi__task__help__remove_commands] )) ||
+_pixi__task__help__remove_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi task help remove commands' commands "$@"
+}
+(( $+functions[_pixi__task__remove_commands] )) ||
+_pixi__task__remove_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi task remove commands' commands "$@"
+}
+(( $+functions[_pixi__help__run_commands] )) ||
+_pixi__help__run_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi help run commands' commands "$@"
+}
+(( $+functions[_pixi__run_commands] )) ||
+_pixi__run_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi run commands' commands "$@"
+}
+(( $+functions[_pixi__help__shell_commands] )) ||
+_pixi__help__shell_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi help shell commands' commands "$@"
+}
+(( $+functions[_pixi__shell_commands] )) ||
+_pixi__shell_commands() {
+    local commands; commands=()
+    _describe -t commands 'pixi shell commands' commands "$@"
+}
+(( $+functions[_pixi__help__task_commands] )) ||
+_pixi__help__task_commands() {
+    local commands; commands=(
+'add:Add a command to the project' \
+'remove:Remove a command from the project' \
+'alias:Alias another specific command' \
+    )
+    _describe -t commands 'pixi help task commands' commands "$@"
+}
+(( $+functions[_pixi__task_commands] )) ||
+_pixi__task_commands() {
+    local commands; commands=(
+'add:Add a command to the project' \
+'remove:Remove a command from the project' \
+'alias:Alias another specific command' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'pixi task commands' commands "$@"
+}
+
+if [ "$funcstack[1]" = "_pixi" ]; then
+    _pixi "$@"
+else
+    compdef _pixi pixi
+fi

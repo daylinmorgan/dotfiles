@@ -17,7 +17,9 @@ gen() {
 
 echo "GENERATING COMPLETION SCRIPTS"
 echo "-----------------------------"
+
 gen pdm completion zsh
 gen chezmoi completion zsh
 gen rye self completion -s zsh
 gen gh completion -s zsh
+gen pixi completion -s zsh
