@@ -7,9 +7,8 @@ wezterm.on("format-window-title", function()
 end)
 
 local padding = 10
-
 return {
-	-- window_background_opacity = 0.9,
+	-- 	-- window_background_opacity = 0.9,
 	window_padding = {
 		left = padding,
 		right = padding,
@@ -23,7 +22,7 @@ return {
 	use_fancy_tab_bar = false,
 	hide_tab_bar_if_only_one_tab = true,
 	tab_bar_at_bottom = true,
-	disable_default_key_bindings = true,
+	-- 	disable_default_key_bindings = true,
 	bold_brightens_ansi_colors = true,
 	default_gui_startup_args = { "start", "--always-new-process" },
 	keys = keys.keys,
