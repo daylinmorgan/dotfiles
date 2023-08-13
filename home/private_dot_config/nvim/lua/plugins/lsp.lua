@@ -22,7 +22,6 @@ return {
           },
         },
       },
-      nim_langserver = {},
     },
   },
 }
