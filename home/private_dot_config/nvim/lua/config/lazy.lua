@@ -13,6 +13,7 @@ require("lazy").setup({
     -- import/override with your plugins
     { import = "lazyvim.plugins.extras.ui.edgy" },
     { import = "lazyvim.plugins.extras.lang.tex" },
+    { import = "lazyvim.plugins.extras.lang.docker" },
     { import = "plugins" },
   },
   defaults = {
