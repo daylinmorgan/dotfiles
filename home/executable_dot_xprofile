@@ -12,3 +12,6 @@ unclutter --timeout 1 &
 ~/.config/qtile/colors.py
 
 SKIP_WM_RESET=1 autorandr -c --default default
+
+# https://github.com/alacritty/alacritty/issues/3465
+export WINIT_X11_SCALE_FACTOR=1
