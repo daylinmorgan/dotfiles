@@ -42,3 +42,6 @@ alias dots-add='chezmoi re-add --interactive'
 
 alias viv-remote='python3 <(curl -fsSL viv.dayl.in/viv.py)'
 alias viv-dev='python3 <(curl -fsSL https://raw.githubusercontent.com/daylinmorgan/viv/dev/src/viv/viv.py)'
+
+# increment a build number and maintain Lexicographic order
+alias lexid-inc="python -c \"import sys;build=(sys.argv[1] if len(sys.argv) ==2 else sys.exit('please provide number as input'));print((next if build[1] == (next:= str(int(build) + 1))[0] else f'{int(next[0])*11}{next[1:]}'))\""
