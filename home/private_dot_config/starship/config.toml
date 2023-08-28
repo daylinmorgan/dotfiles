@@ -5,8 +5,8 @@ palette = "catppuccin_mocha"
 format = "[$user]($style) on "
 
 [character]
-success_symbol = "[λ](bold fg:#f5e0dc)[ ▷](bold cyan)"
-error_symbol = "[λ](bold fg:red)[ !](bold red)"
+success_symbol = "[](bold fg:#f5e0dc)[ ](bold cyan)"
+error_symbol = "[](bold fg:red)[ !](bold red)"
 
 [directory]
 truncation_length = 4
