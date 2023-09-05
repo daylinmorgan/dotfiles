@@ -23,7 +23,7 @@ color:
   # When "classic" is set, this is set to "never".
   # Possible values: never, auto, always
   when: auto
-  theme: catppuccin
+  theme-file-name: catppuccin
 
 # == Date ==
 # This specifies the date format for the date column. The freeform format
