@@ -31,12 +31,18 @@ autosetuprebase = always
 autoSetupRemote = true
 
 [alias]
+adog = log --all --decorate --oneline --graph
+l = log --format=tformat:'%C(bold magenta)%h%C(reset) 🠞 %C(bold)%s%C(reset) ⋅ %C(green)<%ar>%C(reset) ⋅ %C(black)%aN%C(reset)%C(auto)%+d%C(reset)'
+lf = log --graph --format=tformat:'%C(bold yellow)%h%C(reset) %C(cyan)%aD%C(reset) %C(green)(%ar) %C(dim white)%aN%C(reset)%w(0,0,9)%n %C(bold)%s%C(auto)%+d%C(reset)%w(0,0,10)%+b'
+  lla = "!f() { x=${1-0};\
+    length=$(expr $x + 8);\
+    git log --color --graph --all \
+    --format=format:\"%>|($length)%C(bold blue)%h%C(reset) %C(bold green)%><(12,trunc)%ar%C(reset) %C(white)%s%C(reset) %C(black)- %an%C(reset)%C(bold yellow)%d%C(reset)\";\
+    };\
+    f"
 ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}; gi"
 root = rev-parse --show-toplevel
-adog = log --all --decorate --oneline --graph
-lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold magenta)%h%C(reset) ->%C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ar)%C(reset) %C(dim white)- %an%C(reset)' --all
 last = log -1 HEAD --stat
-ll = log --oneline
 st = status -sb
 s = status -s
 dd = !git diff | delta
@@ -48,10 +54,11 @@ undo = reset HEAD~1 --mixed
 wip = !git add -A && git commit -m \"wip: $(date +\"%Y.%m.%d %H:%M:%S\")\"
 cmt = !git commit -m \"time: $(date +\"%Y.%m.%d %H:%M:%S\")\"
 save = !git add -A && git commit -m \"time: $(date +\"%Y.%m.%d %H:%M:%S\")\"
-la = "!git config -l | grep alias | cut -c 7-"
+aliases = "!git config -l | grep alias | cut -c 7-"
 gl = config --global -l
 rb5 = rebase -i HEAD~5
 frbi = "!f() { git rebase -i $(git log --pretty=oneline --color=always --abbrev-commit | fzf --ansi | cut -d ' ' -f1)^ ; }; f"
+
 
 [filter "lfs"]
 clean = git-lfs clean -- %f
