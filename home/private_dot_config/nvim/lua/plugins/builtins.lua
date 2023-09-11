@@ -52,4 +52,34 @@ return {
       }
     end,
   },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "bash",
+        "dockerfile",
+        "html",
+        "go",
+        "javascript",
+        "json",
+        "latex",
+        "lua",
+        "luadoc",
+        "luap",
+        "markdown",
+        "markdown_inline",
+        "nix",
+        "python",
+        "regex",
+        "toml",
+        "tsx",
+        "typescript",
+        "vim",
+        "vimdoc",
+        "yaml",
+        "yuck",
+        "zig"
+      },
+    },
+  },
 }
