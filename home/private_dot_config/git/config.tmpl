@@ -34,9 +34,9 @@ autoSetupRemote = true
 adog = log --all --decorate --oneline --graph
 l = log --format=tformat:'%C(bold magenta)%h%C(reset) 🠞 %C(bold)%s%C(reset) ⋅ %C(green)<%ar>%C(reset) ⋅ %C(black)%aN%C(reset)%C(auto)%+d%C(reset)'
 lf = log --graph --format=tformat:'%C(bold yellow)%h%C(reset) %C(cyan)%aD%C(reset) %C(green)(%ar) %C(dim white)%aN%C(reset)%w(0,0,9)%n %C(bold)%s%C(auto)%+d%C(reset)%w(0,0,10)%+b'
-  lla = "!f() { x=${1-0};\
-    length=$(expr $x + 8);\
-    git log --color --graph --all \
+lg = "!f() { x=${1-0};\
+  length=$(expr $x + 8);\
+  git log --color --graph --all \
     --format=format:\"%>|($length)%C(bold blue)%h%C(reset) %C(bold green)%><(12,trunc)%ar%C(reset) %C(white)%s%C(reset) %C(black)- %an%C(reset)%C(bold yellow)%d%C(reset)\";\
     };\
     f"
