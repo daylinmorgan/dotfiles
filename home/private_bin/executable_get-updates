@@ -36,7 +36,7 @@ updates_output() {
 update_system() {
 	echo
 	read -r -p "Would you like to update? (y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
-	pikaur -Syu --noedit --nodiff
+	paru -Syu
 }
 
 for opt in "$@"; do
@@ -60,7 +60,7 @@ echo "fetching updates..."
 echo
 
 updates_arch="$(checkupdates 2>/dev/null | awk '{print $1}')"
-updates_aur="$(pikaur -Qua 2>/dev/null | awk '{print $1}')"
+updates_aur="$(paru -Qua 2>/dev/null | awk '{print $1}')"
 updates_info="$(updates_output $notify)"
 
 if [[ -z $updates_info ]]; then
