@@ -1,5 +1,7 @@
 import std/[os, strutils, strformat]
 
+switch("hint","[Conf]:off")
+
 proc gorgeExCd(command: string, dir: string = getCurrentDir()): tuple[output: string, exitCode: int] =
   gorgeEx("cd $1 && $2" % [dir, command])
 
