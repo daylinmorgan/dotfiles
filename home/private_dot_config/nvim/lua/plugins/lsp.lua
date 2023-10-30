@@ -1,7 +1,7 @@
 return {
   "neovim/nvim-lspconfig",
   opts = {
-    autoformat = false,
+    -- autoformat = false,
     servers = {
       pylsp = {
         settings = {

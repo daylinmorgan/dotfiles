@@ -1,7 +1,7 @@
 return {
   {
     "nvimdev/dashboard-nvim",
-    opts = function (_, opts)
+    opts = function(_, opts)
       local logo = [[
   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⡤⠴⠶⠶⠶⠶⠦⢤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⠶⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠛⠶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -34,9 +34,9 @@ return {
       --   return colors[math.random(#colors)]
       -- end
       --
-      opts.config.header = vim.split(logo,"\n")
+      opts.config.header = vim.split(logo, "\n")
       return opts
-    end
+    end,
   },
   {
     "folke/edgy.nvim",

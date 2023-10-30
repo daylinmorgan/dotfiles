@@ -64,8 +64,6 @@ return {
         "json",
         "latex",
         "lua",
-        "luadoc",
-        "luap",
         "markdown",
         "markdown_inline",
         "nix",
@@ -78,7 +76,7 @@ return {
         "vimdoc",
         "yaml",
         "yuck",
-        "zig"
+        "zig",
       },
     },
   },
