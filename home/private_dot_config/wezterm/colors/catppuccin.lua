@@ -127,7 +127,9 @@ function catppuccin.select(palette)
 		selection_bg = colors[palette].surface2,
 		selection_fg = colors[palette].text,
 		ansi = {
-			colors[palette].overlay0,
+			-- colors[palette].overlay0,
+			-- use base as black for better compatibility
+			colors[palette].base,
 			colors[palette].red,
 			colors[palette].green,
 			colors[palette].yellow,
