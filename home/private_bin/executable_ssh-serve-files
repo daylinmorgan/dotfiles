@@ -72,7 +72,7 @@ printf "  ${BOLD}->>${CYAN} %s${END}\n" "${DIR}"
 
 printf "opening ${BOLD}%s${END} using %s\n" "$URL" "$BROWSER"
 echo '---------------'
-"$BROWSER" "$URL" >/dev/null 2>&1 &
+python -m webbrowser "$URL" >/dev/null 2>&1 &
 
 # first change directory in case python<3.7
 ssh -tL localhost:"$PORT":localhost:"$PORT" "$USER_HOST" \
