@@ -23,12 +23,12 @@ local single_host_plugins = {
 }
 
 local function add_single_host_plugins()
-  if vim.list_contains(vim.tbl_keys(single_host_plugins), hostname) then
+  if vim.tbl_contains(vim.tbl_keys(single_host_plugins), hostname) then
     vim.list_extend(plugins, single_host_plugins[hostname])
   end
 end
 
-if vim.list_contains({ "othalan", "algiz" }, hostname) then
+if vim.tbl_contains({ "othalan", "algiz" }, "algiz") then
   vim.list_extend(plugins, {
     { "lambdalisue/suda.vim" },
   })
