@@ -51,7 +51,6 @@ for opt in "$@"; do
 	-*)
 		echo "Invalid option: $opt"
 		usage
-		exit 1
 		;;
 	esac
 done
@@ -59,9 +58,9 @@ done
 echo "fetching updates..."
 echo
 
-updates_arch="$(checkupdates 2>/dev/null | awk '{print $1}')"
-updates_aur="$(paru -Qua 2>/dev/null | awk '{print $1}')"
-updates_info="$(updates_output $notify)"
+updates_arch="$(checkupdates 2>/dev/null | awk '{print $1}' | column)"
+updates_aur="$(paru -Qua 2>/dev/null | awk '{print $1}' | column)"
+updates_info="$(updates_output "$notify")"
 
 if [[ -z $updates_info ]]; then
 	echo "system up to date"
