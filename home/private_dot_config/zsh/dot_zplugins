@@ -16,8 +16,10 @@ Aloxaf/fzf-tab kind:defer
 
 junegunn/fzf path:shell/completion.zsh
 junegunn/fzf path:shell/key-bindings.zsh
+wfxr/forgit
 
 romkatv/powerlevel10k
+
 # Source everything in $ZDOTDIR/rc.d prior to wrapping up.
 mattmc3/zshrc.d
 ~/.config/zsh/plugins/zexists
