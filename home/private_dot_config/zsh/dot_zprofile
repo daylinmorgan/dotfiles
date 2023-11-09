@@ -19,7 +19,7 @@ path=(
   $HOME/{,.local/}{,s}bin(N)
   $HOME/.extra/bin(N)
 
-  $HOME/{.go,.cargo,.pyenv}/bin(N)
+  $HOME/.{go,cargo,pyenv,pixi}/bin(N)
   $HOME/.zig(N)
 
   /opt/local/{,s}bin(N)
