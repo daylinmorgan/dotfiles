@@ -14,6 +14,13 @@ done
 # Ensure path arrays do not contain duplicates.
 typeset -gU path fpath cdpath
 
+# add custom completions
+fpath=(
+  ${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}/completions(-/FN)
+
+  $fpath
+)
+
 # Set the list of directories that zsh searches for commands.
 path=(
   $HOME/{,.local/}{,s}bin(N)
