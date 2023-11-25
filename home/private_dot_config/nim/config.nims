@@ -26,24 +26,25 @@ let
   (_, pkgName) = root.splitPath()
   srcFile = root / "src" / (pkgName & ".nim")
 
+proc projectGorgeEx(cmd: string): string =
+  ## cd into the project before running any commands
+  let (output, code) = gorgeEx(fmt"cd {getCurrentDir()} && {cmd}")
+  if code != 0: echo "ERROR executing: " & cmd; quit 1
+  return output
+
 task fmt, "Run nimpretty on all git-managed .nim files in the current repo":
   ## Usage: nim fmt
-  for file in walkDirRec(root, {pcFile, pcDir}):
-    if file.splitFile().ext == ".nim":
-      let
-        # https://github.com/nim-lang/Nim/issues/6262#issuecomment-454983572
-        # https://stackoverflow.com/a/2406813/1219634
-        fileIsGitManaged = gorgeEx("cd $1 && git ls-files --error-unmatch $2" % [getCurrentDir(), file]).exitCode == 0
-        #                           ^^^^^-- That "cd" is required.
-      if fileIsGitManaged:
-        let
-          cmd = "nimpretty $1" % [file]
-        echo "Running $1 .." % [cmd]
-        exec(cmd)
+  let srcFiles = projectGorgeEx(r"nimgrep --filenames -r '^src/.*\.nim$' --noColor").split("\n")[0..^2]
+  for file in srcFiles:
+    let cmd = "nimpretty $1" % [file]
+    echo "Running $1 .." % [cmd]
+    exec(cmd)
+
   setCommand("nop")
 
 task i, "install package":
   exec "nimble install"
+  setCommand("nop")
 
 
 task lexidInc, "bump lexigraphic id":
