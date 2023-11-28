@@ -45,8 +45,3 @@ cursor:
     #   - On: Enable blinking by default
     #   - Always: Force the cursor to always blink
     blinking: Never
-
-shell:
-  program: /bin/zsh
-  args:
-    - --login
