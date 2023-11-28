@@ -10,4 +10,5 @@ bin/lock
 .config/autorandr
 .config/pikaur.conf
 .config/gtk-3.0
+.config/vivaldi
 {{- end }}
