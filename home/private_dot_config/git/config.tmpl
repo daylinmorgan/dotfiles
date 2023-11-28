@@ -32,7 +32,7 @@ autoSetupRemote = true
 
 [alias]
 adog = log --all --decorate --oneline --graph
-l = log --format=tformat:'%C(bold magenta)%h%C(reset) 🠞 %C(bold)%s%C(reset) ⋅ %C(green)<%ar>%C(reset) ⋅ %C(dim white)%aN%C(reset)%C(auto)%+d%C(reset)'
+l = log --format=tformat:'%C(bold magenta)%h%C(reset) 🠞 %C(bold)%s%C(reset)%C(auto)%d%C(reset) ⋅ %C(green)<%ar>%C(reset) ⋅ %C(dim white)%aN%C(reset)'
 lf = log --graph --format=tformat:'%C(bold yellow)%h%C(reset) %C(cyan)%aD%C(reset) %C(green)(%ar) %C(dim white)%aN%C(reset)%w(0,0,9)%n %C(bold)%s%C(auto)%+d%C(reset)%w(0,0,10)%+b'
 lg = "!f() { x=${1-6};\
   length=$(expr $x + 8);\
