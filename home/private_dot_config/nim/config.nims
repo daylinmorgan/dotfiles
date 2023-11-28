@@ -2,6 +2,11 @@ import std/[os, strutils, strformat]
 
 switch("hint","[Conf]:off")
 
+proc forward_args(task_name: string): seq[string] =
+  let args = command_line_params()
+  let arg_start = args.find(task_name) + 1
+  return args[arg_start..^1]
+
 proc gorgeExCd(command: string, dir: string = getCurrentDir()): tuple[output: string, exitCode: int] =
   gorgeEx("cd $1 && $2" % [dir, command])
 
@@ -26,20 +31,22 @@ let
   (_, pkgName) = root.splitPath()
   srcFile = root / "src" / (pkgName & ".nim")
 
-proc projectGorgeEx(cmd: string): string =
-  ## cd into the project before running any commands
-  let (output, code) = gorgeEx(fmt"cd {getCurrentDir()} && {cmd}")
-  if code != 0: echo "ERROR executing: " & cmd; quit 1
-  return output
-
-task fmt, "Run nimpretty on all git-managed .nim files in the current repo":
-  ## Usage: nim fmt
-  let srcFiles = projectGorgeEx(r"nimgrep --filenames -r '^src/.*\.nim$' --noColor").split("\n")[0..^2]
+proc formatNimCode(pattern = r"^src/.*\.nim$") = 
+  let srcFiles = gorgeExCd(fmt"nimgrep --filenames -r '{pattern}' --noColor").output.split("\n")[0..^2]
   for file in srcFiles:
     let cmd = "nimpretty $1" % [file]
     echo "Running $1 .." % [cmd]
     exec(cmd)
 
+task fmt, "Run nimpretty on all git-managed .nim files in the current repo":
+  ## Usage: nim fmt | nim fmt .
+  let dirs = forward_args("fmt")
+  if dirs.len == 0:
+    formatNimCode()
+  else:
+    for dir in dirs:
+      let pattern = fmt"^{dir}/.*\.nim$"
+      formatNimCode(pattern)
   setCommand("nop")
 
 task i, "install package":
