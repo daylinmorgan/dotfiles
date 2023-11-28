@@ -1,8 +1,23 @@
+-- local function add_words()
+--   local path = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
+--   local words = {}
+--   for word in io.open(path, "r"):lines() do
+--     table.insert(words, word)
+--   end
+--   return words
+-- end
+--
 return {
   "neovim/nvim-lspconfig",
   opts = {
-    -- autoformat = false,
     servers = {
+      -- ltex = {
+      --   settings = {
+      --     ltex = {
+      --       dictionary = { ["en-US"] = add_words() },
+      --     },
+      --   },
+      -- },
       pylsp = {
         settings = {
           pylsp = {
