@@ -9,7 +9,7 @@ command = 'delta'
 
 {{ $email := promptString "git email" "daylinmorgan@gmail.com" -}}
 {{ $name := promptString "git name" "Daylin Morgan" -}}
-{{ $gui := promptBool "use gui configs" -}}
+{{ $gui := promptBool "use gui configs" false -}}
 [data]
 email = {{ $email | quote }}
 name = {{ $name | quote }}
