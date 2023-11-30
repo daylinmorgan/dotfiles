@@ -26,7 +26,7 @@ mattmc3/zephyr path:plugins/confd
 ${ZDOTDIR}/plugins/zexists
 
 # start compinit before fzf-tab
-mattmc3/zephyr path:plugins/completion
+belak/zsh-utils path:completion
 
 
 # deferred
