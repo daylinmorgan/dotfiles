@@ -25,59 +25,23 @@ return {
     end,
   },
   {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "stylua",
-        "shellcheck",
-        "ruff",
-        "ruff-lsp",
-        "lua-language-server",
-        "nimlsp",
-      },
-    },
-  },
-  {
-    "nvimtools/none-ls.nvim",
-    opts = function()
-      local nls = require("null-ls")
-      return {
-        root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
-        sources = {
-          nls.builtins.formatting.stylua,
-          nls.builtins.formatting.shfmt,
-          nls.builtins.diagnostics.ruff,
-          nls.builtins.diagnostics.shellcheck,
-        },
-      }
-    end,
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "bash",
-        "dockerfile",
-        "html",
-        "go",
-        "javascript",
-        "json",
-        "latex",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "nix",
-        "python",
-        "regex",
-        "toml",
-        "tsx",
-        "typescript",
+    opts = function(_, opts)
+      opts.ensure_installed = vim.list_extend(opts.ensure_installed or {}, {
         "vim",
         "vimdoc",
+        "html",
+        "toml",
+        "json",
         "yaml",
-        "yuck",
-        "zig",
-      },
-    },
+
+        "go",
+        "regex",
+
+        "javascript",
+        "tsx",
+        "typescript",
+      })
+    end,
   },
 }

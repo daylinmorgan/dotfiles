@@ -3,8 +3,6 @@ local plugins = {}
 
 local single_host_plugins = {
   othalan = {
-    -- https://github.com/nvim-treesitter/nvim-treesitter/pull/5437
-    -- { "aMOPel/nvim-treesitter-nim" }
     { "kaarmu/typst.vim" },
     {
       "mickael-menu/zk-nvim",
