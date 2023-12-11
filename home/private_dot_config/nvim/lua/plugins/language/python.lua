@@ -26,6 +26,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      -- autoformat = false,
       servers = {
         ruff_lsp = {
           keys = {
