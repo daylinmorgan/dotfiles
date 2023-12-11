@@ -45,3 +45,7 @@ alias viv-dev='python3 <(curl -fsSL https://raw.githubusercontent.com/daylinmorg
 
 # increment a build number and maintain Lexicographic order
 alias lexid-inc="python -c \"import sys;build=(sys.argv[1] if len(sys.argv) ==2 else sys.exit('please provide number as input'));print((next if build[1] == (next:= str(int(build) + 1))[0] else f'{int(next[0])*11}{next[1:]}'))\""
+
+alias task="./do"
+alias task="./task"
+alias t="./task"
