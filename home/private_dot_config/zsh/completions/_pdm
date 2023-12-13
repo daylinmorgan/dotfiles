@@ -12,7 +12,8 @@ _pdm() {
   local curcontext=$curcontext ret=1
   local -a arguments=(
     {-h,--help}'[Show help message and exit]'
-    {-v,--verbose}'[Show detailed output]'
+    {-v,--verbose}'[Use `-v` for detailed output and `-vv` for more detailed]'
+    {-q,--quiet}'[Suppress output]'
   )
   local sub_commands=(
     'add:Add package(s) to pyproject.toml and install them'
@@ -73,6 +74,7 @@ _pdm() {
         '--update-all[Update all dependencies and sub-dependencies]'
         '--no-editable[Install non-editable versions for all packages]'
         "--no-self[Don't install the project itself]"
+        "--no-lock[Don't try to create or update the lockfile. [env var: PDM_NO_LOCK]]"
         '--venv[Run the command in the virtual environment with the given key. (env var: PDM_IN_VENV)]:venv:'
         {-k,--skip}'[Skip some tasks and/or hooks by their comma-separated names]'
         {-u,--unconstrained}'[Ignore the version constraint of packages]'
@@ -128,6 +130,7 @@ _pdm() {
          {-g,--global}'[Use the global project, supply the project root with `-p` option]' \
          {-l,--local}"[Set config in the project's local configuration file]" \
          {-d,--delete}'[Unset a configuration key]' \
+         {-e,--edit}'[Edit the configuration file in the default editor(defined by EDITOR env var)]' \
          '1:key:->keys' \
          '2:value:_files' && return 0
       if [[ $state == keys ]]; then
@@ -184,9 +187,13 @@ _pdm() {
         {-g,--global}'[Use the global project, supply the project root with `-p` option]'
         {-n,--non-interactive}"[Don't ask questions but use default values]"
         {-k,--skip}'[Skip some tasks and/or hooks by their comma-separated names]'
-        '--backend[Specify the build backend]:backend:(pdm-backend setuptools hatchling flit pdm-pep517)'
+        {-r,--overwrite}'[Overwrite existing files]'
+        '--backend[Specify the build backend]:backend:(pdm-backend setuptools hatchling flit)'
         '--lib[Create a library project]'
         '--python[Specify the Python version/path to use]:python:'
+        '--copier[Use Copier to generate project]'
+        '--cookiecutter[Use Cookiecutter to generate project]'
+        '1:template:'
       )
       ;;
     install)
@@ -197,7 +204,7 @@ _pdm() {
         {-L,--lockfile}'[Specify another lockfile path, or use `PDM_LOCKFILE` env variable. Default: pdm.lock]:lockfile:_files'
         {--prod,--production}"[Unselect dev dependencies]"
         {-k,--skip}'[Skip some tasks and/or hooks by their comma-separated names]'
-        "--no-lock[Don't do lock if lock file is not found or outdated]"
+        "--no-lock[Don't try to create or update the lockfile. [env var: PDM_NO_LOCK]]"
         "--no-default[Don\'t include dependencies from the default group]"
         '--no-editable[Install non-editable versions for all packages]'
         "--no-self[Don't install the project itself]"
@@ -212,18 +219,19 @@ _pdm() {
     list)
       arguments+=(
         {-g,--global}'[Use the global project, supply the project root with `-p` option]'
-        {-r,--reverse}'[Reverse the dependency graph]'
+        {-r,--reverse}'[Reverse the dependency tree]'
         '--fields[Select information to output as a comma separated string.]:fields:'
         "--sort[Sort the output using a given field name. If nothing is set, no sort is applied. Multiple fields can be combined with ',']:sort:"
         '--json[Output dependencies in JSON document format]'
         '--csv[Output dependencies in CSV document format]'
         '--markdown[Output dependencies and legal notices in markdown document format - best effort basis]'
-        '--graph[Display a graph of dependencies]'
+        '{--tree,--graph}[Display a tree of dependencies]'
         "--freeze[Show the installed dependencies as pip's requirements.txt format]"
         "--include[Dependency groups to include in the output. By default all are included]:include:"
         "--exclude[Dependency groups to exclude from the output]:exclude:"
         "--resolve[Resolve all requirements to output licenses (instead of just showing those currently installed)]"
         '--venv[Run the command in the virtual environment with the given key. (env var: PDM_IN_VENV)]:venv:'
+        '*:patterns:'
       )
       ;;
     lock)
@@ -237,8 +245,11 @@ _pdm() {
         {-G+,--group+}'[Select group of optional-dependencies or dev-dependencies(with -d). Can be supplied multiple times, use ":all" to include all groups under the same species]:group:_pdm_groups'
         {-d,--dev}"[Select dev dependencies]"
         {--prod,--production}"[Unselect dev dependencies]"
+        "--static-urls[(DEPRECATED) Store static file URLs in the lockfile]"
+        "--no-static-urls[(DEPRECATED) Do not store static file URLs in the lockfile]"
         "--no-default[Don\'t include dependencies from the default group]"
-        "--no-cross-platform[Only lock packages for the current platform]"
+        "--no-cross-platform[(DEPRECATED) Only lock packages for the current platform]"
+        {-S,--strategy}'Specify lock strategy(cross_platform,static_urls,direct_minimal_versions). Add no_ prefix to disable. Support given multiple times or split by comma.:strategy:'
       )
       ;;
     self)
@@ -314,6 +325,7 @@ _pdm() {
         "--no-sync[Only write pyproject.toml and do not uninstall packages]"
         '--no-editable[Install non-editable versions for all packages]'
         "--no-self[Don't install the project itself]"
+        "--no-lock[Don't try to create or update the lockfile. [env var: PDM_NO_LOCK]]"
         {-x,--fail-fast}'[Abort on first installation error]'
         "--no-isolation[do not isolate the build in a clean environment]"
         "--dry-run[Show the difference only without modifying the lockfile content]"
@@ -391,6 +403,7 @@ _pdm() {
         '--no-editable[Install non-editable versions for all packages]'
         "--no-self[Don't install the project itself]"
         "--no-sync[Only update lock file but do not sync packages]"
+        "--no-lock[Don't try to create or update the lockfile. [env var: PDM_NO_LOCK]]"
         {-k,--skip}'[Skip some tasks and/or hooks by their comma-separated names]'
         {-u,--unconstrained}'[Ignore the version constraint of packages]'
         {--pre,--prerelease}'[Allow prereleases to be pinned]'
