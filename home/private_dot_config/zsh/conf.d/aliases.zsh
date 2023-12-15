@@ -1,18 +1,11 @@
-#
-# aliases - Set whatever Zsh aliases you want.
-#
-
-# single character aliases - be sparing!
 alias g=git
 
-# mask built-ins with better defaults
 alias vi=vim
 
-# this one is kinda dangerous
 alias rr="rm -rf"
 
 # more ways to ls
-alias ls="${aliases[ls]:-ls} --group-directories-first --color=auto"
+alias ls="${aliases[ls]:-ls} --group-directories-first --color=auto -I 'System Volume Information'"
 alias l='ls -lh'
 alias la='ls -a'
 alias ldot='ls -ld .*'
