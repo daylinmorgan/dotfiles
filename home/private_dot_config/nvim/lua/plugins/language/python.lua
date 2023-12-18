@@ -1,20 +1,5 @@
 return {
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, { "python", "toml" })
-      end
-    end,
-  },
-  {
-    "williamboman/mason.nvim",
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, { "ruff", "ruff-lsp" })
-      end
-    end,
-  },
+  require("util").setup_lang({ treesitter = { "python", "toml" }, mason = { "ruff", "ruff-lsp" } }),
   {
     "nvimtools/none-ls.nvim",
     opts = function(_, opts)
