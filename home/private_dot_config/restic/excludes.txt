@@ -1,20 +1,38 @@
-$HOME/**/*
+#### Python ####
+# Byte-compiled / optimized / DLL files
+__pycache__
 
-!$HOME/dev
-!$HOME/archive
-!$HOME/writing
-!$HOME/Desktop
-!$HOME/fonts
-!$HOME/zettelkasten
-!$HOME/labbook
-!$HOME/clonmapper-plasmids
-!$HOME/slidedecks
-!$HOME/Geneious Data Restored
-!$HOME/Pictures
-!$HOME/notes
-!$HOME/wallpapers
-!$HOME/Documents
+.tox/
+.nox/
+.coverage
+.cache
+.pytest_cache/
 
-#[...]
-node_modules
-env
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# ruff
+.ruff_cache/
+
+#### Zig ####
+zig-cache/
+
+#### Node ####
+node_modules/
+.npm
+
+
