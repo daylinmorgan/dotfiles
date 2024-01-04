@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-if ! [[ -f /usr/bin/i3lock ]]; then
-	notify-send "no i3lock...install i3lock-color"
-	exit
-fi
 
 # colors
 bg_color=1e1e2ebb
@@ -17,23 +13,18 @@ font="MonoLisa Nerd Font:style=Bold"
 greeter_msg="LOCKED"
 
 ff=(
-	"Sub-Zero"
-	"3D-ASCII"
 	"big"
 	"small"
 	"lean"
-	"JS Bracket Letters"
-	"Epic"
-	"Fender"
-	"Slant"
+	"epic"
+	"fender"
+	"slant"
 	"lineblocks"
-	"Marquee"
-	"Avatar"
-	"Contrast"
+	"marquee"
+	"avatar"
+	"contrast"
 	"amcrazor"
-	"Kban"
-	"Calvin S"
-	"Dr Pepper"
+	"kban"
 )
 
 fig_font=${ff[RANDOM % ${#ff[@]}]}
