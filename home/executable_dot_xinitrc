@@ -33,25 +33,17 @@ fi
 
 [ -f ~/.xprofile ] && . ~/.xprofile
 
-eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-export SSH_AUTH_SOCK
+# eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+# export SSH_AUTH_SOCK
 
 # $1 is xterm
 # $2 is the wm arg passed to startx
 # i.e. startx qtile
 
 case $2 in
-leftwm)
-	export DESKTOP_SESSION=leftwm
-	exec leftwm
-	;;
 plasma)
 	export DESKTOP_SESSION=plasma
 	exec startplasma-x11
-	;;
-xmonad)
-	export DESKTOP_SESSION=xmonad
-	xmonad
 	;;
 qtile)
 	export DESKTOP_SESSION=qtile
