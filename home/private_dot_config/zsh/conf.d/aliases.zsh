@@ -42,3 +42,5 @@ alias lexid-inc="python -c \"import sys;build=(sys.argv[1] if len(sys.argv) ==2 
 alias task="./do"
 alias task="./task"
 alias t="./task"
+
+alias micromamba-fhs="nix-shell -E 'with import <nixpkgs> {}; (pkgs.buildFHSUserEnv {name = \"fhs\"; runScript=\"zsh\";}).env'"

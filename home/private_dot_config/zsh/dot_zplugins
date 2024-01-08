@@ -3,9 +3,9 @@ ${ZDOTDIR}/plugins/p10k-instant
 mattmc3/zephyr path:plugins/zfunctions
 
 # general use-plugins
-mattmc3/zephyr path:plugins/clipboard
 mattmc3/zephyr path:plugins/history
 mattmc3/zephyr path:plugins/utility
+
 ohmyzsh/ohmyzsh path:plugins/copybuffer
 ohmyzsh/ohmyzsh path:plugins/copyfile
 ohmyzsh/ohmyzsh path:plugins/extract
@@ -21,13 +21,13 @@ wfxr/forgit
 romkatv/powerlevel10k kind:fpath
 ${ZDOTDIR}/plugins/prompt
 
+# start compinit before
+# fzf-tab and zexists
+belak/zsh-utils path:completion
+
 # wrap-up
 mattmc3/zephyr path:plugins/confd
 ${ZDOTDIR}/plugins/zexists
-
-# start compinit before fzf-tab
-belak/zsh-utils path:completion
-
 
 # deferred
 zdharma-continuum/fast-syntax-highlighting kind:defer
