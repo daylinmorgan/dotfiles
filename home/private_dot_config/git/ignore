@@ -5,3 +5,5 @@ _TODO.md
 
 # LibreOffice locks
 .~lock.*#
+
+.direnv
