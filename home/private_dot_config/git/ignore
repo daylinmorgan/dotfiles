@@ -7,3 +7,4 @@ _TODO.md
 .~lock.*#
 
 .direnv
+.envrc
