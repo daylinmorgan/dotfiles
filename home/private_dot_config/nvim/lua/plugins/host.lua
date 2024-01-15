@@ -15,9 +15,6 @@ local single_host_plugins = {
     { "Fymyte/rasi.vim" },
     { dir = "~/dev/github/usu-dev/usu-vim/" },
   },
-  algiz = {
-    { "LnL7/vim-nix" },
-  },
 }
 
 local function add_single_host_plugins()
@@ -29,6 +26,7 @@ end
 if vim.tbl_contains({ "othalan", "algiz" }, "algiz") then
   vim.list_extend(plugins, {
     { "lambdalisue/suda.vim" },
+    { "LnL7/vim-nix" },
   })
 end
 
