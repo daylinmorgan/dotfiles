@@ -23,7 +23,7 @@ local function add_single_host_plugins()
   end
 end
 
-if vim.tbl_contains({ "othalan", "algiz" }, "algiz") then
+if vim.tbl_contains({ "othalan", "algiz" }, hostname) then
   vim.list_extend(plugins, {
     { "lambdalisue/suda.vim" },
     { "LnL7/vim-nix" },
