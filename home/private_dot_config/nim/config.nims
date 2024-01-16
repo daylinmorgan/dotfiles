@@ -34,8 +34,8 @@ let
 proc formatNimCode(pattern = r"^src/.*\.nim$") = 
   let srcFiles = gorgeExCd(fmt"nimgrep --filenames -r '{pattern}' --noColor").output.split("\n")[0..^2]
   for file in srcFiles:
-    let cmd = "nph $1" % [file]
-    # let cmd = "nimpretty $1" % [file]
+    # let cmd = "nph $1" % [file]
+    let cmd = "nimpretty $1" % [file]
     echo "Running $1 .." % [cmd]
     exec(cmd)
 
@@ -57,7 +57,7 @@ task i, "install package":
 
 task lexidInc, "bump lexigraphic id":
   let (vsn, code) = gorgeExCd("git describe --tags --always --dirty=-dev")
-  if code != 0: 
+  if code != 0:
     echo "is this a git repo?"
     echo &"output: {vsn}"
     quit 1
