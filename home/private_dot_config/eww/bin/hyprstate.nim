@@ -1,6 +1,5 @@
-import std/[os,net, json, sugar, enumerate, strformat, tables]
+import std/[os,net, json, sugar, strformat, tables]
 
-const NUM_WORKSPACES = 8
 
 let icons = {
         "[Running] - Oracle VM VirtualBox": "",
@@ -12,16 +11,17 @@ let icons = {
         "- NVIM": "",
         "Alacritty": "",
         "- Wezterm": "",
+        "org.wezfurlong.wezterm":""
 }.toTable
 
 
 type
   HyprlandDefect* = Defect
 
-  Workspace = object
-    id, monitorID, windows: int
-    name, monitor, lastwindow, lastwindowtitle: string
-    hasfullscreen: bool
+  # Workspace = object
+  #   id, monitorID, windows: int
+  #   name, monitor, lastwindow, lastwindowtitle: string
+  #   hasfullscreen: bool
 
   WorkspaceIcon = object
     id: int
@@ -61,23 +61,22 @@ proc getDefaultWorkspaces(): seq[WorkspaceIcon] =
   result = collect(for i in 1..9: WorkspaceIcon(id: i, icon:"",class:fmt"ws-button-{i - 1}"))
   for client in clients:
     let match = icons.getOrDefault(client.class,"")
+    if client.workspace.id < 0: continue
     result[client.workspace.id - 1].icon &= match
-
-
   for ws in result.mitems:
     if ws.icon == "":
       ws.icon = ""
 
+proc getActive(m: Monitor): int {.inline.} = m.activeWorkspace.id
 
 proc getState(): seq[seq[WorkspaceIcon]] =
-  let monitors = parseJson(getData("[-j]/monitors")).to(seq[Monitor])
-  let workspaces = parseJson(getData("[-j]/workspaces")).to(seq[Workspace])
-
-  let defaultWorkspaces = getDefaultWorkspaces()
-  for monitor in monitors:
+  let
+    monitors = parseJson(getData("[-j]/monitors")).to(seq[Monitor])
+    defaultWorkspaces = getDefaultWorkspaces()
+  for m in monitors:
     result.add defaultWorkspaces
-    result[monitor.id][monitor.activeWorkspace.id - 1].class &= " " & "ws-button-open" 
-
+    result[m.id][getActive(m) - 1].class &=
+      " " & "ws-button-open"
 
 when isMainModule:
   while true:
