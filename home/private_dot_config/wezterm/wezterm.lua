@@ -1,11 +1,12 @@
 local wezterm = require("wezterm")
 local catppuccin = require("colors/catppuccin").setup({})
 local keys = require("keys")
--- add wezterm to title for wm usage
-wezterm.on("format-window-title", function()
-	return " - Wezterm"
-end)
 
+-- -- add wezterm to title for wm usage
+-- wezterm.on("format-window-title", function()
+-- 	return " - Wezterm"
+-- end)
+--
 local padding = 10
 return {
 	-- 	-- window_background_opacity = 0.9,
