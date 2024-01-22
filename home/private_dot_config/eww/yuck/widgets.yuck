@@ -1,0 +1,160 @@
+;;  Widgets
+
+(defwidget launcher []
+  (box :class "box-launcher"
+    :orientation "h"
+    :hexpand false
+    (button :class "button-launcher"
+      :hexpand false
+      :onclick "${rofi-bin}/launcher.sh"
+      "")))
+
+(defwidget powermenu []
+  (box :class "box-launcher"
+    :orientation "h"
+    (button :class "button-launcher"
+       :onclick "${rofi-bin}/powermenu.sh"
+      "󰐥")))
+
+(defwidget volume []
+  (box :class "sysinfo"
+    :orientation "h"
+    :space-evenly "false"
+    (button
+      :onclick "bin/volume --toggle"
+      "${volume-icon} ")
+    (button
+      :onclick "bin/volume --inc"
+      :onrightclick "bin/volume --dec"
+      volume-level )))
+
+(defwidget clock []
+  (box :class "clock"
+    :orientation "h"
+    :space-evenly "false"
+    (label
+      :text clocktext
+      :limit-width 40 )))
+
+(defwidget battery []
+  (box :orientation "h"
+    (label :text '${EWW_BATTERY["BAT0"].status == "Discharging" ? "󰄌" : "󰚥"} ${EWW_BATTERY["BAT0"].capacity}%')
+    ))
+
+(defwidget ram []
+  (box :orientation "h"
+    (label :text "󰀹 ${round(EWW_RAM.used_mem_perc, 0)}% ")))
+
+(defwidget cpu []
+  (box :orientation "h"
+    (label :text " ${round(EWW_CPU.avg, 0)}% ")))
+
+(defwidget wifi []
+  (box :class "sysinfo"
+    :orientation "h"
+    (label :text '${ ssid=="ethernet" ? "󰈀" : ssid=="" ? "󰖪" : "󰖩"}'
+      :tooltip ssid)))
+
+(defwidget bluetooth []
+  (box :class "sysinfo"
+    :orientation "h"
+    (button :onclick "${rofi-bin}/bluetooth.sh &"
+      bluetooth-icon)))
+
+;(defwidget chord []
+;  (box :class "sysinfo"
+;         :visible "${wmstate.chord!=''}"
+;    (label :text " 󰌌 ${wmstate.chord}"
+;      ))
+;  )
+
+; Composite Widgets
+
+(defwidget sysinfo []
+  (box :class "sysinfo"
+    :orientation "h"
+    :space-evenly false
+    (ram)
+    (cpu)
+    (battery)
+  ))
+
+(defwidget workspaces [screen]
+  (box :class "workspaces panel"
+    :orientation "h"
+    :halign "start"
+    (workspaces-icons :screen screen)
+    ))
+
+
+(defwidget workspaces-icons [screen]
+  (box :class "workspaces"
+        :orientation "h"
+        :space-evenly false
+        :halign "center"
+        :valign "center"
+    (for ws in "${workspaces[screen]}"
+      (button
+        :class "ws-button ${ws.class}"
+        :onclick "hyprctl dispatch focusworkspaceoncurrentmonitor ${ws.id}"
+        "${ws.icon}"))))
+
+(defwidget sep []
+  (box :class "separator"
+    (label :text "|")))
+
+(defwidget sidestuff [?minimal]
+  (box :class "sidestuff panel"
+    :orientation "h"
+    :space-evenly false
+    :halign "end"
+    (box :visible {minimal ? false : true}
+      :space-evenly false
+      (bluetooth)
+      (sep)
+      (wifi)
+      (sep)
+      (volume))
+    (sep)
+    (clock)
+    (powermenu)))
+
+(defwidget leftstuff [screen ?minimal]
+  (box :class "panel"
+    :orientation "h"
+    :halign "start"
+    :space-evenly false
+    (launcher)
+    (sysinfo)
+;    (ws-layout :screen screen)
+    ;(box :visible {minimal ? false : true}
+    ;  :space-evenly false
+    ;  (sep)
+    ;  (sysinfo)
+    ;;  (chord)
+    ;)
+  ))
+
+(defwidget leftstuffmin [screen]
+  (box :class "panel"
+    :orientation "h"
+    :halign "start"
+    :space-evenly false
+    (launcher)
+    (ws-layout :screen screen)))
+
+
+(defwidget sidestuffmin []
+  (box :class "sidestuff panel"
+    :orientation "h"
+    :space-evenly false
+    :halign "end"
+    (clock)
+    (powermenu)))
+
+(defwidget bar [screen ?minimal]
+  (centerbox :orientation "h"
+    :class "bar"
+    (leftstuff :screen screen :minimal minimal)
+    (workspaces :screen screen)
+    (sidestuff :minimal minimal)))
