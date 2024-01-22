@@ -3,12 +3,13 @@ bin/get-updates
 bin/lock
 .xinitrc
 .xprofile
-.zprofile
 .config/alacritty
 .config/wezterm
-.config/leftwm
 .config/autorandr
 .config/pikaur.conf
 .config/gtk-3.0
 .config/vivaldi
+.config/eww
+.config/hypr
+.config/rofi
 {{- end }}
