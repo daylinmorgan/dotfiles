@@ -57,7 +57,7 @@ plasma)
 	;;
 qtile)
 	export DESKTOP_SESSION=qtile
-	exec qtile start
+	exec dbus-launch qtile start
 	;;
 *)
 	export DESKTOP_SESSION=qtile
