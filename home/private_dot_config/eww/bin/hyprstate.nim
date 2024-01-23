@@ -56,6 +56,7 @@ proc getData(data: string): string =
   socket.close() # is this necessary?
   return response
 
+
 proc getDefaultWorkspaces(): seq[WorkspaceIcon] =
   let clients = parseJson(getData("[-j]/clients")).to(seq[Client])
   result = collect(for i in 1..9: WorkspaceIcon(id: i, icon:"",class:fmt"ws-button-{i - 1}"))
@@ -81,4 +82,7 @@ proc getState(): seq[seq[WorkspaceIcon]] =
 when isMainModule:
   while true:
     sleep 500
-    echo (%* getState())
+    try:
+      echo (%* getState())
+    except JsonParsingError:
+      discard
