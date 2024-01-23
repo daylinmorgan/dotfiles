@@ -26,13 +26,7 @@ msg() {
 chosen="$(echo -e "$options" | $rofi_command -p "󱎫  $uptime " -dmenu -selected-row 2)"
 case $chosen in
 $lock)
-	if [[ -f $HOME/bin/lock ]]; then
-		$HOME/bin/lock
-	elif [[ -f /usr/bin/i3lock ]]; then
-		i3lock
-	elif [[ -f /usr/bin/dm-tool ]]; then
-		dm-tool "lock"
-	fi
+  swaylock
 	;;
 $shutdown)
 	ans=$(confirm_exit &)
@@ -57,8 +51,7 @@ $reboot)
 $suspend)
 	ans=$(confirm_exit &)
 	if [[ $ans == "yes" ]]; then
-		mpc -q pause
-		amixer set Master mute
+		# amixer set Master mute
 		systemctl suspend
 	elif [[ $ans == "no" ]]; then
 		exit 0
