@@ -9,6 +9,7 @@ local keys = require("keys")
 --
 local padding = 10
 return {
+  check_for_updates = false,
 	-- 	-- window_background_opacity = 0.9,
 	window_padding = {
 		left = padding,
