@@ -2,30 +2,32 @@ local wezterm = require("wezterm")
 local catppuccin = require("colors/catppuccin").setup({})
 local keys = require("keys")
 
--- -- add wezterm to title for wm usage
--- wezterm.on("format-window-title", function()
--- 	return " - Wezterm"
--- end)
---
 local padding = 10
-return {
-  check_for_updates = false,
-	-- 	-- window_background_opacity = 0.9,
-	window_padding = {
-		left = padding,
-		right = padding,
-		top = padding,
-		bottom = padding,
-	},
-	font = wezterm.font("MonoLisa Nerd Font"),
-	adjust_window_size_when_changing_font_size = false,
-	initial_cols = 80,
-	colors = catppuccin,
-	use_fancy_tab_bar = false,
-	hide_tab_bar_if_only_one_tab = true,
-	tab_bar_at_bottom = true,
-	-- 	disable_default_key_bindings = true,
-	bold_brightens_ansi_colors = true,
-	default_gui_startup_args = { "start", "--always-new-process" },
-	keys = keys.keys,
+local config = {}
+
+if wezterm.config_builder then
+	config = wezterm.config_builder()
+end
+
+-- window_background_opacity = 0.9
+config.check_for_updates = false
+config.window_padding = {
+	left = padding,
+	right = padding,
+	top = padding,
+	bottom = padding,
 }
+
+config.hide_mouse_cursor_when_typing = false
+config.font = wezterm.font("MonoLisa Nerd Font")
+config.adjust_window_size_when_changing_font_size = false
+config.initial_cols = 80
+config.colors = catppuccin
+config.use_fancy_tab_bar = false
+config.hide_tab_bar_if_only_one_tab = true
+config.tab_bar_at_bottom = true
+--config.disable_default_key_bindings = true
+config.bold_brightens_ansi_colors = true
+config.default_gui_startup_args = { "start", "--always-new-process" }
+config.keys = keys.keys
+return config
