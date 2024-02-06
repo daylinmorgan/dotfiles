@@ -29,5 +29,5 @@ config.tab_bar_at_bottom = true
 --config.disable_default_key_bindings = true
 config.bold_brightens_ansi_colors = true
 config.default_gui_startup_args = { "start", "--always-new-process" }
-config.keys = keys.keys
+-- config.keys = keys.keys
 return config
