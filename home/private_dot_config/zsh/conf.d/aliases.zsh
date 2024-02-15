@@ -43,4 +43,4 @@ alias task="./do"
 alias task="./task"
 alias t="./task"
 
-alias micromamba-fhs="nix-shell -E 'with import <nixpkgs> {}; (pkgs.buildFHSUserEnv {name = \"fhs\"; runScript=\"zsh\";}).env'"
+alias micromamba-fhs="nix-shell -E 'with import <nixpkgs> {}; (pkgs.buildFHSUserEnv {name = \"micromamba-fhs\"; runScript=\"zsh\";}).env'"
