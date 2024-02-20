@@ -4,9 +4,9 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        nimls = {
+        nim_langserver = {
           mason = false,
-        },
+        }
       }
     }
   }
