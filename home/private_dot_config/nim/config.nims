@@ -31,7 +31,7 @@ let
   (_, pkgName) = root.splitPath()
   srcFile = root / "src" / (pkgName & ".nim")
 
-proc formatNimCode(pattern = r"^src/.*\.nim$") = 
+proc formatNimCode(pattern = r"^[src|tests].*\.nim(s)?$") = 
   let srcFiles = gorgeExCd(fmt"nimgrep --filenames -r '{pattern}' --noColor").output.split("\n")[0..^2]
   for file in srcFiles:
     # let cmd = "nph $1" % [file]
@@ -84,4 +84,4 @@ task lexidInc, "bump lexigraphic id":
   else:
     echo "next version is: ", newVersion,"\n"
 
-
+switch("path","$nim")
