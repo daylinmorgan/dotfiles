@@ -1,0 +1,11 @@
+@import "default.rasi"
+@import "colors.rasi"
+
+mainbox {
+  padding: 12px;
+}
+
+entry {
+  placeholder: "entry";
+}
+
