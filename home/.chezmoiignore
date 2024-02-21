@@ -12,4 +12,6 @@ bin/lock
 .config/eww
 .config/hypr
 .config/rofi
+.config/swayidle
+.config/swaylock
 {{- end }}

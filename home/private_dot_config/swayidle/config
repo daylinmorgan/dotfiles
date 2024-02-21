@@ -1,0 +1,2 @@
+before-sleep 'lock'
+timeout 300 'lock
