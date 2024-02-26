@@ -5,7 +5,21 @@ mainbox {
   padding: 12px;
 }
 
+
+inputbar {
+  background-color: @background;
+  border-color: @primary;
+
+  border: 2px;
+  border-radius: 4px;
+
+  padding: 8px 16px;
+  spacing: 8px;
+  height: 100px;
+}
+
 entry {
   placeholder: "entry";
+  height: 100 px;
 }
 
