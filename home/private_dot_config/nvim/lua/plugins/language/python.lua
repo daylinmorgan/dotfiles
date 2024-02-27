@@ -1,12 +1,12 @@
 return {
   require("util").setup_lang({ treesitter = { "python", "toml" }, mason = { "ruff", "ruff-lsp" } }),
-  {
-    "nvimtools/none-ls.nvim",
-    opts = function(_, opts)
-      local nls = require("null-ls")
-      table.insert(opts.sources or {}, nls.builtins.formatting.ruff)
-    end,
-  },
+  -- {
+  --   "nvimtools/none-ls.nvim",
+  --   opts = function(_, opts)
+  --     local nls = require("null-ls")
+  --     table.insert(opts.sources or {}, nls.builtins.formatting.ruff)
+  --   end,
+  -- },
   -- modified from https://www.lazyvim.org/extras/lang/python#nvim-lspconfig
   {
     "neovim/nvim-lspconfig",
