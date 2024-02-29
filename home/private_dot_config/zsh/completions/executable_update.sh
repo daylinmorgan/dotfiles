@@ -23,4 +23,4 @@ gen chezmoi completion zsh
 gen rye self completion -s zsh
 gen gh completion -s zsh
 gen pixi completion -s zsh
-gen rclone completion zsh -
+gen rclone completion zsh
