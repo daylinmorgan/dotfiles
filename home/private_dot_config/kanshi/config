@@ -11,6 +11,7 @@ profile work {
 profile {
   output eDP-1 mode 1920x1200 position 1920,0
   output DP-5 mode 1920x1080 position 0,0
+  exec swww img -o eDP-1 ~/.config/hypr/wallpapers/current/00005-4229950720.png & swww img -o DP-5 ~/.config/hypr/wallpapers/current/00007-2215131892.png
 }
 
 profile {
