@@ -13,6 +13,12 @@ From Mirror:
 sh -c "$(curl -fsLS https://chezmoi.io/get)" -- init --apply daylinmorgan -S ~/.dotfiles --ssh
 ```
 
+On Nix:
+
+```bash
+nix run "nixpkgs#chezmoi" -- init --apply daylinmorgan -S ~/.dotfiles
+```
+
 ## Relevant XKCD
 
 <p align="center">
