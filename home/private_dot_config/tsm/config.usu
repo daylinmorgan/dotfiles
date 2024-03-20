@@ -1,0 +1,12 @@
+:dirs (
+  /home/daylin/dev/github/daylinmorgan/
+  /home/daylin/dev/github/usu-dev/
+  /home/daylin/dev/github/forks/
+  /home/daylin/stuff/writing/
+)
+
+:sessions (
+    (:name protocol :dir /home/daylin/stuff/writing/clonmapper-protocol)
+  )
+)
+
