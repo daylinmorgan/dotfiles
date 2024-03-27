@@ -11,4 +11,4 @@ vim.opt.timeoutlen = 200
 vim.g.autoformat = false
 
 -- https://github.com/ziglang/zig.vim/issues/51#issuecomment-1637180522
--- vim.g.zig_fmt_autosave = 0
+vim.g.zig_fmt_autosave = 0
