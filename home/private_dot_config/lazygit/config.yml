@@ -1,6 +1,6 @@
 git:
-  # branchLogCmd: "git log --graph --all --color=always --decorate --date=relative --oneline"
-  branchLogCmd: "git log --graph --abbrev-commit --decorate --format=format:'%C(bold cyan)%h%C(reset) ->%C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ar)%C(reset) %C(dim white)- %an%C(reset)'"
+  # see ~/.config/git/config
+  branchLogCmd: "git l"
   paging:
     colorArg: always
     pager: delta --dark --paging=never
@@ -12,31 +12,30 @@ customCommands:
     command: 'git commit -m "wip: $(date +"%Y.%m.%d %H:%M:%S")"'
     context: "files"
 
-# fall back theme in case terminal app not configured
 gui:
+  nerdFontsVersion: 3
+  showIcons: true
   showFileTree: true
+  # https://github.com/catppuccin/lazygit/blob/main/themes/mocha/rosewater.yml
   theme:
-    lightTheme: false
-    # selectedLineBgColor:
-    # - reverse
-    # selectedRangeBgColor:
-    # - reverse
     activeBorderColor:
-      - "#a6e3a1" # Green
+      - '#f5e0dc'
       - bold
     inactiveBorderColor:
-      - "#cdd6f4" # Text
+      - '#a6adc8'
     optionsTextColor:
-      - "#89b4fa" # Blue
+      - '#89b4fa'
     selectedLineBgColor:
-      - "#313244" # Surface0
-      - reverse
-    selectedRangeBgColor:
-      - "#313244" # Surface0
-      - reverse
+      - '#313244'
     cherryPickedCommitBgColor:
-      - "#94e2d5" # Teal
+      - '#45475a'
     cherryPickedCommitFgColor:
-      - "#89b4fa" # Blue
+      - '#f5e0dc'
     unstagedChangesColor:
-      - red # Red
+      - '#f38ba8'
+    defaultFgColor:
+      - '#cdd6f4'
+    searchingActiveBorderColor:
+      - '#f9e2af'
+    authorColors:
+      '*': '#b4befe'
