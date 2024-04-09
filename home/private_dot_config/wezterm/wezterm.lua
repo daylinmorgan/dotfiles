@@ -9,6 +9,8 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
+config.hyperlink_rules = wezterm.default_hyperlink_rules()
+
 -- window_background_opacity = 0.9
 config.check_for_updates = false
 config.window_padding = {

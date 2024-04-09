@@ -9,5 +9,5 @@ end
 return disable({
   "mfussenegger/nvim-lint",
   "folke/tokyonight.nvim",
-  "L3MON4D3/LuaSnip",
+  -- "L3MON4D3/LuaSnip",
 })
