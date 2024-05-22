@@ -17,4 +17,5 @@ bin/lock
 .config/swayidle
 .config/swaylock
 .config/kanshi
+.config/mako
 {{- end }}
