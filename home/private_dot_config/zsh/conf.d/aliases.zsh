@@ -4,15 +4,15 @@ alias vi=vim
 
 alias rr="rm -rf"
 
-# more ways to ls
-alias ls="${aliases[ls]:-ls} --group-directories-first --color=auto -I 'System Volume Information'"
-alias l='ls -lh'
-alias la='ls -a'
-alias ldot='ls -ld .*'
-alias lr='ls -R'
-alias lsl="ls -lhFA --color=always | less"
-alias left='ls -t -1'
-
+# # more ways to ls
+# alias ls="${aliases[ls]:-ls} --group-directories-first --color=auto -I 'System Volume Information'"
+# alias l='ls -lh'
+# alias la='ls -a'
+# alias ldot='ls -ld .*'
+# alias lr='ls -R'
+# alias lsl="ls -lhFA --color=always | less"
+# alias left='ls -t -1'
+#
 # GNU make
 alias mkrt='make -C $(git rev-parse --show-toplevel)'
 alias mk="make"
