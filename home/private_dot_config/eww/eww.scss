@@ -70,7 +70,7 @@ $foreground: $white;
 // color each tag bubble from palette
 @each $color in $tag-palette {
   .ws-button-#{index($tag-palette,$color)} {
-    color:$color;
+    color: $color;
   }
 }
 
