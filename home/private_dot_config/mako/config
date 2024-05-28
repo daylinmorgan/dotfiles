@@ -1,6 +1,7 @@
 border-radius=5
 font=monospace 10
 height=500
+max-history=100
 
 # Colors
 background-color=#1e1e2e
