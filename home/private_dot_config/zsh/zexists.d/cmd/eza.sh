@@ -5,7 +5,7 @@ export EZA_MIN_LUMINANCE=50
 
 is-tty || alias eza="eza --icons"
 alias ls='eza'
-alias l='eza -lbF --git'
+alias l='eza -lb --git'
 alias llm='eza -lbGd --git --sort=modified'
 alias lx='eza -lbhHigUmuSa --time-style=long-iso --git --color-scale'
 
