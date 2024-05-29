@@ -1,6 +1,6 @@
 (defvar rofi-bin "~/.config/rofi/bin")
 
-(deflisten workspaces "hyprman workspaces")
+(deflisten workspaces "hyprman eww workspaces")
 
 (defpoll clocktext :interval "10s" "date '+%d %b %I:%M %p'")
 (defpoll bluetooth-icon :interval "5s" "bin/bluetooth.sh")
