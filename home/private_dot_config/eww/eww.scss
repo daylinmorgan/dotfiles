@@ -22,11 +22,8 @@ $tag-palette: (
 );
 
 // colors
-$background: $black2;
-$foreground: $white;
-
-//$accent: list.nth($tag-palette,math.random(length($tag-palette)));
-
+$background: $base;
+$foreground: $text;
 
 .debug {
   background-color: $red;
@@ -37,6 +34,7 @@ $foreground: $white;
 .bar {
   color: $foreground;
   padding: 2px 5px;
+  // font-family:"FiraCode Nerd Font Propo";
   font-family:"FiraCode Nerd Font Propo";
   font-size: 16px;
 }
