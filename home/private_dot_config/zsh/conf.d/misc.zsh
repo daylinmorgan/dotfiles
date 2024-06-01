@@ -9,6 +9,7 @@ setopt NO_HIST_BEEP  # Be quiet!
 
 # OMZ
 MAGIC_ENTER_GIT_COMMAND="$MAGIC_ENTER_OTHER_COMMAND && git status -sb"
+MAGIC_ENTER_OTHER_COMMAND="ls -l ."
 
 # let make handle it's own shell completion
 zstyle ':completion::complete:make:*:targets' call-command true
