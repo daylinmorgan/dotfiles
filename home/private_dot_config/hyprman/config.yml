@@ -2,7 +2,8 @@ default-icon: 
 no-client: "-"
 classes:
   "[Running] - Oracle VM VirtualBox": 
-  "Visual Studio Code": "
+  "Visual Studio Code": 
+  "code-url-handler": 
   "vivaldi-stable": 󰖟
   "google-chrome": 
   "chromium-browser": 
