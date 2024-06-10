@@ -1,5 +1,5 @@
 # pre-reqs
-${ZDOTDIR}/plugins/p10k-instant
+# ${ZDOTDIR}/plugins/p10k-instant
 mattmc3/zephyr path:plugins/zfunctions
 
 # general use-plugins
