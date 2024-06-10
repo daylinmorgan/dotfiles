@@ -18,6 +18,10 @@ alias mkrt='make -C $(git rev-parse --show-toplevel)'
 alias mk="make"
 alias mkc="make -C"
 
+alias yyyymmdd='date +%Y%m%d'
+alias ds='date +%Y-%m-%d'
+alias ts='date +%Y-%m-%dT%H:%M:%SZ'
+
 # url encode/decode
 alias urldecode='python3 -c "import sys, urllib.parse as ul; \
     print(ul.unquote_plus(sys.argv[1]))"'

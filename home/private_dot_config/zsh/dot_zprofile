@@ -14,23 +14,18 @@ done
 # Ensure path arrays do not contain duplicates.
 typeset -gU path fpath cdpath
 
-# add custom completions
 fpath=(
   ${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}/completions(-/FN)
 
   $fpath
 )
 
-# Set the list of directories that zsh searches for commands.
 path=(
   $HOME/{,.local/}{,s}bin(N)
-  $HOME/.extra/bin(N)
 
-  $HOME/.{go,cargo,pyenv,pixi}/bin(N)
-  $HOME/.zig(N)
+  $HOME/.{go,cargo,pyenv,pixi,zig}/bin(N)
 
-  /opt/local/{,s}bin(N)
-  /usr/{,local/}{,s}bin(N)
+  /{opt,usr}/{,local/}{,s}bin(N)
 
   # prefer NixOs paths to qtile path corruption
   /run/{wrappers,current-system/sw}/bin(N)
@@ -38,13 +33,14 @@ path=(
   $path
 )
 
-# start by sourcing extras
 for rcfile in $ZDOTDIR/local/{current,shared}/*.{,z}sh(N); do
   source $rcfile
 done
 
-# Set default less options.
 export LESS="${LESS:--g -i -M -R -S -w -z-4}"
 # Use `< file` to quickly view the contents of any file.
 [[ -z "$READNULLCMD" ]] || READNULLCMD=$PAGER
+
+# needed for omz plugin colored-man-pages
+autoload colors && colors
 
