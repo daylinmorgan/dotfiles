@@ -50,7 +50,7 @@ blocks:
         foreground: 'green'
         foreground_templates:
           - '{{ if gt .Code 0 }}red{{ end }}'
-        template: ' x{{ reason .Code }}'
+        template: ' x{{ reason .Code }} '
       - type: executiontime
         style: plain
         foreground: 'green'
@@ -64,7 +64,6 @@ blocks:
         foreground: darkGray
         template: >
           {{ if .SSHSession }} {{ .UserName}}@{{ .HostName }}{{ end }}
-
   - type: prompt
     alignment: left
     newline: true
