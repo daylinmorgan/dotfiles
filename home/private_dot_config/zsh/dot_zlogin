@@ -1,11 +1,11 @@
 #!/usr/bin/env zsh
 
-# this probably should n't be necessary but I'll leave it here anyways
+# this probably shouldn't be necessary but I'll leave it here anyways
 # since instant prompt hides the cost
 
-autoload -Uz compinit
-if [[ -n $HOME/.cache/zsh/zcompdump-$ZSH_VERSION(#qN.mh+24) ]]; then
-  compinit -d "$HOME/.cache/zsh/zcompdump-$ZSH_VERSION"
-else
-  compinit -C;
-fi;
+# autoload -Uz compinit
+# if [[ -n $HOME/.cache/zsh/zcompdump-$ZSH_VERSION(#qN.mh+24) ]]; then
+#   compinit -d "$HOME/.cache/zsh/zcompdump-$ZSH_VERSION"
+# else
+#   compinit -C;
+# fi;
