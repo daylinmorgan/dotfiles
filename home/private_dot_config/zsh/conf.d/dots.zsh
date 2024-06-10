@@ -1,0 +1,10 @@
+# alias zbench='for i in {1..10}; do /usr/bin/time zsh -lic exit; done'
+alias zdot='cd ${ZDOTDIR:-~}'
+alias dots='cd ${DOTFILES_DIR:-~/.dotfiles}'
+alias dots-drop='chezmoi forget --interactive $(chezmoi managed -p absolute | fzf -m)'
+# alias dots-add='chezmoi re-add --interactive'
+function dots-add {
+  chezmoi add $(chezmoi status | grep '^MM' | awk '{print $2}' | fzf -m)
+}
+
+
