@@ -1,4 +1,5 @@
 alias g=git
+alias c=clear
 
 alias vi=vim
 
@@ -21,6 +22,7 @@ alias mkc="make -C"
 alias yyyymmdd='date +%Y%m%d'
 alias ds='date +%Y-%m-%d'
 alias ts='date +%Y-%m-%dT%H:%M:%SZ'
+alias today="date +'%Y.%m.%d'"
 
 # url encode/decode
 alias urldecode='python3 -c "import sys, urllib.parse as ul; \
@@ -29,13 +31,6 @@ alias urlencode='python3 -c "import sys, urllib.parse as ul; \
     print (ul.quote_plus(sys.argv[1]))"'
 
 alias rclone='rclone --filter-from ~/.config/rclone/filter-file.txt'
-
-# alias zbench='for i in {1..10}; do /usr/bin/time zsh -lic exit; done'
-alias zdot='cd ${ZDOTDIR:-~}'
-alias dots='cd ${DOTFILES_DIR:-~/.dotfiles}'
-alias today="date +'%Y-%m-%d'"
-alias dots-drop='chezmoi forget --interactive $(chezmoi managed -p absolute | fzf)'
-alias dots-add='chezmoi re-add --interactive'
 
 alias viv-remote='python3 <(curl -fsSL viv.dayl.in/viv.py)'
 alias viv-dev='python3 <(curl -fsSL https://raw.githubusercontent.com/daylinmorgan/viv/dev/src/viv/viv.py)'
