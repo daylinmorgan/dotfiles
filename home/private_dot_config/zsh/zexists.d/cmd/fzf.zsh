@@ -9,7 +9,6 @@ FZF_COLORS="
 
 FZF_LAYOUT="
 --height=40%
---border=rounded
 --margin=0,5,5%
 --layout=reverse
 "
