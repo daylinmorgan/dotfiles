@@ -4,22 +4,39 @@ transient_prompt:
   foreground: cyan
   background: transparent
   template: "❯ "
+palette:
+  rosewater: '#f5e0dc'
+  sky: '#89dceb'
 final_space: true
 blocks:
   - type: prompt
     alignment: left
     segments:
+      # language segments
       - type: python
         style: plain
         foreground: "yellow"
-        template: " {{ .Full }}"
+        template: "  {{ .Full }} "
+      - type: go
+        style: plain
+        foreground: "cyan"
+        template: " {{ .Full }} "
+      - type: rust
+        style: plain
+        foreground: "red"
+        template: " {{ .Full }} "
+      - type: node
+        style: plain
+        foreground: "p:sky"
+        template: " {{ .Full }} "
+      - type: project
+        style: plain
+        foreground: "p:rosewater"
+        template: >
+          {{ if .Error }}{{ .Error }}{{ else }}{{ if .Version }}
+          {{.Version}}{{ end }}{{ if .Name }}{{ .Name }} {{ end }}{{ end -}}
       - type: git
         foreground: magenta
-        # foreground_templates:
-        #   - '{{ if or (.Working.Changed) (.Staging.Changed) }}#FF9248{{ end }}'
-        #   - '{{ if and (gt .Ahead 0) (gt .Behind 0) }}#ff4500{{ end }}'
-        #   - '{{ if gt .Ahead 0 }}#B388FF{{ end }}'
-        #   - '{{ if gt .Behind 0 }}#B388FF{{ end }}'
         properties:
           branch_max_length: 25
           fetch_stash_count: true
@@ -27,7 +44,7 @@ blocks:
           fetch_upstream_icon: true
         style: plain
         template: >
-          {{ .UpstreamIcon }}{{ .HEAD }}{{ if .BranchStatus }}{{ .BranchStatus }}{{ end -}}
+          {{ .UpstreamIcon }}{{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end -}}
           {{ if .Working.Changed }}  {{ .Working.String }}{{ end -}}
           {{ if .Staging.Changed }}  {{ .Staging.String }}{{ end -}}
           {{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end -}}
