@@ -6,9 +6,7 @@ function source-zshcmdd {
   # glob search for the zshcmd.d dir
   local -a zshcmdd=()
   [[ -n "$ZSHCMDD" ]] && zshcmdd+=($ZSHCMDD(N))
-  [[ -n "$ZDOTDIR" ]] && zshcmdd+=(
-    $ZDOTDIR/exists.d/cmd(N)
-  )
+  [[ -n "$ZDOTDIR" ]] && zshcmdd+=($ZDOTDIR/exists.d/cmd(N))
   zshcmdd+=(${ZDOTDIR:-$HOME}/zexists.d/cmd(N))
 
   if ! (( $#zshcmdd )); then

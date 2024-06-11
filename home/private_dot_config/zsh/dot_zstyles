@@ -7,3 +7,17 @@ zstyle ':antidote:plugin:*' defer-options '-p'
 
 # Set this to whatever you want to use to edit a command
 zstyle :zle:edit-command-line editor vim
+
+# let make handle it's own shell completion
+zstyle ':completion::complete:make:*:targets' call-command true
+
+# fzf-tab completions
+# set descriptions format to enable group support
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+if (( $+commands[eza] )); then
+  zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --tree --level 2 --color always --icons always $realpath'
+fi
+

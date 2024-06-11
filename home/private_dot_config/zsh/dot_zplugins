@@ -19,7 +19,7 @@ junegunn/fzf path:shell/key-bindings.zsh
 wfxr/forgit
 
 # prompt
-romkatv/powerlevel10k kind:fpath
+# romkatv/powerlevel10k kind:fpath
 ${ZDOTDIR}/plugins/prompt
 
 # start compinit before
@@ -31,5 +31,6 @@ mattmc3/zephyr path:plugins/confd
 ${ZDOTDIR}/plugins/zexists
 
 # deferred
+zsh-users/zsh-autosuggestions
 zdharma-continuum/fast-syntax-highlighting kind:defer
 Aloxaf/fzf-tab kind:defer
