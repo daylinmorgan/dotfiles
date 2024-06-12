@@ -1,4 +1,6 @@
-# alias zbench='for i in {1..10}; do /usr/bin/time zsh -lic exit; done'
+if (( $+commands[time] )); then
+  alias zbench='for i in {1..10}; do time zsh -lic exit; done'
+fi
 alias zdot='cd ${ZDOTDIR:-~}'
 alias dots='cd ${DOTFILES_DIR:-~/.dotfiles}'
 alias dots-drop='chezmoi forget --interactive $(chezmoi managed -p absolute | fzf -m)'
