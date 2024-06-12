@@ -12,6 +12,7 @@
 # fi
 # prompt powerlevel10k
 
-eval "$(oh-my-posh init zsh --config $XDG_CONFIG_HOME/omp/config.yml)"
+# eval "$(oh-my-posh init zsh --config $XDG_CONFIG_HOME/omp/config.yml)"
 
+smartcache eval oh-my-posh init zsh --config $XDG_CONFIG_HOME/omp/config.yml
 

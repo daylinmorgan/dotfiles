@@ -1,13 +1,11 @@
 # pre-reqs
-# ${ZDOTDIR}/plugins/p10k-instant
+QuarticCat/zsh-smartcache
 mattmc3/zephyr path:plugins/zfunctions
 
 # general use-plugins
 mattmc3/zephyr path:plugins/history
 mattmc3/zephyr path:plugins/utility
 
-ohmyzsh/ohmyzsh path:plugins/copybuffer
-ohmyzsh/ohmyzsh path:plugins/copyfile
 ohmyzsh/ohmyzsh path:plugins/extract
 ohmyzsh/ohmyzsh path:plugins/magic-enter
 ohmyzsh/ohmyzsh path:plugins/fancy-ctrl-z
@@ -29,6 +27,7 @@ ${ZDOTDIR}/plugins/prompt
 # wrap-up
 mattmc3/zephyr path:plugins/confd
 ${ZDOTDIR}/plugins/zexists
+${ZDOTDIR}/plugins/clipboard
 
 # deferred
 zsh-users/zsh-autosuggestions
