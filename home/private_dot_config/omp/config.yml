@@ -33,8 +33,9 @@ blocks:
         style: plain
         foreground: "p:rosewater"
         template: >
-          {{ if .Error }}{{ .Error }}{{ else }}{{ if .Version }}
-          {{.Version}}{{ end }}{{ if .Name }}{{ .Name }} {{ end }}{{ end -}}
+          {{ if .Error }} {{ .Error }}{{ else -}}
+          {{ if .Version }} {{.Version}}{{ end -}}
+          {{ if .Name }} {{ .Name }} {{ end }}{{ end -}}
       - type: git
         foreground: magenta
         properties:
