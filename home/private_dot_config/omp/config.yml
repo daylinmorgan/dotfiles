@@ -54,10 +54,10 @@ blocks:
     newline: true
     segments:
       - type: path
+        style: plain
         foreground: 'cyan'
         properties:
-          style: full
-        style: plain
+          style: unique
         template:  {{ .Path }}
   - type: prompt
     alignment: right
@@ -80,7 +80,7 @@ blocks:
         style: plain
         foreground: darkGray
         template: >
-          {{ if .SSHSession }} {{ .UserName}}@{{ .HostName }}{{ end }}
+          {{ if .SSHSession }} {{ .HostName }}{{ end }}
   - type: prompt
     alignment: left
     newline: true
