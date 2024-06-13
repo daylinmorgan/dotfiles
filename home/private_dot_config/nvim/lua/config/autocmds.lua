@@ -6,8 +6,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
   command = "set syntax=lua",
 })
 
-
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-  pattern = { "*.md"},
-  command = "set conceallevel=0"
+  pattern = { "*.md" },
+  command = "set conceallevel=0",
 })

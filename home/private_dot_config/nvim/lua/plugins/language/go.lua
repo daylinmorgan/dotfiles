@@ -1,5 +1,8 @@
--- adapted from https://www.lazyvim.org/extras/lang/go
+if not vim.fn.executable("go") then
+  return
+end
 
+-- adapted from https://www.lazyvim.org/extras/lang/go
 return {
   {
     "nvim-treesitter/nvim-treesitter",

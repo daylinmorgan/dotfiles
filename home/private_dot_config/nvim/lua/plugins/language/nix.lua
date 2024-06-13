@@ -1,3 +1,7 @@
+if not vim.fn.executable("nix") then
+  return
+end
+
 return {
   require("util").setup_lang({ treesitter = { "nix" } }),
   {
@@ -8,7 +12,7 @@ return {
           mason = false,
         },
         -- nil_ls = {
-          -- mason = false,
+        -- mason = false,
         -- },
       },
     },

@@ -1,3 +1,7 @@
+if not vim.fn.executable("roc") then
+  return
+end
+
 -- make .roc files have the correct filetype
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
   pattern = { "*.roc" },
@@ -15,8 +19,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 -- }
 
 return {
-  { "nvim-treesitter/nvim-treesitter", opts = { ensure_installed = { "roc" } }
- },
+  { "nvim-treesitter/nvim-treesitter", opts = { ensure_installed = { "roc" } } },
   {
     "neovim/nvim-lspconfig",
     opts = {

@@ -10,7 +10,6 @@ vim.opt.timeoutlen = 200
 
 vim.g.autoformat = false
 
-
 -- make .roc files have the correct filetype
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
   pattern = { "*.roc" },

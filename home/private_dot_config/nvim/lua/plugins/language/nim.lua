@@ -1,3 +1,7 @@
+if not vim.fn.executable("nim") then
+  return
+end
+
 return {
   require("util").setup_lang({ treesitter = { "nim", "nim_format_string" } }),
   {
@@ -6,8 +10,8 @@ return {
       servers = {
         nim_langserver = {
           mason = false,
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  },
 }

@@ -1,3 +1,7 @@
+if not vim.fn.executable("zig") then
+  return
+end
+
 -- adapted from https://www.lazyvim.org/extras/lang/rust
 return {
   {
