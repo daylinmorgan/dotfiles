@@ -1,3 +1,4 @@
 #!/usr/bin/env zsh
 
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
+smartcache eval pyent init -
