@@ -1,9 +1,5 @@
-if not vim.fn.executable("zig") then
-  return
-end
-
 -- adapted from https://www.lazyvim.org/extras/lang/rust
-return {
+return require("util").if_exe("zig", {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
@@ -21,4 +17,4 @@ return {
       },
     },
   },
-}
+})

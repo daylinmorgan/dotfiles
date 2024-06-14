@@ -1,9 +1,8 @@
-if not vim.fn.executable("nim") then
-  return
-end
+local util = require("util")
 
-return {
-  require("util").setup_lang({ treesitter = { "nim", "nim_format_string" } }),
+return util.if_exe("nim", {
+  util.setup_lang({ treesitter = { "nim", "nim_format_string" } }),
+  { "alaviss/nim.nvim" },
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -14,4 +13,4 @@ return {
       },
     },
   },
-}
+})

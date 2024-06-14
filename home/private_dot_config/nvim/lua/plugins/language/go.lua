@@ -1,9 +1,5 @@
-if not vim.fn.executable("go") then
-  return
-end
-
 -- adapted from https://www.lazyvim.org/extras/lang/go
-return {
+return require("util").if_exe("go", {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
@@ -93,4 +89,4 @@ return {
       vim.list_extend(opts.ensure_installed, { "goimports", "gofumpt", "gomodifytags", "impl", "delve" })
     end,
   },
-}
+})

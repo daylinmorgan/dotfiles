@@ -25,6 +25,14 @@ local function setup_lang(defs)
   }
 end
 
+local function if_exe(exe, deps)
+  if vim.fn.executable(exe) == 0 then
+    return {}
+  end
+  return deps
+end
+
 return {
   setup_lang = setup_lang,
+  if_exe = if_exe,
 }

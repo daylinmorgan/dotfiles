@@ -1,9 +1,5 @@
-if not vim.fn.executable("rust") then
-  return
-end
-
 -- adapted from https://www.lazyvim.org/extras/lang/rust
-return {
+return require("util").if_exe("rust", {
   {
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)
@@ -100,4 +96,4 @@ return {
       },
     },
   },
-}
+})

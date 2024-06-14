@@ -10,3 +10,9 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
   pattern = { "*.md" },
   command = "set conceallevel=0",
 })
+
+-- make .roc files have the correct filetype
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+  pattern = { "*.roc" },
+  command = "set filetype=roc",
+})
