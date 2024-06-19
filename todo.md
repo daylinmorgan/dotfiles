@@ -1,4 +1,4 @@
 # Dotfile Todo's
 
-- [ ] make lua utility function for neovim to include plugins if executable exists
+- [ ] fix `ta` function so that no arguments prompts users if more than one session exists
 
