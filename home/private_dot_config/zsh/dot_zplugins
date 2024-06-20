@@ -20,10 +20,6 @@ wfxr/forgit
 # romkatv/powerlevel10k kind:fpath
 ${ZDOTDIR}/plugins/prompt
 
-# start compinit before
-# fzf-tab and zexists
-# belak/zsh-utils path:completion
-
 # wrap-up
 mattmc3/zephyr path:plugins/confd
 ${ZDOTDIR}/plugins/zexists

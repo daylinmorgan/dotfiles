@@ -8,6 +8,7 @@ palette:
   rosewater: '#f5e0dc'
   sky: '#89dceb'
 final_space: true
+shell_integration: true
 blocks:
   - type: prompt
     alignment: left
