@@ -1,3 +1,4 @@
 export BAT_THEME=Catppuccin
-export BAT_STYLE=header,numbers,grid
+export BAT_STYLE=numbers
 
+alias cat="bat -p"
