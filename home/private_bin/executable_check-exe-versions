@@ -1,0 +1,63 @@
+#!/usr/bin/env python3
+
+import json
+import subprocess
+from typing import List
+
+
+class Exe:
+    def __init__(self, owner: str, name: str, exe: str | None = None) -> None:
+        self.owner = owner
+        self.name = name
+        self.exe = name if exe is None else exe
+        self.repo = f"{owner}/{name}"
+
+    def fetch_tags(self) -> List[str]:
+        output = subprocess.check_output(
+            [
+                "gh",
+                "api",
+                "-H",
+                "Accept: application/vnd.github+json",
+                "-H",
+                "X-GitHub-Api-Version: 2022-11-28",
+                "--paginate",
+                f"repos/{self.owner}/{self.name}/tags",
+            ],
+            text=True,
+        )
+        if self.name == "ripgrep":
+            tags = [n for o in json.loads(output) if (n := o["name"])[0].isdigit()]
+        else:
+            tags = [n for o in json.loads(output) if (n := o["name"]).startswith("v")]
+        if not tags:
+            print(f"recieved no tags for {self.owner}/{self.name}")
+        return tags
+
+    def current_version(self) -> str:
+        return subprocess.check_output([self.exe, "--version"], text=True)
+
+    def display(self) -> None:
+        print(f"""
+name: {self.owner}/{self.name}
+latest: {self.fetch_tags()[0]}
+current:
+""")
+
+        print("\n".join([f"  | {line} " for line in self.current_version().splitlines()]))
+
+
+EXECUTABLES = [
+    Exe(*args)
+    for args in (
+        ("sharkdp", "fd"),
+        ("BurntSushi", "ripgrep", "rg"),
+        ("cli", "cli", "gh"),
+        ("jesseduffield", "lazygit"),
+        ("neovim", "neovim", "nvim"),
+    )
+]
+
+
+for exe in EXECUTABLES:
+    exe.display()
