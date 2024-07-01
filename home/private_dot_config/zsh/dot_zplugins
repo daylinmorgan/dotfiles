@@ -17,7 +17,7 @@ junegunn/fzf path:shell/key-bindings.zsh
 wfxr/forgit
 
 # prompt
-# romkatv/powerlevel10k kind:fpath
+romkatv/powerlevel10k kind:fpath
 ${ZDOTDIR}/plugins/prompt
 
 # wrap-up
