@@ -27,6 +27,7 @@ get_icon() {
 
 # Increase Volume
 inc_volume() {
+  pamixer --unmute
   pamixer --increase 5
 }
 
