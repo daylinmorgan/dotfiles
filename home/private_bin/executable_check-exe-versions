@@ -50,6 +50,7 @@ current:
 EXECUTABLES = [
     Exe(*args)
     for args in (
+        ("junegunn","fzf"),
         ("sharkdp", "fd"),
         ("BurntSushi", "ripgrep", "rg"),
         ("cli", "cli", "gh"),
