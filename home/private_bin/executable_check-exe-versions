@@ -41,8 +41,7 @@ class Exe:
         print(f"""
 name: {self.owner}/{self.name}
 latest: {self.fetch_tags()[0]}
-current:
-""")
+current:""")
 
         print("\n".join([f"  | {line} " for line in self.current_version().splitlines()]))
 
