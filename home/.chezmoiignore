@@ -25,4 +25,5 @@ bin/lock
 .config/swaylock
 .config/kanshi
 .config/mako
+.local/share/icons/default/index.theme
 {{- end }}
