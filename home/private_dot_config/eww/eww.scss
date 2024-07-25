@@ -2,8 +2,7 @@
 @use "sass:math";
 @import "scss/Catppuccin";
 
-// todo: get rid of this
-@import "/home/daylin/.config/qtile/colors/colors.scss";
+$accent: $sky;
 
 * {
   all: unset; //Unsets everything so you can style everything from scratch
