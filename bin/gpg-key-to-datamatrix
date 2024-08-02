@@ -1,63 +1,40 @@
 #! /usr/bin/env nix-shell
-#! nix-shell -p typst dmtx-utils -i python
+#! nix-shell -p typst dmtx-utils nushell -i nu
 
-import subprocess
-import argparse
-import shlex
-import tempfile
-from pathlib import Path
-from math import ceil
+def get-chunked-key [keyid?: string] {
+  let flags = [
+    "--export-secret-key", "--export-options", "export-minimal"
+  ] | do { if keyid == null { $in } else { $in | append $keyid}}
+  let key = (gpg ...$flags)
+  let length = ($key | bytes length)
+  # 1555 is the maximum length in bytes split data evenly
+  let n = ($length / (($length / 1555)| math ceil)) | math ceil
+  0..$n..$length
+    | each {|i| $key | bytes at $i..<($i + $n)}
+}
 
+def generate-typst-doc [tmp: string, length: int] {
+  0..<$length
+    | each { |i|
+      let path = $tmp
+        | path join $"dmtx-($i).svg"
+        | path relative-to $env.PWD
 
-def sub(cmd: str, *args, **kwargs):
-    return subprocess.check_output(shlex.split(cmd), *args, **kwargs)
+        ['#image("', $path, '")'] | str join
+      }
+    | str join "\n"
+}
 
+def main [keyid?: string, outfile = "dmtxdata.pdf"] {
+  let tmpdir = mktemp -d -p . -t tmp.key-2-matrix-XXX
+  let byte_chunks = get-chunked-key $keyid
 
-def typst_file_tmpl(files):
-    local_paths = [f.relative_to(Path.cwd()) for f in files]
-    return "\n".join(f'#image("{f}")' for f in local_paths)
+  $byte_chunks | enumerate | each {|it|
+    $it.item | dmtxwrite -e 8 -o ($tmpdir | path join $"dmtx-($it.index).svg")
+  }
 
+  let doc = generate-typst-doc $tmpdir ($byte_chunks | length) 
+  $doc | typst compile - $outfile
 
-def chunk_key(key):
-    """
-    split byte string into even chunks
-    chunks will be <= 1555 bytes in length since
-    1555 is the maxiumum byte size for datamatrix
-    """
-    n = ceil(len(key) / ceil(len(key) / 1555))
-    return [key[i : i + n] for i in range(0, len(key), n)]
-
-
-def generate_pdf(byte_chunks, svgpath, outpath):
-    for f, data in zip(
-        files := [svgpath / f"dmtx-{i}.svg" for i, _ in enumerate(byte_chunks)],
-        byte_chunks,
-    ):
-        sub(f"dmtxwrite -e 8 -o {f}", input=data)
-    sub(f"typst compile - {outpath}", input=typst_file_tmpl(files), text=True)
-
-
-def get_key_data(key):
-    suffix = key if key else ""
-    return chunk_key(
-        sub(f"gpg --export-secret-key --export-options export-minimal {suffix}")
-    )
-
-
-def main():
-    p = argparse.ArgumentParser()
-    p.add_argument("--key", help="key id")
-    p.add_argument(
-        "--output", help="pdf to write matrices to", default=Path.cwd() / "key.pdf"
-    )
-
-    args = p.parse_args()
-    byte_chunks = get_key_data(args.key)
-
-    with tempfile.TemporaryDirectory(dir=Path.cwd()) as tmpdirname:
-        tmpdir = Path(tmpdirname)
-        generate_pdf(byte_chunks, tmpdir, args.output)
-
-
-if __name__ == "__main__":
-    main()
+  rm -r $tmpdir
+}
