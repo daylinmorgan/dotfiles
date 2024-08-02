@@ -1,0 +1,49 @@
+#!/usr/bin/env nu
+# TODO: add tunnel show subcmd to quickly view open tunnels
+
+def start-ssh-controller [host: string] {
+   print "initializing connection to $host"
+   ssh -M -f -N $host
+}
+
+def is-null [ name: string, arg: any] {
+  if $arg == null {
+    print $"expected argument for --($name)"
+    exit 1
+  }
+}
+
+# script `--help` will improve :)
+# https://github.com/nushell/nushell/pull/13445
+
+# control background tunnels
+# usage:
+#   tunnel up -p 4321 -h computer
+#   tunnel down -h computer
+def main [] {
+  print "use subcommands up/down to control ssh tunnels"
+  help main
+}
+
+# activate ssh tunnel
+def "main up" [
+  --port: int      # port number
+  --host: string   # host name
+] {
+  is-null "port" $port
+  is-null "host" $host
+
+  if (ssh -O check $host | complete).exit_code != 0 {
+    start-ssh-controller $host
+  }
+  ssh -fNL $"($port):localhost:($port)" $host
+}
+
+# shutdown ssh tunnels on host
+def "main down" [
+  --host: string   # host name
+] {
+  is-null "host" $host
+  print "exiting connection to $host"
+  ssh -O exit $host
+}
