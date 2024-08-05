@@ -1,10 +1,14 @@
 #! /usr/bin/env nix-shell
 #! nix-shell -p typst dmtx-utils nushell -i nu
 
+def append-if [cond: bool, item: any] {
+  if $cond { $in | append $item } else { $in }
+}
+
 def get-chunked-key [keyid?: string] {
   let flags = [
     "--export-secret-key", "--export-options", "export-minimal"
-  ] | do { if keyid == null { $in } else { $in | append $keyid}}
+  ] | append-if ($keyid != null) $keyid
   let key = (gpg ...$flags)
   let length = ($key | bytes length)
   # 1555 is the maximum length in bytes split data evenly
@@ -25,7 +29,7 @@ def generate-typst-doc [tmp: string, length: int] {
     | str join "\n"
 }
 
-def main [keyid?: string, outfile = "dmtxdata.pdf"] {
+def main [keyid?: string, --output(-o) = "dmtxdata.pdf"] {
   let tmpdir = mktemp -d -p . -t tmp.key-2-matrix-XXX
   let byte_chunks = get-chunked-key $keyid
 
@@ -33,8 +37,8 @@ def main [keyid?: string, outfile = "dmtxdata.pdf"] {
     $it.item | dmtxwrite -e 8 -o ($tmpdir | path join $"dmtx-($it.index).svg")
   }
 
-  let doc = generate-typst-doc $tmpdir ($byte_chunks | length) 
-  $doc | typst compile - $outfile
+  let doc = generate-typst-doc $tmpdir ($byte_chunks | length)
+  $doc | typst compile - $output
 
   rm -r $tmpdir
 }
