@@ -1,14 +1,14 @@
 #!/usr/bin/env nu
-# TODO: add tunnel show subcmd to quickly view open tunnels
+use std log
 
 def start-ssh-controller [host: string] {
-   print "initializing connection to $host"
+   log info "initializing connection to $host"
    ssh -M -f -N $host
 }
 
 def is-null [ name: string, arg: any] {
   if $arg == null {
-    print $"expected argument for --($name)"
+    log error $"expected argument for --($name)"
     exit 1
   }
 }
@@ -44,6 +44,17 @@ def "main down" [
   --host: string   # host name
 ] {
   is-null "host" $host
-  print "exiting connection to $host"
+  log info "exiting connection to $host"
   ssh -O exit $host
+}
+
+def "main show" [] {
+  let sockets = ls ~/.ssh/ | where name =~ control | get name
+  let n_sockets = $sockets | length
+  if $n_sockets > 0 {
+    print $"($n_sockets) active connections"
+    $sockets | split column "-" | get column2
+  } else {
+    log info "no open connections"
+  }
 }
