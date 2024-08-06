@@ -6,39 +6,42 @@ def append-if [cond: bool, item: any] {
 }
 
 def get-chunked-key [keyid?: string] {
-  let flags = [
-    "--export-secret-key", "--export-options", "export-minimal"
-  ] | append-if ($keyid != null) $keyid
+  let flags = ["--export-secret-key", "--export-options", "export-minimal"]
+    | append-if ($keyid != null) $keyid
   let key = (gpg ...$flags)
   let length = ($key | bytes length)
-  # 1555 is the maximum length in bytes split data evenly
+  # 1555 is the maximum length in bytes
   let n = ($length / (($length / 1555)| math ceil)) | math ceil
+
   0..$n..$length
-    | each {|i| $key | bytes at $i..<($i + $n)}
+  | each {|i| $key | bytes at $i..<($i + $n)}
 }
 
 def generate-typst-doc [tmp: string, length: int] {
   0..<$length
-    | each { |i|
-      let path = $tmp
-        | path join $"dmtx-($i).svg"
-        | path relative-to $env.PWD
+  | each { |i|
+    let path = $tmp
+      | path join $"dmtx-($i).svg"
+      | path relative-to $env.PWD
 
-        ['#image("', $path, '")'] | str join
-      }
-    | str join "\n"
+      ['#image("', $path, '")'] | str join
+    }
+  | str join "\n"
 }
 
 def main [keyid?: string, --output(-o) = "dmtxdata.pdf"] {
   let tmpdir = mktemp -d -p . -t tmp.key-2-matrix-XXX
   let byte_chunks = get-chunked-key $keyid
 
-  $byte_chunks | enumerate | each {|it|
-    $it.item | dmtxwrite -e 8 -o ($tmpdir | path join $"dmtx-($it.index).svg")
-  }
+  $byte_chunks
+  | enumerate
+  | each {|it|
+      $it.item
+      | dmtxwrite -e 8 -o ($tmpdir | path join $"dmtx-($it.index).svg")
+    }
 
-  let doc = generate-typst-doc $tmpdir ($byte_chunks | length)
-  $doc | typst compile - $output
+  generate-typst-doc $tmpdir ($byte_chunks | length)
+  | typst compile - $output
 
   rm -r $tmpdir
 }
