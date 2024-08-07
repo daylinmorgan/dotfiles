@@ -1,63 +1,87 @@
-#!/usr/bin/env python3
+#!/usr/bin/env nu
 
-import json
-import subprocess
-from typing import List
+def "check gh" [repo] {
+  if $in.exit_code != 0 {
+    print $"(ansi red) failed to run gh request for repo: ($repo)\n($in | reject exit_code)"
+    exit $in.exit_code
+  };
+  $in.stdout
+}
+
+def drop-v [] {
+  $in | each {|it|
+    if ($it | str starts-with 'v') {
+      $it | str substring 1..
+    } else { $it }
+  }
+}
+
+def "get tags" [] {
+  let repo = $in
+  (
+    gh api
+    -H "Accept: application/vnd.github+json" 
+    -H "X-GitHub-Api-Version: 2022-11-28"
+    --paginate $"repos/($repo)/tags"
+  )
+  | complete
+  | check gh $repo
+  | from json
+  | where name =~ '^v?\d'
+  | get name
+  | drop-v
+}
+
+def repo-to-bin [] {
+  let name = $in | split row '/' | last
+  match $name {
+    "ripgrep" => "rg"
+    "cli" => "gh"
+    "neovim" => "nvim"
+    "nushell" => "nu"
+    _ => $name
+  }
+}
+
+def current-version [] {
+  run-external $in "--version"
+  | split row "\n"
+  | each {|s| $'|  ' + $s}
+  | str join "\n"
+}
+
+def check-exe [] {
+  if (which $in | length ) == 0 {
+    print $"(ansi red_bold)($in) is not installed(ansi reset)"
+    return false
+  }
+  return true
+}
+
+def compare-versions [] {
+  let repo = $in
+  let $bin = $repo | repo-to-bin
+  if not ($bin | check-exe) { return }
+  let latest = $repo | get tags | first
+  let current = $bin | current-version
+  print $"(ansi cyan_bold)($repo)(ansi reset):
+latest: ($latest)
+current:
+($current)
+"
+}
 
 
-class Exe:
-    def __init__(self, owner: str, name: str, exe: str | None = None) -> None:
-        self.owner = owner
-        self.name = name
-        self.exe = name if exe is None else exe
-        self.repo = f"{owner}/{name}"
-
-    def fetch_tags(self) -> List[str]:
-        output = subprocess.check_output(
-            [
-                "gh",
-                "api",
-                "-H",
-                "Accept: application/vnd.github+json",
-                "-H",
-                "X-GitHub-Api-Version: 2022-11-28",
-                "--paginate",
-                f"repos/{self.owner}/{self.name}/tags",
-            ],
-            text=True,
-        )
-        if self.name == "ripgrep":
-            tags = [n for o in json.loads(output) if (n := o["name"])[0].isdigit()]
-        else:
-            tags = [n for o in json.loads(output) if (n := o["name"]).startswith("v")]
-        if not tags:
-            print(f"recieved no tags for {self.owner}/{self.name}")
-        return tags
-
-    def current_version(self) -> str:
-        return subprocess.check_output([self.exe, "--version"], text=True)
-
-    def display(self) -> None:
-        print(f"""
-name: {self.owner}/{self.name}
-latest: {self.fetch_tags()[0]}
-current:""")
-
-        print("\n".join([f"  | {line} " for line in self.current_version().splitlines()]))
-
-
-EXECUTABLES = [
-    Exe(*args)
-    for args in (
-        ("junegunn","fzf"),
-        ("sharkdp", "fd"),
-        ("BurntSushi", "ripgrep", "rg"),
-        ("cli", "cli", "gh"),
-        ("jesseduffield", "lazygit"),
-        ("neovim", "neovim", "nvim"),
-    )
+[
+  junegunn/fzf
+  cli/cli
+  sharkdp/fd
+  jesseduffield/lazygit
+  neovim/neovim
+  BurntSushi/ripgrep
+  nushell/nushell
+  zyedidia/eget
+  prefix-dev/pixi
 ]
-
-
-for exe in EXECUTABLES:
-    exe.display()
+| each {|| $in | compare-versions}
+| ignore
