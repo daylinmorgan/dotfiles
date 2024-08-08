@@ -9,7 +9,7 @@ is-tty || alias eza="${aliases[eza]:-eza} --icons"
 alias ls='eza'
 alias la='eza -la'
 alias l='eza -lb --git'
-alias llm='eza -lbGd --git --sort=modified'
+# alias llm='eza -lbGd --git --sort=modified'
 alias lx='eza -lbhHigUmuSa --time-style=long-iso --git --color-scale'
 
 alias lS='eza -1'
