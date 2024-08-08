@@ -1,15 +1,15 @@
 #!/usr/bin/env nu
+
 use std log
 
 def start-ssh-controller [host: string] {
-   log info "initializing connection to $host"
+   log info $"initializing connection to ($host)"
    ssh -M -f -N $host
 }
 
 def is-null [ name: string, arg: any] {
   if $arg == null {
-    log error $"expected argument for --($name)"
-    exit 1
+    log error $"expected argument for --($name)"; exit 1
   }
 }
 
@@ -18,8 +18,8 @@ def is-null [ name: string, arg: any] {
 
 # control background tunnels
 # usage:
-#   tunnel up -p 4321 -h computer
-#   tunnel down -h computer
+#   tunnel up -p 4321 computer
+#   tunnel down computer
 def main [] {
   print "use subcommands up/down to control ssh tunnels"
   help main
@@ -27,11 +27,10 @@ def main [] {
 
 # activate ssh tunnel
 def "main up" [
-  --port: int      # port number
-  --host: string   # host name
+  host: string   # host name
+  --port: int    # port number
 ] {
   is-null "port" $port
-  is-null "host" $host
 
   if (ssh -O check $host | complete).exit_code != 0 {
     start-ssh-controller $host
@@ -41,19 +40,24 @@ def "main up" [
 
 # shutdown ssh tunnels on host
 def "main down" [
-  --host: string   # host name
+  host: string   # host name
 ] {
-  is-null "host" $host
-  log info "exiting connection to $host"
+  log info $"exiting connection to ($host)"
   ssh -O exit $host
 }
 
 def "main show" [] {
-  let sockets = ls ~/.ssh/ | where name =~ control | get name
+  let sockets = (
+    ls ~/.ssh/
+    | where name =~ control
+    | get name
+  )
   let n_sockets = $sockets | length
   if $n_sockets > 0 {
     print $"($n_sockets) active connections"
-    $sockets | split column "-" | get column2
+    $sockets
+    | split column "-"
+    | get column2
   } else {
     log info "no open connections"
   }
