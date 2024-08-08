@@ -59,6 +59,7 @@ def check-exe [] {
 }
 
 def compare-versions [] {
+  each {||
   let repo = $in
   let $bin = $repo | repo-to-bin
   if not ($bin | check-exe) { return }
@@ -69,6 +70,7 @@ latest: ($latest)
 current:
 ($current)
 "
+  }
 }
 
 
@@ -83,5 +85,5 @@ current:
   zyedidia/eget
   prefix-dev/pixi
 ]
-| each {|| $in | compare-versions}
+| compare-versions
 | ignore
