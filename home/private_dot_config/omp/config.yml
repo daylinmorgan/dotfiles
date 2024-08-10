@@ -9,6 +9,7 @@ palette:
   sky: '#89dceb'
 final_space: true
 shell_integration: true
+disable_notice: true
 blocks:
   - type: prompt
     alignment: left
