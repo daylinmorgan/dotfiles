@@ -1,17 +1,8 @@
 #!/usr/bin/env bash
 
-
-COLUMNS=$(tput cols)
-PREFIX='%C(bold magenta)%h%C(reset)'
-SUFFIX='%C(dim white)%aN%C(reset)%C(auto)%d%C(reset)'
-
-if [[ "$COLUMNS" -gt 100 ]]; then
-  format='%C(bold)%<(50,trunc)%s%C(reset) %C(green)%><(15,trunc)%ar%C(reset)'
-else
-  format='%C(bold)%s%C(reset) %C(green)%as%C(reset)'
-fi
-
-format="$PREFIX $format $SUFFIX"
+PREFIX='%C(bold magenta)%h%C(reset)' # hash
+SUFFIX='%C(auto)%d%C(reset) %C(dim white)%aN%C(reset)|%C(green)%ar%C(reset)' # branch, author, time
+format="$PREFIX %C(bold)%s%C(reset)$SUFFIX"
 
 exec git \
  log \
