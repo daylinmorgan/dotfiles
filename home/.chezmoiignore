@@ -27,3 +27,7 @@ bin/lock
 .config/mako
 .local/share/icons/default/index.theme
 {{- end }}
+
+{{- if (ne .chezmoi.hostname "othalan") }}
+.config/openvpn
+{{- end }}
