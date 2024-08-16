@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-PREFIX='%C(bold magenta)%h%C(reset)' # hash
-SUFFIX='%C(auto)%d%C(reset) %C(dim white)%aN%C(reset)|%C(green)%ar%C(reset)' # branch, author, time
-format="$PREFIX %C(bold)%s%C(reset)$SUFFIX"
+PREFIX='%C(bold magenta)%h%C(reset)%C(auto)%d%C(reset)' # hash, decorate
+SUFFIX='%C(dim white) %aN%C(reset) %C(green) %ar%C(reset)' #author, time
+format="$PREFIX %C(bold)󰍥 %s%C(reset) $SUFFIX"
 
 exec git \
  log \
