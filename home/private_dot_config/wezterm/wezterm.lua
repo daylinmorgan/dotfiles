@@ -12,6 +12,12 @@ config.window_padding = {
 	bottom = padding,
 }
 
+-- https://github.com/NixOS/nixpkgs/issues/336069
+-- https://github.com/wez/wezterm/issues/5990
+-- why though front_end ?
+-- OpenGL on nix?
+config.front_end = "WebGpu"
+
 config.color_scheme = "Catppuccin Mocha"
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
