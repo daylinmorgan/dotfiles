@@ -3,6 +3,7 @@ local plugins = {}
 
 local single_host_plugins = {
   othalan = {
+    { "aklt/plantuml-syntax" },
     { "kaarmu/typst.vim" },
     {
       "mickael-menu/zk-nvim",

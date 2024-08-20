@@ -8,22 +8,26 @@ return {
   },
   {
     "folke/noice.nvim",
-    opts = {
-      presets = {
-        command_palette = false,
-      },
-    },
+    -- opts = {
+      -- presets = {
+      --   command_palette = false,
+      -- },
+      -- https://github.com/folke/noice.nvim/wiki/Configuration-Recipes#ignore-certain-lsp-servers-for-progress-messages
+      -- routes = {
+      --   {
+      --     filter = {
+      --       event = "lsp",
+      --       kind = "msg_show";
+      --       cond = function(message)
+      --         local client = vim.tbl_get(message.opts, "progress", "client")
+      --         return client == "nim_langserver"
+      --       end,
+      --     },
+      --     opts = { skip = true },
+      --   },
+      -- },
+    -- },
   },
-  -- add emoji completion
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   dependencies = { "hrsh7th/cmp-emoji" },
-  --   ---@param opts cmp.ConfigSchema
-  --   opts = function(_, opts)
-  --     local cmp = require("cmp")
-  --     opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
-  --   end,
-  -- },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
@@ -35,12 +39,7 @@ return {
         "json",
         "yaml",
 
-        "go",
         "regex",
-
-        "javascript",
-        "tsx",
-        "typescript",
       })
     end,
   },
