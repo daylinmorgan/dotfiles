@@ -30,12 +30,15 @@ let
   root = getGitRootMaybe()
   (_, pkgName) = root.splitPath()
   srcFile = root / "src" / (pkgName & ".nim")
+  # formatter = "nimpretty"
+  formatter = "nph"
 
-proc formatNimCode(pattern = r"^[src|tests].*\.nim(s)?$") = 
+
+proc formatNimCode(pattern = r"^[src|tests].*\.nim(s)?$") =
   let srcFiles = gorgeExCd(fmt"nimgrep --filenames -r '{pattern}' --noColor").output.split("\n")[0..^2]
   for file in srcFiles:
     # let cmd = "nph $1" % [file]
-    let cmd = "nimpretty $1" % [file]
+    let cmd = "$1 $2" % [formatter, file]
     echo "Running $1 .." % [cmd]
     exec(cmd)
 
@@ -84,4 +87,7 @@ task lexidInc, "bump lexigraphic id":
   else:
     echo "next version is: ", newVersion,"\n"
 
-switch("path","$nim")
+task _,"_______________":
+  discard
+
+# switch("path","$nim")
