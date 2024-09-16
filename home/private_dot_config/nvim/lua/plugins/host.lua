@@ -14,7 +14,7 @@ local single_host_plugins = {
       end,
     },
     { "Fymyte/rasi.vim" },
-    { dir = "~/dev/github/usu-dev/usu-vim/" },
+    -- { dir = "~/dev/github/usu-dev/usu-vim/" },
   },
 }
 
