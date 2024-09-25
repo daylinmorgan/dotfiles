@@ -90,4 +90,3 @@ task lexidInc, "bump lexigraphic id":
 task _,"_______________":
   discard
 
-# switch("path","$nim")
