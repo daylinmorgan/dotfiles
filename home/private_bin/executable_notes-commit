@@ -3,5 +3,5 @@
 GIT_DIR="${HOME}/stuff/notes"
 # notes
 fn add
-notify-send "fieldnotes" "$(git -C $GIT_DIR commit -m ":memo:" -- notes)"
+# notify-send "fieldnotes" "$(git -C $GIT_DIR commit -m ":memo:" -- notes)"
 
