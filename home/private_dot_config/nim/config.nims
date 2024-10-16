@@ -42,7 +42,7 @@ proc formatNimCode(pattern = r"^[src|tests].*\.nim(s)?$") =
     echo "Running $1 .." % [cmd]
     exec(cmd)
 
-task fmt, "Run nimpretty on all git-managed .nim files in the current repo":
+task fmt, fmt"Run {formatter} on all git-managed .nim files in the current repo":
   ## Usage: nim fmt | nim fmt .
   let dirs = forward_args("fmt")
   if dirs.len == 0:
