@@ -11,4 +11,5 @@ return disable({
   "folke/tokyonight.nvim",
   -- snippets are wildly really annoying
   "L3MON4D3/LuaSnip",
+  "nvim-neo-tree/neo-tree.nvim",
 })
