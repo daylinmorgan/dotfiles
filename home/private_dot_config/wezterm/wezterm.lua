@@ -35,5 +35,6 @@ config.initial_cols = 80
 config.enable_wayland = false
 config.keys = require("keys")
 config.default_gui_startup_args = { "start", "--always-new-process" }
+config.warn_about_missing_glyphs = false
 
 return config
