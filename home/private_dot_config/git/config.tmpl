@@ -52,8 +52,8 @@ cob = checkout -b
 br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
 undo = reset HEAD~1 --mixed
 wip = !git add -A && git commit -m \"wip: $(date +\"%Y.%m.%d %H:%M:%S\")\"
-cmt = !git commit -m \"time: $(date +\"%Y.%m.%d %H:%M:%S\")\"
-save = !git add -A && git commit -m \"time: $(date +\"%Y.%m.%d %H:%M:%S\")\"
+cmt = !git commit -m \"$(date +\"%Y.%m.%d %H:%M:%S\")\"
+save = !git add -A && git commit -m \"save: $(date +\"%Y.%m.%d %H:%M:%S\")\"
 aliases = "!git config -l | grep alias | cut -c 7-"
 gl = config --global -l
 rb5 = rebase -i HEAD~5
