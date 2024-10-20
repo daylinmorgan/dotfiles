@@ -1,4 +1,7 @@
-import std/[os, strutils, strformat]
+# import system/nimscript
+import std/[
+  os, strutils, strformat
+]
 
 switch("hint","[Conf]:off")
 
@@ -26,13 +29,8 @@ proc getGitRootMaybe(): string =
   else:
     result = projectDir()
 
-let
-  root = getGitRootMaybe()
-  (_, pkgName) = root.splitPath()
-  srcFile = root / "src" / (pkgName & ".nim")
-  # formatter = "nimpretty"
+const
   formatter = "nph"
-
 
 proc formatNimCode(pattern = r"^[src|tests].*\.nim(s)?$") =
   let srcFiles = gorgeExCd(fmt"nimgrep --filenames -r '{pattern}' --noColor").output.split("\n")[0..^2]
@@ -58,7 +56,7 @@ task i, "install package":
   setCommand("nop")
 
 
-task lexidInc, "bump lexigraphic id":
+task lexidInc, "bump lexicographic id":
   let (vsn, code) = gorgeExCd("git describe --tags --always --dirty=-dev")
   if code != 0:
     echo "is this a git repo?"
@@ -90,3 +88,6 @@ task lexidInc, "bump lexigraphic id":
 task _,"_______________":
   discard
 
+
+task h, "":
+  exec "nim help"
