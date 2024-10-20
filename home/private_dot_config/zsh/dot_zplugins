@@ -12,6 +12,7 @@ ohmyzsh/ohmyzsh path:plugins/fancy-ctrl-z
 ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 
 # tools
+# 89luca89/distrobox kind:fpath path:completions/zsh
 junegunn/fzf path:shell/completion.zsh
 junegunn/fzf path:shell/key-bindings.zsh
 wfxr/forgit

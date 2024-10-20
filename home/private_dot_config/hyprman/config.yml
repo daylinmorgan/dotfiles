@@ -1,3 +1,4 @@
+wallpapers: ~/stuff/wallpapers/mountain-temple
 default-icon: 
 no-client: "-"
 classes:
@@ -15,3 +16,5 @@ classes:
   "- Wezterm": 
   "org.wezfurlong.wezterm": 
   "MultiViewer for F1": 
+
+
