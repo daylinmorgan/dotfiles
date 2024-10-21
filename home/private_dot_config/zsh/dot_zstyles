@@ -23,3 +23,7 @@ if (( $+commands[eza] )); then
   zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --tree --level 2 --color always --icons always $realpath'
 fi
 
+# NOTE: This may lead to unexpected behavior since some flags break this plugin.
+# See Aloxaf/fzf-tab#455.
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+
