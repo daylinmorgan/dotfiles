@@ -9,7 +9,8 @@ classes:
   "google-chrome": 
   "chromium-browser": 
   "LibreOffice": 
-  "Geneious Prime": 󰚄
+  # "Geneious Prime": 󰚄
+  "com-biomatters-iseek-application-ISeekMain": 󰚄
   "Firefox": 
   "- NVIM": 
   "Alacritty": 
