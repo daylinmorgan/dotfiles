@@ -46,3 +46,6 @@ alias micromamba-fhs="nix-shell -E 'with import <nixpkgs> {}; (pkgs.buildFHSUser
 alias fhs="nix-shell -E 'with import <nixpkgs> {}; (pkgs.buildFHSUserEnv {name = \"micromamba-fhs\"; runScript=\"zsh\";}).env'"
 # https://discourse.nixos.org/t/why-is-it-so-hard-to-use-a-python-package/19200/20
 # alias fhs="nix shell --impure --expr '((builtins.getFlake \"nixpkgs\").legacyPackages.\${builtins.currentSystem}.buildFHSUserEnv { name = \"fhs\"; runScript=\"zsh\"; }).env'"
+
+
+alias utvpn-tmux="tmux new-session -d -s vpn 'utvpn' && tmux attach -t vpn"
