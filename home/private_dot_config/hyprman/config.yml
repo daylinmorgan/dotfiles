@@ -16,6 +16,7 @@ classes:
   "Alacritty": 
   "- Wezterm": 
   "org.wezfurlong.wezterm": 
+  "com.mitchellh.ghostty": 
   "MultiViewer for F1": 
 
 
