@@ -85,9 +85,22 @@ task lexidInc, "bump lexicographic id":
   else:
     echo "next version is: ", newVersion,"\n"
 
+
+task h, "":
+  exec "nim help"
+
+const name = projectDir().lastPathPart
+
+task b, fmt"build binary, default: {name}":
+  switch("outdir", "bin")
+  if projectName() == "":
+    let name = projectDir().lastPathPart
+    setCommand "c", "src/" & name & ".nim"
+  else:
+    setCommand "c",""
+
+
 task _,"_______________":
   discard
 
 
-task h, "":
-  exec "nim help"
