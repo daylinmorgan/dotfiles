@@ -23,7 +23,8 @@ fpath=(
 path=(
   $HOME/{,.local/,.dotfiles/}{,s}bin(N)
 
-  $HOME/.{go,cargo,pyenv,pixi,zig}/bin(N)
+  $HOME/.{go,cargo,pyenv,pixi,bun,nimble}/bin(N)
+  $HOME/.zig/(N)
 
   /{opt,usr}/{,local/}{,s}bin(N)
 
