@@ -1,4 +1,6 @@
-# import system/nimscript
+when defined(nimsuggest):
+  import system/nimscript
+
 import std/[
   os, strutils, strformat
 ]
@@ -99,7 +101,16 @@ task b, fmt"build binary, default: {name}":
   else:
     setCommand "c",""
 
+task updateLock, "workaround for nimble lock probs":
+  let nimbleFile = projectDir().lastPathPart & ".nimble"
+  if not fileExists nimbleFile:
+    quit "expected to find: " & nimbleFile
+  rmDir "nimbledeps"
+  rmFile "nimble.lock"
+  exec "nimble lock -l"
+  exec "nimble setup -l"
 
+# line delemiter for `nim help`
 task _,"_______________":
   discard
 
