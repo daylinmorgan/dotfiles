@@ -1,5 +1,5 @@
-when defined(nimsuggest):
-  import system/nimscript
+# when defined(nimsuggest):
+#   import system/nimscript
 
 import std/[
   os, strutils, strformat
