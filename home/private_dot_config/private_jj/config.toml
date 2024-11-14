@@ -8,7 +8,7 @@ backend = "gpg"
 signingkey = "7AD9DB430EE2B3C1D86BF3243CD66E04B8072F3E"
 
 [git]
-private-commits = "description(glob:'wip:*') | description(glob:'private:*')"
+private-commits = "description(glob:'wip*') | description(glob:'private:*')"
 
 [ui]
 default-command = "log"
@@ -17,3 +17,6 @@ diff-editor = ":builtin"
 
 [ui.diff]
 format = "git"
+
+[aliases]
+wip = ["ci", "-m", "wip"]
