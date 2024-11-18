@@ -35,6 +35,7 @@
     os_icon                 # os identifier
     dir                     # current directory
     vcs                     # git status
+    jj                      # jujutsu status
     # =========================[ Line #2 ]=========================
     newline                 # \n
     prompt_char             # prompt symbol
@@ -372,6 +373,11 @@
   function my_git_formatter() {
     emulate -L zsh
 
+    if ! [[ $(_p9k_upglob '.jj/') ]] then
+      typeset -g my_git_format=""
+      return
+    fi
+
     if [[ -n $P9K_CONTENT ]]; then
       # If P9K_CONTENT is not empty, use it. It's either "loading" or from vcs_info (not from
       # gitstatus plugin). VCS_STATUS_* parameters are not available in this case.
@@ -471,7 +477,7 @@
     # in this case.
     (( VCS_STATUS_HAS_UNSTAGED == -1 )) && res+=" ${modified}─"
 
-    typeset -g my_git_format=$res
+    typeset -g my_git_format="${res}"
   }
   functions -M my_git_formatter 2>/dev/null
 
@@ -1656,6 +1662,25 @@
   # Type `p10k help segment` for documentation and a more sophisticated example.
   function prompt_example() {
     p10k segment -f 2 -i '⭐' -t 'hello, %n'
+  }
+
+
+  function prompt_jj() {
+    # how to make this work like git?
+    _p9k_upglob '.jj' && return
+
+    local templ='
+    concat(
+    separate(" ",
+      format_short_change_id_with_hidden_and_divergent_info(self),
+      format_short_commit_id(commit_id),
+      if(conflict, label("conflict", "conflict")),
+      if(empty, label("empty", "(empty)")),
+      if(description, description.first_line(),label(if(empty, "empty"), description_placeholder),
+    )))'
+
+    local jj_status="$(jj log -T "$templ" -n 1 --no-graph --color=always)"
+    p10k segment -t "$jj_status"
   }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
