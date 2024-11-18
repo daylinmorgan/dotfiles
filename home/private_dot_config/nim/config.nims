@@ -108,8 +108,9 @@ task updateLock, "workaround for nimble lock probs":
     else: projectDir().lastPathPart & ".nimble"
   if not fileExists nimbleFile:
     quit "expected to find: " & nimbleFile
-  rmDir "nimbledeps"
-  rmFile "nimble.lock"
+  rmDir projectDir() / "nimbledeps"
+  rmFile projectDir() / "nimble.lock"
+  rmFile projectDir() / "nimble.paths"
   exec "nimble lock -l"
   exec "nimble setup -l"
 
