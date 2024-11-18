@@ -20,3 +20,5 @@ format = "git"
 
 [aliases]
 wip = ["ci", "-m", "wip"]
+la = ["log", "-r", "all()"]
+bsm = ["bookmark", "set", "main"]
