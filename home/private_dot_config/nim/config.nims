@@ -7,7 +7,7 @@ import std/[
 
 switch("hint","[Conf]:off")
 
-proc forward_args(task_name: string): seq[string] =
+proc forwardArgs(task_name: string): seq[string] =
   let args = command_line_params()
   let arg_start = args.find(task_name) + 1
   return args[arg_start..^1]
@@ -102,7 +102,10 @@ task b, fmt"build binary, default: {name}":
     setCommand "c",""
 
 task updateLock, "workaround for nimble lock probs":
-  let nimbleFile = projectDir().lastPathPart & ".nimble"
+  let params = forwardArgs("updateLock")
+  let nimbleFile = 
+    if params.len == 1: params[0]
+    else: projectDir().lastPathPart & ".nimble"
   if not fileExists nimbleFile:
     quit "expected to find: " & nimbleFile
   rmDir "nimbledeps"
