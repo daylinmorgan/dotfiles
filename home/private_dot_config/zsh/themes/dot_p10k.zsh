@@ -373,7 +373,7 @@
   function my_git_formatter() {
     emulate -L zsh
 
-    if ! [[ $(_p9k_upglob '.jj/') ]] then
+    if ! _p9k_upglob '.jj/*'; then
       typeset -g my_git_format=""
       return
     fi
