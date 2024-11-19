@@ -1673,9 +1673,8 @@
     concat(
     separate(" ",
       format_short_change_id_with_hidden_and_divergent_info(self),
-      format_short_commit_id(commit_id),
       if(conflict, label("conflict", "conflict")),
-      if(empty, label("empty", "(empty)")),
+      if(empty, label("empty", "(E)")),
       if(description, description.first_line(),label(if(empty, "empty"), description_placeholder),
     )))'
 
