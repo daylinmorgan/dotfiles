@@ -8,25 +8,6 @@ return {
   },
   {
     "folke/noice.nvim",
-    -- opts = {
-      -- presets = {
-      --   command_palette = false,
-      -- },
-      -- https://github.com/folke/noice.nvim/wiki/Configuration-Recipes#ignore-certain-lsp-servers-for-progress-messages
-      -- routes = {
-      --   {
-      --     filter = {
-      --       event = "lsp",
-      --       kind = "msg_show";
-      --       cond = function(message)
-      --         local client = vim.tbl_get(message.opts, "progress", "client")
-      --         return client == "nim_langserver"
-      --       end,
-      --     },
-      --     opts = { skip = true },
-      --   },
-      -- },
-    -- },
   },
   {
     "nvim-treesitter/nvim-treesitter",
