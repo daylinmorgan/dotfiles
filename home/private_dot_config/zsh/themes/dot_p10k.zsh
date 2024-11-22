@@ -1669,16 +1669,15 @@
     # how to make this work like git?
     _p9k_upglob '.jj' && return
 
-    local templ='
-    concat(
-    separate(" ",
+    local template='concat(separate(" ",
       format_short_change_id_with_hidden_and_divergent_info(self),
+      bookmarks, tags,
       if(conflict, label("conflict", "conflict")),
       if(empty, label("empty", "(E)")),
-      if(description, description.first_line(),label(if(empty, "empty"), description_placeholder),
-    )))'
+      if(description, description.first_line(),"(no desc.)")
+    ))'
 
-    local jj_status="$(jj log -T "$templ" -n 1 --no-graph --color=always)"
+    local jj_status="$(jj log -T "$template" -r @ --no-graph --quiet --no-pager --color=always)"
     p10k segment -t "$jj_status"
   }
 
