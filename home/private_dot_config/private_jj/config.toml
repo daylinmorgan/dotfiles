@@ -21,4 +21,8 @@ format = "git"
 [aliases]
 wip = ["ci", "-m", "wip"]
 la = ["log", "-r", "all()"]
-bsm = ["bookmark", "set", "main", "-r", "latest(~empty())"]
+bsm = [
+  "bookmark", "set", "main", "-r",
+  # first non-empty change from current revset
+  "latest(::@ & ~empty())"
+]
