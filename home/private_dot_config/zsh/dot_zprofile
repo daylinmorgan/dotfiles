@@ -28,9 +28,6 @@ path=(
 
   /{opt,usr}/{,local/}{,s}bin(N)
 
-  # prefer NixOs paths to qtile path corruption
-  /run/{wrappers,current-system/sw}/bin(N)
-
   $path
 )
 
