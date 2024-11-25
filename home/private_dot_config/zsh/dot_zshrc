@@ -5,8 +5,17 @@
 [[ -d ${ZDOTDIR:-~}/.antidote ]] ||
   git clone https://github.com/mattmc3/antidote ${ZDOTDIR:-~}/.antidote
 
-source ${ZDOTDIR:-~}/.antidote/antidote.zsh
-antidote load
+
+# antidote load
+# a "faster" antidote load
+zplugins=${ZDOTDIR:-~}/.zplugins
+if [[ ! ${zplugins}.zsh -nt $zplugins ]]; then 
+  (
+    source ${ZDOTDIR:-~}/.antidote/antidote.zsh
+    antidote bundle <${zplugins} > ${zplugins}.zsh
+  )
+fi
+source ${zplugins}.zsh
 
 path=(
   $HOME/{,.dotfiles/}{,s}bin(N)
