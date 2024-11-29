@@ -1665,24 +1665,49 @@
     p10k segment -f 2 -i '⭐' -t 'hello, %n'
   }
 
+  function _enclose_ansi() {
+    # there is probably a way to do this with  string substitutions in zsh
+    # but I can't get it and neither can the LLMs.
+    local string="$1"
+    local result=""
+    local in_escape=0
+    local escape_sequence=""
+
+    for ((i=0; i<${#string}; i++)); do
+        char="${string:$i:1}"
+        if [[ $in_escape -eq 1 ]]; then
+            escape_sequence+="$char"
+            if [[ "$char" =~ [a-zA-Z] ]]; then
+                result+="%{$escape_sequence%}"
+                escape_sequence=""
+                in_escape=0
+            fi
+        elif [[ "$char" == $'\e' ]]; then
+            in_escape=1
+            escape_sequence="$char"
+        else
+            result+="$char"
+        fi
+    done
+
+    echo "$result"
+  }
 
   function prompt_jj() {
-    # how to make this work like git?
     _p9k_upglob '.jj' && return
 
     local template='concat(separate(" ",
+      format_short_change_id_with_hidden_and_divergent_info(self),
       bookmarks, tags,
       if(conflict, label("conflict", "conflict")),
       if(empty, label("empty", "(E)")),
       if(description, description.first_line(),"(no desc.)"),
     ))'
 
-    # local jj_status="$(jj log -T "$template" -r @ --no-graph --quiet --no-pager --color=always)"
-    # color is breaking rendering when right prompts exist.
-    # rest of the info will be default color
-    local change_id="$(jj log -T 'format_short_change_id_with_hidden_and_divergent_info(self)' -r @ --no-graph --no-pager --quiet)"
-    local jj_status="$(jj log -T "$template" -r @ --no-graph --quiet --no-pager)"
-    p10k segment -t "%7F%5F$change_id %f$jj_status"
+    local jj_status="$(jj log -T "$template" -r @ --no-graph --quiet --no-pager --color=always)"
+    # https://github.com/romkatv/powerlevel10k/issues/2777#issuecomment-2427698430
+    # possible fix ^ but it needes to be used for all of the codes so I had claude generate the _enclose_ansi function above
+    p10k segment -t "$(_enclose_ansi $jj_status)"
   }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
