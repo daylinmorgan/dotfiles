@@ -249,6 +249,7 @@
     .shorten_folder_marker
     .svn
     .terraform
+    .jj
     CVS
     Cargo.toml
     composer.json
@@ -1670,15 +1671,18 @@
     _p9k_upglob '.jj' && return
 
     local template='concat(separate(" ",
-      format_short_change_id_with_hidden_and_divergent_info(self),
       bookmarks, tags,
       if(conflict, label("conflict", "conflict")),
       if(empty, label("empty", "(E)")),
-      if(description, description.first_line(),"(no desc.)")
+      if(description, description.first_line(),"(no desc.)"),
     ))'
 
-    local jj_status="$(jj log -T "$template" -r @ --no-graph --quiet --no-pager --color=always)"
-    p10k segment -t "$jj_status"
+    # local jj_status="$(jj log -T "$template" -r @ --no-graph --quiet --no-pager --color=always)"
+    # color is breaking rendering when right prompts exist.
+    # rest of the info will be default color
+    local change_id="$(jj log -T 'format_short_change_id_with_hidden_and_divergent_info(self)' -r @ --no-graph --no-pager --quiet)"
+    local jj_status="$(jj log -T "$template" -r @ --no-graph --quiet --no-pager)"
+    p10k segment -t "%7F%5F$change_id %f$jj_status"
   }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
