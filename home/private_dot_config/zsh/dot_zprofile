@@ -42,3 +42,4 @@ export LESS="${LESS:--g -i -M -R -S -w -z-4}"
 # needed for omz plugin colored-man-pages
 autoload colors && colors
 
+autoload -Uz compinit && compinit
