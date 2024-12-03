@@ -7,11 +7,9 @@ umask = 0o22
 [diff]
 command = 'delta'
 
-{{ $email := promptString "git email" "daylinmorgan@gmail.com" -}}
+{{ $email := promptString "git email" "me@dayl.in" -}}
 {{ $name := promptString "git name" "Daylin Morgan" -}}
-{{ $gui := promptBool "use gui configs" false -}}
 [data]
 email = {{ $email | quote }}
 name = {{ $name | quote }}
-gui = {{ $gui }}
 

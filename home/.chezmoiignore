@@ -5,11 +5,12 @@
 
 *.zwc
 
-{{- if (not .gui) }}
-bin/get-updates
+{{- if (ne .chezmoi.hostname "othalan") }}
 bin/lock
-.xinitrc
-.xprofile
+.config/openvpn
+.config/flameshot
+.config/mako
+.config/kanshi
 .config/alacritty
 .config/wezterm
 .config/autorandr
@@ -23,11 +24,7 @@ bin/lock
 .config/rofi
 .config/swayidle
 .config/swaylock
-.config/kanshi
-.config/mako
+.xinitrc
+.xprofile
 .local/share/icons/default/index.theme
-{{- end }}
-
-{{- if (ne .chezmoi.hostname "othalan") }}
-.config/openvpn
 {{- end }}
