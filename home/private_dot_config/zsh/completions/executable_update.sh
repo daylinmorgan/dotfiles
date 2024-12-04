@@ -8,8 +8,8 @@ is-exe () {
 
 gen() {
 	if is-exe "$1"; then
-		echo "$1 updated"
 		"$@" | sed "s#$HOME#\$HOME#g" >$CURDIR/"_$argv[1]"
+		echo "$1 updated"
 	else
 		echo "skipping $1"
 	fi
@@ -24,3 +24,4 @@ gen rye self completion -s zsh
 gen gh completion -s zsh
 gen pixi completion -s zsh
 gen rclone completion zsh -
+gen jj util completion zsh
