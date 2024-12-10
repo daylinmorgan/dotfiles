@@ -61,6 +61,29 @@ _arguments "${_arguments_options[@]}" : \
 '*::revisions -- The revision(s) to abandon:_default' \
 && ret=0
 ;;
+(absorb)
+_arguments "${_arguments_options[@]}" : \
+'-f+[Source revision to absorb from]:FROM:_default' \
+'--from=[Source revision to absorb from]:FROM:_default' \
+'*-t+[Destination revisions to absorb into]:INTO:_default' \
+'*--into=[Destination revisions to absorb into]:INTO:_default' \
+'*--to=[Destination revisions to absorb into]:INTO:_default' \
+'-R+[Path to repository to operate on]:REPOSITORY:_files -/' \
+'--repository=[Path to repository to operate on]:REPOSITORY:_files -/' \
+'--at-operation=[Operation to load the repo at]:AT_OPERATION:_default' \
+'--at-op=[Operation to load the repo at]:AT_OPERATION:_default' \
+'--color=[When to colorize output (always, never, debug, auto)]:WHEN:_default' \
+'*--config-toml=[Additional configuration options (can be repeated)]:TOML:_default' \
+'--ignore-working-copy[Don'\''t snapshot the working copy, and don'\''t update it]' \
+'--ignore-immutable[Allow rewriting immutable commits]' \
+'--debug[Enable debug logging]' \
+'--quiet[Silence non-primary command output]' \
+'--no-pager[Disable the pager]' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+'*::paths -- Move only changes to these paths (instead of all paths):_files' \
+&& ret=0
+;;
 (backout)
 _arguments "${_arguments_options[@]}" : \
 '*-r+[The revision(s) to apply the reverse of]:REVISIONS:_default' \
@@ -868,27 +891,6 @@ _arguments "${_arguments_options[@]}" : \
 '*::paths -- Paths to print:_files' \
 && ret=0
 ;;
-(checkout)
-_arguments "${_arguments_options[@]}" : \
-'*-m+[The change description to use]:MESSAGE:_default' \
-'*--message=[The change description to use]:MESSAGE:_default' \
-'-R+[Path to repository to operate on]:REPOSITORY:_files -/' \
-'--repository=[Path to repository to operate on]:REPOSITORY:_files -/' \
-'--at-operation=[Operation to load the repo at]:AT_OPERATION:_default' \
-'--at-op=[Operation to load the repo at]:AT_OPERATION:_default' \
-'--color=[When to colorize output (always, never, debug, auto)]:WHEN:_default' \
-'*--config-toml=[Additional configuration options (can be repeated)]:TOML:_default' \
-'-r[Ignored (but lets you pass \`-r\` for consistency with other commands)]' \
-'--ignore-working-copy[Don'\''t snapshot the working copy, and don'\''t update it]' \
-'--ignore-immutable[Allow rewriting immutable commits]' \
-'--debug[Enable debug logging]' \
-'--quiet[Silence non-primary command output]' \
-'--no-pager[Disable the pager]' \
-'-h[Print help (see more with '\''--help'\'')]' \
-'--help[Print help (see more with '\''--help'\'')]' \
-':revision -- The revision to update to:_default' \
-&& ret=0
-;;
 (chmod)
 _arguments "${_arguments_options[@]}" : \
 '-r+[The revision to update]:REVISION:_default' \
@@ -912,31 +914,6 @@ x\:"Make a path executable (alias\: executable)"))' \
 && ret=0
 ;;
 (commit)
-_arguments "${_arguments_options[@]}" : \
-'--tool=[Specify diff editor to be used (implies --interactive)]:NAME:_default' \
-'*-m+[The change description to use (don'\''t open editor)]:MESSAGE:_default' \
-'*--message=[The change description to use (don'\''t open editor)]:MESSAGE:_default' \
-'(--reset-author)--author=[Set author to the provided string]:AUTHOR:_default' \
-'-R+[Path to repository to operate on]:REPOSITORY:_files -/' \
-'--repository=[Path to repository to operate on]:REPOSITORY:_files -/' \
-'--at-operation=[Operation to load the repo at]:AT_OPERATION:_default' \
-'--at-op=[Operation to load the repo at]:AT_OPERATION:_default' \
-'--color=[When to colorize output (always, never, debug, auto)]:WHEN:_default' \
-'*--config-toml=[Additional configuration options (can be repeated)]:TOML:_default' \
-'-i[Interactively choose which changes to include in the first commit]' \
-'--interactive[Interactively choose which changes to include in the first commit]' \
-'--reset-author[Reset the author to the configured user]' \
-'--ignore-working-copy[Don'\''t snapshot the working copy, and don'\''t update it]' \
-'--ignore-immutable[Allow rewriting immutable commits]' \
-'--debug[Enable debug logging]' \
-'--quiet[Silence non-primary command output]' \
-'--no-pager[Disable the pager]' \
-'-h[Print help (see more with '\''--help'\'')]' \
-'--help[Print help (see more with '\''--help'\'')]' \
-'*::paths -- Put these paths in the first commit:_files' \
-&& ret=0
-;;
-(ci)
 _arguments "${_arguments_options[@]}" : \
 '--tool=[Specify diff editor to be used (implies --interactive)]:NAME:_default' \
 '*-m+[The change description to use (don'\''t open editor)]:MESSAGE:_default' \
@@ -1635,7 +1612,9 @@ _arguments "${_arguments_options[@]}" : \
 _arguments "${_arguments_options[@]}" : \
 '-r+[Show changes in this revision, compared to its parent(s)]:REVISION:_default' \
 '--revision=[Show changes in this revision, compared to its parent(s)]:REVISION:_default' \
+'(-r --revision)-f+[Show changes from this revision]:FROM:_default' \
 '(-r --revision)--from=[Show changes from this revision]:FROM:_default' \
+'(-r --revision)-t+[Show changes to this revision]:TO:_default' \
 '(-r --revision)--to=[Show changes to this revision]:TO:_default' \
 '--tool=[Generate diff by external command]:TOOL:_default' \
 '--context=[Number of lines of context to show]:CONTEXT:_default' \
@@ -1670,7 +1649,9 @@ _arguments "${_arguments_options[@]}" : \
 _arguments "${_arguments_options[@]}" : \
 '-r+[The revision to touch up]:REVISION:_default' \
 '--revision=[The revision to touch up]:REVISION:_default' \
+'(-r --revision)-f+[Show changes from this revision]:FROM:_default' \
 '(-r --revision)--from=[Show changes from this revision]:FROM:_default' \
+'(-r --revision)-t+[Edit changes in this revision]:TO:_default' \
 '(-r --revision)--to=[Edit changes in this revision]:TO:_default' \
 '--tool=[Specify diff editor to be used]:NAME:_default' \
 '-R+[Path to repository to operate on]:REPOSITORY:_files -/' \
@@ -1691,13 +1672,21 @@ _arguments "${_arguments_options[@]}" : \
 ;;
 (duplicate)
 _arguments "${_arguments_options[@]}" : \
+'*-r+[]:REVISIONS_OPT:_default' \
+'*-d+[The revision(s) to duplicate onto (can be repeated to create a merge commit)]:DESTINATION:_default' \
+'*--destination=[The revision(s) to duplicate onto (can be repeated to create a merge commit)]:DESTINATION:_default' \
+'(-d --destination)*-A+[The revision(s) to insert after (can be repeated to create a merge commit)]:INSERT_AFTER:_default' \
+'(-d --destination)*--insert-after=[The revision(s) to insert after (can be repeated to create a merge commit)]:INSERT_AFTER:_default' \
+'(-d --destination)*--after=[The revision(s) to insert after (can be repeated to create a merge commit)]:INSERT_AFTER:_default' \
+'(-d --destination)*-B+[The revision(s) to insert before (can be repeated to create a merge commit)]:INSERT_BEFORE:_default' \
+'(-d --destination)*--insert-before=[The revision(s) to insert before (can be repeated to create a merge commit)]:INSERT_BEFORE:_default' \
+'(-d --destination)*--before=[The revision(s) to insert before (can be repeated to create a merge commit)]:INSERT_BEFORE:_default' \
 '-R+[Path to repository to operate on]:REPOSITORY:_files -/' \
 '--repository=[Path to repository to operate on]:REPOSITORY:_files -/' \
 '--at-operation=[Operation to load the repo at]:AT_OPERATION:_default' \
 '--at-op=[Operation to load the repo at]:AT_OPERATION:_default' \
 '--color=[When to colorize output (always, never, debug, auto)]:WHEN:_default' \
 '*--config-toml=[Additional configuration options (can be repeated)]:TOML:_default' \
-'*-r[Ignored (but lets you pass \`-r\` for consistency with other commands)]' \
 '--ignore-working-copy[Don'\''t snapshot the working copy, and don'\''t update it]' \
 '--ignore-immutable[Allow rewriting immutable commits]' \
 '--debug[Enable debug logging]' \
@@ -1705,7 +1694,7 @@ _arguments "${_arguments_options[@]}" : \
 '--no-pager[Disable the pager]' \
 '-h[Print help (see more with '\''--help'\'')]' \
 '--help[Print help (see more with '\''--help'\'')]' \
-'*::revisions -- The revision(s) to duplicate:_default' \
+'*::revisions_pos -- The revision(s) to duplicate (default\: @):_default' \
 && ret=0
 ;;
 (edit)
@@ -2128,9 +2117,11 @@ _arguments "${_arguments_options[@]}" : \
 '--at-op=[Operation to load the repo at]:AT_OPERATION:_default' \
 '--color=[When to colorize output (always, never, debug, auto)]:WHEN:_default' \
 '*--config-toml=[Additional configuration options (can be repeated)]:TOML:_default' \
-'--all[Push all bookmarks (including deleted bookmarks)]' \
+'--all[Push all bookmarks (including new and deleted bookmarks)]' \
 '--tracked[Push all tracked bookmarks (including deleted bookmarks)]' \
 '--deleted[Push all deleted bookmarks]' \
+'(--all --deleted --tracked)-N[Allow pushing new bookmarks]' \
+'(--all --deleted --tracked)--allow-new[Allow pushing new bookmarks]' \
 '--allow-empty-description[Allow pushing commits with empty descriptions]' \
 '--allow-private[Allow pushing commits that are private]' \
 '--dry-run[Only display what will change on the remote]' \
@@ -2360,7 +2351,9 @@ _arguments "${_arguments_options[@]}" : \
 ;;
 (interdiff)
 _arguments "${_arguments_options[@]}" : \
+'-f+[Show changes from this revision]:FROM:_default' \
 '--from=[Show changes from this revision]:FROM:_default' \
+'-t+[Show changes to this revision]:TO:_default' \
 '--to=[Show changes to this revision]:TO:_default' \
 '--tool=[Generate diff by external command]:TOOL:_default' \
 '--context=[Number of lines of context to show]:CONTEXT:_default' \
@@ -2429,60 +2422,6 @@ _arguments "${_arguments_options[@]}" : \
 '-h[Print help (see more with '\''--help'\'')]' \
 '--help[Print help (see more with '\''--help'\'')]' \
 '*::paths -- Show revisions modifying the given paths:_files' \
-&& ret=0
-;;
-(merge)
-_arguments "${_arguments_options[@]}" : \
-'*-m+[The change description to use]:MESSAGE:_default' \
-'*--message=[The change description to use]:MESSAGE:_default' \
-'()*-A+[Insert the new change after the given commit(s)]:INSERT_AFTER:_default' \
-'()*--insert-after=[Insert the new change after the given commit(s)]:INSERT_AFTER:_default' \
-'()*--after=[Insert the new change after the given commit(s)]:INSERT_AFTER:_default' \
-'()*-B+[Insert the new change before the given commit(s)]:INSERT_BEFORE:_default' \
-'()*--insert-before=[Insert the new change before the given commit(s)]:INSERT_BEFORE:_default' \
-'()*--before=[Insert the new change before the given commit(s)]:INSERT_BEFORE:_default' \
-'-R+[Path to repository to operate on]:REPOSITORY:_files -/' \
-'--repository=[Path to repository to operate on]:REPOSITORY:_files -/' \
-'--at-operation=[Operation to load the repo at]:AT_OPERATION:_default' \
-'--at-op=[Operation to load the repo at]:AT_OPERATION:_default' \
-'--color=[When to colorize output (always, never, debug, auto)]:WHEN:_default' \
-'*--config-toml=[Additional configuration options (can be repeated)]:TOML:_default' \
-'*-d[Ignored (but lets you pass \`-d\`/\`-r\` for consistency with other commands)]' \
-'(--edit)--no-edit[Do not edit the newly created change]' \
-'--edit[No-op flag to pair with --no-edit]' \
-'--ignore-working-copy[Don'\''t snapshot the working copy, and don'\''t update it]' \
-'--ignore-immutable[Allow rewriting immutable commits]' \
-'--debug[Enable debug logging]' \
-'--quiet[Silence non-primary command output]' \
-'--no-pager[Disable the pager]' \
-'-h[Print help (see more with '\''--help'\'')]' \
-'--help[Print help (see more with '\''--help'\'')]' \
-'*::revisions -- Parent(s) of the new change:_default' \
-&& ret=0
-;;
-(move)
-_arguments "${_arguments_options[@]}" : \
-'-f+[Move part of this change into the destination]:FROM:_default' \
-'--from=[Move part of this change into the destination]:FROM:_default' \
-'-t+[Move part of the source into this change]:TO:_default' \
-'--to=[Move part of the source into this change]:TO:_default' \
-'--tool=[Specify diff editor to be used (implies --interactive)]:NAME:_default' \
-'-R+[Path to repository to operate on]:REPOSITORY:_files -/' \
-'--repository=[Path to repository to operate on]:REPOSITORY:_files -/' \
-'--at-operation=[Operation to load the repo at]:AT_OPERATION:_default' \
-'--at-op=[Operation to load the repo at]:AT_OPERATION:_default' \
-'--color=[When to colorize output (always, never, debug, auto)]:WHEN:_default' \
-'*--config-toml=[Additional configuration options (can be repeated)]:TOML:_default' \
-'-i[Interactively choose which parts to move]' \
-'--interactive[Interactively choose which parts to move]' \
-'--ignore-working-copy[Don'\''t snapshot the working copy, and don'\''t update it]' \
-'--ignore-immutable[Allow rewriting immutable commits]' \
-'--debug[Enable debug logging]' \
-'--quiet[Silence non-primary command output]' \
-'--no-pager[Disable the pager]' \
-'-h[Print help (see more with '\''--help'\'')]' \
-'--help[Print help (see more with '\''--help'\'')]' \
-'*::paths -- Move only changes to these paths (instead of all paths):_files' \
 && ret=0
 ;;
 (new)
@@ -2584,7 +2523,9 @@ _arguments "${_arguments_options[@]}" : \
 _arguments "${_arguments_options[@]}" : \
 '--operation=[Show repository changes in this operation, compared to its parent]:OPERATION:_default' \
 '--op=[Show repository changes in this operation, compared to its parent]:OPERATION:_default' \
+'(--operation)-f+[Show repository changes from this operation]:FROM:_default' \
 '(--operation)--from=[Show repository changes from this operation]:FROM:_default' \
+'(--operation)-t+[Show repository changes to this operation]:TO:_default' \
 '(--operation)--to=[Show repository changes to this operation]:TO:_default' \
 '--tool=[Generate diff by external command]:TOOL:_default' \
 '--context=[Number of lines of context to show]:CONTEXT:_default' \
@@ -2775,7 +2716,9 @@ _arguments "${_arguments_options[@]}" : \
 _arguments "${_arguments_options[@]}" : \
 '--operation=[Show repository changes in this operation, compared to its parent]:OPERATION:_default' \
 '--op=[Show repository changes in this operation, compared to its parent]:OPERATION:_default' \
+'(--operation)-f+[Show repository changes from this operation]:FROM:_default' \
 '(--operation)--from=[Show repository changes from this operation]:FROM:_default' \
+'(--operation)-t+[Show repository changes to this operation]:TO:_default' \
 '(--operation)--to=[Show repository changes to this operation]:TO:_default' \
 '--tool=[Generate diff by external command]:TOOL:_default' \
 '--context=[Number of lines of context to show]:CONTEXT:_default' \
@@ -2962,8 +2905,8 @@ _arguments "${_arguments_options[@]}" : \
 ;;
 (rebase)
 _arguments "${_arguments_options[@]}" : \
-'(-A --insert-after -B --insert-before)*-b+[Rebase the whole branch relative to destination'\''s ancestors (can be repeated)]:BRANCH:_default' \
-'(-A --insert-after -B --insert-before)*--branch=[Rebase the whole branch relative to destination'\''s ancestors (can be repeated)]:BRANCH:_default' \
+'*-b+[Rebase the whole branch relative to destination'\''s ancestors (can be repeated)]:BRANCH:_default' \
+'*--branch=[Rebase the whole branch relative to destination'\''s ancestors (can be repeated)]:BRANCH:_default' \
 '*-s+[Rebase specified revision(s) together with their trees of descendants (can be repeated)]:SOURCE:_default' \
 '*--source=[Rebase specified revision(s) together with their trees of descendants (can be repeated)]:SOURCE:_default' \
 '*-r+[Rebase the given revisions, rebasing descendants onto this revision'\''s parent(s)]:REVISIONS:_default' \
@@ -2983,7 +2926,7 @@ _arguments "${_arguments_options[@]}" : \
 '--color=[When to colorize output (always, never, debug, auto)]:WHEN:_default' \
 '*--config-toml=[Additional configuration options (can be repeated)]:TOML:_default' \
 '(-r --revisions)--skip-empty[Deprecated. Use --skip-emptied instead]' \
-'(-r --revisions)--skip-emptied[If true, when rebasing would produce an empty commit, the commit is abandoned. It will not be abandoned if it was already empty before the rebase. Will never skip merge commits with multiple non-empty parents]' \
+'--skip-emptied[If true, when rebasing would produce an empty commit, the commit is abandoned. It will not be abandoned if it was already empty before the rebase. Will never skip merge commits with multiple non-empty parents]' \
 '--ignore-working-copy[Don'\''t snapshot the working copy, and don'\''t update it]' \
 '--ignore-immutable[Allow rewriting immutable commits]' \
 '--debug[Enable debug logging]' \
@@ -3018,10 +2961,12 @@ _arguments "${_arguments_options[@]}" : \
 ;;
 (restore)
 _arguments "${_arguments_options[@]}" : \
+'-f+[Revision to restore from (source)]:FROM:_default' \
 '--from=[Revision to restore from (source)]:FROM:_default' \
+'-t+[Revision to restore into (destination)]:TO:_default' \
 '--to=[Revision to restore into (destination)]:TO:_default' \
-'(--to --from)-c+[Undo the changes in a revision as compared to the merge of its parents]:REVISION:_default' \
-'(--to --from)--changes-in=[Undo the changes in a revision as compared to the merge of its parents]:REVISION:_default' \
+'(-t --to -f --from)-c+[Undo the changes in a revision as compared to the merge of its parents]:REVISION:_default' \
+'(-t --to -f --from)--changes-in=[Undo the changes in a revision as compared to the merge of its parents]:REVISION:_default' \
 '-r+[Prints an error. DO NOT USE]:REVISION:_default' \
 '--revision=[Prints an error. DO NOT USE]:REVISION:_default' \
 '-R+[Path to repository to operate on]:REPOSITORY:_files -/' \
@@ -3479,6 +3424,25 @@ _arguments "${_arguments_options[@]}" : \
 '--help[Print help (see more with '\''--help'\'')]' \
 && ret=0
 ;;
+(exec)
+_arguments "${_arguments_options[@]}" : \
+'-R+[Path to repository to operate on]:REPOSITORY:_files -/' \
+'--repository=[Path to repository to operate on]:REPOSITORY:_files -/' \
+'--at-operation=[Operation to load the repo at]:AT_OPERATION:_default' \
+'--at-op=[Operation to load the repo at]:AT_OPERATION:_default' \
+'--color=[When to colorize output (always, never, debug, auto)]:WHEN:_default' \
+'*--config-toml=[Additional configuration options (can be repeated)]:TOML:_default' \
+'--ignore-working-copy[Don'\''t snapshot the working copy, and don'\''t update it]' \
+'--ignore-immutable[Allow rewriting immutable commits]' \
+'--debug[Enable debug logging]' \
+'--quiet[Silence non-primary command output]' \
+'--no-pager[Disable the pager]' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+':command -- External command to execute:_default' \
+'*::args -- Arguments to pass to the external command:_default' \
+&& ret=0
+;;
 (gc)
 _arguments "${_arguments_options[@]}" : \
 '--expire=[Time threshold]:EXPIRE:_default' \
@@ -3761,21 +3725,20 @@ esac
 _jj_commands() {
     local commands; commands=(
 'abandon:Abandon a revision' \
+'absorb:Move changes from a revision into the stack of mutable revisions' \
 'backout:Apply the reverse of a revision on top of another revision' \
-'bookmark:Manage bookmarks' \
-'branch:Manage bookmarks' \
+'bookmark:Manage bookmarks \[default alias\: b\]' \
+'branch:Manage bookmarks \[default alias\: b\]' \
 'cat:Print contents of files in a revision' \
-'checkout:Create a new, empty change and edit it in the working copy (DEPRECATED, use \`jj new\`)' \
 'chmod:Sets or removes the executable bit for paths in the repo' \
 'commit:Update the description and create a new change on top' \
-'ci:Update the description and create a new change on top' \
 'config:Manage config options' \
 'debug:Low-level commands not intended for users' \
 'describe:Update the change description or other metadata' \
 'desc:Update the change description or other metadata' \
 'diff:Compare file contents between two revisions' \
 'diffedit:Touch up the content changes in a revision with a diff editor' \
-'duplicate:Create a new change with the same content as an existing one' \
+'duplicate:Create new changes with the same content as existing ones' \
 'edit:Sets the specified revision as the working-copy revision' \
 'evolog:Show how a change has evolved over time' \
 'evolution-log:Show how a change has evolved over time' \
@@ -3787,8 +3750,6 @@ _jj_commands() {
 'init:Create a new repo in the given directory' \
 'interdiff:Compare the changes of two commits' \
 'log:Show revision history' \
-'merge:Merge work from multiple bookmarks (DEPRECATED, use \`jj new\`)' \
-'move:Move changes from one revision into another (DEPRECATED, use \`jj squash\`)' \
 'new:Create a new, empty change and (by default) edit it in the working copy' \
 'next:Move the working-copy commit to the child revision' \
 'operation:Commands for working with the operation log' \
@@ -3822,6 +3783,11 @@ _jj_commands() {
 _jj__abandon_commands() {
     local commands; commands=()
     _describe -t commands 'jj abandon commands' commands "$@"
+}
+(( $+functions[_jj__absorb_commands] )) ||
+_jj__absorb_commands() {
+    local commands; commands=()
+    _describe -t commands 'jj absorb commands' commands "$@"
 }
 (( $+functions[_jj__backout_commands] )) ||
 _jj__backout_commands() {
@@ -3968,11 +3934,6 @@ _jj__branch__untrack_commands() {
 _jj__cat_commands() {
     local commands; commands=()
     _describe -t commands 'jj cat commands' commands "$@"
-}
-(( $+functions[_jj__checkout_commands] )) ||
-_jj__checkout_commands() {
-    local commands; commands=()
-    _describe -t commands 'jj checkout commands' commands "$@"
 }
 (( $+functions[_jj__chmod_commands] )) ||
 _jj__chmod_commands() {
@@ -4330,16 +4291,6 @@ _jj__log_commands() {
     local commands; commands=()
     _describe -t commands 'jj log commands' commands "$@"
 }
-(( $+functions[_jj__merge_commands] )) ||
-_jj__merge_commands() {
-    local commands; commands=()
-    _describe -t commands 'jj merge commands' commands "$@"
-}
-(( $+functions[_jj__move_commands] )) ||
-_jj__move_commands() {
-    local commands; commands=()
-    _describe -t commands 'jj move commands' commands "$@"
-}
 (( $+functions[_jj__new_commands] )) ||
 _jj__new_commands() {
     local commands; commands=()
@@ -4520,6 +4471,7 @@ _jj__util_commands() {
     local commands; commands=(
 'completion:Print a command-line-completion script' \
 'config-schema:Print the JSON schema for the jj TOML config format' \
+'exec:Execute an external command via jj' \
 'gc:Run backend-dependent garbage collection' \
 'mangen:Print a ROFF (manpage)' \
 'markdown-help:Print the CLI help for all subcommands in Markdown' \
@@ -4535,6 +4487,11 @@ _jj__util__completion_commands() {
 _jj__util__config-schema_commands() {
     local commands; commands=()
     _describe -t commands 'jj util config-schema commands' commands "$@"
+}
+(( $+functions[_jj__util__exec_commands] )) ||
+_jj__util__exec_commands() {
+    local commands; commands=()
+    _describe -t commands 'jj util exec commands' commands "$@"
 }
 (( $+functions[_jj__util__gc_commands] )) ||
 _jj__util__gc_commands() {

@@ -1,6 +1,6 @@
 #compdef pdm
 
-PDM_PYTHON="$HOME/.cache/viv/venvs/c63f4950/bin/python"
+PDM_PYTHON="$HOME/.local/share/uv/tools/pdm/bin/python"
 PDM_PYPI_URL=$(PDM_CHECK_UPDATE=0 "${PDM_PYTHON}" -m pdm config pypi.url)
 
 _pdm() {
