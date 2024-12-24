@@ -2,7 +2,7 @@
 @use "sass:math";
 @import "scss/Catppuccin";
 
-$accent: $sky;
+$accent: $teal;
 
 * {
   all: unset; //Unsets everything so you can style everything from scratch
@@ -34,12 +34,12 @@ $foreground: $text;
   color: $foreground;
   padding: 2px 5px;
   // font-family:"FiraCode Nerd Font Propo";
-  font-family:"FiraCode Nerd Font Propo";
+  font-family: "FiraCode Nerd Font Propo";
   font-size: 16px;
 }
 
 .panel {
-  margin: 5px;
+  margin: 0px 2px;
   background-color: $background;
   border: 2px solid;
   border-radius: 15px;

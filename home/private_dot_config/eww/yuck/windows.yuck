@@ -9,23 +9,19 @@
     :y "0%"
     :width "100%"
     :height "40px"
-  :anchor "top center")
-  ;:reserve (struts :side "top" :distance "45px")
+    :anchor "top center")
   (bar :screen 0 :minimal false)
 )
 
-; todo: ADD HOME MONITOR
-
 (defwindow bar1
-  :monitor '["ASUS MX239", "Acer H236HL"]'
+  :monitor '["ASUS MX239", "Acer H236HL", "KA242Y"]'
   :windowtype "dock"
   :exclusive true
   :geometry (geometry :x "0%"
     :y "0%"
     :width "100%"
     :height "40px"
-  :anchor "top center")
-  ;:reserve (struts :side "top" :distance "45px")
+    :anchor "top center")
   (bar :screen 1 :minimal false)
 )
 
@@ -37,7 +33,6 @@
     :y "0%"
     :width "100%"
     :height "40px"
-  :anchor "top center")
-  ;:reserve (struts :side "top" :distance "43px")
+    :anchor "top center")
   (bar :screen 2 :minimal true)
 )
