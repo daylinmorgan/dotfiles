@@ -47,6 +47,7 @@
   # last prompt line gets hidden if it would overlap with left prompt.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
+    mytodo                    # daylinmorgan/todo status
     status                  # exit code of the last command
     command_execution_time  # duration of the last command
     background_jobs         # presence of background jobs
@@ -101,7 +102,7 @@
     # disk_usage            # disk usage
     # ram                   # free RAM
     # swap                  # used swap
-    todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
+    # todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
     timewarrior             # timewarrior tracking status (https://timewarrior.net/)
     taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
     per_directory_history   # Oh My Zsh per-directory-history local/global indicator
@@ -1666,7 +1667,7 @@
   }
 
   function _enclose_ansi() {
-    # there is probably a way to do this with  string substitutions in zsh
+    # there is probably a way to do this with string substitutions in zsh
     # but I can't get it and neither can the LLMs.
     local string="$1"
     local result=""
@@ -1708,6 +1709,12 @@
     # https://github.com/romkatv/powerlevel10k/issues/2777#issuecomment-2427698430
     # possible fix ^ but it needes to be used for all of the codes so I had claude generate the _enclose_ansi function above
     p10k segment -t "$(_enclose_ansi $jj_status)"
+  }
+
+  function prompt_mytodo() {
+    [ -f "todo.md" ] || return
+    local todo_status="$(HWYLTERM_FORCE_COLOR=1 todo show --status --totals)"
+    p10k segment -t "%f$(_enclose_ansi $todo_status)"
   }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
