@@ -2,7 +2,8 @@ vim.opt.listchars = {
   tab = "│→",
   extends = "⟩",
   precedes = "⟨",
-  trail = "·",
+  -- trail = "·",
+  trail = "␣",
   nbsp = "␣",
 }
 vim.opt.foldenable = false
@@ -20,3 +21,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 vim.g.zig_fmt_autosave = 0
 
 vim.lsp.set_log_level("off")
+
+vim.api.nvim_create_user_command("Shrug", function()
+  vim.api.nvim_put({ "¯\\_(ツ)_/¯" }, "", false, true)
+end, {})

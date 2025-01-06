@@ -32,8 +32,9 @@ require("lazy").setup({
     { import = "plugins.language.misc" },
     { import = "plugins.language.nim" },
     { import = "plugins.language.nix" },
-    { import = "plugins.language.nu" },
+    require("util").if_exe("nu", { { import = "plugins.language.nu" } }),
     { import = "plugins.language.python" },
+
     -- { import = "plugins.language.roc" },
     { import = "plugins.language.rust" },
     { import = "plugins.language.shell" },
