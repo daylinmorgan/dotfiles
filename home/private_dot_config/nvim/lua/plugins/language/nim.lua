@@ -1,16 +1,14 @@
-local util = require("util")
-
-return util.if_exe("nim", {
-  util.setup_lang({ treesitter = { "nim", "nim_format_string" } }),
+return {
+  require("util").setup_lang({ treesitter = { "nim", "nim_format_string" }, lsp = { "nim_langserver" } }),
   { "alaviss/nim.nvim" },
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        nim_langserver = {
-          mason = false,
-        },
-      },
-    },
-  },
-})
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   opts = {
+  --     servers = {
+  --       nim_langserver = {
+  --         mason = false,
+  --       },
+  --     },
+  --   },
+  -- },
+}

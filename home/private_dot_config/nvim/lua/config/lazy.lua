@@ -1,3 +1,4 @@
+local import_if_exe = require("util").import_if_exe
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -25,22 +26,22 @@ require("lazy").setup({
     { import = "plugins.disabled" },
     { import = "plugins.host" },
     { import = "plugins.ui" },
-    -- { import = "plugins.language" },
-    { import = "plugins.language.go" },
+
+    { import = "plugins.language.misc" },
     { import = "plugins.language.lua" },
     { import = "plugins.language.markdown" },
-    { import = "plugins.language.misc" },
-    { import = "plugins.language.nim" },
-    { import = "plugins.language.nix" },
-    require("util").if_exe("nu", { { import = "plugins.language.nu" } }),
-    { import = "plugins.language.python" },
-
-    -- { import = "plugins.language.roc" },
-    { import = "plugins.language.rust" },
     { import = "plugins.language.shell" },
+    { import = "plugins.language.python" },
     { import = "plugins.language.tex" },
-    { import = "plugins.language.typst" },
-    -- { import = "plugins.language.zig" },
+
+    import_if_exe("go", "plugins.language.go" ),
+    import_if_exe("nim", "plugins.language.nim"),
+    import_if_exe("nix" , "plugins.language.nix" ),
+    import_if_exe("nu", "plugins.language.nu" ),
+    import_if_exe("rust", "plugins.language.rust" ),
+    import_if_exe("typst", "plugins.language.typst" ),
+    -- import_if_exe("zig", "plugins.language.zig" ),
+    -- import_if_exe("roc", "plugins.language.roc" ),
     --
   },
   rocks = {

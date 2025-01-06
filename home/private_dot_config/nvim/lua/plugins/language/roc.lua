@@ -1,4 +1,4 @@
-return require("util").if_exe("roc", {
+return {
   { "nvim-treesitter/nvim-treesitter", opts = { ensure_installed = { "roc" } } },
   {
     "neovim/nvim-lspconfig",
@@ -10,4 +10,4 @@ return require("util").if_exe("roc", {
       },
     },
   },
-})
+}

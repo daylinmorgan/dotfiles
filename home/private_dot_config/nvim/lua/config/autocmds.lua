@@ -16,3 +16,27 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
   pattern = { "*.roc" },
   command = "set filetype=roc",
 })
+
+-- if cspell config found then disable buitlin spell check
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+  pattern = "*",
+  callback = function()
+    -- this isn't exhuastive and won't work if config is contained in a package.json
+    local cspell_files = {
+      "cspell.json",
+      ".cspell.json",
+      "cSpell.json",
+      ".cSpell.json",
+      ".cspell.config.json",
+      "cpsell.config.yaml",
+      ".cpsell.config.yaml"
+    }
+
+    for _, file in ipairs(cspell_files) do
+      if vim.fn.findfile(file, ".;") ~= "" then
+        vim.opt_local.spell = false
+        break
+      end
+    end
+  end
+})

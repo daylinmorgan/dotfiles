@@ -1,5 +1,5 @@
 -- adapted from https://www.lazyvim.org/extras/lang/rust
-return require("util").if_exe("zig", {
+return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
@@ -17,4 +17,4 @@ return require("util").if_exe("zig", {
       },
     },
   },
-})
+}

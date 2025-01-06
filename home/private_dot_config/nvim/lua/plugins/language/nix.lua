@@ -1,6 +1,5 @@
-local util = require("util")
-return util.if_exe("nix", {
-  util.setup_lang({ treesitter = { "nix" } }),
+return {
+  require("util").setup_lang({ treesitter = { "nix" } }),
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -14,4 +13,4 @@ return util.if_exe("nix", {
       },
     },
   },
-})
+}

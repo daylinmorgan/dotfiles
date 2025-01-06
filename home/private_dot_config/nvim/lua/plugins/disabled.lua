@@ -7,7 +7,7 @@ local function disable(plugins)
 end
 
 return disable({
-  "mfussenegger/nvim-lint",
+  -- "mfussenegger/nvim-lint",
   "folke/tokyonight.nvim",
   -- snippets are wildly really annoying
   "L3MON4D3/LuaSnip",

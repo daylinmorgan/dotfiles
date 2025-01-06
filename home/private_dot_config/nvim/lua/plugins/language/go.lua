@@ -1,5 +1,5 @@
 -- adapted from https://www.lazyvim.org/extras/lang/go
-return require("util").if_exe("go", {
+return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
@@ -97,4 +97,4 @@ return require("util").if_exe("go", {
       },
     },
   },
-})
+}

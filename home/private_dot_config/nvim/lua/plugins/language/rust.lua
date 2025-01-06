@@ -1,5 +1,5 @@
 -- adapted from https://www.lazyvim.org/extras/lang/rust
-return require("util").if_exe("rust", {
+return {
   {
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)
@@ -96,4 +96,4 @@ return require("util").if_exe("rust", {
       },
     },
   },
-})
+}

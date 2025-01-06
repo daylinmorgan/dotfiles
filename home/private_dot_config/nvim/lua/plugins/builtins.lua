@@ -35,4 +35,34 @@ return {
       keymap = { preset = "default" },
     },
   },
+  {
+    "mfussenegger/nvim-lint",
+    opts = {
+      -- cspell probably isn't installed globally? though could be with pnpm...
+      -- linters_by_ft = {
+      --   markdown = { "cspell" },
+      -- },
+
+      -- LazyVim extension to easily override linter options
+      -- or add custom linters.
+      ---@type table<string,table>
+      linters = {
+        -- -- Example of using selene only when a selene.toml file is present
+        -- selene = {
+        --   -- `condition` is another LazyVim extension that allows you to
+        --   -- dynamically enable/disable linters based on the context.
+        --   condition = function(ctx)
+        --     return vim.fs.find({ "selene.toml" }, { path = ctx.filename, upward = true })[1]
+        --   end,
+        -- },
+        cspell = {
+          -- only works for one file type?
+          -- see lua/config/autocmds for a possible solution that includes more files
+          condition = function(ctx)
+            return vim.fs.find({".cspell.config.yaml"}, {path = ctx.filename, upward = true})[1]
+          end
+        }
+      },
+    },
+  },
 }
