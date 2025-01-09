@@ -28,6 +28,11 @@ bsm = [
 ]
 l = ["log", "-T", "log_oneline"]
 
+[revsets]
+log = "present(@) | ancestors(immutable_heads().., 3) | present(trunk())"
+# default
+# log = "present(@) | ancestors(immutable_heads().., 2) | present(trunk())"
+
 [template-aliases]
 # adapted from log oneline
 log_oneline = '''
@@ -37,7 +42,7 @@ if(root,
     concat(
       separate(" ",
         format_short_change_id_with_hidden_and_divergent_info(self),
-        if(author.email(), author.username(), email_placeholder),
+        if(author.email(), author.email().local(), email_placeholder),
         if(description,
           description.first_line(),
           label(if(empty, "empty"), description_placeholder),
