@@ -11,7 +11,8 @@ signingkey = "7AD9DB430EE2B3C1D86BF3243CD66E04B8072F3E"
 private-commits = "description(glob:'wip*') | description(glob:'private:*')"
 
 [ui]
-default-command = "log"
+# default-command = "log"
+default-command = "l"
 pager = "delta"
 diff-editor = ":builtin"
 
@@ -48,7 +49,6 @@ if(root,
           label(if(empty, "empty"), description_placeholder),
         ),
         if(empty, label("empty", "(empty)")),
-        format_timestamp(committer.timestamp()),
         bookmarks,
         tags,
         working_copies,
