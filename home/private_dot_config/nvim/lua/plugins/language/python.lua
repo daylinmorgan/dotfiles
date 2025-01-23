@@ -1,9 +1,9 @@
 -- adapted from https://www.lazyvim.org/extras/lang/python#nvim-lspconfig
-local lsp = vim.g.lazyvim_python_lsp or "pyright"
+-- local lsp = vim.g.lazyvim_python_lsp or "pyright"
 local ruff = vim.g.lazyvim_python_ruff or "ruff"
 
 return {
-  require("util").setup_lang({ treesitter = { "python", "toml" }, mason = { "ruff" } }),
+  require("util").setup_lang({ treesitter = { "python", "toml" } }),
   {
     "neovim/nvim-lspconfig",
     opts = {

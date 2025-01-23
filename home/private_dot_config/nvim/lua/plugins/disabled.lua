@@ -9,6 +9,7 @@ end
 return disable({
   -- "mfussenegger/nvim-lint",
   "folke/tokyonight.nvim",
+  "MeanderingProgrammer/render-markdown.nvim",
   -- snippets are wildly really annoying
   "L3MON4D3/LuaSnip",
   "nvim-neo-tree/neo-tree.nvim",
