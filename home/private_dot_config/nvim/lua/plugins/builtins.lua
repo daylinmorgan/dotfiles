@@ -6,9 +6,9 @@ return {
       colorscheme = "catppuccin",
     },
   },
-  {
-    "folke/noice.nvim",
-  },
+  -- {
+  --   "folke/noice.nvim",
+  -- },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
@@ -59,9 +59,17 @@ return {
           -- only works for one file type?
           -- see lua/config/autocmds for a possible solution that includes more files
           condition = function(ctx)
-            return vim.fs.find({".cspell.config.yaml"}, {path = ctx.filename, upward = true})[1]
-          end
-        }
+            return vim.fs.find({ ".cspell.config.yaml" }, { path = ctx.filename, upward = true })[1]
+          end,
+        },
+      },
+    },
+  },
+  {
+    "folke/ts-comments.nvim",
+    opts = {
+      lang = {
+        nim = "# %s",
       },
     },
   },
