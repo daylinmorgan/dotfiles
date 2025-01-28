@@ -64,12 +64,14 @@
 }
 
 
-/* Page back and foward buttons */
+/* Page back and foward buttons 
+*
 #back-button,
 #forward-button
 {
   display: none !important;
 }
+*/
 
 /* Extensions button */
 #unified-extensions-button {
