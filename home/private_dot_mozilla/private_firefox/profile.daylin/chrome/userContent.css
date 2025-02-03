@@ -1,5 +1,4 @@
 /* changes the background color of these mentioned pages to black */
-
 @-moz-document url(chrome://browser/content/blanktab.html), url(about:newtab), url(about:home), url(about:privatebrowsing), url(about:profiles){
     body{
         background-color: black !important;
