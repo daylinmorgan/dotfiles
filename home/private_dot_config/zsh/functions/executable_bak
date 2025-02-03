@@ -8,5 +8,5 @@ for f in "$@"; do
     echo "file not found: $f" >&2
     continue
   fi
-  cp -R "$f" "$f".$now.bak
+  cp -Rv "$f" "$f".$now.bak
 done
