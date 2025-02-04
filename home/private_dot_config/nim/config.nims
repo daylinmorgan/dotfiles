@@ -103,7 +103,7 @@ task b, fmt"build binary, default: {name}":
 
 task updateLock, "workaround for nimble lock probs":
   let params = forwardArgs("updateLock")
-  let nimbleFile = 
+  let nimbleFile =
     if params.len == 1: params[0]
     else: projectDir().lastPathPart & ".nimble"
   if not fileExists nimbleFile:
@@ -113,6 +113,15 @@ task updateLock, "workaround for nimble lock probs":
   rmFile projectDir() / "nimble.paths"
   exec "nimble lock -l"
   exec "nimble setup -l"
+
+
+task test, "run tests/tester.nim":
+  const tester = projectDir() / "tests" / "tester.nim"
+  if fileExists tester:
+    setCommand "r",  tester
+  else:
+    quit "expected file at: " & tester
+
 
 # line delemiter for `nim help`
 task _,"_______________":
