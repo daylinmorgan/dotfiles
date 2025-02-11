@@ -3,16 +3,22 @@
 
 # inspo: https://leahneukirchen.org/blog/archive/2006/01/keeping-your-home-clean-with-mess.html
 
-date_dir=$(date +"%Y/%U")
-DATED_SCRATCH=$HOME/scratch/$date_dir
-mkdir -p $DATED_SCRATCH
-ln -sfn $DATED_SCRATCH $HOME/scratch/current
+local dir date_scratch
+
+date_scratch=$HOME/scratch/$(date +"%Y/%U")
+mkdir -p $date_scratch
+ln -sfn $date_scratch $HOME/scratch/current
+
+# cleanup any empty directories while I'm here
+find $HOME/scratch/$(date +"%Y") \
+  -mindepth 2 -maxdepth 2 -type d -empty -print0 |\
+  xargs -0 --no-run-if-empty rmdir --verbose
 
 if [[ -n $1 ]]; then
-  DIR=$DATED_SCRATCH/$1
-  mkdir -p $DIR
+  dir=$date_scratch/$1
+  mkdir -p $dir
 else
-  DIR=$(mktemp -d $DATED_SCRATCH/$(date +"%d").XXXX)
+  dir=$(mktemp -d $date_scratch/$(date +"%d").XXXX)
 fi
 
-pushd $DIR
+pushd $dir
