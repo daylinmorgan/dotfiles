@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+##? drop into a directory in ~/scratch/%Y/%U
+
+# inspo: https://leahneukirchen.org/blog/archive/2006/01/keeping-your-home-clean-with-mess.html
+
+date_dir=$(date +"%Y/%U")
+DATED_SCRATCH=$HOME/scratch/$date_dir
+mkdir -p $DATED_SCRATCH
+ln -sfn $DATED_SCRATCH $HOME/scratch/current
+
+if [[ -n $1 ]]; then
+  DIR=$DATED_SCRATCH/$1
+  mkdir -p $DIR
+else
+  DIR=$(mktemp -d $DATED_SCRATCH/$(date +"%d").XXXX)
+fi
+
+pushd $DIR
