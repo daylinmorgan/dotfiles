@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+
+from pathlib import Path
+import sys
+from datetime import datetime
+from tempfile import mkdtemp
+
+SCRATCH_DIR = Path.home() / "scratch"
+WEEK_SCRATCH = SCRATCH_DIR / datetime.now().strftime("%Y/%U")
+(SCRATCH_DIR / "current").unlink()
+(SCRATCH_DIR / "current").symlink_to(WEEK_SCRATCH)
+
+
+def clean_up():
+    for p in WEEK_SCRATCH.iterdir():
+        if p.is_dir() and len(list(p.iterdir())) == 0:
+            sys.stderr.write(f"removing: {p}\n")
+            p.rmdir()
+
+
+def make_temp() -> Path:
+    return Path(mkdtemp(prefix=datetime.now().strftime("%d") + ".", dir=WEEK_SCRATCH))
+
+
+def make_named(name: str) -> Path:
+    d = WEEK_SCRATCH / name
+    d.mkdir(exist_ok=True)
+    return d
+
+def return_last() -> Path:
+    dirs = [ d for d in WEEK_SCRATCH.iterdir() if d.is_dir()]
+    if len(dirs) == 0:
+        sys.stderr.write("no directores. exiting...")
+
+    return sorted(dirs, key = lambda p: p.stat().st_mtime, reverse=True)[0]
+
+def main():
+    clean_up()
+    if len(sys.argv) > 2:
+        sys.exit("unexpected number of arguments")
+
+    elif len(sys.argv) > 1:
+        name = sys.argv[1]
+        if name == "last":
+            d = return_last()
+        else:
+            d = make_named(name)
+    else:
+        d = make_temp()
+
+    print(d)
+
+if __name__ == "__main__":
+    main()

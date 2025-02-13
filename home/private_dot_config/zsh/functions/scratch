@@ -1,24 +1,6 @@
 #!/usr/bin/env zsh
 ##? drop into a directory in ~/scratch/%Y/%U
 
-# inspo: https://leahneukirchen.org/blog/archive/2006/01/keeping-your-home-clean-with-mess.html
-
-local dir date_scratch
-
-date_scratch=$HOME/scratch/$(date +"%Y/%U")
-mkdir -p $date_scratch
-ln -sfn $date_scratch $HOME/scratch/current
-
-# cleanup any empty directories while I'm here
-find $HOME/scratch/$(date +"%Y") \
-  -mindepth 2 -maxdepth 2 -type d -empty -print0 |\
-  xargs -0 --no-run-if-empty rmdir --verbose
-
-if [[ -n $1 ]]; then
-  dir=$date_scratch/$1
-  mkdir -p $dir
-else
-  dir=$(mktemp -d $date_scratch/$(date +"%d").XXXX)
-fi
+dir=$(mkscratch "$@")
 
 pushd $dir
