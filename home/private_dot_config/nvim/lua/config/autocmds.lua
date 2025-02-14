@@ -33,7 +33,6 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", }, {
     }
     for _, file in ipairs(cspell_files) do
       if vim.fn.findfile(file, ".;") ~= "" then
-        vim.notify(file)
         vim.opt_local.spell = false
         break
       end
