@@ -1712,7 +1712,7 @@
   }
 
   function prompt_mytodo() {
-    (( $+commands[todo] )) || return
+    (( $+commands[todo] )) && return
     [ -f "todo.md" ] || return
     local todo_status="$(HWYLTERM_FORCE_COLOR=1 todo show --status --totals)"
     p10k segment -t "%f$(_enclose_ansi $todo_status)"
