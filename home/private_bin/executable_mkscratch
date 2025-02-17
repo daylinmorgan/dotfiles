@@ -7,11 +7,14 @@ from tempfile import mkdtemp
 
 SCRATCH_DIR = Path.home() / "scratch"
 WEEK_SCRATCH = SCRATCH_DIR / datetime.now().strftime("%Y/%U")
+
 (SCRATCH_DIR / "current").unlink()
 (SCRATCH_DIR / "current").symlink_to(WEEK_SCRATCH)
 
 
-def clean_up():
+def scratch_maintenance():
+    if not WEEK_SCRATCH.is_dir():
+        WEEK_SCRATCH.mkdir(exist_ok=True)
     for p in WEEK_SCRATCH.iterdir():
         if p.is_dir() and len(list(p.iterdir())) == 0:
             sys.stderr.write(f"removing: {p}\n")
@@ -27,15 +30,18 @@ def make_named(name: str) -> Path:
     d.mkdir(exist_ok=True)
     return d
 
+
 def return_last() -> Path:
-    dirs = [ d for d in WEEK_SCRATCH.iterdir() if d.is_dir()]
+    dirs = [d for d in WEEK_SCRATCH.iterdir() if d.is_dir()]
     if len(dirs) == 0:
         sys.stderr.write("no directores. exiting...")
 
-    return sorted(dirs, key = lambda p: p.stat().st_mtime, reverse=True)[0]
+    return sorted(dirs, key=lambda p: p.stat().st_mtime, reverse=True)[0]
+
 
 def main():
-    clean_up()
+    scratch_maintenance()
+
     if len(sys.argv) > 2:
         sys.exit("unexpected number of arguments")
 
@@ -49,6 +55,7 @@ def main():
         d = make_temp()
 
     print(d)
+
 
 if __name__ == "__main__":
     main()
