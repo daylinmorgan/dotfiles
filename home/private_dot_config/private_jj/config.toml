@@ -22,17 +22,23 @@ format = "git"
 [aliases]
 wip = ["ci", "-m", "wip"]
 la = ["log", "-r", "all()"]
+l = ["log", "-T", "log_oneline"]
+lh = ["log", "-r", "heads()"]
+
 bsm = [
   "bookmark", "set", "main", "-r",
   # first non-empty change from current revset
-  "latest(::@ & ~empty())"
+  "last()"
 ]
-l = ["log", "-T", "log_oneline"]
+dl = ["desc", "-r", "last()"]
+
 
 [revsets]
 log = '@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()'
 # default
 # log = "present(@) | ancestors(immutable_heads().., 2) | present(trunk())"
+#
+
 
 [template-aliases]
 # adapted from log oneline
@@ -62,3 +68,4 @@ if(root,
 
 [revset-aliases]
 "heads()" = '@ | ancestors(trunk()..(visible_heads()), 2) | trunk()'
+"last()" = 'latest(::@ & ~empty())'
