@@ -37,4 +37,5 @@ bin/lock
 .config/vivaldi
 .mozilla/
 
+.config/libvirt
 {{- end }}
