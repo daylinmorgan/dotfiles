@@ -13,8 +13,7 @@ SCRATCH_CURRENT.symlink_to(WEEK_SCRATCH)
 
 
 def scratch_maintenance():
-    if not WEEK_SCRATCH.is_dir():
-        WEEK_SCRATCH.mkdir(exist_ok=True)
+    WEEK_SCRATCH.mkdir(exist_ok=True)
     for p in WEEK_SCRATCH.iterdir():
         if p.is_dir() and len(list(p.iterdir())) == 0:
             sys.stderr.write(f"removing: {p}\n")
