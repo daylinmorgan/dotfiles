@@ -7,9 +7,9 @@ from tempfile import mkdtemp
 
 SCRATCH_DIR = Path.home() / "scratch"
 WEEK_SCRATCH = SCRATCH_DIR / datetime.now().strftime("%Y/%U")
-
-(SCRATCH_DIR / "current").unlink()
-(SCRATCH_DIR / "current").symlink_to(WEEK_SCRATCH)
+if (SCRATCH_CURRENT := SCRATCH_DIR / "current").is_dir():
+    SCRATCH_CURRENT.unlink()
+SCRATCH_CURRENT.symlink_to(WEEK_SCRATCH)
 
 
 def scratch_maintenance():
