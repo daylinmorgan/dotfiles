@@ -1,6 +1,3 @@
-[core]
-excludesfile = /home/{{- .chezmoi.username -}}/.config/git/ignore
-
 [user]
 name = {{ .name }}
 email = {{ .email }}
@@ -26,9 +23,16 @@ defaultBranch = main
 
 [branch]
 autosetuprebase = always
+sort = committerdate
 
 [push]
 autoSetupRemote = true
+
+[column]
+ui = auto
+
+[tag]
+sort = version:refname
 
 [alias]
 ; l = log --format=tformat:'%C(bold magenta)%h%C(reset) %C(bold)%s%C(reset)%C(auto)%d%C(reset) %C(green)%ar%C(reset) %C(dim white)%aN%C(reset)'
@@ -88,4 +92,3 @@ conflictstyle = diff3
 
 [diff]
 colorMoved = default
-
