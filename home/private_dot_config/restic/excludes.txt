@@ -29,7 +29,7 @@ dmypy.json
 .ruff_cache/
 
 #### Zig ####
-zig-cache/
+.zig-cache/
 
 #### Node ####
 node_modules/
