@@ -26,11 +26,9 @@ l = ["log", "-T", "log_oneline"]
 lh = ["log", "-r", "heads()"]
 
 bsm = [
-  "bookmark", "set", "main", "-r",
-  # first non-empty change from current revset
-  "last()"
+  "bookmark", "set", "main", "-r", "zzzz"
 ]
-dl = ["desc", "-r", "last()"]
+dl = ["desc", "-r", "zzzz"]
 
 
 [revsets]
@@ -67,5 +65,6 @@ if(root,
 '''
 
 [revset-aliases]
-"heads()" = '@ | ancestors(trunk()..(visible_heads()), 2) | trunk()'
-"last()" = 'latest(::@ & ~empty())'
+"heads" = '@ | ancestors(trunk()..(visible_heads()), 2) | trunk()'
+"z" = 'latest(::@ & ~empty())'
+"zzzz" = "z"

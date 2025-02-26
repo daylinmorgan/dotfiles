@@ -93,13 +93,21 @@ task h, "":
 
 const name = projectDir().lastPathPart
 
-task b, fmt"build binary, default: {name}":
+template buildProject() =
   switch("outdir", "bin")
   if projectName() == "":
     let name = projectDir().lastPathPart
     setCommand "c", "src/" & name & ".nim"
   else:
     setCommand "c",""
+
+
+task b, fmt"build binary, default: {name}":
+  buildProject()
+
+task build, fmt"build binary, default: {name}":
+  buildProject()
+
 
 task updateLock, "workaround for nimble lock probs":
   let params = forwardArgs("updateLock")
@@ -114,6 +122,12 @@ task updateLock, "workaround for nimble lock probs":
   exec "nimble lock -l"
   exec "nimble setup -l"
 
+task chk, fmt"run nim check, default: {name}":
+  if projectName() == "":
+    let name = projectDir().lastPathPart
+    setCommand "check", "src/" & name & ".nim"
+  else:
+    setCommand "check",""
 
 task test, "run tests/tester.nim":
   const tester = projectDir() / "tests" / "tester.nim"
@@ -121,7 +135,6 @@ task test, "run tests/tester.nim":
     setCommand "r",  tester
   else:
     quit "expected file at: " & tester
-
 
 # line delemiter for `nim help`
 task _,"_______________":
