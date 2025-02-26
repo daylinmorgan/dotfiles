@@ -25,6 +25,7 @@ ${ZDOTDIR}/plugins/prompt
 mattmc3/zephyr path:plugins/confd
 ${ZDOTDIR}/plugins/zexists
 ${ZDOTDIR}/plugins/clipboard
+${ZDOTDIR}/plugins/llm-cmd-comp
 
 # deferred
 # zsh-users/zsh-autosuggestions
