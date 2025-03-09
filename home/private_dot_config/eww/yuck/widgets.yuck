@@ -150,8 +150,10 @@
     (powermenu)))
 
 (defwidget bar [screen ?minimal]
-  (centerbox :orientation "h"
+  (box
+    :orientation "h"
     :class "bar"
+    :space-evenly true
     (leftstuff :screen screen :minimal minimal)
-    (workspaces :screen screen)
+;    (workspaces :screen screen)
     (sidestuff :minimal minimal)))

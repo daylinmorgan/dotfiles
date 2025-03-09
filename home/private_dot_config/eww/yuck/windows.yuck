@@ -1,7 +1,7 @@
 ; Windows
 
 (defwindow bar0
-  :monitor 0
+  :monitor '["eDP-1"]'
   :windowtype "dock"
   :stacking "fg"
   :exclusive true
