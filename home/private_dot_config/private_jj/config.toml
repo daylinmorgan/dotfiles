@@ -3,7 +3,7 @@ name = "Daylin Morgan"
 email = "me@dayl.in"
 
 [signing]
-sign-all = true
+behavior = "own"
 backend = "gpg"
 signingkey = "7AD9DB430EE2B3C1D86BF3243CD66E04B8072F3E"
 
