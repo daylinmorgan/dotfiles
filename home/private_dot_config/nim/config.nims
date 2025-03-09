@@ -105,10 +105,6 @@ template buildProject() =
 task b, fmt"build binary, default: {name}":
   buildProject()
 
-task build, fmt"build binary, default: {name}":
-  buildProject()
-
-
 task updateLock, "workaround for nimble lock probs":
   let params = forwardArgs("updateLock")
   let nimbleFile =
