@@ -37,7 +37,7 @@ require("lazy").setup({
     import_if_exe("go", "plugins.language.go" ),
     import_if_exe("nim", "plugins.language.nim"),
     import_if_exe("nix" , "plugins.language.nix" ),
-    import_if_exe("nu", "plugins.language.nu" ),
+    -- import_if_exe("nu", "plugins.language.nu" ),
     import_if_exe("rust", "plugins.language.rust" ),
     import_if_exe("typst", "plugins.language.typst" ),
     import_if_exe("roc", "plugins.language.roc" ),
