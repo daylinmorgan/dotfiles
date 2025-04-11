@@ -26,9 +26,9 @@ l = ["log", "-T", "log_oneline"]
 lh = ["log", "-r", "heads()"]
 
 bsm = [
-  "bookmark", "set", "main", "-r", "zzzz"
+  "bookmark", "set", "main", "-r", "last"
 ]
-dl = ["desc", "-r", "zzzz"]
+dl = ["desc", "-r", "last"]
 
 
 [revsets]
@@ -66,5 +66,4 @@ if(root,
 
 [revset-aliases]
 "heads" = '@ | ancestors(trunk()..(visible_heads()), 2) | trunk()'
-"z" = 'latest(::@ & ~empty())'
-"zzzz" = "z"
+"last" = 'latest(::@ & ~empty())'

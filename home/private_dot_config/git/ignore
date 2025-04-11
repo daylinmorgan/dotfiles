@@ -10,3 +10,4 @@ _TODO.md
 .envrc
 
 ignored.md
+node_modules
