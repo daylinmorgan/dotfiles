@@ -77,24 +77,36 @@
     (cpu)
     (battery)))
 
-(defwidget workspaces [screen]
-  (box :class "workspaces panel"
+; (defwidget workspaces [screen]
+;   (box :class "workspaces panel"
+;     :orientation "h"
+;     :halign "start"
+;     (workspaces-icons :screen screen)))
+; 
+; 
+; (defwidget workspaces-icons [screen]
+;   (box :class "workspaces"
+;         :orientation "h"
+;         :space-evenly false
+;         :halign "center"
+;         :valign "center"
+;     (for ws in "${workspaces[screen]}"
+;       (button
+;         :class "ws-button ${ws.class}"
+;         :onclick "hyprctl dispatch focusworkspaceoncurrentmonitor ${ws.id}"
+;         "${ws.icon}"))))
+; 
+
+(defwidget workspaces [monitor]
+  (box
     :orientation "h"
-    :halign "start"
-    (workspaces-icons :screen screen)))
-
-
-(defwidget workspaces-icons [screen]
-  (box :class "workspaces"
-        :orientation "h"
-        :space-evenly false
-        :halign "center"
-        :valign "center"
-    (for ws in "${workspaces[screen]}"
+    :halign "center"
+    :space-evenly false
+    (for ws in "${workspaces[monitor]}"
       (button
-        :class "ws-button ${ws.class}"
-        :onclick "hyprctl dispatch focusworkspaceoncurrentmonitor ${ws.id}"
-        "${ws.icon}"))))
+      :class `${ws.active ? "ws-active panel" : "panel"}`
+      :onclick "niri msg action focus-workspace ${ws.idx}"
+      "${ws.icons}"))))
 
 (defwidget sep []
   (box :class "separator"
@@ -116,7 +128,7 @@
     (clock)
     (powermenu)))
 
-(defwidget leftstuff [screen ?minimal]
+(defwidget leftstuff [monitor ?minimal]
   (box :class "panel"
     :orientation "h"
     :halign "start"
@@ -132,13 +144,13 @@
     ;)
   ))
 
-(defwidget leftstuffmin [screen]
+(defwidget leftstuffmin [monitor]
   (box :class "panel"
     :orientation "h"
     :halign "start"
     :space-evenly false
     (launcher)
-    (ws-layout :screen screen)))
+    (ws-layout :screen monitor)))
 
 
 (defwidget sidestuffmin []
@@ -149,11 +161,11 @@
     (clock)
     (powermenu)))
 
-(defwidget bar [screen ?minimal]
+(defwidget topbar [monitor ?minimal]
   (box
     :orientation "h"
     :class "bar"
     :space-evenly true
-    (leftstuff :screen screen :minimal minimal)
-;    (workspaces :screen screen)
+    (leftstuff :monitor monitor :minimal minimal)
+    (workspaces :monitor monitor)
     (sidestuff :minimal minimal)))

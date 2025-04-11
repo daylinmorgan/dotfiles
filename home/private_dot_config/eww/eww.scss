@@ -50,8 +50,13 @@ $foreground: $text;
 
 .ws-button {
   border-style: solid;
-  padding:0px 10px;
+  padding: 0px 10px;
   border-radius: 5px;
+}
+
+.ws-active {
+  color: $background;
+  background-color: $accent;
 }
 
 .ws-button-open {
@@ -83,6 +88,7 @@ $foreground: $text;
   padding-bottom: 0;
 }
 
+ 
 .box-launcher {
   background-color: $accent;
   color: $background;

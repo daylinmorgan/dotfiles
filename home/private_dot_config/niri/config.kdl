@@ -246,7 +246,10 @@ layout {
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
-// spawn-at-startup "alacritty" "-e" "fish"
+spawn-at-startup "niriman" "eww"
+spawn-at-startup "xwayland-satellite"
+
+environment { DISPLAY ":0"; }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -297,6 +300,14 @@ window-rule {
     open-floating true
 }
 
+window-rule {
+    // This app-id regular expression will work for both:
+    // - host Firefox (app-id is "firefox")
+    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
+    match app-id=r#"firefox$"#
+    default-column-width { proportion 0.75; }
+}
+
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
 /-window-rule {
@@ -338,7 +349,7 @@ binds {
     // I which this was a simple 
     Mod+W { spawn "~/.config/rofi/bin/windows.sh"; }
     Mod+Ctrl+P { spawn "~/.config/rofi/bin/powermenu.sh"; }
-    Super+Alt+L { spawn "swaylock"; }
+    Mod+Ctrl+N { spawn "swaylock"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
@@ -551,9 +562,12 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
+    // Print { screenshot; }
+    // Ctrl+Print { screenshot-screen; }
+    // Alt+Print { screenshot-window; }
+
+    Mod+S { screenshot;}
+    Mod+Shift+S { screenshot-screen; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
