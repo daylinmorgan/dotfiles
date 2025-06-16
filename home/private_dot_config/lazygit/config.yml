@@ -1,18 +1,17 @@
 git:
   # see ~/.config/git/config
   branchLogCmd: "git l --color=always"
-  allBranchesLogCmd: "git log --color=always"
   paging:
     colorArg: always
     pager: delta --dark --paging=never
   overrideGpg: true
-
+  allBranchesLogCmds:
+    - git log --color=always
 customCommands:
   - key: "W"
     description: "wip in progess"
     command: 'git commit -m "wip: $(date +"%Y.%m.%d %H:%M:%S")"'
     context: "files"
-
 gui:
   nerdFontsVersion: "3"
   showIcons: true
@@ -45,5 +44,3 @@ gui:
     # # Background color of marked base commit (for rebase)
     # markedBaseCommitBgColor:
     # - yellow
-
-
