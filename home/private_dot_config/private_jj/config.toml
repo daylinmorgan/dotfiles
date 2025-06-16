@@ -15,9 +15,7 @@ private-commits = "description(glob:'wip*') | description(glob:'private:*')"
 default-command = "l"
 pager = "delta"
 diff-editor = ":builtin"
-
-[ui.diff]
-format = "git"
+diff-formatter = ":git"
 
 [aliases]
 wip = ["ci", "-m", "wip"]
@@ -29,14 +27,13 @@ bsm = [
   "bookmark", "set", "main", "-r", "last"
 ]
 dl = ["desc", "-r", "last"]
+tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
 
 
 [revsets]
 log = '@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()'
 # default
 # log = "present(@) | ancestors(immutable_heads().., 2) | present(trunk())"
-#
-
 
 [template-aliases]
 # adapted from log oneline
@@ -67,3 +64,8 @@ if(root,
 [revset-aliases]
 "heads" = '@ | ancestors(trunk()..(visible_heads()), 2) | trunk()'
 "last" = 'latest(::@ & ~empty())'
+'closest_bookmark(to)' = 'heads(::to & bookmarks())'
+
+[experimental-advance-branches]
+enabled-branches = ["glob:*"]
+disabled-branches = ["main", "trunk"]
