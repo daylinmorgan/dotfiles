@@ -8,7 +8,7 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        pyright = { enabled = true },
+        pyright = { enabled = true, mason = false },
         ruff = {
           enabled = true,
           cmd_env = { RUFF_TRACE = "messages" },
