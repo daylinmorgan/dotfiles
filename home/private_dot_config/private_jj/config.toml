@@ -35,6 +35,20 @@ log = '@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()'
 # default
 # log = "present(@) | ancestors(immutable_heads().., 2) | present(trunk())"
 
+
+[templates]
+draft_commit_description = '''
+concat(
+  coalesce(description, default_commit_description, "\n"),
+  surround(
+    "\nJJ: This commit contains the following changes:\n", "",
+    indent("JJ:     ", diff.stat(72)),
+  ),
+  "\nJJ: ignore-rest\n",
+  diff.git(),
+)
+'''
+
 [template-aliases]
 # adapted from log oneline
 log_oneline = '''
