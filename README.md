@@ -1,3 +1,7 @@
+NOTE: This repo has now been integrated in my system nix flake, [oizys](https://git.dayl.in/daylin/oizys).
+
+---
+
 # dotfiles
 
 ## Install
